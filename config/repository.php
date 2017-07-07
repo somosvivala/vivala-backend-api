@@ -222,7 +222,7 @@ return [
         'basePath'      => app_path(),
         'rootNamespace' => 'App\\',
         'paths'         => [
-            'models'       => 'Entities',
+            'models'       => 'Models',
             'repositories' => 'Repositories',
             'interfaces'   => 'Repositories',
             'transformers' => 'Transformers',
@@ -234,4 +234,5 @@ return [
             'stubsOverridePath' => app_path()
         ]
     ]
+
 ];
