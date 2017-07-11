@@ -16,7 +16,7 @@ class CreateContatoAgentesTable extends Migration
         Schema::create('contato_agentes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome_completo');
-            $table->string('nome_preferencia');
+            $table->string('nome_preferencia')->nullable();
             $table->string('email');
             $table->string('telefone');
             $table->timestamps();

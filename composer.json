@@ -10,6 +10,7 @@
         "caouecs/laravel-lang": "~3.0",
         "darkaonline/l5-swagger": "^5.0",
         "doctrine/dbal": "~2.3",
+        "guzzlehttp/guzzle": "^6.3",
         "infyomlabs/adminlte-templates": "5.4.x-dev",
         "infyomlabs/laravel-generator": "5.4.x-dev",
         "infyomlabs/swagger-generator": "dev-master",

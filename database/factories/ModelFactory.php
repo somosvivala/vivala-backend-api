@@ -22,3 +22,16 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+//ContatoAgente
+$factory->define(App\Models\ContatoAgente::class, function (Faker\Generator $faker) {
+    $faker->addProvider(new Faker\Provider\pt_BR\Person($faker));
+    $firstname = $faker->firstname;
+    return [
+        'nome_completo' => $firstname . " " . $faker->lastname,
+        'nome_preferencia' => $firstname,
+        'email' => $faker->email,
+        'telefone' => $faker->cellphoneNumber,
+    ];
+});
+
