@@ -19,3 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('cotacaoPacotes', 'CotacaoPacoteAPIController');
+Route::resource('contatoAgentes', 'ContatoAgenteAPIController');
+Route::resource('contatoCorporativos', 'ContatoCorporativoAPIController');
+
+
+
