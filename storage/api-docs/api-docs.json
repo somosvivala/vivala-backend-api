@@ -1,0 +1,394 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Vivalá Backend API",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/",
+    "paths": {
+        "/cotacaoPacotes": {
+            "get": {
+                "tags": [
+                    "CotacaoPacote"
+                ],
+                "summary": "Get a listing of the CotacaoPacotes.",
+                "description": "Get all CotacaoPacotes",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CotacaoPacote"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CotacaoPacote"
+                ],
+                "summary": "Store a newly created CotacaoPacote in storage",
+                "description": "Store CotacaoPacote",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoPacote that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoPacote"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoPacote"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/cotacaoPacotes/{id}": {
+            "get": {
+                "tags": [
+                    "CotacaoPacote"
+                ],
+                "summary": "Display the specified CotacaoPacote",
+                "description": "Get CotacaoPacote",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of CotacaoPacote",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoPacote"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "CotacaoPacote"
+                ],
+                "summary": "Update the specified CotacaoPacote in storage",
+                "description": "Update CotacaoPacote",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of CotacaoPacote",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoPacote that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoPacote"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoPacote"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CotacaoPacote"
+                ],
+                "summary": "Remove the specified CotacaoPacote from storage",
+                "description": "Delete CotacaoPacote",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of CotacaoPacote",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CotacaoPacote": {
+            "required": [
+                "origem",
+                "destino",
+                "qnt_adultos",
+                "qnt_criancas",
+                "qnt_bebes",
+                "periodo_voo_ida",
+                "periodo_voo_volta"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "origem": {
+                    "description": "origem",
+                    "type": "string"
+                },
+                "destino": {
+                    "description": "destino",
+                    "type": "string"
+                },
+                "datas_flexiveis": {
+                    "description": "datas_flexiveis",
+                    "type": "boolean"
+                },
+                "qnt_adultos": {
+                    "description": "qnt_adultos",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_criancas": {
+                    "description": "qnt_criancas",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_bebes": {
+                    "description": "qnt_bebes",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "periodo_voo_ida": {
+                    "description": "periodo_voo_ida",
+                    "type": "string"
+                },
+                "periodo_voo_volta": {
+                    "description": "periodo_voo_volta",
+                    "type": "string"
+                },
+                "aeroporto_origem": {
+                    "description": "aeroporto_origem",
+                    "type": "string"
+                },
+                "aeroporto_retorno": {
+                    "description": "aeroporto_retorno",
+                    "type": "string"
+                },
+                "companias_aereas_preferenciais": {
+                    "description": "companias_aereas_preferenciais",
+                    "type": "string"
+                },
+                "numero_paradas": {
+                    "description": "numero_paradas",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tempo_voo": {
+                    "description": "tempo_voo",
+                    "type": "string"
+                },
+                "aereo_preco_desejado": {
+                    "description": "aereo_preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "hotel_ou_regiao": {
+                    "description": "hotel_ou_regiao",
+                    "type": "string"
+                },
+                "qnt_quartos": {
+                    "description": "qnt_quartos",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tipo_quarto": {
+                    "description": "tipo_quarto",
+                    "type": "string"
+                },
+                "hospedagem_servicos": {
+                    "description": "hospedagem_servicos",
+                    "type": "string"
+                },
+                "hospedagem_tipo": {
+                    "description": "hospedagem_tipo",
+                    "type": "string"
+                },
+                "hospedagem_solicitacoes": {
+                    "description": "hospedagem_solicitacoes",
+                    "type": "string"
+                },
+                "hospedagem_preco_desejado": {
+                    "description": "hospedagem_preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "transporte_interno": {
+                    "description": "transporte_interno",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tipos_transfer": {
+                    "description": "tipos_transfer",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "categorias_carro": {
+                    "description": "categorias_carro",
+                    "type": "string"
+                },
+                "itens_carro": {
+                    "description": "itens_carro",
+                    "type": "string"
+                },
+                "transporte_interno_solicitacoes": {
+                    "description": "transporte_interno_solicitacoes",
+                    "type": "string"
+                },
+                "transporte_interno_preco_desejado": {
+                    "description": "transporte_interno_preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "passeios_interesses": {
+                    "description": "passeios_interesses",
+                    "type": "string"
+                },
+                "passeios_outros": {
+                    "description": "passeios_outros",
+                    "type": "string"
+                },
+                "passeios_preco_desejado": {
+                    "description": "passeios_preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "nomes_seguro_viagem": {
+                    "description": "nomes_seguro_viagem",
+                    "type": "string"
+                },
+                "datas_nascimento_seguro_viagem": {
+                    "description": "datas_nascimento_seguro_viagem",
+                    "type": "string"
+                },
+                "contato_nome_completo": {
+                    "description": "contato_nome_completo",
+                    "type": "string"
+                },
+                "contato_nome_preferencia": {
+                    "description": "contato_nome_preferencia",
+                    "type": "string"
+                },
+                "contato_email": {
+                    "description": "contato_email",
+                    "type": "string"
+                },
+                "contato_telefone": {
+                    "description": "contato_telefone",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    }
+}
