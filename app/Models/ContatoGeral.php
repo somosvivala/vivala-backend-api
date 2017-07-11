@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="ContatoCorporativo",
+ *      definition="ContatoGeral",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,8 +16,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nome_contato",
- *          description="nome_contato",
+ *          property="nome_completo",
+ *          description="nome_completo",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="nome_preferencia",
+ *          description="nome_preferencia",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -29,17 +34,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="telefone",
  *          description="telefone",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="nome_empresa",
- *          description="nome_empresa",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="numero_funcionarios",
- *          description="numero_funcionarios",
- *          type="integer",
- *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -55,22 +49,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class ContatoCorporativo extends Model
+class ContatoGeral extends Model
 {
     use SoftDeletes;
 
-    public $table = 'contato_corporativos';
+    public $table = 'contato_gerals';
     
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'nome_contato',
+        'nome_completo',
+        'nome_preferencia',
         'email',
-        'telefone',
-        'nome_empresa',
-        'numero_funcionarios'
+        'telefone'
     ];
 
     /**
@@ -79,11 +72,10 @@ class ContatoCorporativo extends Model
      * @var array
      */
     protected $casts = [
-        'nome_contato' => 'string',
+        'nome_completo' => 'string',
+        'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string',
-        'nome_empresa' => 'string',
-        'numero_funcionarios' => 'integer'
+        'telefone' => 'string'
     ];
 
     /**
@@ -92,11 +84,10 @@ class ContatoCorporativo extends Model
      * @var array
      */
     public static $rules = [
-        'nome_contato' => 'required|string',
+        'nome_completo' => 'required|string',
+        'nome_preferencia' => 'sometimes|nullable',
         'email' => 'required|email',
-        'telefone' => 'required|string',
-        'nome_empresa' => 'required|string',
-        'numero_funcionarios' => 'sometimes|nullable|string'
+        'telefone' => 'required|string'
     ];
 
     

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateContatoCorporativosTable extends Migration
+class CreateContatoGeralsTable extends Migration
 {
 
     /**
@@ -13,13 +13,12 @@ class CreateContatoCorporativosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contato_corporativos', function (Blueprint $table) {
+        Schema::create('contato_gerals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome_contato');
+            $table->string('nome_completo');
+            $table->string('nome_preferencia')->nullable();
             $table->string('email');
             $table->string('telefone');
-            $table->string('nome_empresa');
-            $table->integer('numero_funcionarios')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +31,6 @@ class CreateContatoCorporativosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('contato_corporativos');
+        Schema::drop('contato_gerals');
     }
 }

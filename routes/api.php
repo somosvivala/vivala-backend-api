@@ -24,3 +24,6 @@ Route::resource('contatoCorporativos', 'ContatoCorporativoAPIController');
 
 
 
+
+
+Route::resource('contato_gerals', 'ContatoGeralAPIController');

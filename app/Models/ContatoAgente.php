@@ -84,8 +84,10 @@ class ContatoAgente extends Model
      * @var array
      */
     public static $rules = [
-        
+        'nome_completo' => 'required|string',
+        'nome_preferencia' => 'sometimes|nullable|string',
+        'email' => 'required|email',
+        'telefone' => 'required|string'
     ];
-
     
 }
