@@ -323,13 +323,6 @@ class CotacaoPacote extends Model
      * @var array
      */
     public static $rules = [
-        'origem' => 'required',
-        'destino' => 'required',
-        'qnt_adultos' => 'required|integer',
-        'qnt_criancas' => 'required|integer',
-        'qnt_bebes' => 'required|integer',
-        'periodo_voo_ida' => 'required',
-        'periodo_voo_volta' => 'required'
     ];
 
     
