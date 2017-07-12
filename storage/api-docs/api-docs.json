@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Vivalá Backend API",
+        "title": "Laravel Backend API",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -404,6 +404,205 @@
                 }
             }
         },
+        "/contatoGerals": {
+            "get": {
+                "tags": [
+                    "ContatoGeral"
+                ],
+                "summary": "Get a listing of the ContatoGerals.",
+                "description": "Get all ContatoGerals",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ContatoGeral"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ContatoGeral"
+                ],
+                "summary": "Store a newly created ContatoGeral in storage",
+                "description": "Store ContatoGeral",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ContatoGeral that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ContatoGeral"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ContatoGeral"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/contatoGerals/{id}": {
+            "get": {
+                "tags": [
+                    "ContatoGeral"
+                ],
+                "summary": "Display the specified ContatoGeral",
+                "description": "Get ContatoGeral",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ContatoGeral",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ContatoGeral"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ContatoGeral"
+                ],
+                "summary": "Update the specified ContatoGeral in storage",
+                "description": "Update ContatoGeral",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ContatoGeral",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ContatoGeral that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ContatoGeral"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ContatoGeral"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ContatoGeral"
+                ],
+                "summary": "Remove the specified ContatoGeral from storage",
+                "description": "Delete ContatoGeral",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ContatoGeral",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/cotacaoPacotes": {
             "get": {
                 "tags": [
@@ -673,6 +872,44 @@
                     "description": "numero_funcionarios",
                     "type": "integer",
                     "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "ContatoGeral": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nome_completo": {
+                    "description": "nome_completo",
+                    "type": "string"
+                },
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "telefone": {
+                    "description": "telefone",
+                    "type": "string"
                 },
                 "created_at": {
                     "description": "created_at",
