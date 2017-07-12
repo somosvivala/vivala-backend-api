@@ -17,8 +17,9 @@ class CreateContatoCorporativosTable extends Migration
             $table->increments('id');
             $table->string('nome_contato');
             $table->string('email');
-            $table->string('telefone');
-            $table->string('nome_empresa');
+            $table->string('telefone')->nullable();
+            $table->string('nome_empresa')->nullable();
+            $table->string('mensagem')->nullable();
             $table->integer('numero_funcionarios')->nullable();
             $table->timestamps();
             $table->softDeletes();

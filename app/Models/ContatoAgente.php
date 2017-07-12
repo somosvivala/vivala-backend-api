@@ -63,7 +63,8 @@ class ContatoAgente extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
+        'mensagem'
     ];
 
     /**
@@ -75,7 +76,8 @@ class ContatoAgente extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
+        'mensagem' => 'string'
     ];
 
     /**
@@ -87,6 +89,7 @@ class ContatoAgente extends Model
         'nome_completo' => 'required|string',
         'nome_preferencia' => 'sometimes|nullable|string',
         'email' => 'required|email',
+        'mensagem' => 'sometimes|nullable|string',
         'telefone' => 'required|string'
     ];
     

@@ -1,6 +1,6 @@
 @extends('emails.template-email')
 
-@section('titulo', 'Novo interessado no programa de Agentes')
+@section('titulo', 'Novo contato pelo formulário geral')
 
 @section('conteudo')
 
@@ -11,11 +11,11 @@
             <tr align="center">
                 <td align="center" style="text-align:center;">
                     <p style="font-size:14px; font-weight:normal; margin-top:10px;">
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span> {{ $contatoAgente->nome_completo }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Prefere ser chamado de: </span> {{ $contatoAgente->nome_preferencia }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span> {{ $contatoAgente->email }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span> {{ $contatoAgente->telefone }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Contato enviado em: </span> {{ $contatoAgente->created_at->format('d/m/Y - H:i') }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span> {{ $contato->nome_completo }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Prefere ser chamado de: </span> {{ $contato->nome_preferencia }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span> {{ $contato->email }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span> {{ $contato->telefone }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Criado em: </span> {{ $contato->created_at->format('d/m/Y - H:i') }} <br>
                     </p>
                     <br> <hr>
                     <p style="font-size:12px; font-family:'Titillium Web', sans-serif; font-weight:bold; margin-top:0px;">

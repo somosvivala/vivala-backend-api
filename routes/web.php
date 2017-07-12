@@ -25,7 +25,7 @@ Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
 
 //Rotas para mostrar os emails:
 Route::get('/exemplo-email-contato-geral', function () {
-    return view('emails.contato-corporativo')->with('contato', App\Models\ContatoGeral::first());
+    return view('emails.contato-geral')->with('contato', App\Models\ContatoGeral::first());
 });
 Route::get('/exemplo-email-contato-agentes', function () {
     return view('emails.contato-agente')->with('contatoAgente', App\Models\ContatoAgente::first());

@@ -70,6 +70,7 @@ class ContatoCorporativo extends Model
         'email',
         'telefone',
         'nome_empresa',
+        'mensagem',
         'numero_funcionarios'
     ];
 
@@ -83,6 +84,7 @@ class ContatoCorporativo extends Model
         'email' => 'string',
         'telefone' => 'string',
         'nome_empresa' => 'string',
+        'mensagem' => 'string',
         'numero_funcionarios' => 'integer'
     ];
 
@@ -96,6 +98,7 @@ class ContatoCorporativo extends Model
         'email' => 'required|email',
         'telefone' => 'required|string',
         'nome_empresa' => 'required|string',
+        'mensagem' => 'sometimes|nullable|string',
         'numero_funcionarios' => 'sometimes|nullable|string'
     ];
 

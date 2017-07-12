@@ -63,6 +63,7 @@ class ContatoGeral extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
+        'mensagem',
         'telefone'
     ];
 
@@ -75,6 +76,7 @@ class ContatoGeral extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
+        'mensagem' => 'string',
         'telefone' => 'string'
     ];
 
@@ -85,7 +87,8 @@ class ContatoGeral extends Model
      */
     public static $rules = [
         'nome_completo' => 'required|string',
-        'nome_preferencia' => 'sometimes|nullable',
+        'nome_preferencia' => 'sometimes|nullable|string',
+        'mensagem' => 'sometimes|nullable|string',
         'email' => 'required|email',
         'telefone' => 'required|string'
     ];

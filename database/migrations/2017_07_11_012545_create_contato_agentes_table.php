@@ -19,6 +19,7 @@ class CreateContatoAgentesTable extends Migration
             $table->string('nome_preferencia')->nullable();
             $table->string('email');
             $table->string('telefone');
+            $table->string('mensagem')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

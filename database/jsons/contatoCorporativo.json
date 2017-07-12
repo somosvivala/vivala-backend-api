@@ -36,6 +36,11 @@
         "htmlType": "text"
     },
     {
+        "name": "mensagem",
+        "dbType": "string",
+        "htmlType": "textarea"
+    },
+    {
         "name": "created_at",
         "dbType": "timestamp",
         "htmlType": "",
