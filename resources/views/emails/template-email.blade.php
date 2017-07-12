@@ -26,9 +26,7 @@
                   <tr align="center">
                     <td align="center" style="text-align:center;">
                       <a href="{{ env('APP_URL') }}" target="_blank">
-<object data="{{ asset('icones/vivala_branco.svg') }}" type="image/svg+xml">
                         <img src="{{ asset('icones/vivala_branco.png') }}" alt="{{ __('alt_vivala') }}" title="{{ __('title_vivala') }}" border="0" min-width="107px" width="auto" max-width="600px" min-height="59px" height="59px" max-height="59px" style="display:block; margin:auto;">
-</object>
                       </a>
                     </td>
                   </tr>
