@@ -16,6 +16,7 @@
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Numero de funcionários: </span> {{ $contatoCorporativo->numero_funcionarios }} <br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span> {{ $contatoCorporativo->email }} <br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span> {{ $contatoCorporativo->telefone }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Mensagem: </span> {{ $contatoCorporativo->mensagem }} <br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Contato enviado em: </span> {{ $contatoCorporativo->created_at->format('d/m/Y - H:i') }} <br>
                     </p>
                     <br> <hr>

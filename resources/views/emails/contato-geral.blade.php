@@ -11,11 +11,12 @@
             <tr align="center">
                 <td align="center" style="text-align:center;">
                     <p style="font-size:14px; font-weight:normal; margin-top:10px;">
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span> {{ $contato->nome_completo }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Prefere ser chamado de: </span> {{ $contato->nome_preferencia }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span> {{ $contato->email }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span> {{ $contato->telefone }} <br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Criado em: </span> {{ $contato->created_at->format('d/m/Y - H:i') }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span> {{ $contatoGeral->nome_completo }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Prefere ser chamado de: </span> {{ $contatoGeral->nome_preferencia }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span> {{ $contatoGeral->email }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span> {{ $contatoGeral->telefone }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Mensagem: </span> {{ $contatoGeral->mensagem }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Criado em: </span> {{ $contatoGeral->created_at->format('d/m/Y - H:i') }} <br>
                     </p>
                     <br> <hr>
                     <p style="font-size:12px; font-family:'Titillium Web', sans-serif; font-weight:bold; margin-top:0px;">

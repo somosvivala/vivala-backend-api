@@ -32,6 +32,7 @@ $factory->define(App\Models\ContatoGeral::class, function (Faker\Generator $fake
         'nome_preferencia' => $firstname,
         'email' => $faker->email,
         'telefone' => $faker->cellphoneNumber,
+        'mensagem' => $faker->text,
     ];
 });
 
@@ -58,5 +59,6 @@ $factory->define(App\Models\ContatoCorporativo::class, function (Faker\Generator
         'nome_contato' => $firstname . " " . $faker->lastname,
         'email' => $faker->email,
         'telefone' => $faker->cellphoneNumber,
+        'mensagem' => $faker->text,
     ];
 });
