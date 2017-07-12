@@ -2,16 +2,21 @@
 
 namespace App\Mail;
 
+use App\Models\ContatoAgente;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Models\ContatoAgente;
 
-class ContatoAgenteCriado extends Mailable
+class NovoContatoAgente extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * contatoAgente
+     *
+     * @var mixed
+     */
     public $contatoAgente;
 
     /**
@@ -31,9 +36,9 @@ class ContatoAgenteCriado extends Mailable
      */
     public function build()
     {
-        return $this->to(env('EMAIL_DESTINO_CONTATOS'))
+        return $this->to(env('EMAIL_DESTINO_CONTATO_AGENTES'))
             ->from('contato@vivala.com.br')
-            ->subject('[VIVALÁ] Novo contato pelo formulário de agentes!')
+            ->subject('[VIVALÁ] Contato pelo formulário de agentes!')
             ->view('emails.contato-agente');
     }
 }
