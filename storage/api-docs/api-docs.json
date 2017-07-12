@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Vivalá Backend API",
+        "title": "Laravel Generator APIs",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -801,6 +801,205 @@
                     }
                 }
             }
+        },
+        "/inscricaoNewsletters": {
+            "get": {
+                "tags": [
+                    "InscricaoNewsletter"
+                ],
+                "summary": "Get a listing of the InscricaoNewsletters.",
+                "description": "Get all InscricaoNewsletters",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/InscricaoNewsletter"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "InscricaoNewsletter"
+                ],
+                "summary": "Store a newly created InscricaoNewsletter in storage",
+                "description": "Store InscricaoNewsletter",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "InscricaoNewsletter that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/InscricaoNewsletter"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/InscricaoNewsletter"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/inscricaoNewsletters/{id}": {
+            "get": {
+                "tags": [
+                    "InscricaoNewsletter"
+                ],
+                "summary": "Display the specified InscricaoNewsletter",
+                "description": "Get InscricaoNewsletter",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of InscricaoNewsletter",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/InscricaoNewsletter"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "InscricaoNewsletter"
+                ],
+                "summary": "Update the specified InscricaoNewsletter in storage",
+                "description": "Update InscricaoNewsletter",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of InscricaoNewsletter",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "InscricaoNewsletter that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/InscricaoNewsletter"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/InscricaoNewsletter"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "InscricaoNewsletter"
+                ],
+                "summary": "Remove the specified InscricaoNewsletter from storage",
+                "description": "Delete InscricaoNewsletter",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of InscricaoNewsletter",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -1100,6 +1299,37 @@
                 },
                 "contato_telefone": {
                     "description": "contato_telefone",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "InscricaoNewsletter": {
+            "required": [
+                "nome",
+                "email"
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nome": {
+                    "description": "nome",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
                     "type": "string"
                 },
                 "created_at": {

@@ -25,7 +25,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 //ContatoGeral
 $factory->define(App\Models\ContatoGeral::class, function (Faker\Generator $faker) {
-    $faker->addProvider(new Faker\Provider\pt_BR\Person($faker));
     $firstname = $faker->firstname;
     return [
         'nome_completo' => $firstname . " " . $faker->lastname,
@@ -39,7 +38,6 @@ $factory->define(App\Models\ContatoGeral::class, function (Faker\Generator $fake
 
 //ContatoAgente
 $factory->define(App\Models\ContatoAgente::class, function (Faker\Generator $faker) {
-    $faker->addProvider(new Faker\Provider\pt_BR\Person($faker));
     $firstname = $faker->firstname;
     return [
         'nome_completo' => $firstname . " " . $faker->lastname,
@@ -51,7 +49,6 @@ $factory->define(App\Models\ContatoAgente::class, function (Faker\Generator $fak
 
 //ContatoCorporativo
 $factory->define(App\Models\ContatoCorporativo::class, function (Faker\Generator $faker) {
-    $faker->addProvider(new Faker\Provider\pt_BR\Person($faker));
     $firstname = $faker->firstname;
     return [
         'nome_empresa' => $faker->company . $faker->companySuffix,
@@ -62,3 +59,12 @@ $factory->define(App\Models\ContatoCorporativo::class, function (Faker\Generator
         'mensagem' => $faker->text,
     ];
 });
+
+//InscricaoNewsletter
+$factory->define(App\Models\InscricaoNewsletter::class, function (Faker\Generator $faker) {
+    return [
+        'nome' => $faker->name,
+        'email' => $faker->email,
+    ];
+});
+

@@ -34,3 +34,6 @@ Route::get('/exemplo-email-contato-corporativo', function () {
     return view('emails.contato-corporativo')->with('contatoCorporativo', App\Models\ContatoCorporativo::first());
 });
 
+
+
+Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController');

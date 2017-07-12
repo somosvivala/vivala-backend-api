@@ -22,6 +22,8 @@ Route::resource('cotacaoPacotes', 'CotacaoPacoteAPIController');
 Route::resource('contatoAgentes', 'ContatoAgenteAPIController');
 Route::resource('contatoCorporativos', 'ContatoCorporativoAPIController');
 Route::resource('contatoGerals', 'ContatoGeralAPIController');
+Route::resource('inscricaoNewsletters', 'InscricaoNewsletterAPIController');
+
 
 
 
