@@ -860,6 +860,10 @@
                     "description": "email",
                     "type": "string"
                 },
+                "mensagem": {
+                    "description": "mensagem",
+                    "type": "string"
+                },
                 "telefone": {
                     "description": "telefone",
                     "type": "string"
@@ -901,6 +905,10 @@
                 },
                 "nome_preferencia": {
                     "description": "nome_preferencia",
+                    "type": "string"
+                },
+                "mensagem": {
+                    "description": "mensagem",
                     "type": "string"
                 },
                 "email": {

@@ -26,6 +26,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="mensagem",
+ *          description="mensagem",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="email",
  *          description="email",
  *          type="string"

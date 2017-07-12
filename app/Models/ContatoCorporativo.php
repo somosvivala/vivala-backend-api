@@ -26,6 +26,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="mensagem",
+ *          description="mensagem",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="telefone",
  *          description="telefone",
  *          type="string"
@@ -99,7 +104,7 @@ class ContatoCorporativo extends Model
         'telefone' => 'required|string',
         'nome_empresa' => 'required|string',
         'mensagem' => 'sometimes|nullable|string',
-        'numero_funcionarios' => 'sometimes|nullable|string'
+        'numero_funcionarios' => 'sometimes|nullable|integer'
     ];
 
     
