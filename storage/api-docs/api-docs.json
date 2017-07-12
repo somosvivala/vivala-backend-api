@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Laravel Backend API",
+        "title": "Vivalá Backend API",
         "version": "1.0.0"
     },
     "basePath": "/api/",
