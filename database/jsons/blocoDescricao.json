@@ -23,12 +23,12 @@
     {
         "name": "owner_id",
         "dbType": "integer",
-        "htmlType": "text"
+        "htmlType": ""
     },
     {
         "name": "owner_type",
         "dbType": "string",
-        "htmlType": "text"
+        "htmlType": ""
     },
     {
         "name": "created_at",

@@ -13,27 +13,27 @@
     {
         "name": "image_name",
         "dbType": "string",
-        "htmlType": "text"
+        "htmlType": ""
     },
     {
         "name": "image_path",
         "dbType": "string",
-        "htmlType": "text"
+        "htmlType": ""
     },
     {
         "name": "image_extension",
         "dbType": "string",
-        "htmlType": "text"
+        "htmlType": ""
     },
     {
         "name": "owner_id",
         "dbType": "integer",
-        "htmlType": "text"
+        "htmlType": ""
     },
     {
         "name": "owner_type",
         "dbType": "string",
-        "htmlType": "text"
+        "htmlType": ""
     },
     {
         "name": "created_at",

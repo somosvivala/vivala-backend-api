@@ -94,7 +94,26 @@ class Experiencia extends Model
      */
     public function blocosDescricao()
     {
-        return $this->morphMany('App\Models\BlocoDescricao', 'owner');
+        return $this->morphMany(\App\Models\BlocoDescricao::class, 'owner');
     }
+
+    /**
+     * Uma Experiencia possui 1 foto que aparece na listagem
+     */
+    public function fotoListagem()
+    {
+        //@TODO Identificar foto da listagem
+        return $this->fotos()->first();
+    }
+
+    /**
+     * Uma Experiencia possui varias fotos
+     */
+    public function fotos()
+    {
+        return $this->morphMany(\App\Models\Foto::class, 'owner');
+    }
+    
+    
     
 }
