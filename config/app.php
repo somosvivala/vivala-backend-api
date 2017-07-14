@@ -179,6 +179,7 @@ return [
 
         //Lib para lidar com imagens
         Intervention\Image\ImageServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
         /*
          * Application Service Providers...
