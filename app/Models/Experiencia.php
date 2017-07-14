@@ -89,5 +89,12 @@ class Experiencia extends Model
         
     ];
 
+    /**
+     * Uma Experiencia possi varios blocos de descricao
+     */
+    public function blocosDescricao()
+    {
+        return $this->morphMany('App\Models\BlocoDescricao', 'owner');
+    }
     
 }

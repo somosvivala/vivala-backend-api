@@ -68,3 +68,25 @@ $factory->define(App\Models\InscricaoNewsletter::class, function (Faker\Generato
     ];
 });
 
+//Experiencia
+$factory->define(App\Models\Experiencia::class, function (Faker\Generator $faker) {
+
+    $data = $faker->dateTimeBetween('now', '+1 year');
+    $dataInicio = new \Carbon\Carbon($data->format('Y-m-d'));
+    $dataFim = $dataInicio->copy()->addDays($faker->randomDigit);
+
+    return [
+        'titulo' => ucwords($faker->word ." ". $faker->region ." #". $faker->randomDigit) ,
+        'descricao_listagem' => $faker->paragraph(3),
+        'data_inicio' => $dataInicio,
+        'data_fim' => $dataFim
+    ];
+});
+
+//BlocoDescricao
+$factory->define(App\Models\BlocoDescricao::class, function (Faker\Generator $faker) {
+    return [
+        'titulo' => ucwords(implode(' ', $faker->words(3))),
+        'texto' => $faker->paragraph(6),
+    ];
+});

@@ -88,5 +88,13 @@ class BlocoDescricao extends Model
         
     ];
 
-    
+
+    /**
+     * Um bloco de descricao pode pertencer a qualquer outro model (Rel. Polimorfica)
+     */
+    public function owner()
+    {
+        return $this->morphTo();
+    }
+
 }
