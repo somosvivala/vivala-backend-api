@@ -3,17 +3,16 @@
     src: url('/fonts/jaapokki-regular.ttf');
 }
 
-/* Some com a top bar do swagger */
-.topbar { display: none; }
-
-nav {
-	height: 65px;
-	background-color: #FF6D20;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.logo {
+	background-color: #e65000!important;
 }
-nav img { height: 45px; }
+.logo img {
+	height: 40px;
+}
+
+.navbar {
+	background-color: #ff6d20!important;
+}
 
 footer {
 	height: 70px;
