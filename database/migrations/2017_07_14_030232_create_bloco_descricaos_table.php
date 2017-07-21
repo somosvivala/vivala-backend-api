@@ -15,8 +15,8 @@ class CreateBlocoDescricaosTable extends Migration
     {
         Schema::create('bloco_descricaos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo');
-            $table->text('texto');
+            $table->string('titulo')->nullable();
+            $table->text('texto')->nullable();
             $table->integer('owner_id');
             $table->string('owner_type');
             $table->timestamps();
