@@ -45,3 +45,7 @@ Route::resource('experiencias', 'ExperienciaController');
 Route::resource('blocoDescricaos', 'BlocoDescricaoController');
 
 Route::resource('fotos', 'FotoController');
+
+
+
+Route::resource('inscricoesExpedicaos', 'InscricoesExpedicaoController');
