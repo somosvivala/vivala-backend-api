@@ -32,7 +32,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/inscricaoExpedicaos",
+     *      path="/expedicoes/{id}/inscricoes",
      *      summary="Get a listing of the InscricaoExpedicaos.",
      *      tags={"InscricaoExpedicao"},
      *      description="Get all InscricaoExpedicaos",
@@ -73,7 +73,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/inscricaoExpedicaos",
+     *      path="/expedicoes/{id}/inscricoes",
      *      summary="Store a newly created InscricaoExpedicao in storage",
      *      tags={"InscricaoExpedicao"},
      *      description="Store InscricaoExpedicao",
@@ -120,7 +120,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/inscricaoExpedicaos/{id}",
+     *      path="/expedicoes/{id}/inscricoes/{id}",
      *      summary="Display the specified InscricaoExpedicao",
      *      tags={"InscricaoExpedicao"},
      *      description="Get InscricaoExpedicao",
@@ -171,7 +171,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Put(
-     *      path="/inscricaoExpedicaos/{id}",
+     *      path="/expedicoes/{id}/inscricoes/{id}",
      *      summary="Update the specified InscricaoExpedicao in storage",
      *      tags={"InscricaoExpedicao"},
      *      description="Update InscricaoExpedicao",
@@ -232,7 +232,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/inscricaoExpedicaos/{id}",
+     *      path="/expedicoes/{id}/inscricoes/{id}",
      *      summary="Remove the specified InscricaoExpedicao from storage",
      *      tags={"InscricaoExpedicao"},
      *      description="Delete InscricaoExpedicao",

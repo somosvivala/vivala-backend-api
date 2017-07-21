@@ -25,6 +25,7 @@ Route::resource('contatoGerals', 'ContatoGeralAPIController');
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterAPIController');
 
 
+Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController');
 
 
 
@@ -37,4 +38,3 @@ Route::resource('inscricaoNewsletters', 'InscricaoNewsletterAPIController');
 
 
 
-Route::resource('inscricao_expedicaos', 'InscricaoExpedicaoAPIController');

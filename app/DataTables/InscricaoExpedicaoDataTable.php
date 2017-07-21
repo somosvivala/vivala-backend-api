@@ -72,13 +72,11 @@ class InscricaoExpedicaoDataTable extends DataTable
     private function getColumns()
     {
         return [
+            'nome_status' => ['name' => 'nome_status', 'title' => 'Status', 'data' => 'nome_status'],
             'nome' => ['name' => 'nome', 'data' => 'nome'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
-            'cod_status' => ['name' => 'cod_status', 'data' => 'cod_status'],
-            'nome_status' => ['name' => 'nome_status', 'data' => 'nome_status'],
-            'expedicao_id' => ['name' => 'expedicao_id', 'data' => 'expedicao_id'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at']
+            'created_at' => ['name' => 'created_at', 'title' => 'Data inscrição', 'data' => 'created_at']
         ];
     }
 

@@ -17,9 +17,9 @@ class CreateInscricaoExpedicaosTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('email');
-            $table->string('telefone');
-            $table->integer('cod_status');
-            $table->string('nome_status');
+            $table->string('telefone')->nullable();
+            $table->integer('cod_status')->nullable();
+            $table->string('nome_status')->nullable();
             $table->integer('expedicao_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
