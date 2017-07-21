@@ -51,3 +51,7 @@ Route::resource('fotos', 'FotoController');
 
 
 Route::resource('expedicaos', 'ExpedicaoController');
+
+
+
+Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController');

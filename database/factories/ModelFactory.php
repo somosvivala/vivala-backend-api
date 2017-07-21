@@ -91,3 +91,19 @@ $factory->define(App\Models\BlocoDescricao::class, function (Faker\Generator $fa
     ];
 });
 
+//Expedicao
+$factory->define(App\Models\Expedicao::class, function (Faker\Generator $faker) {
+
+    $data = $faker->dateTimeBetween('now', '+1 year');
+    $dataInicio = new \Carbon\Carbon($data->format('Y-m-d'));
+    $dataFim = $dataInicio->copy()->addDays($faker->randomDigit);
+
+    return [
+        'titulo' => ucwords($faker->word ." ". $faker->region ." #". $faker->randomDigit) ,
+        'descricao_listagem' => $faker->paragraph(2),
+        'data_inicio' => $dataInicio,
+        'data_fim' => $dataFim
+    ];
+});
+
+

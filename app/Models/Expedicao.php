@@ -102,5 +102,36 @@ class Expedicao extends Model
         
     ];
 
+    /**
+     * Relacao de hasMany de Inscricoes
+     *
+     */
+    public function inscricoes() 
+    {
+        return $this->hasMany(App\Models\InscricaoExpedicao::class);
+    }
     
+    /**
+     * Uma Expedicao possi N blocos de descricao
+     */
+    public function blocosDescricao()
+    {
+        return $this->morphMany(\App\Models\BlocoDescricao::class, 'owner');
+    }
+
+    /**
+     * Uma Expedicao possui 1 foto que aparece na listagem
+     */
+    public function mediaListagem()
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Uma Expedicao possui varias fotos
+     */
+    public function fotos()
+    {
+        return $this->morphMany(\App\Models\Foto::class, 'owner');
+    }
 }

@@ -77,8 +77,7 @@ class InscricaoExpedicaoDataTable extends DataTable
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
             'cod_status' => ['name' => 'cod_status', 'data' => 'cod_status'],
             'nome_status' => ['name' => 'nome_status', 'data' => 'nome_status'],
-            'owner_id' => ['name' => 'owner_id', 'data' => 'owner_id'],
-            'owner_type' => ['name' => 'owner_type', 'data' => 'owner_type'],
+            'expedicao_id' => ['name' => 'expedicao_id', 'data' => 'expedicao_id'],
             'created_at' => ['name' => 'created_at', 'data' => 'created_at']
         ];
     }

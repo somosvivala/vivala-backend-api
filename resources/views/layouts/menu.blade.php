@@ -27,3 +27,8 @@
     <a href="{!! route('expedicaos.index') !!}"><i class="fa fa-edit"></i><span>Expedicaos</span></a>
 </li>
 
+
+<li class="{{ Request::is('inscricaoExpedicaos*') ? 'active' : '' }}">
+    <a href="{!! route('inscricaoExpedicaos.index') !!}"><i class="fa fa-edit"></i><span>InscricaoExpedicaos</span></a>
+</li>
+

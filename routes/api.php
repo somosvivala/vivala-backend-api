@@ -33,3 +33,8 @@ Route::resource('inscricaoNewsletters', 'InscricaoNewsletterAPIController');
 
 
 
+
+
+
+
+Route::resource('inscricao_expedicaos', 'InscricaoExpedicaoAPIController');

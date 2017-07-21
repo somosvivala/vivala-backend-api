@@ -1,0 +1,62 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "nome",
+        "dbType": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "email",
+        "dbType": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "telefone",
+        "dbType": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "cod_status",
+        "dbType": "integer",
+        "htmlType": ""
+    },
+    {
+        "name": "nome_status",
+        "dbType": "string",
+        "htmlType": ""
+    },
+    {
+        "name": "expedicao_id",
+        "dbType": "integer:unsigned:foreign,expedicaos,id",
+        "htmlType": "text",
+        "relation": "mt1,Expedicao,expedicao_id,id"
+    }, 
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "inForm": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]

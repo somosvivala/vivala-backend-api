@@ -19,8 +19,8 @@ class CreateExpedicaosTable extends Migration
             $table->string('descricao_listagem');
             $table->date('data_inicio');
             $table->date('data_fim');
-            $table->integer('media_listagem_id');
-            $table->string('media_listagem_type');
+            $table->integer('media_listagem_id')->nullable();
+            $table->string('media_listagem_type')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
