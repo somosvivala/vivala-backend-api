@@ -48,4 +48,6 @@ Route::resource('fotos', 'FotoController');
 
 
 
-Route::resource('inscricoesExpedicaos', 'InscricoesExpedicaoController');
+
+
+Route::resource('expedicaos', 'ExpedicaoController');

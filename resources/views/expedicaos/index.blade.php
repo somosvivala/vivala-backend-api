@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Inscricoes Expedicaos</h1>
+        <h1 class="pull-left">Expedicaos</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('inscricoesExpedicaos.create') !!}">Add New</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('expedicaos.create') !!}">Add New</a>
         </h1>
     </section>
     <div class="content">
@@ -15,7 +15,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('inscricoes_expedicaos.table')
+                    @include('expedicaos.table')
             </div>
         </div>
     </div>

@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\InscricoesExpedicao;
+use App\Models\Expedicao;
 use InfyOm\Generator\Common\BaseRepository;
 
-class InscricoesExpedicaoRepository extends BaseRepository
+class ExpedicaoRepository extends BaseRepository
 {
     /**
      * @var array
@@ -19,6 +19,6 @@ class InscricoesExpedicaoRepository extends BaseRepository
      **/
     public function model()
     {
-        return InscricoesExpedicao::class;
+        return Expedicao::class;
     }
 }

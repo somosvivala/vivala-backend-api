@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\InscricoesExpedicao;
+use App\Models\Expedicao;
 
-class UpdateInscricoesExpedicaoRequest extends FormRequest
+class CreateExpedicaoRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class UpdateInscricoesExpedicaoRequest extends FormRequest
      */
     public function rules()
     {
-        return InscricoesExpedicao::$rules;
+        return Expedicao::$rules;
     }
 }

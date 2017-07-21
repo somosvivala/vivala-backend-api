@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="InscricoesExpedicao",
+ *      definition="Expedicao",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,40 +16,36 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nome",
- *          description="nome",
+ *          property="titulo",
+ *          description="titulo",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="email",
- *          description="email",
+ *          property="descricao_listagem",
+ *          description="descricao_listagem",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="telefone",
- *          description="telefone",
- *          type="string"
+ *          property="data_inicio",
+ *          description="data_inicio",
+ *          type="string",
+ *          format="date"
  *      ),
  *      @SWG\Property(
- *          property="cod_status",
- *          description="cod_status",
+ *          property="data_fim",
+ *          description="data_fim",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="media_listagem_id",
+ *          description="media_listagem_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nome_status",
- *          description="nome_status",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="owner_id",
- *          description="owner_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="owner_type",
- *          description="owner_type",
+ *          property="media_listagem_type",
+ *          description="media_listagem_type",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -66,25 +62,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class InscricoesExpedicao extends Model
+class Expedicao extends Model
 {
     use SoftDeletes;
 
-    public $table = 'inscricoes_expedicaos';
+    public $table = 'expedicaos';
     
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'nome',
-        'email',
-        'telefone',
-        'cod_status',
-        'nome_status',
-        'owner_id',
-        'owner_type',
-        'created_at'
+        'titulo',
+        'descricao_listagem',
+        'data_inicio',
+        'data_fim'
     ];
 
     /**
@@ -93,13 +85,12 @@ class InscricoesExpedicao extends Model
      * @var array
      */
     protected $casts = [
-        'nome' => 'string',
-        'email' => 'string',
-        'telefone' => 'string',
-        'cod_status' => 'integer',
-        'nome_status' => 'string',
-        'owner_id' => 'integer',
-        'owner_type' => 'string'
+        'titulo' => 'string',
+        'descricao_listagem' => 'string',
+        'data_inicio' => 'date',
+        'data_fim' => 'date',
+        'media_listagem_id' => 'integer',
+        'media_listagem_type' => 'string'
     ];
 
     /**

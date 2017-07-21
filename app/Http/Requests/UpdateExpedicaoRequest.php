@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests;
 
-use App\Models\InscricoesExpedicao;
-use InfyOm\Generator\Request\APIRequest;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Expedicao;
 
-class CreateInscricoesExpedicaoAPIRequest extends APIRequest
+class UpdateExpedicaoRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,6 +25,6 @@ class CreateInscricoesExpedicaoAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return InscricoesExpedicao::$rules;
+        return Expedicao::$rules;
     }
 }
