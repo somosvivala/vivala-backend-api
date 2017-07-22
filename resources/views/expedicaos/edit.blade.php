@@ -70,6 +70,17 @@
 
                         @include('bloco_descricaos.table', ['blocoDescricaos' => $expedicao->blocosDescricao])
                     </div>
+                    <div class="tab-pane" id="tab_inscricoes">
+
+                        <hr>
+                        {{-- @include('inscricao_expedicaos.table') --}}
+
+                    </div>
+
+
+
+
+
                     <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
