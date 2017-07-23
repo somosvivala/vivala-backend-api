@@ -77,7 +77,9 @@ class Experiencia extends Model
         'titulo' => 'string',
         'descricao_listagem' => 'string',
         'data_inicio' => 'date',
-        'data_fim' => 'date'
+        'data_fim' => 'date',
+        'media_listagem_id' => 'integer',
+        'media_listagem_type' => 'string'
     ];
 
     /**
@@ -90,6 +92,15 @@ class Experiencia extends Model
     ];
 
     /**
+     * Relacao de hasMany de Inscricoes
+     *
+     */
+    public function inscricoes() 
+    {
+        return $this->hasMany(App\Models\InscricaoExperiencia::class);
+    }
+
+    /**
      * Uma Experiencia possi varios blocos de descricao
      */
     public function blocosDescricao()
@@ -100,10 +111,9 @@ class Experiencia extends Model
     /**
      * Uma Experiencia possui 1 foto que aparece na listagem
      */
-    public function fotoListagem()
+    public function mediaListagem()
     {
-        //@TODO Identificar foto da listagem
-        return $this->fotos()->first();
+        return $this->morphTo();
     }
 
     /**

@@ -23,9 +23,9 @@ Route::resource('contatoAgentes', 'ContatoAgenteAPIController');
 Route::resource('contatoCorporativos', 'ContatoCorporativoAPIController');
 Route::resource('contatoGerals', 'ContatoGeralAPIController');
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterAPIController');
-
-
 Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController');
+Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController');
+
 
 
 

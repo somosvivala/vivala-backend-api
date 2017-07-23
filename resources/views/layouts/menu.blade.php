@@ -32,3 +32,7 @@
     <a href="{!! route('inscricaoExpedicaos.index') !!}"><i class="fa fa-edit"></i><span>InscricaoExpedicaos</span></a>
 </li>
 
+<li class="{{ Request::is('inscricaoExperiencias*') ? 'active' : '' }}">
+    <a href="{!! route('inscricaoExperiencias.index') !!}"><i class="fa fa-edit"></i><span>InscricaoExperiencias</span></a>
+</li>
+

@@ -58,3 +58,6 @@ Route::resource('expedicaos', 'ExpedicaoController');
 
 
 Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController');
+
+
+Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController');
