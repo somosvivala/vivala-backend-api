@@ -6,10 +6,12 @@ use App\Models\ContatoAgente;
 use App\Models\ContatoCorporativo;
 use App\Models\ContatoGeral;
 use App\Models\InscricaoExpedicao;
+use App\Models\InscricaoExperiencia;
 use App\Observers\ContatoAgenteObserver;
 use App\Observers\ContatoCorporativoObserver;
 use App\Observers\ContatoGeralObserver;
 use App\Observers\InscricaoExpedicaoObserver;
+use App\Observers\InscricaoExperienciaObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         ContatoAgente::observe(ContatoAgenteObserver::class);
         ContatoCorporativo::observe(ContatoCorporativoObserver::class);
         InscricaoExpedicao::observe(InscricaoExpedicaoObserver::class);
+        InscricaoExperiencia::observe(InscricaoExperienciaObserver::class);
     }
 
     /**

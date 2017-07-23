@@ -38,7 +38,7 @@ class NovaInscricaoExpedicao extends Mailable
     {
         return $this->to(env('EMAIL_DESTINO_INSCRICAO_EXPEDICAO'))
             ->from('contato@vivala.com.br')
-            ->subject('[VIVALÁ] Nova Inscrição em Expedição!')
+            ->subject('[VIVALÁ] Nova inscrição na expedição '.$this->inscricao->expedicao->titulo)
             ->view('emails.inscricao-expedicao');
     }
 }

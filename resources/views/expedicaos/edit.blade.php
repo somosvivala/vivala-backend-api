@@ -73,7 +73,9 @@
                     <div class="tab-pane" id="tab_inscricoes">
 
                         <hr>
-                         @include('inscricao_expedicaos.table')
+                         {{-- TODO: Arranjar maneira de usar a datatable na aba ou outra abordagem
+                            @include('inscricao_expedicaos.table') 
+                         --}}
                     </div>
 
 

@@ -42,8 +42,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="expedicao_id",
- *          description="expedicao_id",
+ *          property="experiencia_id",
+ *          description="experiencia_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -77,7 +77,7 @@ class InscricaoExperiencia extends Model
         'telefone',
         'cod_status',
         'nome_status',
-        'expedicao_id',
+        'experiencia_id',
         'created_at'
     ];
 
@@ -92,7 +92,7 @@ class InscricaoExperiencia extends Model
         'telefone' => 'string',
         'cod_status' => 'integer',
         'nome_status' => 'string',
-        'expedicao_id' => 'integer'
+        'experiencia_id' => 'integer'
     ];
 
     /**
@@ -105,10 +105,12 @@ class InscricaoExperiencia extends Model
     ];
 
     /**
+     * Relacao de pertencimento com Experiencia
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function expedicao()
+    public function experiencia()
     {
-        return $this->belongsTo(\App\Models\Expedicao::class, 'expedicao_id', 'id');
+        return $this->belongsTo(\App\Models\Experiencia::class, 'experiencia_id', 'id');
     }
 }

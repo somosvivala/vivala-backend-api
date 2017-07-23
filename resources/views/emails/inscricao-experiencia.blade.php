@@ -1,6 +1,6 @@
 @extends('emails.template-email')
 
-@section('titulo', 'Nova inscrição na expedição ' . $inscricao->expedicao->titulo )
+@section('titulo', 'Nova inscrição na experiência ' . $inscricao->experiencia->titulo )
 
 @section('conteudo')
 
