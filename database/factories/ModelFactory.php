@@ -106,4 +106,15 @@ $factory->define(App\Models\Expedicao::class, function (Faker\Generator $faker) 
     ];
 });
 
+//InscricaoNewsletter
+$factory->define(App\Models\InscricaoExpedicao::class, function (Faker\Generator $faker) {
+    return [
+        'nome' => $faker->name,
+        'email' => $faker->email,
+        'telefone' => $faker->cellphoneNumber,
+        'expedicao_id' => \App\Models\Expedicao::first()->id,
+    ];
+});
+
+
 
