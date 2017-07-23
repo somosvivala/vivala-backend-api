@@ -1,0 +1,41 @@
+@font-face {
+    font-family: jaapokki-regular;
+    src: url('/fonts/jaapokki-regular.ttf');
+}
+
+/* Some com a top bar do swagger */
+.topbar { display: none; }
+
+nav {
+	height: 65px;
+	background-color: #FF6D20;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+nav img { height: 45px; }
+
+footer {
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+footer a:link, footer a:visited, footer a:hover, footer a:active {
+	color: black;
+	text-decoration: none;
+}
+footer img {
+	height: 45px;
+}
+footer i {
+	margin-left: 12px;
+}
+footer i::before {
+	font-size: 25px;
+}
+footer h4 {
+	font-family: jaapokki-regular;
+	font-weight: 300;
+	margin-right: 12px;
+}

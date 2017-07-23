@@ -1,0 +1,40 @@
+/* Mudanças no CSS do InfyOm */
+/* Centralizando o login-box */
+html { height: 100%!important }
+body {
+	height: 100%!important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-page {
+	background-color: #EEEDED; 
+}
+
+.login-logo img {
+	height: 80px;
+}
+.login-logo h2 {
+	font-family: Titillium Web;
+}
+
+.login-box { 
+	/*height: 100%!important;*/
+	margin: 0 auto;
+}
+
+.login-box-body {
+	background-color: #F7F7F7;
+	border-radius: 5px;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+}
+
+.btn-primary, .btn-primary:hover {
+    background-color: #FF6D20;
+    border-color: #FF6D20;
+}
+
+.form-group input:focus {
+	border-color: #FF6D20;
+}
