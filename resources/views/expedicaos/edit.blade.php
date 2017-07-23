@@ -73,8 +73,7 @@
                     <div class="tab-pane" id="tab_inscricoes">
 
                         <hr>
-                        {{-- @include('inscricao_expedicaos.table') --}}
-
+                         @include('inscricao_expedicaos.table')
                     </div>
 
 

@@ -33,6 +33,9 @@ Route::get('/exemplo-email-contato-agentes', function () {
 Route::get('/exemplo-email-contato-corporativo', function () {
     return view('emails.contato-corporativo')->with('contatoCorporativo', App\Models\ContatoCorporativo::first());
 });
+Route::get('/exemplo-email-inscricao-expedicao', function () {
+    return view('emails.inscricao-expedicao')->with('inscricao', App\Models\InscricaoExpedicao::latest()->first());
+});
 
 
 
