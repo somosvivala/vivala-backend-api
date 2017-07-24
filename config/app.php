@@ -176,6 +176,7 @@ return [
         L5Swagger\L5SwaggerServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Datatables\ButtonsServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
 
         //Lib para lidar com imagens
         Intervention\Image\ImageServiceProvider::class,
