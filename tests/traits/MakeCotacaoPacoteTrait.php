@@ -76,10 +76,10 @@ trait MakeCotacaoPacoteTrait
             'passeios_preco_desejado' => $fake->randomDigitNotNull,
             'nomes_seguro_viagem' => $fake->word,
             'datas_nascimento_seguro_viagem' => $fake->word,
-            'contato_nome_completo' => $fake->word,
-            'contato_nome_preferencia' => $fake->word,
-            'contato_email' => $fake->word,
-            'contato_telefone' => $fake->word,
+            'nome_completo' => $fake->word,
+            'nome_preferencia' => $fake->word,
+            'email' => $fake->word,
+            'telefone' => $fake->word,
             'created_at' => $fake->word,
             'updated_at' => $fake->word
         ], $cotacaoPacoteFields);

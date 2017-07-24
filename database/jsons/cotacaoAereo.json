@@ -71,8 +71,7 @@
     {
         "name": "periodo_voo_volta",
         "dbType": "string:nullable",
-        "htmlType": "select,Manhã,Tarde,Noite",
-        "validations": "required"
+        "htmlType": "select,Manhã,Tarde,Noite"
     },
     {
         "name": "aeroporto_origem",
@@ -102,96 +101,6 @@
     {
         "name": "aereo_preco_desejado",
         "dbType": "float:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "hotel_ou_regiao",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "qnt_quartos",
-        "dbType": "integer:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "tipo_quarto",
-        "dbType": "string:nullable",
-        "htmlType": "select,INDIVIDUAL:1,CASAL:2,TRIPLO:3,QUADRUPLO:4,CASA/AP COMPLETO:5"
-    },
-    {
-        "name": "hospedagem_servicos",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "hospedagem_tipo",
-        "dbType": "string:nullable",
-        "htmlType": "select:HOSTEL:1,POUSADA:2,CASA/AP:3,HOTEL:4,TODOS:5"
-    },
-    {
-        "name": "hospedagem_solicitacoes",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "hospedagem_preco_desejado",
-        "dbType": "float:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "transporte_interno",
-        "dbType": "integer:nullable",
-        "htmlType": "radio:TRANSFER PARA HOTEL:1,ALUGUEL DE CARRO:2"
-    },
-    {
-        "name": "tipos_transfer",
-        "dbType": "integer:nullable",
-        "htmlType": "radio:CARRO PRIVATIVO:1,CARRO COMPARTLHADO:2,VAN COMPARTILHADA:3"
-    },
-    {
-        "name": "categorias_carro",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "itens_carro",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "transporte_interno_solicitacoes",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "transporte_interno_preco_desejado",
-        "dbType": "float:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "passeios_interesses",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "passeios_outros",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "passeios_preco_desejado",
-        "dbType": "float:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "nomes_seguro_viagem",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "datas_nascimento_seguro_viagem",
-        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {

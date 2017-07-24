@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="CotacaoPacote",
- *      required={"origem", "destino", "data_ida", "qnt_adultos", "qnt_criancas", "qnt_bebes", "periodo_voo_ida", "periodo_voo_volta", "contato_nome_completo", "contato_email", "contato_telefone"},
+ *      required={"origem", "destino", "data_ida", "data_volta", "qnt_adultos", "qnt_criancas", "qnt_bebes", "periodo_voo_ida", "periodo_voo_volta", "nome_completo", "email", "telefone"},
  *      @SWG\Property(
  *          property="origem",
  *          description="origem",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="destino",
+ *          description="destino",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -22,11 +27,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="data_volta",
  *          description="data_volta",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="destino",
- *          description="destino",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -191,23 +191,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="contato_nome_completo",
- *          description="contato_nome_completo",
+ *          property="nome_completo",
+ *          description="nome_completo",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="contato_nome_preferencia",
- *          description="contato_nome_preferencia",
+ *          property="nome_preferencia",
+ *          description="nome_preferencia",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="contato_email",
- *          description="contato_email",
+ *          property="email",
+ *          description="email",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="contato_telefone",
- *          description="contato_telefone",
+ *          property="telefone",
+ *          description="telefone",
  *          type="string"
  *      )
  * )
@@ -257,10 +257,10 @@ class CotacaoPacote extends Model
         'passeios_preco_desejado',
         'nomes_seguro_viagem',
         'datas_nascimento_seguro_viagem',
-        'contato_nome_completo',
-        'contato_nome_preferencia',
-        'contato_email',
-        'contato_telefone'
+        'nome_completo',
+        'nome_preferencia',
+        'email',
+        'telefone'
     ];
 
     /**
@@ -303,10 +303,10 @@ class CotacaoPacote extends Model
         'passeios_preco_desejado' => 'float',
         'nomes_seguro_viagem' => 'string',
         'datas_nascimento_seguro_viagem' => 'string',
-        'contato_nome_completo' => 'string',
-        'contato_nome_preferencia' => 'string',
-        'contato_email' => 'string',
-        'contato_telefone' => 'string'
+        'nome_completo' => 'string',
+        'nome_preferencia' => 'string',
+        'email' => 'string',
+        'telefone' => 'string'
     ];
 
     /**
@@ -324,9 +324,9 @@ class CotacaoPacote extends Model
         'qnt_bebes' => 'required|integer',
         'periodo_voo_ida' => 'required',
         'periodo_voo_volta' => 'required',
-        'contato_nome_completo' => 'required',
-        'contato_email' => 'required|email',
-        'contato_telefone' => 'required'
+        'nome_completo' => 'required',
+        'email' => 'required|email',
+        'telefone' => 'required'
     ];
 
     

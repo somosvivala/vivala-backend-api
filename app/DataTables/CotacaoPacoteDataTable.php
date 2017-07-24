@@ -106,10 +106,10 @@ class CotacaoPacoteDataTable extends DataTable
             'passeios_preco_desejado' => ['name' => 'passeios_preco_desejado', 'data' => 'passeios_preco_desejado'],
             'nomes_seguro_viagem' => ['name' => 'nomes_seguro_viagem', 'data' => 'nomes_seguro_viagem'],
             'datas_nascimento_seguro_viagem' => ['name' => 'datas_nascimento_seguro_viagem', 'data' => 'datas_nascimento_seguro_viagem'],
-            'contato_nome_completo' => ['name' => 'contato_nome_completo', 'data' => 'contato_nome_completo'],
-            'contato_nome_preferencia' => ['name' => 'contato_nome_preferencia', 'data' => 'contato_nome_preferencia'],
-            'contato_email' => ['name' => 'contato_email', 'data' => 'contato_email'],
-            'contato_telefone' => ['name' => 'contato_telefone', 'data' => 'contato_telefone']
+            'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
+            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
+            'email' => ['name' => 'email', 'data' => 'email'],
+            'telefone' => ['name' => 'telefone', 'data' => 'telefone']
         ];
     }
 

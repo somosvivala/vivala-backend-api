@@ -208,28 +208,28 @@
     <p>{!! $cotacaoPacote->datas_nascimento_seguro_viagem !!}</p>
 </div>
 
-<!-- Contato Nome Completo Field -->
+<!-- Nome Completo Field -->
 <div class="form-group">
-    {!! Form::label('contato_nome_completo', 'Contato Nome Completo:') !!}
-    <p>{!! $cotacaoPacote->contato_nome_completo !!}</p>
+    {!! Form::label('nome_completo', 'Nome Completo:') !!}
+    <p>{!! $cotacaoPacote->nome_completo !!}</p>
 </div>
 
-<!-- Contato Nome Preferencia Field -->
+<!-- Nome Preferencia Field -->
 <div class="form-group">
-    {!! Form::label('contato_nome_preferencia', 'Contato Nome Preferencia:') !!}
-    <p>{!! $cotacaoPacote->contato_nome_preferencia !!}</p>
+    {!! Form::label('nome_preferencia', 'Nome Preferencia:') !!}
+    <p>{!! $cotacaoPacote->nome_preferencia !!}</p>
 </div>
 
-<!-- Contato Email Field -->
+<!-- Email Field -->
 <div class="form-group">
-    {!! Form::label('contato_email', 'Contato Email:') !!}
-    <p>{!! $cotacaoPacote->contato_email !!}</p>
+    {!! Form::label('email', 'Email:') !!}
+    <p>{!! $cotacaoPacote->email !!}</p>
 </div>
 
-<!-- Contato Telefone Field -->
+<!-- Telefone Field -->
 <div class="form-group">
-    {!! Form::label('contato_telefone', 'Contato Telefone:') !!}
-    <p>{!! $cotacaoPacote->contato_telefone !!}</p>
+    {!! Form::label('telefone', 'Telefone:') !!}
+    <p>{!! $cotacaoPacote->telefone !!}</p>
 </div>
 
 <!-- Created At Field -->

@@ -191,28 +191,28 @@
     {!! Form::text('datas_nascimento_seguro_viagem', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Contato Nome Completo Field -->
+<!-- Nome Completo Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('contato_nome_completo', 'Contato Nome Completo:') !!}
-    {!! Form::text('contato_nome_completo', null, ['class' => 'form-control']) !!}
+    {!! Form::label('nome_completo', 'Nome Completo:') !!}
+    {!! Form::text('nome_completo', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Contato Nome Preferencia Field -->
+<!-- Nome Preferencia Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('contato_nome_preferencia', 'Contato Nome Preferencia:') !!}
-    {!! Form::text('contato_nome_preferencia', null, ['class' => 'form-control']) !!}
+    {!! Form::label('nome_preferencia', 'Nome Preferencia:') !!}
+    {!! Form::text('nome_preferencia', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Contato Email Field -->
+<!-- Email Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('contato_email', 'Contato Email:') !!}
-    {!! Form::text('contato_email', null, ['class' => 'form-control']) !!}
+    {!! Form::label('email', 'Email:') !!}
+    {!! Form::text('email', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Contato Telefone Field -->
+<!-- Telefone Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('contato_telefone', 'Contato Telefone:') !!}
-    {!! Form::text('contato_telefone', null, ['class' => 'form-control']) !!}
+    {!! Form::label('telefone', 'Telefone:') !!}
+    {!! Form::text('telefone', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

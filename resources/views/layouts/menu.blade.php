@@ -40,6 +40,8 @@
     <a href="{!! route('cotacaoHospedagems.index') !!}"><i class="fa fa-edit"></i><span>CotacaoHospedagems</span></a>
 </li>
 
+
+
 <li class="{{ Request::is('cotacaoPacotes*') ? 'active' : '' }}">
     <a href="{!! route('cotacaoPacotes.index') !!}"><i class="fa fa-edit"></i><span>CotacaoPacotes</span></a>
 </li>

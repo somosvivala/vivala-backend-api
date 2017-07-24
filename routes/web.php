@@ -66,4 +66,8 @@ Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController');
 
 Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController');
 
+
+
+
+
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController');

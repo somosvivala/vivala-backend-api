@@ -49,10 +49,10 @@ class CreateCotacaoPacotesTable extends Migration
             $table->float('passeios_preco_desejado')->nullable();
             $table->string('nomes_seguro_viagem')->nullable();
             $table->string('datas_nascimento_seguro_viagem')->nullable();
-            $table->string('contato_nome_completo');
-            $table->string('contato_nome_preferencia')->nullable();
-            $table->string('contato_email');
-            $table->string('contato_telefone')->nullable();
+            $table->string('nome_completo');
+            $table->string('nome_preferencia')->nullable();
+            $table->string('email');
+            $table->string('telefone')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
