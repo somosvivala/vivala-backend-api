@@ -17,17 +17,46 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+/**
+ * Cotações -- Rotas das resources relacionadas as cotacoes
+ */
 Route::resource('cotacoes/pacotes', 'CotacaoPacoteAPIController');
 
-Route::resource('contatos/agente', 'ContatoAgenteAPIController');
-Route::resource('contatos/corporativo', 'ContatoCorporativoAPIController');
+
+/**
+ * Contatos -- Rotas das resources relacionadas aos contatos
+ */
+Route::resource('contatos/agente', 'ContatoAgenteAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
+Route::resource('contatos/corporativo', 'ContatoCorporativoAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
 Route::resource('contatos/geral', 'ContatoGeralAPIController', [
     'except' => ['update', 'destroy', 'edit', 'create', 'show']
 ]);
 
-Route::resource('newsletter', 'InscricaoNewsletterAPIController');
 
-Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController');
-Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController');
+/**
+ * Newsletter -- Rotas da newsletter
+ */
+Route::resource('newsletter', 'InscricaoNewsletterAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
+
+
+/**
+ * Expedições -- Rotas das expedicoes (inscricoes)
+ */
+Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
+
+
+/*
+ * Experiências -- Rotas das experiencias (inscricoes)
+ */
+Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
 
