@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CotacaoPacoteDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateCotacaoPacoteRequest;
 use App\Http\Requests\UpdateCotacaoPacoteRequest;
 use App\Repositories\CotacaoPacoteRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class CotacaoPacoteController extends AppBaseController
@@ -24,16 +24,12 @@ class CotacaoPacoteController extends AppBaseController
     /**
      * Display a listing of the CotacaoPacote.
      *
-     * @param Request $request
+     * @param CotacaoPacoteDataTable $cotacaoPacoteDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(CotacaoPacoteDataTable $cotacaoPacoteDataTable)
     {
-        $this->cotacaoPacoteRepository->pushCriteria(new RequestCriteria($request));
-        $cotacaoPacotes = $this->cotacaoPacoteRepository->all();
-
-        return view('cotacao_pacotes.index')
-            ->with('cotacaoPacotes', $cotacaoPacotes);
+        return $cotacaoPacoteDataTable->render('cotacao_pacotes.index');
     }
 
     /**

@@ -12,14 +12,14 @@
     },
     {
         "name": "origem",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text",
         "validations": "required",
         "searchable": true
     },
     {
         "name": "destino",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text",
         "validations": "required",
         "searchable": true
@@ -28,188 +28,193 @@
         "name": "data_ida",
         "dbType": "dateTime",
         "htmlType": "date",
+        "validations": "required",
         "searchable": true
     },
     {
         "name": "data_volta",
-        "dbType": "dateTime",
+        "dbType": "dateTime:nullable",
         "htmlType": "date",
+        "validations": "required",
         "searchable": true
     },
     {
         "name": "datas_flexiveis",
-        "dbType": "boolean",
+        "dbType": "boolean:nullable",
         "htmlType": "radio,Sim:1,Não:0",
         "searchable": true
     },
     {
         "name": "qnt_adultos",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "text",
         "validations": "required|integer"
     },
     {
         "name": "qnt_criancas",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "text",
         "validations": "required|integer"
     },
     {
         "name": "qnt_bebes",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "text",
         "validations": "required|integer"
     },
     {
         "name": "periodo_voo_ida",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "select,Manhã,Tarde,Noite",
         "validations": "required"
     },
     {
         "name": "periodo_voo_volta",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "select,Manhã,Tarde,Noite",
         "validations": "required"
     },
     {
         "name": "aeroporto_origem",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "aeroporto_retorno",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "companias_aereas_preferenciais",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "numero_paradas",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "text"
     },
     {
         "name": "tempo_voo",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "aereo_preco_desejado",
-        "dbType": "float",
+        "dbType": "float:nullable",
         "htmlType": "text"
     },
     {
         "name": "hotel_ou_regiao",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "qnt_quartos",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "text"
     },
     {
         "name": "tipo_quarto",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "select,INDIVIDUAL:1,CASAL:2,TRIPLO:3,QUADRUPLO:4,CASA/AP COMPLETO:5"
     },
     {
         "name": "hospedagem_servicos",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "hospedagem_tipo",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "select:HOSTEL:1,POUSADA:2,CASA/AP:3,HOTEL:4,TODOS:5"
     },
     {
         "name": "hospedagem_solicitacoes",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "hospedagem_preco_desejado",
-        "dbType": "float",
+        "dbType": "float:nullable",
         "htmlType": "text"
     },
     {
         "name": "transporte_interno",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "radio:TRANSFER PARA HOTEL:1,ALUGUEL DE CARRO:2"
     },
     {
         "name": "tipos_transfer",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "radio:CARRO PRIVATIVO:1,CARRO COMPARTLHADO:2,VAN COMPARTILHADA:3"
     },
     {
         "name": "categorias_carro",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "itens_carro",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "transporte_interno_solicitacoes",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "transporte_interno_preco_desejado",
-        "dbType": "float",
+        "dbType": "float:nullable",
         "htmlType": "text"
     },
     {
         "name": "passeios_interesses",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "passeios_outros",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "passeios_preco_desejado",
-        "dbType": "float",
+        "dbType": "float:nullable",
         "htmlType": "text"
     },
     {
         "name": "nomes_seguro_viagem",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "datas_nascimento_seguro_viagem",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "contato_nome_completo",
         "dbType": "string",
+        "validations": "required",
         "htmlType": "text"
     },
     {
         "name": "contato_nome_preferencia",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "contato_email",
         "dbType": "string",
+        "validations": "required|email",
         "htmlType": "text"
     },
     {
         "name": "contato_telefone",
-        "dbType": "string",
+        "dbType": "string:nullable",
+        "validations": "required",
         "htmlType": "text"
     },
     {

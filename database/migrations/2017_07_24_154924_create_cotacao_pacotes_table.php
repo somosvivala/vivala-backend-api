@@ -15,15 +15,15 @@ class CreateCotacaoPacotesTable extends Migration
     {
         Schema::create('cotacao_pacotes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('origem');
-            $table->string('destino');
+            $table->string('origem')->nullable();
+            $table->string('destino')->nullable();
             $table->dateTime('data_ida');
             $table->dateTime('data_volta')->nullable();
             $table->boolean('datas_flexiveis')->nullable();
-            $table->integer('qnt_adultos');
+            $table->integer('qnt_adultos')->nullable();
             $table->integer('qnt_criancas')->nullable();
             $table->integer('qnt_bebes')->nullable();
-            $table->string('periodo_voo_ida');
+            $table->string('periodo_voo_ida')->nullable();
             $table->string('periodo_voo_volta')->nullable();
             $table->string('aeroporto_origem')->nullable();
             $table->string('aeroporto_retorno')->nullable();
@@ -52,7 +52,7 @@ class CreateCotacaoPacotesTable extends Migration
             $table->string('contato_nome_completo');
             $table->string('contato_nome_preferencia')->nullable();
             $table->string('contato_email');
-            $table->string('contato_telefone');
+            $table->string('contato_telefone')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

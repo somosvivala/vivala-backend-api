@@ -65,7 +65,3 @@ Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', 
     'except' => ['update', 'destroy', 'edit', 'create', 'show']
 ]);
 
-
-
-
-

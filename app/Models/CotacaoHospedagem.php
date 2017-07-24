@@ -20,6 +20,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="data_volta",
+ *          description="data_volta",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="qnt_adultos",
  *          description="qnt_adultos",
  *          type="integer",

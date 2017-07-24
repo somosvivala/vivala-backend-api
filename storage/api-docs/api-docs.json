@@ -302,7 +302,7 @@
                 }
             }
         },
-        "/cotacaoPacotes": {
+        "/cotacoes/pacote": {
             "get": {
                 "tags": [
                     "CotacaoPacote"
@@ -742,6 +742,10 @@
                     "description": "data_ida",
                     "type": "string"
                 },
+                "data_volta": {
+                    "description": "data_volta",
+                    "type": "string"
+                },
                 "qnt_adultos": {
                     "description": "qnt_adultos",
                     "type": "integer",
@@ -805,20 +809,27 @@
             "required": [
                 "origem",
                 "destino",
+                "data_ida",
                 "qnt_adultos",
                 "qnt_criancas",
                 "qnt_bebes",
                 "periodo_voo_ida",
-                "periodo_voo_volta"
+                "periodo_voo_volta",
+                "contato_nome_completo",
+                "contato_email",
+                "contato_telefone"
             ],
             "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "origem": {
                     "description": "origem",
+                    "type": "string"
+                },
+                "data_ida": {
+                    "description": "data_ida",
+                    "type": "string"
+                },
+                "data_volta": {
+                    "description": "data_volta",
                     "type": "string"
                 },
                 "destino": {
@@ -971,16 +982,6 @@
                 "contato_telefone": {
                     "description": "contato_telefone",
                     "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },

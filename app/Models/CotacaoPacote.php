@@ -8,16 +8,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="CotacaoPacote",
- *      required={"origem", "destino", "qnt_adultos", "qnt_criancas", "qnt_bebes", "periodo_voo_ida", "periodo_voo_volta"},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
+ *      required={"origem", "destino", "data_ida", "qnt_adultos", "qnt_criancas", "qnt_bebes", "periodo_voo_ida", "periodo_voo_volta", "contato_nome_completo", "contato_email", "contato_telefone"},
  *      @SWG\Property(
  *          property="origem",
  *          description="origem",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="data_ida",
+ *          description="data_ida",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="data_volta",
+ *          description="data_volta",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -205,18 +209,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="contato_telefone",
  *          description="contato_telefone",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
@@ -323,6 +315,18 @@ class CotacaoPacote extends Model
      * @var array
      */
     public static $rules = [
+        'origem' => 'required',
+        'destino' => 'required',
+        'data_ida' => 'required',
+        'data_volta' => 'required',
+        'qnt_adultos' => 'required|integer',
+        'qnt_criancas' => 'required|integer',
+        'qnt_bebes' => 'required|integer',
+        'periodo_voo_ida' => 'required',
+        'periodo_voo_volta' => 'required',
+        'contato_nome_completo' => 'required',
+        'contato_email' => 'required|email',
+        'contato_telefone' => 'required'
     ];
 
     

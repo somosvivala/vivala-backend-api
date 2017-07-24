@@ -32,7 +32,7 @@ class CotacaoPacoteAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/cotacaoPacotes",
+     *      path="/cotacoes/pacote",
      *      summary="Get a listing of the CotacaoPacotes.",
      *      tags={"CotacaoPacote"},
      *      description="Get all CotacaoPacotes",
@@ -73,7 +73,7 @@ class CotacaoPacoteAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/cotacaoPacotes",
+     *      path="/cotacoes/pacote",
      *      summary="Store a newly created CotacaoPacote in storage",
      *      tags={"CotacaoPacote"},
      *      description="Store CotacaoPacote",

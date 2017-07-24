@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
+
 
 
 //Rotas para mostrar os emails:
@@ -65,3 +65,5 @@ Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController');
 
 
 Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController');
+
+Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
