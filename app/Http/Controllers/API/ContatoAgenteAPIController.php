@@ -32,7 +32,7 @@ class ContatoAgenteAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/contatoAgentes",
+     *      path="/contatos/agente",
      *      summary="Get a listing of the ContatoAgentes.",
      *      tags={"ContatoAgente"},
      *      description="Get all ContatoAgentes",
@@ -73,7 +73,7 @@ class ContatoAgenteAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/contatoAgentes",
+     *      path="/contatos/agente",
      *      summary="Store a newly created ContatoAgente in storage",
      *      tags={"ContatoAgente"},
      *      description="Store ContatoAgente",
@@ -115,167 +115,4 @@ class ContatoAgenteAPIController extends AppBaseController
         return $this->sendResponse($contatoAgentes->toArray(), 'Contato Agente saved successfully');
     }
 
-    /**
-     * @param int $id
-     * @return Response
-     *
-     * @SWG\Get(
-     *      path="/contatoAgentes/{id}",
-     *      summary="Display the specified ContatoAgente",
-     *      tags={"ContatoAgente"},
-     *      description="Get ContatoAgente",
-     *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="id",
-     *          description="id of ContatoAgente",
-     *          type="integer",
-     *          required=true,
-     *          in="path"
-     *      ),
-     *      @SWG\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @SWG\Property(
-     *                  property="data",
-     *                  ref="#/definitions/ContatoAgente"
-     *              ),
-     *              @SWG\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function show($id)
-    {
-        /** @var ContatoAgente $contatoAgente */
-        $contatoAgente = $this->contatoAgenteRepository->findWithoutFail($id);
-
-        if (empty($contatoAgente)) {
-            return $this->sendError('Contato Agente not found');
-        }
-
-        return $this->sendResponse($contatoAgente->toArray(), 'Contato Agente retrieved successfully');
-    }
-
-    /**
-     * @param int $id
-     * @param UpdateContatoAgenteAPIRequest $request
-     * @return Response
-     *
-     * @SWG\Put(
-     *      path="/contatoAgentes/{id}",
-     *      summary="Update the specified ContatoAgente in storage",
-     *      tags={"ContatoAgente"},
-     *      description="Update ContatoAgente",
-     *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="id",
-     *          description="id of ContatoAgente",
-     *          type="integer",
-     *          required=true,
-     *          in="path"
-     *      ),
-     *      @SWG\Parameter(
-     *          name="body",
-     *          in="body",
-     *          description="ContatoAgente that should be updated",
-     *          required=false,
-     *          @SWG\Schema(ref="#/definitions/ContatoAgente")
-     *      ),
-     *      @SWG\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @SWG\Property(
-     *                  property="data",
-     *                  ref="#/definitions/ContatoAgente"
-     *              ),
-     *              @SWG\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function update($id, UpdateContatoAgenteAPIRequest $request)
-    {
-        $input = $request->all();
-
-        /** @var ContatoAgente $contatoAgente */
-        $contatoAgente = $this->contatoAgenteRepository->findWithoutFail($id);
-
-        if (empty($contatoAgente)) {
-            return $this->sendError('Contato Agente not found');
-        }
-
-        $contatoAgente = $this->contatoAgenteRepository->update($input, $id);
-
-        return $this->sendResponse($contatoAgente->toArray(), 'ContatoAgente updated successfully');
-    }
-
-    /**
-     * @param int $id
-     * @return Response
-     *
-     * @SWG\Delete(
-     *      path="/contatoAgentes/{id}",
-     *      summary="Remove the specified ContatoAgente from storage",
-     *      tags={"ContatoAgente"},
-     *      description="Delete ContatoAgente",
-     *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="id",
-     *          description="id of ContatoAgente",
-     *          type="integer",
-     *          required=true,
-     *          in="path"
-     *      ),
-     *      @SWG\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @SWG\Property(
-     *                  property="data",
-     *                  type="string"
-     *              ),
-     *              @SWG\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function destroy($id)
-    {
-        /** @var ContatoAgente $contatoAgente */
-        $contatoAgente = $this->contatoAgenteRepository->findWithoutFail($id);
-
-        if (empty($contatoAgente)) {
-            return $this->sendError('Contato Agente not found');
-        }
-
-        $contatoAgente->delete();
-
-        return $this->sendResponse($id, 'Contato Agente deleted successfully');
-    }
 }

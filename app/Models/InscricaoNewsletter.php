@@ -10,12 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="InscricaoNewsletter",
  *      required={"nome", "email"},
  *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="nome",
  *          description="nome",
  *          type="string"
@@ -24,18 +18,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="email",
  *          description="email",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */

@@ -18,23 +18,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::resource('cotacaoPacotes', 'CotacaoPacoteAPIController');
-Route::resource('contatoAgentes', 'ContatoAgenteAPIController');
-Route::resource('contatoCorporativos', 'ContatoCorporativoAPIController');
-Route::resource('contatoGerals', 'ContatoGeralAPIController');
-Route::resource('inscricaoNewsletters', 'InscricaoNewsletterAPIController');
+Route::resource('cotacoes/pacotes', 'CotacaoPacoteAPIController');
+
+Route::resource('contatos/agente', 'ContatoAgenteAPIController');
+Route::resource('contatos/corporativo', 'ContatoCorporativoAPIController');
+Route::resource('contatos/geral', 'ContatoGeralAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
+
+Route::resource('newsletter', 'InscricaoNewsletterAPIController');
+
 Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController');
 Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController');
-
-
-
-
-
-
-
-
-
-
-
-
 

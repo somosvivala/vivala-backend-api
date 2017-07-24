@@ -32,7 +32,7 @@ class InscricaoNewsletterAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/inscricaoNewsletters",
+     *      path="/newsletter",
      *      summary="Get a listing of the InscricaoNewsletters.",
      *      tags={"InscricaoNewsletter"},
      *      description="Get all InscricaoNewsletters",
@@ -73,7 +73,7 @@ class InscricaoNewsletterAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/inscricaoNewsletters",
+     *      path="/newsletter",
      *      summary="Store a newly created InscricaoNewsletter in storage",
      *      tags={"InscricaoNewsletter"},
      *      description="Store InscricaoNewsletter",
@@ -115,167 +115,4 @@ class InscricaoNewsletterAPIController extends AppBaseController
         return $this->sendResponse($inscricaoNewsletters->toArray(), 'Inscricao Newsletter saved successfully');
     }
 
-    /**
-     * @param int $id
-     * @return Response
-     *
-     * @SWG\Get(
-     *      path="/inscricaoNewsletters/{id}",
-     *      summary="Display the specified InscricaoNewsletter",
-     *      tags={"InscricaoNewsletter"},
-     *      description="Get InscricaoNewsletter",
-     *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="id",
-     *          description="id of InscricaoNewsletter",
-     *          type="integer",
-     *          required=true,
-     *          in="path"
-     *      ),
-     *      @SWG\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @SWG\Property(
-     *                  property="data",
-     *                  ref="#/definitions/InscricaoNewsletter"
-     *              ),
-     *              @SWG\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function show($id)
-    {
-        /** @var InscricaoNewsletter $inscricaoNewsletter */
-        $inscricaoNewsletter = $this->inscricaoNewsletterRepository->findWithoutFail($id);
-
-        if (empty($inscricaoNewsletter)) {
-            return $this->sendError('Inscricao Newsletter not found');
-        }
-
-        return $this->sendResponse($inscricaoNewsletter->toArray(), 'Inscricao Newsletter retrieved successfully');
-    }
-
-    /**
-     * @param int $id
-     * @param UpdateInscricaoNewsletterAPIRequest $request
-     * @return Response
-     *
-     * @SWG\Put(
-     *      path="/inscricaoNewsletters/{id}",
-     *      summary="Update the specified InscricaoNewsletter in storage",
-     *      tags={"InscricaoNewsletter"},
-     *      description="Update InscricaoNewsletter",
-     *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="id",
-     *          description="id of InscricaoNewsletter",
-     *          type="integer",
-     *          required=true,
-     *          in="path"
-     *      ),
-     *      @SWG\Parameter(
-     *          name="body",
-     *          in="body",
-     *          description="InscricaoNewsletter that should be updated",
-     *          required=false,
-     *          @SWG\Schema(ref="#/definitions/InscricaoNewsletter")
-     *      ),
-     *      @SWG\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @SWG\Property(
-     *                  property="data",
-     *                  ref="#/definitions/InscricaoNewsletter"
-     *              ),
-     *              @SWG\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function update($id, UpdateInscricaoNewsletterAPIRequest $request)
-    {
-        $input = $request->all();
-
-        /** @var InscricaoNewsletter $inscricaoNewsletter */
-        $inscricaoNewsletter = $this->inscricaoNewsletterRepository->findWithoutFail($id);
-
-        if (empty($inscricaoNewsletter)) {
-            return $this->sendError('Inscricao Newsletter not found');
-        }
-
-        $inscricaoNewsletter = $this->inscricaoNewsletterRepository->update($input, $id);
-
-        return $this->sendResponse($inscricaoNewsletter->toArray(), 'InscricaoNewsletter updated successfully');
-    }
-
-    /**
-     * @param int $id
-     * @return Response
-     *
-     * @SWG\Delete(
-     *      path="/inscricaoNewsletters/{id}",
-     *      summary="Remove the specified InscricaoNewsletter from storage",
-     *      tags={"InscricaoNewsletter"},
-     *      description="Delete InscricaoNewsletter",
-     *      produces={"application/json"},
-     *      @SWG\Parameter(
-     *          name="id",
-     *          description="id of InscricaoNewsletter",
-     *          type="integer",
-     *          required=true,
-     *          in="path"
-     *      ),
-     *      @SWG\Response(
-     *          response=200,
-     *          description="successful operation",
-     *          @SWG\Schema(
-     *              type="object",
-     *              @SWG\Property(
-     *                  property="success",
-     *                  type="boolean"
-     *              ),
-     *              @SWG\Property(
-     *                  property="data",
-     *                  type="string"
-     *              ),
-     *              @SWG\Property(
-     *                  property="message",
-     *                  type="string"
-     *              )
-     *          )
-     *      )
-     * )
-     */
-    public function destroy($id)
-    {
-        /** @var InscricaoNewsletter $inscricaoNewsletter */
-        $inscricaoNewsletter = $this->inscricaoNewsletterRepository->findWithoutFail($id);
-
-        if (empty($inscricaoNewsletter)) {
-            return $this->sendError('Inscricao Newsletter not found');
-        }
-
-        $inscricaoNewsletter->delete();
-
-        return $this->sendResponse($id, 'Inscricao Newsletter deleted successfully');
-    }
 }

@@ -10,12 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="ContatoGeral",
  *      required={""},
  *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="nome_completo",
  *          description="nome_completo",
  *          type="string"
@@ -39,18 +33,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="telefone",
  *          description="telefone",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */

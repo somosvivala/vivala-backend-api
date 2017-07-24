@@ -6,7 +6,7 @@
     },
     "basePath": "/api/",
     "paths": {
-        "/contatoAgentes": {
+        "/contatos/agente": {
             "get": {
                 "tags": [
                     "ContatoAgente"
@@ -80,132 +80,7 @@
                 }
             }
         },
-        "/contatoAgentes/{id}": {
-            "get": {
-                "tags": [
-                    "ContatoAgente"
-                ],
-                "summary": "Display the specified ContatoAgente",
-                "description": "Get ContatoAgente",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoAgente",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ContatoAgente"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "ContatoAgente"
-                ],
-                "summary": "Update the specified ContatoAgente in storage",
-                "description": "Update ContatoAgente",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoAgente",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "ContatoAgente that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/ContatoAgente"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ContatoAgente"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "ContatoAgente"
-                ],
-                "summary": "Remove the specified ContatoAgente from storage",
-                "description": "Delete ContatoAgente",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoAgente",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/contatoCorporativos": {
+        "/contatos/corporativo": {
             "get": {
                 "tags": [
                     "ContatoCorporativo"
@@ -279,132 +154,7 @@
                 }
             }
         },
-        "/contatoCorporativos/{id}": {
-            "get": {
-                "tags": [
-                    "ContatoCorporativo"
-                ],
-                "summary": "Display the specified ContatoCorporativo",
-                "description": "Get ContatoCorporativo",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoCorporativo",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ContatoCorporativo"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "ContatoCorporativo"
-                ],
-                "summary": "Update the specified ContatoCorporativo in storage",
-                "description": "Update ContatoCorporativo",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoCorporativo",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "ContatoCorporativo that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/ContatoCorporativo"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ContatoCorporativo"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "ContatoCorporativo"
-                ],
-                "summary": "Remove the specified ContatoCorporativo from storage",
-                "description": "Delete ContatoCorporativo",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoCorporativo",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/contatoGerals": {
+        "/contatos/geral": {
             "get": {
                 "tags": [
                     "ContatoGeral"
@@ -467,131 +217,6 @@
                                 },
                                 "data": {
                                     "$ref": "#/definitions/ContatoGeral"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/contatoGerals/{id}": {
-            "get": {
-                "tags": [
-                    "ContatoGeral"
-                ],
-                "summary": "Display the specified ContatoGeral",
-                "description": "Get ContatoGeral",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoGeral",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ContatoGeral"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "ContatoGeral"
-                ],
-                "summary": "Update the specified ContatoGeral in storage",
-                "description": "Update ContatoGeral",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoGeral",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "ContatoGeral that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/ContatoGeral"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/ContatoGeral"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "ContatoGeral"
-                ],
-                "summary": "Remove the specified ContatoGeral from storage",
-                "description": "Delete ContatoGeral",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of ContatoGeral",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
                                 },
                                 "message": {
                                     "type": "string"
@@ -677,131 +302,6 @@
                 }
             }
         },
-        "/cotacaoPacotes/{id}": {
-            "get": {
-                "tags": [
-                    "CotacaoPacote"
-                ],
-                "summary": "Display the specified CotacaoPacote",
-                "description": "Get CotacaoPacote",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of CotacaoPacote",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/CotacaoPacote"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "CotacaoPacote"
-                ],
-                "summary": "Update the specified CotacaoPacote in storage",
-                "description": "Update CotacaoPacote",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of CotacaoPacote",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "CotacaoPacote that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/CotacaoPacote"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/CotacaoPacote"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "CotacaoPacote"
-                ],
-                "summary": "Remove the specified CotacaoPacote from storage",
-                "description": "Delete CotacaoPacote",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of CotacaoPacote",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/expedicoes/{id}/inscricoes": {
             "get": {
                 "tags": [
@@ -865,131 +365,6 @@
                                 },
                                 "data": {
                                     "$ref": "#/definitions/InscricaoExpedicao"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/expedicoes/{id}/inscricoes/{id}": {
-            "get": {
-                "tags": [
-                    "InscricaoExpedicao"
-                ],
-                "summary": "Display the specified InscricaoExpedicao",
-                "description": "Get InscricaoExpedicao",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoExpedicao",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/InscricaoExpedicao"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "InscricaoExpedicao"
-                ],
-                "summary": "Update the specified InscricaoExpedicao in storage",
-                "description": "Update InscricaoExpedicao",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoExpedicao",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "InscricaoExpedicao that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/InscricaoExpedicao"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/InscricaoExpedicao"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "InscricaoExpedicao"
-                ],
-                "summary": "Remove the specified InscricaoExpedicao from storage",
-                "description": "Delete InscricaoExpedicao",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoExpedicao",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1075,132 +450,7 @@
                 }
             }
         },
-        "/experiencias/{id}/inscricoes/{id}": {
-            "get": {
-                "tags": [
-                    "InscricaoExperiencia"
-                ],
-                "summary": "Display the specified InscricaoExperiencia",
-                "description": "Get InscricaoExperiencia",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoExperiencia",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/InscricaoExperiencia"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "InscricaoExperiencia"
-                ],
-                "summary": "Update the specified InscricaoExperiencia in storage",
-                "description": "Update InscricaoExperiencia",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoExperiencia",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "InscricaoExperiencia that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/InscricaoExperiencia"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/InscricaoExperiencia"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "InscricaoExperiencia"
-                ],
-                "summary": "Remove the specified InscricaoExperiencia from storage",
-                "description": "Delete InscricaoExperiencia",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoExperiencia",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/inscricaoNewsletters": {
+        "/newsletter": {
             "get": {
                 "tags": [
                     "InscricaoNewsletter"
@@ -1273,131 +523,6 @@
                     }
                 }
             }
-        },
-        "/inscricaoNewsletters/{id}": {
-            "get": {
-                "tags": [
-                    "InscricaoNewsletter"
-                ],
-                "summary": "Display the specified InscricaoNewsletter",
-                "description": "Get InscricaoNewsletter",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoNewsletter",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/InscricaoNewsletter"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "InscricaoNewsletter"
-                ],
-                "summary": "Update the specified InscricaoNewsletter in storage",
-                "description": "Update InscricaoNewsletter",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoNewsletter",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "InscricaoNewsletter that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/InscricaoNewsletter"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/InscricaoNewsletter"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "InscricaoNewsletter"
-                ],
-                "summary": "Remove the specified InscricaoNewsletter from storage",
-                "description": "Delete InscricaoNewsletter",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of InscricaoNewsletter",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
         }
     },
     "definitions": {
@@ -1445,11 +570,6 @@
                 ""
             ],
             "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "nome_completo": {
                     "description": "nome_completo",
                     "type": "string"
@@ -1465,16 +585,6 @@
                 "telefone": {
                     "description": "telefone",
                     "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },
@@ -1483,11 +593,6 @@
                 ""
             ],
             "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "nome_contato": {
                     "description": "nome_contato",
                     "type": "string"
@@ -1512,16 +617,6 @@
                     "description": "numero_funcionarios",
                     "type": "integer",
                     "format": "int32"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },
@@ -1530,11 +625,6 @@
                 ""
             ],
             "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "nome_completo": {
                     "description": "nome_completo",
                     "type": "string"
@@ -1554,16 +644,6 @@
                 "telefone": {
                     "description": "telefone",
                     "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },
@@ -1887,11 +967,6 @@
                 ""
             ],
             "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "nome": {
                     "description": "nome",
                     "type": "string"
@@ -1903,30 +978,6 @@
                 "telefone": {
                     "description": "telefone",
                     "type": "string"
-                },
-                "cod_status": {
-                    "description": "cod_status",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "nome_status": {
-                    "description": "nome_status",
-                    "type": "string"
-                },
-                "expedicao_id": {
-                    "description": "expedicao_id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },
@@ -1935,11 +986,6 @@
                 ""
             ],
             "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "nome": {
                     "description": "nome",
                     "type": "string"
@@ -1951,30 +997,6 @@
                 "telefone": {
                     "description": "telefone",
                     "type": "string"
-                },
-                "cod_status": {
-                    "description": "cod_status",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "nome_status": {
-                    "description": "nome_status",
-                    "type": "string"
-                },
-                "expedicao_id": {
-                    "description": "expedicao_id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },
@@ -1984,11 +1006,6 @@
                 "email"
             ],
             "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "nome": {
                     "description": "nome",
                     "type": "string"
@@ -1996,16 +1013,6 @@
                 "email": {
                     "description": "email",
                     "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         }

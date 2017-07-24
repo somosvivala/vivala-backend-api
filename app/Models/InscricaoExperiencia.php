@@ -10,12 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="InscricaoExperiencia",
  *      required={""},
  *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="nome",
  *          description="nome",
  *          type="string"
@@ -29,35 +23,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="telefone",
  *          description="telefone",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="cod_status",
- *          description="cod_status",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="nome_status",
- *          description="nome_status",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="experiencia_id",
- *          description="experiencia_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
