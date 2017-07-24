@@ -81,7 +81,7 @@ class ContatoCorporativo extends Model
      * @var array
      */
     public static $rules = [
-        'nome_contato' => 'required|string',
+        'nome_completo' => 'required|string',
         'email' => 'required|email',
         'telefone' => 'required|string',
         'nome_empresa' => 'required|string',

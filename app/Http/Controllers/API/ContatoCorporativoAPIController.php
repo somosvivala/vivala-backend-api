@@ -108,6 +108,8 @@ class ContatoCorporativoAPIController extends AppBaseController
      */
     public function store(CreateContatoCorporativoAPIRequest $request)
     {
+        
+        $request->request->add(['nome_contato' => $request->nome_completo]);
         $input = $request->all();
 
         $contatoCorporativos = $this->contatoCorporativoRepository->create($input);
