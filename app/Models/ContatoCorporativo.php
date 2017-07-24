@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="ContatoCorporativo",
  *      required={""},
  *      @SWG\Property(
- *          property="nome_contato",
- *          description="nome_contato",
+ *          property="nome_completo",
+ *          description="nome_completo",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -53,7 +53,7 @@ class ContatoCorporativo extends Model
 
 
     public $fillable = [
-        'nome_contato',
+        'nome_completo',
         'email',
         'telefone',
         'nome_empresa',
@@ -67,7 +67,7 @@ class ContatoCorporativo extends Model
      * @var array
      */
     protected $casts = [
-        'nome_contato' => 'string',
+        'nome_completo' => 'string',
         'email' => 'string',
         'telefone' => 'string',
         'nome_empresa' => 'string',

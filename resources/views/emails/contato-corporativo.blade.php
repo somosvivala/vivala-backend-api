@@ -11,7 +11,7 @@
             <tr align="center">
                 <td align="center" style="text-align:center;">
                     <p style="font-size:14px; font-weight:normal; margin-top:10px;">
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome do contato: </span> {{ $contatoCorporativo->nome_contato }} <br>
+                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome do contato: </span> {{ $contatoCorporativo->nome_completo }} <br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome da empresa: </span> {{ $contatoCorporativo->nome_empresa }} <br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Numero de funcionários: </span> {{ $contatoCorporativo->numero_funcionarios }} <br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span> {{ $contatoCorporativo->email }} <br>

@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Vivalá Backend API",
+        "title": "Laravel Generator APIs",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -593,8 +593,8 @@
                 ""
             ],
             "properties": {
-                "nome_contato": {
-                    "description": "nome_contato",
+                "nome_completo": {
+                    "description": "nome_completo",
                     "type": "string"
                 },
                 "email": {

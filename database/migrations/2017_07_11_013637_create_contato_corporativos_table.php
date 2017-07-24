@@ -15,7 +15,7 @@ class CreateContatoCorporativosTable extends Migration
     {
         Schema::create('contato_corporativos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome_contato');
+            $table->string('nome_completo');
             $table->string('email');
             $table->string('telefone')->nullable();
             $table->string('nome_empresa')->nullable();
