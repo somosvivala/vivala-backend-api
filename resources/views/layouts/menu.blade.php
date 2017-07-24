@@ -35,3 +35,8 @@
     <a href="{!! route('inscricaoExperiencias.index') !!}"><i class="fa fa-edit"></i><span>InscricaoExperiencias</span></a>
 </li>
 --}}
+
+<li class="{{ Request::is('cotacaoHospedagems*') ? 'active' : '' }}">
+    <a href="{!! route('cotacaoHospedagems.index') !!}"><i class="fa fa-edit"></i><span>CotacaoHospedagems</span></a>
+</li>
+

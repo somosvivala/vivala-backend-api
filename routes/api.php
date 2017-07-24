@@ -20,7 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /**
  * Cotações -- Rotas das resources relacionadas as cotacoes
  */
-Route::resource('cotacoes/pacotes', 'CotacaoPacoteAPIController');
+Route::resource('cotacoes/pacote', 'CotacaoPacoteAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
+Route::resource('cotacoes/hospedagem', 'CotacaoHospedagemAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
 
 
 /**
@@ -59,4 +64,8 @@ Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController', [
 Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', [
     'except' => ['update', 'destroy', 'edit', 'create', 'show']
 ]);
+
+
+
+
 

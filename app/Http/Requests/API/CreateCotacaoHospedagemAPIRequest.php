@@ -3,9 +3,9 @@
 namespace App\Http\Requests\API;
 
 use App\Http\Requests\API\BaseAPIRequest;
-use App\Models\ContatoAgente;
+use App\Models\CotacaoHospedagem;
 
-class UpdateContatoAgenteAPIRequest extends BaseAPIRequest
+class CreateCotacaoHospedagemAPIRequest extends BaseAPIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,6 @@ class UpdateContatoAgenteAPIRequest extends BaseAPIRequest
      */
     public function rules()
     {
-        return ContatoAgente::$rules;
+        return CotacaoHospedagem::$rules;
     }
 }

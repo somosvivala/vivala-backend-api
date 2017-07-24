@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Laravel Generator APIs",
+        "title": "Vivalá Backend API",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -217,6 +217,80 @@
                                 },
                                 "data": {
                                     "$ref": "#/definitions/ContatoGeral"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/cotacoes/hospedagem": {
+            "get": {
+                "tags": [
+                    "CotacaoHospedagem"
+                ],
+                "summary": "Get a listing of the CotacaoHospedagems.",
+                "description": "Get all CotacaoHospedagems",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CotacaoHospedagem"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CotacaoHospedagem"
+                ],
+                "summary": "Store a newly created CotacaoHospedagem in storage",
+                "description": "Store CotacaoHospedagem",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoHospedagem that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoHospedagem"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoHospedagem"
                                 },
                                 "message": {
                                     "type": "string"
@@ -635,6 +709,86 @@
                 },
                 "mensagem": {
                     "description": "mensagem",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "telefone": {
+                    "description": "telefone",
+                    "type": "string"
+                }
+            }
+        },
+        "CotacaoHospedagem": {
+            "required": [
+                "hotel_ou_regiao",
+                "data_ida",
+                "qnt_adultos",
+                "qnt_criancas",
+                "qnt_bebes",
+                "qnt_quartos",
+                "nome_completo",
+                "email",
+                "telefone"
+            ],
+            "properties": {
+                "hotel_ou_regiao": {
+                    "description": "hotel_ou_regiao",
+                    "type": "string"
+                },
+                "data_ida": {
+                    "description": "data_ida",
+                    "type": "string"
+                },
+                "qnt_adultos": {
+                    "description": "qnt_adultos",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_criancas": {
+                    "description": "qnt_criancas",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_bebes": {
+                    "description": "qnt_bebes",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tipo_quarto": {
+                    "description": "tipo_quarto",
+                    "type": "string"
+                },
+                "qnt_quartos": {
+                    "description": "qnt_quartos",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "hospedagem_servicos": {
+                    "description": "hospedagem_servicos",
+                    "type": "string"
+                },
+                "hospedagem_tipo": {
+                    "description": "hospedagem_tipo",
+                    "type": "string"
+                },
+                "hospedagem_solicitacoes": {
+                    "description": "hospedagem_solicitacoes",
+                    "type": "string"
+                },
+                "hospedagem_preco_desejado": {
+                    "description": "hospedagem_preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "nome_completo": {
+                    "description": "nome_completo",
+                    "type": "string"
+                },
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
                     "type": "string"
                 },
                 "email": {

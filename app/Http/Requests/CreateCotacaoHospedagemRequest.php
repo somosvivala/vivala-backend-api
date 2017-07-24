@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests;
 
-use App\Http\Requests\API\BaseAPIRequest;
-use App\Models\ContatoGeral;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Models\CotacaoHospedagem;
 
-class UpdateContatoGeralAPIRequest extends BaseAPIRequest
+class CreateCotacaoHospedagemRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,6 +25,6 @@ class UpdateContatoGeralAPIRequest extends BaseAPIRequest
      */
     public function rules()
     {
-        return ContatoGeral::$rules;
+        return CotacaoHospedagem::$rules;
     }
 }
