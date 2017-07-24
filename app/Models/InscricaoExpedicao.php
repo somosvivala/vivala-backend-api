@@ -101,7 +101,9 @@ class InscricaoExpedicao extends Model
      * @var array
      */
     public static $rules = [
-        
+        'nome' => 'required|string',
+        'email' => 'required|email',
+        'telefone' => 'required|string'
     ];
 
     /**

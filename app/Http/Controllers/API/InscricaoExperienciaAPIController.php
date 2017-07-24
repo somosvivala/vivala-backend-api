@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateInscricaoExperienciaAPIRequest;
 use App\Http\Requests\API\UpdateInscricaoExperienciaAPIRequest;
 use App\Models\InscricaoExperiencia;
+use App\Repositories\ExperienciaRepository;
 use App\Repositories\InscricaoExperienciaRepository;
 use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -21,10 +22,12 @@ class InscricaoExperienciaAPIController extends AppBaseController
 {
     /** @var  InscricaoExperienciaRepository */
     private $inscricaoExperienciaRepository;
+    private $experienciaRepository;
 
-    public function __construct(InscricaoExperienciaRepository $inscricaoExperienciaRepo)
+    public function __construct(InscricaoExperienciaRepository $inscricaoExperienciaRepo, ExperienciaRepository $experienciaRepo)
     {
         $this->inscricaoExperienciaRepository = $inscricaoExperienciaRepo;
+        $this->experienciaRepository = $experienciaRepo;
     }
 
     /**
@@ -106,10 +109,18 @@ class InscricaoExperienciaAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateInscricaoExperienciaAPIRequest $request)
+    public function store(CreateInscricaoExperienciaAPIRequest $request, $idExp)
     {
+        $Experiencia = $this->experienciaRepository->findWithoutFail($idExp);
+
+        if (empty($Experiencia)) {
+            return $this->sendError('Experiencia not found');
+        }
+
+        $request->request->add(['experiencia_id' => $Experiencia->id]);
         $input = $request->all();
 
+        /** @var InscricaoExperiencia $inscricaoExperiencia */
         $inscricaoExperiencias = $this->inscricaoExperienciaRepository->create($input);
 
         return $this->sendResponse($inscricaoExperiencias->toArray(), 'Inscricao Experiencia saved successfully');

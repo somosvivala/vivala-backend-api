@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateInscricaoExpedicaoAPIRequest;
 use App\Http\Requests\API\UpdateInscricaoExpedicaoAPIRequest;
 use App\Models\InscricaoExpedicao;
+use App\Repositories\ExpedicaoRepository;
 use App\Repositories\InscricaoExpedicaoRepository;
 use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -21,10 +22,12 @@ class InscricaoExpedicaoAPIController extends AppBaseController
 {
     /** @var  InscricaoExpedicaoRepository */
     private $inscricaoExpedicaoRepository;
+    private $expedicaoRepository;
 
-    public function __construct(InscricaoExpedicaoRepository $inscricaoExpedicaoRepo)
+    public function __construct(InscricaoExpedicaoRepository $inscricaoExpedicaoRepo, ExpedicaoRepository $expedicaoRepo)
     {
         $this->inscricaoExpedicaoRepository = $inscricaoExpedicaoRepo;
+        $this->expedicaoRepository = $expedicaoRepo;
     }
 
     /**
@@ -106,8 +109,15 @@ class InscricaoExpedicaoAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateInscricaoExpedicaoAPIRequest $request)
+    public function store(CreateInscricaoExpedicaoAPIRequest $request, $idExp)
     {
+        $Expedicao = $this->expedicaoRepository->findWithoutFail($idExp);
+
+        if (empty($Expedicao)) {
+            return $this->sendError('Expedicao not found');
+        }
+
+        $request->request->add(['expedicao_id' => $Expedicao->id]);
         $input = $request->all();
 
         $inscricaoExpedicaos = $this->inscricaoExpedicaoRepository->create($input);

@@ -25,6 +25,7 @@ class CreateInscricaoExperienciaRequest extends FormRequest
      */
     public function rules()
     {
+
         return InscricaoExperiencia::$rules;
     }
 }

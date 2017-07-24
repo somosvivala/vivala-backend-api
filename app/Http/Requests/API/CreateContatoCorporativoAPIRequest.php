@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
+use App\Http\Requests\API\BaseAPIRequest;
 use App\Models\ContatoCorporativo;
-use InfyOm\Generator\Request\APIRequest;
 
-class CreateContatoCorporativoAPIRequest extends APIRequest
+class CreateContatoCorporativoAPIRequest extends BaseAPIRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -3,9 +3,9 @@
 namespace App\Http\Requests\API;
 
 use App\Models\InscricaoExperiencia;
-use InfyOm\Generator\Request\APIRequest;
+use App\Http\Requests\API\BaseAPIRequest;
 
-class CreateInscricaoExperienciaAPIRequest extends APIRequest
+class CreateInscricaoExperienciaAPIRequest extends BaseAPIRequest
 {
     /**
      * Determine if the user is authorized to make this request.

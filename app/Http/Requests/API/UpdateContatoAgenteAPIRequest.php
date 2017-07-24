@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
+use App\Http\Requests\API\BaseAPIRequest;
 use App\Models\ContatoAgente;
-use InfyOm\Generator\Request\APIRequest;
 
-class UpdateContatoAgenteAPIRequest extends APIRequest
+class UpdateContatoAgenteAPIRequest extends BaseAPIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
