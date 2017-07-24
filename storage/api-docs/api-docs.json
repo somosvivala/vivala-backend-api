@@ -228,6 +228,80 @@
                 }
             }
         },
+        "/cotacoes/aereo": {
+            "get": {
+                "tags": [
+                    "CotacaoAereo"
+                ],
+                "summary": "Get a listing of the CotacaoAereos.",
+                "description": "Get all CotacaoAereos",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CotacaoAereo"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CotacaoAereo"
+                ],
+                "summary": "Store a newly created CotacaoAereo in storage",
+                "description": "Store CotacaoAereo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoAereo that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoAereo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoAereo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/cotacoes/hospedagem": {
             "get": {
                 "tags": [
@@ -721,6 +795,107 @@
                 }
             }
         },
+        "CotacaoAereo": {
+            "required": [
+                "origem",
+                "destino",
+                "data_ida",
+                "qnt_adultos",
+                "qnt_criancas",
+                "qnt_bebes",
+                "periodo_voo_ida",
+                "nome_completo",
+                "email",
+                "telefone"
+            ],
+            "properties": {
+                "origem": {
+                    "description": "origem",
+                    "type": "string"
+                },
+                "destino": {
+                    "description": "destino",
+                    "type": "string"
+                },
+                "data_ida": {
+                    "description": "data_ida",
+                    "type": "string"
+                },
+                "data_volta": {
+                    "description": "data_volta",
+                    "type": "string"
+                },
+                "datas_flexiveis": {
+                    "description": "datas_flexiveis",
+                    "type": "boolean"
+                },
+                "qnt_adultos": {
+                    "description": "qnt_adultos",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_criancas": {
+                    "description": "qnt_criancas",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_bebes": {
+                    "description": "qnt_bebes",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "periodo_voo_ida": {
+                    "description": "periodo_voo_ida",
+                    "type": "string"
+                },
+                "periodo_voo_volta": {
+                    "description": "periodo_voo_volta",
+                    "type": "string"
+                },
+                "aeroporto_origem": {
+                    "description": "aeroporto_origem",
+                    "type": "string"
+                },
+                "aeroporto_retorno": {
+                    "description": "aeroporto_retorno",
+                    "type": "string"
+                },
+                "companias_aereas_preferenciais": {
+                    "description": "companias_aereas_preferenciais",
+                    "type": "string"
+                },
+                "numero_paradas": {
+                    "description": "numero_paradas",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tempo_voo": {
+                    "description": "tempo_voo",
+                    "type": "string"
+                },
+                "aereo_preco_desejado": {
+                    "description": "aereo_preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "nome_completo": {
+                    "description": "nome_completo",
+                    "type": "string"
+                },
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "telefone": {
+                    "description": "telefone",
+                    "type": "string"
+                }
+            }
+        },
         "CotacaoHospedagem": {
             "required": [
                 "hotel_ou_regiao",
@@ -810,18 +985,23 @@
                 "origem",
                 "destino",
                 "data_ida",
+                "data_volta",
                 "qnt_adultos",
                 "qnt_criancas",
                 "qnt_bebes",
                 "periodo_voo_ida",
                 "periodo_voo_volta",
-                "contato_nome_completo",
-                "contato_email",
-                "contato_telefone"
+                "nome_completo",
+                "email",
+                "telefone"
             ],
             "properties": {
                 "origem": {
                     "description": "origem",
+                    "type": "string"
+                },
+                "destino": {
+                    "description": "destino",
                     "type": "string"
                 },
                 "data_ida": {
@@ -830,10 +1010,6 @@
                 },
                 "data_volta": {
                     "description": "data_volta",
-                    "type": "string"
-                },
-                "destino": {
-                    "description": "destino",
                     "type": "string"
                 },
                 "datas_flexiveis": {
@@ -967,20 +1143,20 @@
                     "description": "datas_nascimento_seguro_viagem",
                     "type": "string"
                 },
-                "contato_nome_completo": {
-                    "description": "contato_nome_completo",
+                "nome_completo": {
+                    "description": "nome_completo",
                     "type": "string"
                 },
-                "contato_nome_preferencia": {
-                    "description": "contato_nome_preferencia",
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
                     "type": "string"
                 },
-                "contato_email": {
-                    "description": "contato_email",
+                "email": {
+                    "description": "email",
                     "type": "string"
                 },
-                "contato_telefone": {
-                    "description": "contato_telefone",
+                "telefone": {
+                    "description": "telefone",
                     "type": "string"
                 }
             }

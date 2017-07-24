@@ -46,3 +46,7 @@
     <a href="{!! route('cotacaoPacotes.index') !!}"><i class="fa fa-edit"></i><span>CotacaoPacotes</span></a>
 </li>
 
+<li class="{{ Request::is('cotacaoAereos*') ? 'active' : '' }}">
+    <a href="{!! route('cotacaoAereos.index') !!}"><i class="fa fa-edit"></i><span>CotacaoAereos</span></a>
+</li>
+

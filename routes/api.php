@@ -26,6 +26,9 @@ Route::resource('cotacoes/pacote', 'CotacaoPacoteAPIController', [
 Route::resource('cotacoes/hospedagem', 'CotacaoHospedagemAPIController', [
     'except' => ['update', 'destroy', 'edit', 'create', 'show']
 ]);
+Route::resource('cotacoes/aereo', 'CotacaoAereoAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+]);
 
 
 /**

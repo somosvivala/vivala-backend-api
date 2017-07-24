@@ -71,3 +71,5 @@ Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController');
 
 
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
+
+Route::resource('cotacaoAereos', 'CotacaoAereoController');
