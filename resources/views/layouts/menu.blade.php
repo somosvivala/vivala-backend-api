@@ -46,4 +46,3 @@
 <li class="{{ Request::is('inscricaoNewsletters*') ? 'active' : '' }}">
     <a href="{!! route('inscricaoNewsletters.index') !!}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>Newsletter</span></a>
 </li>
-

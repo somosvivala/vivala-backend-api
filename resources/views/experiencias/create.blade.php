@@ -14,13 +14,7 @@
                 <div class="row">
                     {!! Form::open(['route' => 'experiencias.store']) !!}
 
-                    @include('experiencias.fields')
-                    <!-- Submit Field -->
-                    <div class="form-group col-sm-12">
-                        {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                        <a href="{!! route('experiencias.index') !!}" class="btn btn-default">Cancel</a>
-                    </div>
-
+                        @include('experiencias.fields')
 
                     {!! Form::close() !!}
                 </div>

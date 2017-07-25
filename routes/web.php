@@ -66,3 +66,8 @@ Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
 Route::resource('cotacaoAereos', 'CotacaoAereoController');
 
 
+
+
+Route::resource('experiencias', 'ExperienciasController');
+
+Route::resource('experiencias', 'ExperienciaController');

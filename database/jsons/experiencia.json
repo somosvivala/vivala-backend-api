@@ -31,6 +31,27 @@
         "htmlType": "date"
     },
     {
+        "name": "media_listagem_id",
+        "dbType": "integer",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "media_listagem_type",
+        "dbType": "string",
+        "htmlType": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
         "name": "created_at",
         "dbType": "timestamp",
         "htmlType": "",
