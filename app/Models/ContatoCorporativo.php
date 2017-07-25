@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="ContatoCorporativo",
- *      required={""},
+ *      required={"nome_completo", "email", "mensagem"},
  *      @SWG\Property(
  *          property="nome_completo",
  *          description="nome_completo",
@@ -17,11 +17,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="email",
  *          description="email",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="mensagem",
- *          description="mensagem",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -39,6 +34,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="numero_funcionarios",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="mensagem",
+ *          description="mensagem",
+ *          type="string"
  *      )
  * )
  */
@@ -57,8 +57,8 @@ class ContatoCorporativo extends Model
         'email',
         'telefone',
         'nome_empresa',
-        'mensagem',
-        'numero_funcionarios'
+        'numero_funcionarios',
+        'mensagem'
     ];
 
     /**
@@ -71,8 +71,8 @@ class ContatoCorporativo extends Model
         'email' => 'string',
         'telefone' => 'string',
         'nome_empresa' => 'string',
-        'mensagem' => 'string',
-        'numero_funcionarios' => 'integer'
+        'numero_funcionarios' => 'integer',
+        'mensagem' => 'string'
     ];
 
     /**
@@ -82,11 +82,8 @@ class ContatoCorporativo extends Model
      */
     public static $rules = [
         'nome_completo' => 'required|string',
-        'email' => 'required|email',
-        'telefone' => 'required|string',
-        'nome_empresa' => 'required|string',
-        'mensagem' => 'sometimes|nullable|string',
-        'numero_funcionarios' => 'sometimes|nullable|integer'
+        'mensagem' => 'required|string',
+        'email' => 'required|email'
     ];
 
     

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Experiencia
+            Contato Agente
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($experiencia, ['route' => ['experiencias.update', $experiencia->id], 'method' => 'patch']) !!}
+                   {!! Form::model($contatoAgente, ['route' => ['contatoAgentes.update', $contatoAgente->id], 'method' => 'patch']) !!}
 
-                        @include('experiencias.fields')
+                        @include('contato_agentes.fields')
 
                    {!! Form::close() !!}
                </div>

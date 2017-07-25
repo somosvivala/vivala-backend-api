@@ -2,7 +2,8 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Pedidos de cotação de hospedagem</h1>
+        <h1 class="">Contatos pelo formulário de Agentes</h1>
+        </h1>
     </section>
     <div class="content">
         <div class="clearfix"></div>
@@ -12,7 +13,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('cotacao_hospedagems.table')
+                    @include('contato_agentes.table')
             </div>
         </div>
     </div>

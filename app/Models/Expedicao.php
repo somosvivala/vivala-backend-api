@@ -10,12 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      definition="Expedicao",
  *      required={""},
  *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
  *          property="titulo",
  *          description="titulo",
  *          type="string"
@@ -36,29 +30,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="data_fim",
  *          type="string",
  *          format="date"
- *      ),
- *      @SWG\Property(
- *          property="media_listagem_id",
- *          description="media_listagem_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="media_listagem_type",
- *          description="media_listagem_type",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */

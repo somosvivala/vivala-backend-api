@@ -12,27 +12,29 @@
     },
     {
         "name": "nome_completo",
+        "validations": "required",
         "dbType": "string",
         "htmlType": "text"
     },
     {
         "name": "nome_preferencia",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "email",
         "dbType": "string",
+        "validations": "required|email",
         "htmlType": "text"
     },
     {
         "name": "telefone",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "mensagem",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "textarea"
     },
     {

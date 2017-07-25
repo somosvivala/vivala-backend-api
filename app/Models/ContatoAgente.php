@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="ContatoAgente",
- *      required={""},
+ *      required={"nome_completo", "email"},
  *      @SWG\Property(
  *          property="nome_completo",
  *          description="nome_completo",
@@ -45,8 +45,7 @@ class ContatoAgente extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone',
-        'mensagem'
+        'telefone'
     ];
 
     /**
@@ -58,8 +57,7 @@ class ContatoAgente extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string',
-        'mensagem' => 'string'
+        'telefone' => 'string'
     ];
 
     /**
@@ -68,11 +66,9 @@ class ContatoAgente extends Model
      * @var array
      */
     public static $rules = [
-        'nome_completo' => 'required|string',
-        'nome_preferencia' => 'sometimes|nullable|string',
-        'email' => 'required|email',
-        'mensagem' => 'sometimes|nullable|string',
-        'telefone' => 'required|string'
+        'nome_completo' => 'required',
+        'email' => 'required|email'
     ];
+
     
 }

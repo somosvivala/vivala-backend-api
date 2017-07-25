@@ -38,6 +38,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="date"
  *      ),
  *      @SWG\Property(
+ *          property="media_listagem_id",
+ *          description="media_listagem_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="media_listagem_type",
+ *          description="media_listagem_type",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -91,39 +102,5 @@ class Experiencia extends Model
         
     ];
 
-    /**
-     * Relacao de hasMany de Inscricoes
-     *
-     */
-    public function inscricoes() 
-    {
-        return $this->hasMany(App\Models\InscricaoExperiencia::class);
-    }
-
-    /**
-     * Uma Experiencia possi varios blocos de descricao
-     */
-    public function blocosDescricao()
-    {
-        return $this->morphMany(\App\Models\BlocoDescricao::class, 'owner');
-    }
-
-    /**
-     * Uma Experiencia possui 1 foto que aparece na listagem
-     */
-    public function mediaListagem()
-    {
-        return $this->morphTo();
-    }
-
-    /**
-     * Uma Experiencia possui varias fotos
-     */
-    public function fotos()
-    {
-        return $this->morphMany(\App\Models\Foto::class, 'owner');
-    }
-    
-    
     
 }

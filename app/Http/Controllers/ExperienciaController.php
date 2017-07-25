@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ExperienciaDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateExperienciaRequest;
 use App\Http\Requests\UpdateExperienciaRequest;
 use App\Repositories\ExperienciaRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class ExperienciaController extends AppBaseController
@@ -24,16 +24,12 @@ class ExperienciaController extends AppBaseController
     /**
      * Display a listing of the Experiencia.
      *
-     * @param Request $request
+     * @param ExperienciaDataTable $experienciaDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(ExperienciaDataTable $experienciaDataTable)
     {
-        $this->experienciaRepository->pushCriteria(new RequestCriteria($request));
-        $experiencias = $this->experienciaRepository->all();
-
-        return view('experiencias.index')
-            ->with('experiencias', $experiencias);
+        return $experienciaDataTable->render('experiencias.index');
     }
 
     /**
