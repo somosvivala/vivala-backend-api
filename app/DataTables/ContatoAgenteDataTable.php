@@ -75,7 +75,8 @@ class ContatoAgenteDataTable extends DataTable
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
             'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
             'email' => ['name' => 'email', 'data' => 'email'],
-            'telefone' => ['name' => 'telefone', 'data' => 'telefone']
+            'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de envio'],
         ];
     }
 
