@@ -42,3 +42,11 @@ footer h4 {
 	font-weight: 300;
 	margin-right: 12px;
 }
+
+/* Side Bar Menu */
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+	border-left-color: #ff6d20;
+}
+.nav>li>a:hover, .nav>li>a:active, .nav>li>a:focus {
+    background: #2C3B41;
+}
