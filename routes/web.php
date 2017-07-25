@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index');
  * ROTAS PARA TESTE DAS BLADES DE EMAILS
  */
 Route::get('/exemplo-email-contato-geral', function () {
-    return view('emails.contato-geral')->with('contato', App\Models\ContatoGeral::first());
+    return view('emails.contato-geral')->with('contatoGeral', App\Models\ContatoGeral::first());
 });
 Route::get('/exemplo-email-contato-agentes', function () {
     return view('emails.contato-agente')->with('contatoAgente', App\Models\ContatoAgente::first());
@@ -34,6 +34,9 @@ Route::get('/exemplo-email-contato-corporativo', function () {
 });
 Route::get('/exemplo-email-inscricao-expedicao', function () {
     return view('emails.inscricao-expedicao')->with('inscricao', App\Models\InscricaoExpedicao::latest()->first());
+});
+Route::get('/exemplo-email-cotacao-pacote', function () {
+    return view('emails.cotacao-pacote')->with('cotacao', App\Models\CotacaoPacote::latest()->first());
 });
 
 
