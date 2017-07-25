@@ -12,32 +12,34 @@
     },
     {
         "name": "nome_contato",
-        "dbType": "string",
+        "validations": "required",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "email",
+        "validations": "required|email",
         "dbType": "string",
         "htmlType": "text"
     },
     {
         "name": "telefone",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "nome_empresa",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
         "name": "numero_funcionarios",
-        "dbType": "integer",
+        "dbType": "integer:nullable",
         "htmlType": "text"
     },
     {
         "name": "mensagem",
-        "dbType": "string",
+        "dbType": "string:nullable",
         "htmlType": "textarea"
     },
     {

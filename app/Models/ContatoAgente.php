@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="ContatoAgente",
- *      required={""},
+ *      required={"nome_completo", "email"},
+ *      @SWG\Property(
+ *          property="id",
+ *          description="id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
  *      @SWG\Property(
  *          property="nome_completo",
  *          description="nome_completo",
@@ -28,6 +34,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="telefone",
  *          description="telefone",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="created_at",
+ *          description="created_at",
+ *          type="string",
+ *          format="date-time"
+ *      ),
+ *      @SWG\Property(
+ *          property="updated_at",
+ *          description="updated_at",
+ *          type="string",
+ *          format="date-time"
  *      )
  * )
  */
@@ -45,8 +63,7 @@ class ContatoAgente extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone',
-        'mensagem'
+        'telefone'
     ];
 
     /**
@@ -58,8 +75,7 @@ class ContatoAgente extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string',
-        'mensagem' => 'string'
+        'telefone' => 'string'
     ];
 
     /**
@@ -68,11 +84,9 @@ class ContatoAgente extends Model
      * @var array
      */
     public static $rules = [
-        'nome_completo' => 'required|string',
-        'nome_preferencia' => 'sometimes|nullable|string',
-        'email' => 'required|email',
-        'mensagem' => 'sometimes|nullable|string',
-        'telefone' => 'required|string'
+        'nome_completo' => 'required',
+        'email' => 'required|email'
     ];
+
     
 }

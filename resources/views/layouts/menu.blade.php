@@ -46,3 +46,7 @@
 <li class="{{ Request::is('inscricaoNewsletters*') ? 'active' : '' }}">
     <a href="{!! route('inscricaoNewsletters.index') !!}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>Newsletter</span></a>
 </li>
+<li class="{{ Request::is('contatoAgentes*') ? 'active' : '' }}">
+    <a href="{!! route('contatoAgentes.index') !!}"><i class="fa fa-edit"></i><span>ContatoAgentes</span></a>
+</li>
+
