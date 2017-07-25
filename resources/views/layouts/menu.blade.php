@@ -7,7 +7,7 @@
     </li>
 
     <li class="{{ Request::is('contatoCorporativo*') ? 'active' : '' }}">
-        <a href="{{-- route('contatoCorporativo.index') --}}"><i class="fa fa-suitcase" aria-hidden="true"></i></i><span>Corporativo</span></a>
+        <a href="{!! route('contatoCorporativo.index') !!}"><i class="fa fa-suitcase" aria-hidden="true"></i></i><span>Corporativo</span></a>
     </li>
 
     <li class="{{ Request::is('contatoGeral*') ? 'active' : '' }}">

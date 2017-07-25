@@ -8,20 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="ContatoCorporativo",
- *      required={""},
+ *      required={"nome_contato", "email", "mensagem"},
  *      @SWG\Property(
- *          property="nome_completo",
- *          description="nome_completo",
+ *          property="nome_contato",
+ *          description="nome_contato",
  *          type="string"
  *      ),
  *      @SWG\Property(
  *          property="email",
  *          description="email",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="mensagem",
- *          description="mensagem",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -39,6 +34,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="numero_funcionarios",
  *          type="integer",
  *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="mensagem",
+ *          description="mensagem",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="created_at",
+ *          description="created_at",
+ *          type="string",
+ *          format="date-time"
  *      )
  * )
  */
@@ -53,12 +59,12 @@ class ContatoCorporativo extends Model
 
 
     public $fillable = [
-        'nome_completo',
+        'nome_contato',
         'email',
         'telefone',
         'nome_empresa',
-        'mensagem',
-        'numero_funcionarios'
+        'numero_funcionarios',
+        'mensagem'
     ];
 
     /**
@@ -67,12 +73,12 @@ class ContatoCorporativo extends Model
      * @var array
      */
     protected $casts = [
-        'nome_completo' => 'string',
+        'nome_contato' => 'string',
         'email' => 'string',
         'telefone' => 'string',
         'nome_empresa' => 'string',
-        'mensagem' => 'string',
-        'numero_funcionarios' => 'integer'
+        'numero_funcionarios' => 'integer',
+        'mensagem' => 'string'
     ];
 
     /**
@@ -81,12 +87,9 @@ class ContatoCorporativo extends Model
      * @var array
      */
     public static $rules = [
-        'nome_completo' => 'required|string',
-        'email' => 'required|email',
-        'telefone' => 'required|string',
-        'nome_empresa' => 'required|string',
-        'mensagem' => 'sometimes|nullable|string',
-        'numero_funcionarios' => 'sometimes|nullable|integer'
+        'nome_contato' => 'required|string',
+        'mensagem' => 'required|string',
+        'email' => 'required|email'
     ];
 
     

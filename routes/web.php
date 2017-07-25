@@ -40,38 +40,18 @@ Route::get('/exemplo-email-inscricao-expedicao', function () {
 
 
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController');
-
-
-
-Route::resource('experiencias', 'ExperienciaController');
-
 Route::resource('blocoDescricaos', 'BlocoDescricaoController');
-
 Route::resource('fotos', 'FotoController');
 
-
-
-
-
+Route::resource('experiencias', 'ExperienciaController');
 Route::resource('expedicaos', 'ExpedicaoController');
 
-
-
 Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController');
-
-
 Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController');
 
-
-
 Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController');
-
-
-
-
-
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
-
 Route::resource('cotacaoAereos', 'CotacaoAereoController');
 
 Route::resource('contatoAgentes', 'ContatoAgenteController');
+Route::resource('contatoCorporativo', 'ContatoCorporativoController');
