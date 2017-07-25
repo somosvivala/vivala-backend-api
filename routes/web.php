@@ -20,10 +20,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-
-
-
-//Rotas para mostrar os emails:
+/**
+ * ROTAS PARA TESTE DAS BLADES DE EMAILS
+ */
 Route::get('/exemplo-email-contato-geral', function () {
     return view('emails.contato-geral')->with('contato', App\Models\ContatoGeral::first());
 });
@@ -39,19 +38,31 @@ Route::get('/exemplo-email-inscricao-expedicao', function () {
 
 
 
+//newsletter
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController');
+
+//Blocos de descricao de experiencia / expedicao
 Route::resource('blocoDescricaos', 'BlocoDescricaoController');
+
+//Fotos de experiencias / expedicoes / agentes
 Route::resource('fotos', 'FotoController');
 
+//Experiencias e Expedicoes
 Route::resource('experiencias', 'ExperienciaController');
 Route::resource('expedicaos', 'ExpedicaoController');
 
+//Inscricoes das Experiencias/Expedicoes
 Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController');
 Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController');
 
+//Contatos
+Route::resource('contatoAgentes', 'ContatoAgenteController');
+Route::resource('contatoCorporativo', 'ContatoCorporativoController');
+Route::resource('contatoGeral', 'ContatoGeralController');
+
+//Cotacoes
 Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController');
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
 Route::resource('cotacaoAereos', 'CotacaoAereoController');
 
-Route::resource('contatoAgentes', 'ContatoAgenteController');
-Route::resource('contatoCorporativo', 'ContatoCorporativoController');
+

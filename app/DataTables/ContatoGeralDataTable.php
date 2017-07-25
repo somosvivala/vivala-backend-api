@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\CotacaoAereo;
+use App\Models\ContatoGeral;
 use Form;
 use Yajra\Datatables\Services\DataTable;
 
-class CotacaoAereoDataTable extends DataTable
+class ContatoGeralDataTable extends DataTable
 {
 
     /**
@@ -16,7 +16,7 @@ class CotacaoAereoDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'cotacao_aereos.datatables_actions')
+            ->addColumn('action', 'contato_gerals.datatables_actions')
             ->make(true);
     }
 
@@ -27,9 +27,9 @@ class CotacaoAereoDataTable extends DataTable
      */
     public function query()
     {
-        $cotacaoAereos = CotacaoAereo::query();
+        $contatoGerals = ContatoGeral::query();
 
-        return $this->applyScopes($cotacaoAereos);
+        return $this->applyScopes($contatoGerals);
     }
 
     /**
@@ -72,15 +72,11 @@ class CotacaoAereoDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'origem' => ['name' => 'origem', 'data' => 'origem'],
-            'destino' => ['name' => 'destino', 'data' => 'destino'],
-            'data_ida' => ['name' => 'data_ida', 'data' => 'data_ida'],
-            'data_volta' => ['name' => 'data_volta', 'data' => 'data_volta'],
-            'aereo_preco_desejado' => ['name' => 'aereo_preco_desejado', 'data' => 'aereo_preco_desejado', 'title' => 'Preço Desejado'],
-            'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo', 'title' => 'Nome'],
+            'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
+            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio']
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de envio']
         ];
     }
 
@@ -91,6 +87,6 @@ class CotacaoAereoDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'cotacaoAereos';
+        return 'contatoGerals';
     }
 }

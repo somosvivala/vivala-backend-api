@@ -75,19 +75,12 @@ class CotacaoHospedagemDataTable extends DataTable
             'hotel_ou_regiao' => ['name' => 'hotel_ou_regiao', 'data' => 'hotel_ou_regiao'],
             'data_ida' => ['name' => 'data_ida', 'data' => 'data_ida'],
             'data_volta' => ['name' => 'data_volta', 'data' => 'data_volta'],
-            'qnt_adultos' => ['name' => 'qnt_adultos', 'data' => 'qnt_adultos'],
-            'qnt_criancas' => ['name' => 'qnt_criancas', 'data' => 'qnt_criancas'],
-            'qnt_bebes' => ['name' => 'qnt_bebes', 'data' => 'qnt_bebes'],
-            'tipo_quarto' => ['name' => 'tipo_quarto', 'data' => 'tipo_quarto'],
             'qnt_quartos' => ['name' => 'qnt_quartos', 'data' => 'qnt_quartos'],
-            'hospedagem_servicos' => ['name' => 'hospedagem_servicos', 'data' => 'hospedagem_servicos'],
-            'hospedagem_tipo' => ['name' => 'hospedagem_tipo', 'data' => 'hospedagem_tipo'],
-            'hospedagem_solicitacoes' => ['name' => 'hospedagem_solicitacoes', 'data' => 'hospedagem_solicitacoes'],
-            'hospedagem_preco_desejado' => ['name' => 'hospedagem_preco_desejado', 'data' => 'hospedagem_preco_desejado'],
-            'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
-            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
+            'hospedagem_preco_desejado' => ['name' => 'hospedagem_preco_desejado', 'data' => 'hospedagem_preco_desejado', 'title' => 'Preço Desejado'],
+            'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo', 'title' => 'Nome'],
             'email' => ['name' => 'email', 'data' => 'email'],
-            'telefone' => ['name' => 'telefone', 'data' => 'telefone']
+            'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio']
         ];
     }
 

@@ -11,7 +11,7 @@
     </li>
 
     <li class="{{ Request::is('contatoGeral*') ? 'active' : '' }}">
-        <a href="{{-- route('contatoGeral.index') --}}"><i class="fa fa-envelope-o" aria-hidden="true"></i></i><span>Geral</span></a>
+        <a href="{!! route('contatoGeral.index') !!}"><i class="fa fa-envelope-o" aria-hidden="true"></i></i><span>Geral</span></a>
     </li>
   </ul>
 </li>
@@ -46,3 +46,4 @@
 <li class="{{ Request::is('inscricaoNewsletters*') ? 'active' : '' }}">
     <a href="{!! route('inscricaoNewsletters.index') !!}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>Newsletter</span></a>
 </li>
+
