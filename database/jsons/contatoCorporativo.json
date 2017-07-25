@@ -11,7 +11,7 @@
         "inIndex": false
     },
     {
-        "name": "nome_contato",
+        "name": "nome_completo",
         "validations": "required",
         "dbType": "string:nullable",
         "htmlType": "text"
@@ -39,6 +39,7 @@
     },
     {
         "name": "mensagem",
+        "validations":"required",
         "dbType": "string:nullable",
         "htmlType": "textarea"
     },

@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="ContatoCorporativo",
- *      required={"nome_contato", "email", "mensagem"},
+ *      required={"nome_completo", "email", "mensagem"},
  *      @SWG\Property(
- *          property="nome_contato",
- *          description="nome_contato",
+ *          property="nome_completo",
+ *          description="nome_completo",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -39,12 +39,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="mensagem",
  *          description="mensagem",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
  *      )
  * )
  */
@@ -59,7 +53,7 @@ class ContatoCorporativo extends Model
 
 
     public $fillable = [
-        'nome_contato',
+        'nome_completo',
         'email',
         'telefone',
         'nome_empresa',
@@ -73,7 +67,7 @@ class ContatoCorporativo extends Model
      * @var array
      */
     protected $casts = [
-        'nome_contato' => 'string',
+        'nome_completo' => 'string',
         'email' => 'string',
         'telefone' => 'string',
         'nome_empresa' => 'string',
@@ -87,7 +81,7 @@ class ContatoCorporativo extends Model
      * @var array
      */
     public static $rules = [
-        'nome_contato' => 'required|string',
+        'nome_completo' => 'required|string',
         'mensagem' => 'required|string',
         'email' => 'required|email'
     ];

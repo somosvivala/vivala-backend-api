@@ -72,7 +72,7 @@ class ContatoCorporativoDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'nome_contato' => ['name' => 'nome_contato', 'data' => 'nome_contato'],
+            'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
             'nome_empresa' => ['name' => 'nome_empresa', 'data' => 'nome_empresa'],

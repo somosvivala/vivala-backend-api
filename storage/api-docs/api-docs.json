@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Vivalá Backend API",
+        "title": "Laravel Generator APIs",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -715,7 +715,8 @@
         },
         "ContatoAgente": {
             "required": [
-                ""
+                "nome_completo",
+                "email"
             ],
             "properties": {
                 "nome_completo": {
@@ -738,7 +739,9 @@
         },
         "ContatoCorporativo": {
             "required": [
-                ""
+                "nome_completo",
+                "email",
+                "mensagem"
             ],
             "properties": {
                 "nome_completo": {
@@ -747,10 +750,6 @@
                 },
                 "email": {
                     "description": "email",
-                    "type": "string"
-                },
-                "mensagem": {
-                    "description": "mensagem",
                     "type": "string"
                 },
                 "telefone": {
@@ -765,12 +764,23 @@
                     "description": "numero_funcionarios",
                     "type": "integer",
                     "format": "int32"
+                },
+                "mensagem": {
+                    "description": "mensagem",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
                 }
             }
         },
         "ContatoGeral": {
             "required": [
-                ""
+                "nome_completo",
+                "email",
+                "mensagem"
             ],
             "properties": {
                 "nome_completo": {
@@ -781,16 +791,16 @@
                     "description": "nome_preferencia",
                     "type": "string"
                 },
-                "mensagem": {
-                    "description": "mensagem",
-                    "type": "string"
-                },
                 "email": {
                     "description": "email",
                     "type": "string"
                 },
                 "telefone": {
                     "description": "telefone",
+                    "type": "string"
+                },
+                "mensagem": {
+                    "description": "mensagem",
                     "type": "string"
                 }
             }
@@ -1166,6 +1176,31 @@
                 ""
             ],
             "properties": {
+                "titulo": {
+                    "description": "titulo",
+                    "type": "string"
+                },
+                "descricao_listagem": {
+                    "description": "descricao_listagem",
+                    "type": "string"
+                },
+                "data_inicio": {
+                    "description": "data_inicio",
+                    "type": "string",
+                    "format": "date"
+                },
+                "data_fim": {
+                    "description": "data_fim",
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "Experiencia": {
+            "required": [
+                ""
+            ],
+            "properties": {
                 "id": {
                     "description": "id",
                     "type": "integer",
@@ -1197,46 +1232,6 @@
                 "media_listagem_type": {
                     "description": "media_listagem_type",
                     "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
-                }
-            }
-        },
-        "Experiencia": {
-            "required": [
-                ""
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "titulo": {
-                    "description": "titulo",
-                    "type": "string"
-                },
-                "descricao_listagem": {
-                    "description": "descricao_listagem",
-                    "type": "string"
-                },
-                "data_inicio": {
-                    "description": "data_inicio",
-                    "type": "string",
-                    "format": "date"
-                },
-                "data_fim": {
-                    "description": "data_fim",
-                    "type": "string",
-                    "format": "date"
                 },
                 "created_at": {
                     "description": "created_at",
