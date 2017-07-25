@@ -318,12 +318,7 @@ class CotacaoPacote extends Model
         'origem' => 'required',
         'destino' => 'required',
         'data_ida' => 'required',
-        'data_volta' => 'required',
         'qnt_adultos' => 'required|integer',
-        'qnt_criancas' => 'required|integer',
-        'qnt_bebes' => 'required|integer',
-        'periodo_voo_ida' => 'required',
-        'periodo_voo_volta' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
         'telefone' => 'required'
