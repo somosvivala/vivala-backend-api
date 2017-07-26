@@ -38,6 +38,12 @@ Route::get('/exemplo-email-inscricao-expedicao', function () {
 Route::get('/exemplo-email-cotacao-pacote', function () {
     return view('emails.cotacao-pacote')->with('cotacao', App\Models\CotacaoPacote::latest()->first());
 });
+Route::get('/exemplo-email-cotacao-pacote-hospedagem', function () {
+    return view('emails.cotacao-pacote-hospedagem')->with('cotacao_hospedagems', App\Models\CotacaoHospedagem::latest()->first());
+});
+Route::get('/exemplo-email-cotacao-pacote-aereo', function () {
+    return view('emails.cotacao-pacote-aereo')->with('cotacao_aereos', App\Models\CotacaoAereo::latest()->first());
+});
 
 
 
