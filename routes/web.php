@@ -65,9 +65,7 @@ Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController');
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController');
 Route::resource('cotacaoAereos', 'CotacaoAereoController');
 
-
-
-
-Route::resource('experiencias', 'ExperienciasController');
-
-Route::resource('experiencias', 'ExperienciaController');
+Route::get('/teste', function(App\DataTables\InscricaoExpedicaoDataTable $inscricaoExpedicaoDataTable)
+{
+    return $inscricaoExpedicaoDataTable->addScope(new App\DataTables\Scopes\PorIdExpedicao())->render('inscricao_expedicaos.index');
+});
