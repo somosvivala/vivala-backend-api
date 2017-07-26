@@ -10,7 +10,7 @@
         <tbody>
             <tr align="center">
                 <td align="center" style="text-align:center;">
-                    <h3 style="font-family:'Titillium Web', sans-serif;">Dados do cliente:</h3>
+                    <h3 style="font-family:'Titillium Web', sans-serif;">Informações preenchidas pelo formulário do site.</h3>
 
                     <p style="font-size:18px; font-weight:normal; margin-top:10px; text-align: left;">
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span>
