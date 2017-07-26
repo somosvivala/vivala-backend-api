@@ -26,7 +26,7 @@ class PedidoCotacaoPacote extends Mailable
      */
     public function __construct(CotacaoPacote $cotacao)
     {
-        $this->contatoGeral = $cotacao;
+        $this->cotacao = $cotacao;
     }
 
     /**
