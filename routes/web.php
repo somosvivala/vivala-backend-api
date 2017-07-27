@@ -66,3 +66,4 @@ Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'a
 Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth']);
 
 Route::get('expedicaos/{id}/inscricoes', 'InscricaoExpedicaoController@getInscricoes')->middleware('auth');
+Route::get('experiencias/{id}/inscricoes', 'InscricaoExperienciaController@getInscricoes')->middleware('auth');

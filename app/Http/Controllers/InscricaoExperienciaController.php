@@ -3,22 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\InscricaoExperienciaDataTable;
+use App\DataTables\Scopes\InscricaoPorExperienciaId;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests;
 use App\Http\Requests\CreateInscricaoExperienciaRequest;
 use App\Http\Requests\UpdateInscricaoExperienciaRequest;
+use App\Repositories\ExperienciaRepository;
 use App\Repositories\InscricaoExperienciaRepository;
 use Flash;
-use App\Http\Controllers\AppBaseController;
 use Response;
 
 class InscricaoExperienciaController extends AppBaseController
 {
     /** @var  InscricaoExperienciaRepository */
     private $inscricaoExperienciaRepository;
+    private $experienciaRepository;
 
-    public function __construct(InscricaoExperienciaRepository $inscricaoExperienciaRepo)
+    public function __construct(InscricaoExperienciaRepository $inscricaoExperienciaRepo, ExperienciaRepository $experienciaRepo)
     {
         $this->inscricaoExperienciaRepository = $inscricaoExperienciaRepo;
+        $this->experienciaRepository = $experienciaRepo;
     }
 
     /**
@@ -148,4 +152,31 @@ class InscricaoExperienciaController extends AppBaseController
 
         return redirect(route('inscricaoExperiencias.index'));
     }
+
+    /**
+     * Metodo para retornar a datatable de inscricoes de Experiencias de 1 Experiencias
+     *
+     * @param InscricaoExperienciasDataTable $datatable
+     * @param mixed $experiencia_id
+     */
+    public function getInscricoes(InscricaoExperienciaDataTable $datatable, $experiencia_id)
+    {
+
+        //Testa se a experiencia existe, se não redireciona para o indice de experiencias 
+        $experiencia = $this->experienciaRepository->findWithoutFail($experiencia_id);
+        if (empty($experiencia)) {
+            Flash::error('Experiencia not found');
+            return redirect(route('experiencias.index'));
+        }
+
+        //adiciona a Scope que filtra pela experiencia 
+        return $datatable->addScope(new InscricaoPorExperienciaId($experiencia_id))
+
+            //metodo render é analogo ao view->make(), aceita um segundo parametro array
+            ->render('inscricao_experiencias.lista_por_experiencia', [
+                'Experiencia' => $experiencia
+            ]);       
+    }
+
+
 }
