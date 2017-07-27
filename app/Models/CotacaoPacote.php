@@ -325,6 +325,68 @@ class CotacaoPacote extends Model
     ];
 
 
+    public function setDataIdaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_ida'] = $cb->format('Y-m-d');
+    }
+
+    public function setDataVoltaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_volta'] = $cb->format('Y-m-d');
+    }
+    
+    public function setPeriodoVooIdaAttribute($value)
+    {
+        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setPeriodoVooVoltaAttribute($value)
+    {
+        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setNumeroParadasAttribute($value)
+    {
+        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : '';
+    }
+
+    public function setTipoQuartoAttribute($value)
+    {
+        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setHospedagemTipoAttribute($value)
+    {
+        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setAereoPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['aereo_preco_desejado'] = $valorLimpo;
+    }
+
+    public function setHospedagemPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['hospedagem_preco_desejado'] = $valorLimpo;
+    }
+
+    public function setTransporteInternoPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['transporte_interno_preco_desejado'] = $valorLimpo;
+    }
+
+    public function setPasseiosPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['passeios_preco_desejado'] = $valorLimpo;
+    }
+    
+
     /**
      * getDataIdaFormatadaAttribute
      *
