@@ -14,66 +14,66 @@
 
                     <p style="font-size:18px; font-weight:normal; margin-top:10px; text-align: left;">
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span>
-                        {{ $cotacao_aereos->nome_completo }}<br>
+                        {{ $cotacao->nome_completo }}<br>
 
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Prefere ser chamado de: </span>
-                        {{ $cotacao_aereos->nome_preferencia }}<br>
+                        {{ $cotacao->nome_preferencia }}<br>
 
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span>
-                        {{ $cotacao_aereos->email }}<br>
+                        {{ $cotacao->email }}<br>
 
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span>
-                        {{ $cotacao_aereos->telefone }}<br>
+                        {{ $cotacao->telefone }}<br>
 
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Contato enviado em: </span>
-                        {{ $cotacao_aereos->created_at->format('d/m/Y - H:i') }}<br>
+                        {{ $cotacao->created_at->format('d/m/Y - H:i') }}<br>
                     </p>
 
                     <p style="font-size:18px; font-weight:normal; margin-top:10px; text-align: left;">
                         <span style="font-family:'Titillium Web', sans-serif;">1 - Para onde você quer ir?</span><br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Origem: </span>
-                        {{ $cotacao_aereos->origem }}<br>
+                        {{ $cotacao->origem }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Destino: </span>
-                        {{ $cotacao_aereos->destino }}<br><br>
+                        {{ $cotacao->destino }}<br><br>
 
                         <span style="font-family:'Titillium Web', sans-serif;">2 - Quando você quer ir?</span><br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Ida: </span>
-                        {{ $cotacao_aereos->data_ida }}<br>
+                        {{ $cotacao->data_ida }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Volta: </span>
-                        {{ $cotacao_aereos->data_volta }}<br>
+                        {{ $cotacao->data_volta }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Estas datas são flexíveis: </span>
-                        {{ $cotacao_aereos->datas_flexiveis }}<br><br>
+                        {{ $cotacao->datas_flexiveis }}<br><br>
 
                         <span style="font-family:'Titillium Web', sans-serif;">3 - Com quem você quer ir?</span><br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Adultos: </span>
-                        {{ $cotacao_aereos->qnt_adultos }}<br>
+                        {{ $cotacao->qnt_adultos }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Crianças: </span>
-                        {{ $cotacao_aereos->qnt_criancas }}<br>
+                        {{ $cotacao->qnt_criancas }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Bebês: </span>
-                        {{ $cotacao_aereos->qnt_bebes }}<br><br>
+                        {{ $cotacao->qnt_bebes }}<br><br>
 
                         <span style="font-family:'Titillium Web', sans-serif;">4 - Transporte Aéreo</span><br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Horário de ida: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->periodo_voo_ida }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Horário de volta: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->periodo_voo_volta }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Aeroporto de origem: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->aeroporto_origem }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Aeroporto de retorno: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->aeroporto_retorno }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Companhias aéreas de preferência: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->companias_aereas_preferenciais }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Número de paradas: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->numero_paradas }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Tempo de vôo: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->tempo_voo }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Preço desejado: </span>
-                        {{ $cotacao_aereos-> }}<br>
+                        {{ $cotacao->aereo_preco_desejado }}<br>
                     </p>
 
                     <br><hr>
                     <p style="font-size:12px; font-family:'Titillium Web', sans-serif; font-weight:bold; margin-top:0px;">
-                        * mensagem automática gerada a partir do formulário de contato de agentes*
+                        * mensagem automática gerada a partir do formulário de cotação de aéreo *
                     </p>
 
                 </td>

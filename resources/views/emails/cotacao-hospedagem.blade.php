@@ -69,7 +69,7 @@
 
                     <br><hr>
                     <p style="font-size:12px; font-family:'Titillium Web', sans-serif; font-weight:bold; margin-top:0px;">
-                        * mensagem automática gerada a partir do formulário de contato de agentes*
+                        * mensagem automática gerada a partir do formulário de cotação de hospedagem *
                     </p>
 
                 </td>
