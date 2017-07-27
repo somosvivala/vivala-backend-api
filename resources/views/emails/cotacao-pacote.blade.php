@@ -38,11 +38,11 @@
 
                         <span style="font-family:'Titillium Web', sans-serif;">2 - Quando você quer ir?</span><br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Data de ida: </span>
-                        {{ $cotacao->data_ida }}<br>
+                        {{ $cotacao->dataIdaFormatada }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Data de volta: </span>
-                        {{ $cotacao->data_volta }}<br>
+                        {{ $cotacao->dataVoltaFormatada }}<br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">As datas são flexíveis: </span>
-                        {{ $cotacao->datas_flexiveis }}<br><br>
+                        {{ $cotacao->temDatasFlexiveis }}<br><br>
 
                         <span style="font-family:'Titillium Web', sans-serif;">3 - Com quem você quer ir?</span><br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Número de adultos: </span>

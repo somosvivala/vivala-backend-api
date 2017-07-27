@@ -324,5 +324,34 @@ class CotacaoPacote extends Model
         'telefone' => 'required'
     ];
 
+
+    /**
+     * getDataIdaFormatadaAttribute
+     *
+     * @return string
+     */
+    public function getDataIdaFormatadaAttribute() 
+    {
+        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';   
+    }
+
+    /**
+     * getDataVoltaFormatadaAttribute
+     *
+     * @return string
+     */
+    public function getDataVoltaFormatadaAttribute() 
+    {
+        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';   
+    }
     
+    /**
+     * getTemDatasFlexiveisAttribute
+     *
+     * @return string
+     */
+    public function getTemDatasFlexiveisAttribute() 
+    {
+        return $this->datas_flexiveis ? 'sim' : 'não' ;
+    }
 }
