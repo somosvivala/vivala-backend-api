@@ -1,7 +1,7 @@
 {!! Form::open(['route' => ['expedicaos.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
-    <a href="{{ route('expedicaos.show', $id) }}" class='btn btn-default btn-xs'>
-        <i class="glyphicon glyphicon-eye-open"></i>
+    <a href="/expedicaos/{{$id}}/inscricoes" class='btn btn-default btn-xs' title="Inscrições">
+        <i class="fa fa-group"></i>
     </a>
     <a href="{{ route('expedicaos.edit', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-edit"></i>

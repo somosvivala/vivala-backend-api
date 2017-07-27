@@ -4,8 +4,15 @@ namespace App\DataTables\Scopes;
 
 use Yajra\Datatables\Contracts\DataTableScopeContract;
 
-class PorIdExpedicao implements DataTableScopeContract
+class InscricaoPorExpedicaoId implements DataTableScopeContract
 {
+    public $expedicaoId;
+
+    public function __construct($idExpedicao)
+    {
+        $this->expedicaoId = $idExpedicao;
+    }
+
     /**
      * Apply a query scope.
      *
@@ -14,7 +21,6 @@ class PorIdExpedicao implements DataTableScopeContract
      */
     public function apply($query)
     {
-        $id_experiencia = request('id_experiencia');
-        return $query->where('expedicao_id', $id_experiencia);
+        return $query->where('expedicao_id', $this->expedicaoId);
     }
 }
