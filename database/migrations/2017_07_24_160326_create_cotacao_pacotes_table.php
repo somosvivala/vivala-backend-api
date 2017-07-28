@@ -39,7 +39,7 @@ class CreateCotacaoPacotesTable extends Migration
             $table->string('hospedagem_solicitacoes')->nullable();
             $table->float('hospedagem_preco_desejado')->nullable();
             $table->integer('transporte_interno')->nullable();
-            $table->integer('tipos_transfer')->nullable();
+            $table->string('tipos_transfer')->nullable();
             $table->string('categorias_carro')->nullable();
             $table->string('itens_carro')->nullable();
             $table->string('transporte_interno_solicitacoes')->nullable();

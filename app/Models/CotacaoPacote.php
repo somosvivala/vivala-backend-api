@@ -318,16 +318,149 @@ class CotacaoPacote extends Model
         'origem' => 'required',
         'destino' => 'required',
         'data_ida' => 'required',
-        'data_volta' => 'required',
         'qnt_adultos' => 'required|integer',
-        'qnt_criancas' => 'required|integer',
-        'qnt_bebes' => 'required|integer',
-        'periodo_voo_ida' => 'required',
-        'periodo_voo_volta' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
         'telefone' => 'required'
     ];
 
+
+    public function setDataIdaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_ida'] = $cb->format('Y-m-d');
+    }
+
+    public function setDataVoltaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_volta'] = $cb->format('Y-m-d');
+    }
     
+    public function setPeriodoVooIdaAttribute($value)
+    {
+        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setPeriodoVooVoltaAttribute($value)
+    {
+        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setNumeroParadasAttribute($value)
+    {
+        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : '';
+    }
+
+    public function setTipoQuartoAttribute($value)
+    {
+        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setHospedagemTipoAttribute($value)
+    {
+        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : '';
+    }
+
+    public function setAereoPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['aereo_preco_desejado'] = $valorLimpo;
+    }
+
+    public function setHospedagemPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['hospedagem_preco_desejado'] = $valorLimpo;
+    }
+
+    public function setTransporteInternoPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['transporte_interno_preco_desejado'] = $valorLimpo;
+    }
+
+    public function setPasseiosPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['passeios_preco_desejado'] = $valorLimpo;
+    }
+
+    public function setHospedagemServicosAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['hospedagem_servicos'] = $valorFinal;
+    }
+
+    public function setTransporteInternoAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['transporte_interno'] = $valorFinal;
+    }
+
+    public function setTiposTransferAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['tipos_transfer'] = $valorFinal;
+    }
+
+    public function setCategoriasCarroAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['categorias_carro'] = $valorFinal;
+    }
+
+    public function setItensCarroAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['itens_carro'] = $valorFinal;
+    }
+
+    public function setPasseiosInteressesAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['passeios_interesses'] = $valorFinal;
+    }
+
+    public function setNomesSeguroViagemAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['nomes_seguro_viagem'] = $valorFinal;
+    }
+
+    public function setDatasSeguroViagemAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
+    }
+    
+    /**
+     * getDataIdaFormatadaAttribute
+     *
+     * @return string
+     */
+    public function getDataIdaFormatadaAttribute() 
+    {
+        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';   
+    }
+
+    /**
+     * getDataVoltaFormatadaAttribute
+     *
+     * @return string
+     */
+    public function getDataVoltaFormatadaAttribute() 
+    {
+        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';   
+    }
+    
+    /**
+     * getTemDatasFlexiveisAttribute
+     *
+     * @return string
+     */
+    public function getTemDatasFlexiveisAttribute() 
+    {
+        return $this->datas_flexiveis ? 'Sim' : 'Não' ;
+    }
 }

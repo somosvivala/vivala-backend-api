@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index');
  * ROTAS PARA TESTE DAS BLADES DE EMAILS
  */
 Route::get('/exemplo-email-contato-geral', function () {
-    return view('emails.contato-geral')->with('contato', App\Models\ContatoGeral::first());
+    return view('emails.contato-geral')->with('contatoGeral', App\Models\ContatoGeral::first());
 });
 Route::get('/exemplo-email-contato-agentes', function () {
     return view('emails.contato-agente')->with('contatoAgente', App\Models\ContatoAgente::first());
@@ -35,10 +35,17 @@ Route::get('/exemplo-email-contato-corporativo', function () {
 Route::get('/exemplo-email-inscricao-expedicao', function () {
     return view('emails.inscricao-expedicao')->with('inscricao', App\Models\InscricaoExpedicao::latest()->first());
 });
+Route::get('/exemplo-email-cotacao-pacote', function () {
+    return view('emails.cotacao-pacote')->with('cotacao', App\Models\CotacaoPacote::latest()->first());
+});
+Route::get('/exemplo-email-cotacao-hospedagem', function () {
+    return view('emails.cotacao-hospedagem')->with('cotacao', App\Models\CotacaoHospedagem::latest()->first());
+});
+Route::get('/exemplo-email-cotacao-aereo', function () {
+    return view('emails.cotacao-aereo')->with('cotacao', App\Models\CotacaoAereo::latest()->first());
+});
 
-
-
-//newsletter
+//Newsletter
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth']);
 
 //Blocos de descricao de experiencia / expedicao
@@ -50,6 +57,10 @@ Route::resource('fotos', 'FotoController', ['middleware' => 'auth']);
 //Experiencias e Expedicoes
 Route::resource('experiencias', 'ExperienciaController', ['middleware' => 'auth']);
 Route::resource('expedicaos', 'ExpedicaoController', ['middleware' => 'auth']);
+
+//Datatables de Inscricoes de Experiencia/Expedicao pela Rota
+Route::get('expedicaos/{id}/inscricoes', 'InscricaoExpedicaoController@getInscricoes')->middleware('auth');
+Route::get('experiencias/{id}/inscricoes', 'InscricaoExperienciaController@getInscricoes')->middleware('auth');
 
 //Inscricoes das Experiencias/Expedicoes
 Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController', ['middleware' => 'auth']);
@@ -65,5 +76,3 @@ Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middlewar
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth']);
 Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth']);
 
-Route::get('expedicaos/{id}/inscricoes', 'InscricaoExpedicaoController@getInscricoes')->middleware('auth');
-Route::get('experiencias/{id}/inscricoes', 'InscricaoExperienciaController@getInscricoes')->middleware('auth');

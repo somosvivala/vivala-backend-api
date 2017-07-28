@@ -11,6 +11,7 @@ use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Traits\ArrumaRequestCotacoesTrait;
 
 /**
  * Class CotacaoPacoteController
@@ -19,6 +20,8 @@ use Response;
 
 class CotacaoPacoteAPIController extends AppBaseController
 {
+    use ArrumaRequestCotacoesTrait;
+
     /** @var  CotacaoPacoteRepository */
     private $cotacaoPacoteRepository;
 
@@ -108,10 +111,19 @@ class CotacaoPacoteAPIController extends AppBaseController
      */
     public function store(CreateCotacaoPacoteAPIRequest $request)
     {
-        $input = $request->all();
 
-        $cotacaoPacotes = $this->cotacaoPacoteRepository->create($input);
+        $inputs = $request->all();
 
+        //Usando metodos do ArrumaRequestCotacoesTrait para tratar a request inserindo os campos de acordo com o esperado
+        $this->arrumaCamposHospedagem($request, $inputs);
+        $this->arrumaCampoTransporteInterno($request, $inputs);
+        $this->arrumaCampoTiposTransfer($request, $inputs);
+        $this->arrumaCampoCategoriasCarro($request, $inputs);
+        $this->arrumaCampoItensCarro($request, $inputs);
+        $this->arrumaCampoSegurosViagem($request, $inputs);
+        $this->arrumaCampoPasseiosInteresses($request, $inputs);
+
+        $cotacaoPacotes = $this->cotacaoPacoteRepository->create($inputs);
         return $this->sendResponse($cotacaoPacotes->toArray(), 'Cotacao Pacote saved successfully');
     }
 
