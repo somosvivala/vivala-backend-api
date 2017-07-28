@@ -25,7 +25,7 @@ class CreateCotacaoAereosTable extends Migration
             $table->string('periodo_voo_ida')->nullable();
             $table->string('periodo_voo_volta')->nullable();
             $table->string('aeroporto_origem')->nullable();
-            $table->string('aeroporto_retorno')->nullable();
+            $table->string('aeroporto_destino')->nullable();
             $table->string('companias_aereas_preferenciais')->nullable();
             $table->integer('numero_paradas')->nullable();
             $table->string('tempo_voo')->nullable();

@@ -68,8 +68,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="aeroporto_retorno",
- *          description="aeroporto_retorno",
+ *          property="aeroporto_destino",
+ *          description="aeroporto_destino",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -136,7 +136,7 @@ class CotacaoAereo extends Model
         'periodo_voo_ida',
         'periodo_voo_volta',
         'aeroporto_origem',
-        'aeroporto_retorno',
+        'aeroporto_destino',
         'companias_aereas_preferenciais',
         'numero_paradas',
         'tempo_voo',
@@ -164,7 +164,7 @@ class CotacaoAereo extends Model
         'periodo_voo_ida' => 'string',
         'periodo_voo_volta' => 'string',
         'aeroporto_origem' => 'string',
-        'aeroporto_retorno' => 'string',
+        'aeroporto_destino' => 'string',
         'companias_aereas_preferenciais' => 'string',
         'numero_paradas' => 'integer',
         'tempo_voo' => 'string',
