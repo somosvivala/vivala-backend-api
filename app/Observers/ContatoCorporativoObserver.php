@@ -2,10 +2,9 @@
 
 namespace App\Observers;
 
-use App\Mail\NovoContatoCorporativo;
-use App\Models\ContatoCorporativo;
 use Mail;
-
+use App\Models\ContatoCorporativo;
+use App\Mail\NovoContatoCorporativo;
 
 class ContatoCorporativoObserver
 {
@@ -17,6 +16,6 @@ class ContatoCorporativoObserver
      */
     public function created(ContatoCorporativo $contato)
     {
-        Mail::send( new NovoContatoCorporativo($contato) );
+        Mail::send(new NovoContatoCorporativo($contato));
     }
 }

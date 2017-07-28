@@ -7,7 +7,7 @@ use App\Repositories\InscricaoExperienciaRepository;
 trait MakeInscricaoExperienciaTrait
 {
     /**
-     * Create fake instance of InscricaoExperiencia and save it in database
+     * Create fake instance of InscricaoExperiencia and save it in database.
      *
      * @param array $inscricaoExperienciaFields
      * @return InscricaoExperiencia
@@ -17,11 +17,12 @@ trait MakeInscricaoExperienciaTrait
         /** @var InscricaoExperienciaRepository $inscricaoExperienciaRepo */
         $inscricaoExperienciaRepo = App::make(InscricaoExperienciaRepository::class);
         $theme = $this->fakeInscricaoExperienciaData($inscricaoExperienciaFields);
+
         return $inscricaoExperienciaRepo->create($theme);
     }
 
     /**
-     * Get fake instance of InscricaoExperiencia
+     * Get fake instance of InscricaoExperiencia.
      *
      * @param array $inscricaoExperienciaFields
      * @return InscricaoExperiencia
@@ -32,7 +33,7 @@ trait MakeInscricaoExperienciaTrait
     }
 
     /**
-     * Get fake data of InscricaoExperiencia
+     * Get fake data of InscricaoExperiencia.
      *
      * @param array $postFields
      * @return array
@@ -49,7 +50,7 @@ trait MakeInscricaoExperienciaTrait
             'nome_status' => $fake->word,
             'expedicao_id' => $fake->randomDigitNotNull,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $inscricaoExperienciaFields);
     }
 }

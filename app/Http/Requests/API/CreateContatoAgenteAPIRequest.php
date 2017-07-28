@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\API;
 
-use App\Http\Requests\API\BaseAPIRequest;
 use App\Models\ContatoAgente;
 
 class CreateContatoAgenteAPIRequest extends BaseAPIRequest

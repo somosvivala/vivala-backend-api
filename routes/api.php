@@ -17,55 +17,49 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/**
+/*
  * Cotações -- Rotas das resources relacionadas as cotacoes
  */
 Route::resource('cotacoes/pacote', 'CotacaoPacoteAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 Route::resource('cotacoes/hospedagem', 'CotacaoHospedagemAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 Route::resource('cotacoes/aereo', 'CotacaoAereoAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 
-
-/**
+/*
  * Contatos -- Rotas das resources relacionadas aos contatos
  */
 Route::resource('contatos/agente', 'ContatoAgenteAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 Route::resource('contatos/corporativo', 'ContatoCorporativoAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 Route::resource('contatos/geral', 'ContatoGeralAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 
-
-/**
+/*
  * Newsletter -- Rotas da newsletter
  */
 Route::resource('newsletter', 'InscricaoNewsletterAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 
-
-/**
+/*
  * Expedições -- Rotas das expedicoes (inscricoes)
  */
 Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
-
 
 /*
  * Experiências -- Rotas das experiencias (inscricoes)
  */
 Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', [
-    'except' => ['update', 'destroy', 'edit', 'create', 'show']
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
-
-

@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateCotacaoPacoteAPIRequest;
-use App\Http\Requests\API\UpdateCotacaoPacoteAPIRequest;
-use App\Models\CotacaoPacote;
-use App\Repositories\CotacaoPacoteRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\CotacaoPacote;
 use App\Traits\ArrumaRequestCotacoesTrait;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\CotacaoPacoteRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateCotacaoPacoteAPIRequest;
 
 /**
- * Class CotacaoPacoteController
- * @package App\Http\Controllers\API
+ * Class CotacaoPacoteController.
  */
-
 class CotacaoPacoteAPIController extends AppBaseController
 {
     use ArrumaRequestCotacoesTrait;
 
-    /** @var  CotacaoPacoteRepository */
+    /** @var CotacaoPacoteRepository */
     private $cotacaoPacoteRepository;
 
     public function __construct(CotacaoPacoteRepository $cotacaoPacoteRepo)
@@ -111,7 +108,6 @@ class CotacaoPacoteAPIController extends AppBaseController
      */
     public function store(CreateCotacaoPacoteAPIRequest $request)
     {
-
         $inputs = $request->all();
 
         //Usando metodos do ArrumaRequestCotacoesTrait para tratar a request inserindo os campos de acordo com o esperado
@@ -124,7 +120,7 @@ class CotacaoPacoteAPIController extends AppBaseController
         $this->arrumaCampoPasseiosInteresses($request, $inputs);
 
         $cotacaoPacotes = $this->cotacaoPacoteRepository->create($inputs);
+
         return $this->sendResponse($cotacaoPacotes->toArray(), 'Cotacao Pacote saved successfully');
     }
-
 }

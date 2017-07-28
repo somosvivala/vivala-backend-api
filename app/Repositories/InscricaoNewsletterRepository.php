@@ -12,11 +12,11 @@ class InscricaoNewsletterRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'nome',
-        'email'
+        'email',
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {

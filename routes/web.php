@@ -12,15 +12,14 @@
 */
 
 Route::get('/', function () {
-  return redirect('home');
+    return redirect('home');
 });
-
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-/**
+/*
  * ROTAS PARA TESTE DAS BLADES DE EMAILS
  */
 Route::get('/exemplo-email-contato-geral', function () {
@@ -75,4 +74,3 @@ Route::resource('contatoGeral', 'ContatoGeralController', ['middleware' => 'auth
 Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middleware' => 'auth']);
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth']);
 Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth']);
-

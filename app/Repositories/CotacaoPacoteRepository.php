@@ -15,11 +15,11 @@ class CotacaoPacoteRepository extends BaseRepository
         'destino',
         'data_ida',
         'data_volta',
-        'datas_flexiveis'
+        'datas_flexiveis',
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {

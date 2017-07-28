@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
+use App\Models\ContatoGeral;
 use App\Models\ContatoAgente;
 use App\Models\ContatoCorporativo;
-use App\Models\ContatoGeral;
 use App\Models\InscricaoExpedicao;
 use App\Models\InscricaoExperiencia;
+use App\Observers\ContatoGeralObserver;
+use Illuminate\Support\ServiceProvider;
 use App\Observers\ContatoAgenteObserver;
 use App\Observers\ContatoCorporativoObserver;
-use App\Observers\ContatoGeralObserver;
 use App\Observers\InscricaoExpedicaoObserver;
 use App\Observers\InscricaoExperienciaObserver;
-use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateContatoCorporativoAPIRequest;
-use App\Http\Requests\API\UpdateContatoCorporativoAPIRequest;
-use App\Models\ContatoCorporativo;
-use App\Repositories\ContatoCorporativoRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\ContatoCorporativo;
+use App\Http\Controllers\AppBaseController;
+use Prettus\Repository\Criteria\RequestCriteria;
+use App\Repositories\ContatoCorporativoRepository;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateContatoCorporativoAPIRequest;
 
 /**
- * Class ContatoCorporativoController
- * @package App\Http\Controllers\API
+ * Class ContatoCorporativoController.
  */
-
 class ContatoCorporativoAPIController extends AppBaseController
 {
-    /** @var  ContatoCorporativoRepository */
+    /** @var ContatoCorporativoRepository */
     private $contatoCorporativoRepository;
 
     public function __construct(ContatoCorporativoRepository $contatoCorporativoRepo)
@@ -108,12 +105,10 @@ class ContatoCorporativoAPIController extends AppBaseController
      */
     public function store(CreateContatoCorporativoAPIRequest $request)
     {
-        
         $input = $request->all();
 
         $contatoCorporativos = $this->contatoCorporativoRepository->create($input);
 
         return $this->sendResponse($contatoCorporativos->toArray(), 'Contato Corporativo saved successfully');
     }
-
 }

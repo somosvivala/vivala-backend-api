@@ -2,10 +2,9 @@
 
 namespace App\Mail;
 
-use App\Models\ContatoCorporativo;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Models\ContatoCorporativo;
 use Illuminate\Queue\SerializesModels;
 
 class NovoContatoCorporativo extends Mailable
@@ -13,7 +12,7 @@ class NovoContatoCorporativo extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * contatoCorporativo
+     * contatoCorporativo.
      *
      * @var mixed
      */

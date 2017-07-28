@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\Experiencia;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class ExperienciaDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class ExperienciaDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -75,7 +73,7 @@ class ExperienciaDataTable extends DataTable
             'titulo' => ['name' => 'titulo', 'data' => 'titulo'],
             'descricao_listagem' => ['name' => 'descricao_listagem', 'data' => 'descricao_listagem'],
             'data_inicio' => ['name' => 'data_inicio', 'data' => 'data_inicio'],
-            'data_fim' => ['name' => 'data_fim', 'data' => 'data_fim']
+            'data_fim' => ['name' => 'data_fim', 'data' => 'data_fim'],
         ];
     }
 

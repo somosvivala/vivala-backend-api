@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateInscricaoNewsletterAPIRequest;
-use App\Http\Requests\API\UpdateInscricaoNewsletterAPIRequest;
-use App\Models\InscricaoNewsletter;
-use App\Repositories\InscricaoNewsletterRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\InscricaoNewsletter;
+use App\Http\Controllers\AppBaseController;
+use Prettus\Repository\Criteria\RequestCriteria;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Repositories\InscricaoNewsletterRepository;
+use App\Http\Requests\API\CreateInscricaoNewsletterAPIRequest;
 
 /**
- * Class InscricaoNewsletterController
- * @package App\Http\Controllers\API
+ * Class InscricaoNewsletterController.
  */
-
 class InscricaoNewsletterAPIController extends AppBaseController
 {
-    /** @var  InscricaoNewsletterRepository */
+    /** @var InscricaoNewsletterRepository */
     private $inscricaoNewsletterRepository;
 
     public function __construct(InscricaoNewsletterRepository $inscricaoNewsletterRepo)
@@ -114,5 +111,4 @@ class InscricaoNewsletterAPIController extends AppBaseController
 
         return $this->sendResponse($inscricaoNewsletters->toArray(), 'Inscricao Newsletter saved successfully');
     }
-
 }

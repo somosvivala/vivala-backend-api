@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\ExpedicaoDataTable;
-use App\Http\Requests;
+use App\Repositories\ExpedicaoRepository;
 use App\Http\Requests\CreateExpedicaoRequest;
 use App\Http\Requests\UpdateExpedicaoRequest;
-use App\Repositories\ExpedicaoRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class ExpedicaoController extends AppBaseController
 {
-    /** @var  ExpedicaoRepository */
+    /** @var ExpedicaoRepository */
     private $expedicaoRepository;
 
     public function __construct(ExpedicaoRepository $expedicaoRepo)

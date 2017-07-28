@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\ContatoCorporativo;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class ContatoCorporativoDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class ContatoCorporativoDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -77,7 +75,7 @@ class ContatoCorporativoDataTable extends DataTable
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
             'nome_empresa' => ['name' => 'nome_empresa', 'data' => 'nome_empresa'],
             'numero_funcionarios' => ['name' => 'numero_funcionarios', 'data' => 'numero_funcionarios'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de envio']
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de envio'],
         ];
     }
 

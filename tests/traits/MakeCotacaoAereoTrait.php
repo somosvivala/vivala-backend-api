@@ -7,7 +7,7 @@ use App\Repositories\CotacaoAereoRepository;
 trait MakeCotacaoAereoTrait
 {
     /**
-     * Create fake instance of CotacaoAereo and save it in database
+     * Create fake instance of CotacaoAereo and save it in database.
      *
      * @param array $cotacaoAereoFields
      * @return CotacaoAereo
@@ -17,11 +17,12 @@ trait MakeCotacaoAereoTrait
         /** @var CotacaoAereoRepository $cotacaoAereoRepo */
         $cotacaoAereoRepo = App::make(CotacaoAereoRepository::class);
         $theme = $this->fakeCotacaoAereoData($cotacaoAereoFields);
+
         return $cotacaoAereoRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoAereo
+     * Get fake instance of CotacaoAereo.
      *
      * @param array $cotacaoAereoFields
      * @return CotacaoAereo
@@ -32,7 +33,7 @@ trait MakeCotacaoAereoTrait
     }
 
     /**
-     * Get fake data of CotacaoAereo
+     * Get fake data of CotacaoAereo.
      *
      * @param array $postFields
      * @return array
@@ -63,7 +64,7 @@ trait MakeCotacaoAereoTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoAereoFields);
     }
 }

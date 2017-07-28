@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\API\CreateInscricaoExperienciaAPIRequest;
-use App\Http\Requests\API\UpdateInscricaoExperienciaAPIRequest;
-use App\Models\InscricaoExperiencia;
-use App\Repositories\ExperienciaRepository;
-use App\Repositories\InscricaoExperienciaRepository;
-use Illuminate\Http\Request;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\InscricaoExperiencia;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\ExperienciaRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Repositories\InscricaoExperienciaRepository;
+use App\Http\Requests\API\CreateInscricaoExperienciaAPIRequest;
 
 /**
- * Class InscricaoExperienciaController
- * @package App\Http\Controllers\API
+ * Class InscricaoExperienciaController.
  */
-
 class InscricaoExperienciaAPIController extends AppBaseController
 {
-    /** @var  InscricaoExperienciaRepository */
+    /** @var InscricaoExperienciaRepository */
     private $inscricaoExperienciaRepository;
     private $experienciaRepository;
 
@@ -125,5 +122,4 @@ class InscricaoExperienciaAPIController extends AppBaseController
 
         return $this->sendResponse($inscricaoExperiencias->toArray(), 'Inscricao Experiencia saved successfully');
     }
-
 }

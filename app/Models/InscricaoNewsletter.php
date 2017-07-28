@@ -26,14 +26,12 @@ class InscricaoNewsletter extends Model
     use SoftDeletes;
 
     public $table = 'inscricao_newsletters';
-    
 
     protected $dates = ['deleted_at'];
 
-
     public $fillable = [
         'nome',
-        'email'
+        'email',
     ];
 
     /**
@@ -43,18 +41,16 @@ class InscricaoNewsletter extends Model
      */
     protected $casts = [
         'nome' => 'string',
-        'email' => 'string'
+        'email' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
         'nome' => 'required',
-        'email' => 'required|email'
+        'email' => 'required|email',
     ];
-
-    
 }

@@ -2,10 +2,9 @@
 
 namespace App\Mail;
 
-use App\Models\InscricaoExperiencia;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Models\InscricaoExperiencia;
 use Illuminate\Queue\SerializesModels;
 
 class NovaInscricaoExperiencia extends Mailable
@@ -13,7 +12,7 @@ class NovaInscricaoExperiencia extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * inscricaoExperiencia
+     * inscricaoExperiencia.
      *
      * @var mixed
      */

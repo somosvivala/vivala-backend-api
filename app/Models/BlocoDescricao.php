@@ -55,16 +55,14 @@ class BlocoDescricao extends Model
     use SoftDeletes;
 
     public $table = 'bloco_descricaos';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'titulo',
         'texto',
         'owner_id',
-        'owner_type'
+        'owner_type',
     ];
 
     /**
@@ -76,25 +74,23 @@ class BlocoDescricao extends Model
         'titulo' => 'string',
         'texto' => 'string',
         'owner_id' => 'integer',
-        'owner_type' => 'string'
+        'owner_type' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-
     /**
-     * Um bloco de descricao pode pertencer a qualquer outro model (Rel. Polimorfica)
+     * Um bloco de descricao pode pertencer a qualquer outro model (Rel. Polimorfica).
      */
     public function owner()
     {
         return $this->morphTo();
     }
-
 }

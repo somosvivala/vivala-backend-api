@@ -7,7 +7,7 @@ use App\Repositories\InscricaoNewsletterRepository;
 trait MakeInscricaoNewsletterTrait
 {
     /**
-     * Create fake instance of InscricaoNewsletter and save it in database
+     * Create fake instance of InscricaoNewsletter and save it in database.
      *
      * @param array $inscricaoNewsletterFields
      * @return InscricaoNewsletter
@@ -17,11 +17,12 @@ trait MakeInscricaoNewsletterTrait
         /** @var InscricaoNewsletterRepository $inscricaoNewsletterRepo */
         $inscricaoNewsletterRepo = App::make(InscricaoNewsletterRepository::class);
         $theme = $this->fakeInscricaoNewsletterData($inscricaoNewsletterFields);
+
         return $inscricaoNewsletterRepo->create($theme);
     }
 
     /**
-     * Get fake instance of InscricaoNewsletter
+     * Get fake instance of InscricaoNewsletter.
      *
      * @param array $inscricaoNewsletterFields
      * @return InscricaoNewsletter
@@ -32,7 +33,7 @@ trait MakeInscricaoNewsletterTrait
     }
 
     /**
-     * Get fake data of InscricaoNewsletter
+     * Get fake data of InscricaoNewsletter.
      *
      * @param array $postFields
      * @return array
@@ -45,7 +46,7 @@ trait MakeInscricaoNewsletterTrait
             'nome' => $fake->text,
             'email' => $fake->text,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $inscricaoNewsletterFields);
     }
 }

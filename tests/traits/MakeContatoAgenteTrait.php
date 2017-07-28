@@ -7,7 +7,7 @@ use App\Repositories\ContatoAgenteRepository;
 trait MakeContatoAgenteTrait
 {
     /**
-     * Create fake instance of ContatoAgente and save it in database
+     * Create fake instance of ContatoAgente and save it in database.
      *
      * @param array $contatoAgenteFields
      * @return ContatoAgente
@@ -17,11 +17,12 @@ trait MakeContatoAgenteTrait
         /** @var ContatoAgenteRepository $contatoAgenteRepo */
         $contatoAgenteRepo = App::make(ContatoAgenteRepository::class);
         $theme = $this->fakeContatoAgenteData($contatoAgenteFields);
+
         return $contatoAgenteRepo->create($theme);
     }
 
     /**
-     * Get fake instance of ContatoAgente
+     * Get fake instance of ContatoAgente.
      *
      * @param array $contatoAgenteFields
      * @return ContatoAgente
@@ -32,7 +33,7 @@ trait MakeContatoAgenteTrait
     }
 
     /**
-     * Get fake data of ContatoAgente
+     * Get fake data of ContatoAgente.
      *
      * @param array $postFields
      * @return array
@@ -47,7 +48,7 @@ trait MakeContatoAgenteTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $contatoAgenteFields);
     }
 }

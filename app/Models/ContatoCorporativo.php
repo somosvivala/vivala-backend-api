@@ -47,10 +47,8 @@ class ContatoCorporativo extends Model
     use SoftDeletes;
 
     public $table = 'contato_corporativos';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nome_completo',
@@ -58,7 +56,7 @@ class ContatoCorporativo extends Model
         'telefone',
         'nome_empresa',
         'numero_funcionarios',
-        'mensagem'
+        'mensagem',
     ];
 
     /**
@@ -72,19 +70,17 @@ class ContatoCorporativo extends Model
         'telefone' => 'string',
         'nome_empresa' => 'string',
         'numero_funcionarios' => 'integer',
-        'mensagem' => 'string'
+        'mensagem' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
         'nome_completo' => 'required|string',
         'mensagem' => 'required|string',
-        'email' => 'required|email'
+        'email' => 'required|email',
     ];
-
-    
 }

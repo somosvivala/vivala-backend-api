@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\CotacaoHospedagemDataTable;
-use App\Http\Requests;
+use App\Repositories\CotacaoHospedagemRepository;
 use App\Http\Requests\CreateCotacaoHospedagemRequest;
 use App\Http\Requests\UpdateCotacaoHospedagemRequest;
-use App\Repositories\CotacaoHospedagemRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class CotacaoHospedagemController extends AppBaseController
 {
-    /** @var  CotacaoHospedagemRepository */
+    /** @var CotacaoHospedagemRepository */
     private $cotacaoHospedagemRepository;
 
     public function __construct(CotacaoHospedagemRepository $cotacaoHospedagemRepo)

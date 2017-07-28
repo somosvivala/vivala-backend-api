@@ -38,16 +38,14 @@ class Expedicao extends Model
     use SoftDeletes;
 
     public $table = 'expedicaos';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'titulo',
         'descricao_listagem',
         'data_inicio',
-        'data_fim'
+        'data_fim',
     ];
 
     /**
@@ -61,29 +59,28 @@ class Expedicao extends Model
         'data_inicio' => 'date',
         'data_fim' => 'date',
         'media_listagem_id' => 'integer',
-        'media_listagem_type' => 'string'
+        'media_listagem_type' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**
-     * Relacao de hasMany de Inscricoes
-     *
+     * Relacao de hasMany de Inscricoes.
      */
-    public function inscricoes() 
+    public function inscricoes()
     {
         return $this->hasMany(App\Models\InscricaoExpedicao::class);
     }
-    
+
     /**
-     * Uma Expedicao possi N blocos de descricao
+     * Uma Expedicao possi N blocos de descricao.
      */
     public function blocosDescricao()
     {
@@ -91,7 +88,7 @@ class Expedicao extends Model
     }
 
     /**
-     * Uma Expedicao possui 1 foto que aparece na listagem
+     * Uma Expedicao possui 1 foto que aparece na listagem.
      */
     public function mediaListagem()
     {
@@ -99,7 +96,7 @@ class Expedicao extends Model
     }
 
     /**
-     * Uma Expedicao possui varias fotos
+     * Uma Expedicao possui varias fotos.
      */
     public function fotos()
     {

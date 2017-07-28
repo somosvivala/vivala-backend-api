@@ -20,6 +20,5 @@ class DummyExperiencias extends Seeder
         });
 
         $this->command->info('## 3 EXPERIENCIAS CRIADAS!');
-
     }
 }

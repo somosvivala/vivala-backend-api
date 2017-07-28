@@ -3,7 +3,6 @@
 namespace App\Http\Requests\API;
 
 use App\Models\InscricaoExperiencia;
-use App\Http\Requests\API\BaseAPIRequest;
 
 class CreateInscricaoExperienciaAPIRequest extends BaseAPIRequest
 {

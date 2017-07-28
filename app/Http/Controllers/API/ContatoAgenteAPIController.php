@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateContatoAgenteAPIRequest;
-use App\Http\Requests\API\UpdateContatoAgenteAPIRequest;
-use App\Models\ContatoAgente;
-use App\Repositories\ContatoAgenteRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\ContatoAgente;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\ContatoAgenteRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateContatoAgenteAPIRequest;
 
 /**
- * Class ContatoAgenteController
- * @package App\Http\Controllers\API
+ * Class ContatoAgenteController.
  */
-
 class ContatoAgenteAPIController extends AppBaseController
 {
-    /** @var  ContatoAgenteRepository */
+    /** @var ContatoAgenteRepository */
     private $contatoAgenteRepository;
 
     public function __construct(ContatoAgenteRepository $contatoAgenteRepo)
@@ -114,5 +111,4 @@ class ContatoAgenteAPIController extends AppBaseController
 
         return $this->sendResponse($contatoAgentes->toArray(), 'Contato Agente saved successfully');
     }
-
 }

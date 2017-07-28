@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateCotacaoAereoAPIRequest;
-use App\Http\Requests\API\UpdateCotacaoAereoAPIRequest;
+use Response;
 use App\Models\CotacaoAereo;
-use App\Repositories\CotacaoAereoRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Repositories\CotacaoAereoRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateCotacaoAereoAPIRequest;
 
 /**
- * Class CotacaoAereoController
- * @package App\Http\Controllers\API
+ * Class CotacaoAereoController.
  */
-
 class CotacaoAereoAPIController extends AppBaseController
 {
-    /** @var  CotacaoAereoRepository */
+    /** @var CotacaoAereoRepository */
     private $cotacaoAereoRepository;
 
     public function __construct(CotacaoAereoRepository $cotacaoAereoRepo)
@@ -114,5 +111,4 @@ class CotacaoAereoAPIController extends AppBaseController
 
         return $this->sendResponse($cotacaoAereos->toArray(), 'Cotacao Aereo saved successfully');
     }
-
 }

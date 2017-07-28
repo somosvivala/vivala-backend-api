@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateCotacaoHospedagemAPIRequest;
-use App\Http\Requests\API\UpdateCotacaoHospedagemAPIRequest;
-use App\Models\CotacaoHospedagem;
-use App\Repositories\CotacaoHospedagemRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\CotacaoHospedagem;
+use App\Http\Controllers\AppBaseController;
+use Prettus\Repository\Criteria\RequestCriteria;
+use App\Repositories\CotacaoHospedagemRepository;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateCotacaoHospedagemAPIRequest;
 
 /**
- * Class CotacaoHospedagemController
- * @package App\Http\Controllers\API
+ * Class CotacaoHospedagemController.
  */
-
 class CotacaoHospedagemAPIController extends AppBaseController
 {
-    /** @var  CotacaoHospedagemRepository */
+    /** @var CotacaoHospedagemRepository */
     private $cotacaoHospedagemRepository;
 
     public function __construct(CotacaoHospedagemRepository $cotacaoHospedagemRepo)
@@ -114,5 +111,4 @@ class CotacaoHospedagemAPIController extends AppBaseController
 
         return $this->sendResponse($cotacaoHospedagems->toArray(), 'Cotacao Hospedagem saved successfully');
     }
-
 }

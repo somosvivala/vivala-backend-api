@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\ContatoAgenteDataTable;
-use App\Http\Requests;
+use App\Repositories\ContatoAgenteRepository;
 use App\Http\Requests\CreateContatoAgenteRequest;
 use App\Http\Requests\UpdateContatoAgenteRequest;
-use App\Repositories\ContatoAgenteRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class ContatoAgenteController extends AppBaseController
 {
-    /** @var  ContatoAgenteRepository */
+    /** @var ContatoAgenteRepository */
     private $contatoAgenteRepository;
 
     public function __construct(ContatoAgenteRepository $contatoAgenteRepo)

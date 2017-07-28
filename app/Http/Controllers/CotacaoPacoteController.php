@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\CotacaoPacoteDataTable;
-use App\Http\Requests;
+use App\Repositories\CotacaoPacoteRepository;
 use App\Http\Requests\CreateCotacaoPacoteRequest;
 use App\Http\Requests\UpdateCotacaoPacoteRequest;
-use App\Repositories\CotacaoPacoteRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class CotacaoPacoteController extends AppBaseController
 {
-    /** @var  CotacaoPacoteRepository */
+    /** @var CotacaoPacoteRepository */
     private $cotacaoPacoteRepository;
 
     public function __construct(CotacaoPacoteRepository $cotacaoPacoteRepo)

@@ -2,10 +2,9 @@
 
 namespace App\Observers;
 
-use App\Mail\NovoContatoAgente;
-use App\Models\ContatoAgente;
 use Mail;
-
+use App\Models\ContatoAgente;
+use App\Mail\NovoContatoAgente;
 
 class ContatoAgenteObserver
 {
@@ -17,6 +16,6 @@ class ContatoAgenteObserver
      */
     public function created(ContatoAgente $contato)
     {
-        Mail::send( new NovoContatoAgente($contato) );
+        Mail::send(new NovoContatoAgente($contato));
     }
 }

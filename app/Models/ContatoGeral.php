@@ -41,17 +41,15 @@ class ContatoGeral extends Model
     use SoftDeletes;
 
     public $table = 'contato_gerals';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nome_completo',
         'nome_preferencia',
         'email',
         'telefone',
-        'mensagem'
+        'mensagem',
     ];
 
     /**
@@ -64,19 +62,17 @@ class ContatoGeral extends Model
         'nome_preferencia' => 'string',
         'email' => 'string',
         'telefone' => 'string',
-        'mensagem' => 'string'
+        'mensagem' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'mensagem' => 'required|string'
+        'mensagem' => 'required|string',
     ];
-
-    
 }
