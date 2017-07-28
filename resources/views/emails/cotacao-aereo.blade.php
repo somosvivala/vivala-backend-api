@@ -1,85 +1,128 @@
 @extends('emails.template-email')
 
-@section('titulo', 'Nova cotação de Aéreo!')
+@section('titulo', 'Nova cotação de Pacote Aéreo!')
 
 @section('conteudo')
 
 <td bgcolor="#FFFFFF" style="clear:both!important; display:block!important; margin:0 auto!important; max-width:600px!important; padding:20px 30px 0 30px;">
-    <div style="display:block; margin:0 auto; max-width:600px;">
-        <table style="width: 100%; padding-bottom:0; margin-top:10px;">
+    <div style="display: block; margin: 0 auto; max-width:600px;">
+        <table style="width: 100%; padding-bottom:0;">
         <tbody>
-            <tr align="center">
-                <td align="center" style="text-align:center;">
-                    <h3 style="font-family:'Titillium Web', sans-serif;">Informações preenchidas pelo formulário do site.</h3>
+            <!-- Informações preenchidas pelo formulário do site. -->
+            @include('emails.layouts.th', [
+                'info1'=>'Informações preenchidas pelo formulário do site.'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Nome completo',
+                'info2'=>$cotacao->nome_completo
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Prefere ser chamado de',
+                'info2'=>$cotacao->nome_preferencia
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Email',
+                'info2'=>$cotacao->email
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Telefone',
+                'info2'=>$cotacao->telefone
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Contato enviado em',
+                'info2'=>$cotacao->created_at->format('d/m/Y - H:i')
+            ])
 
-                    <p style="font-size:18px; font-weight:normal; margin-top:10px; text-align: left;">
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span>
-                        {{ $cotacao->nome_completo }}<br>
+            <!-- 1 - Para onde o cliente quer ir -->
+            @include('emails.layouts.th', [
+                'info1'=>'1 - Para onde o cliente quer ir.'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Origem',
+                'info2'=>$cotacao->origem
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Destino',
+                'info2'=>$cotacao->destino
+            ])
 
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Prefere ser chamado de: </span>
-                        {{ $cotacao->nome_preferencia }}<br>
+            <!-- 2 - Quando o cliente quer ir -->
+            @include('emails.layouts.th', [
+                'info1'=>'2 - Quando o cliente quer ir.'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Data de ida',
+                'info2'=>$cotacao->dataIdaFormatada
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Data de volta',
+                'info2'=>$cotacao->dataVoltaFormatada
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'As datas são flexíveis',
+                'info2'=>$cotacao->temDatasFlexiveis
+            ])
 
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span>
-                        {{ $cotacao->email }}<br>
+            <!-- 3 - Com quem o cliente quer ir. -->
+            @include('emails.layouts.th', [
+                'info1'=>'3 - Com quem o cliente quer ir.'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Número de adultos:',
+                'info2'=>$cotacao->qnt_adultos
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Número de crianças:',
+                'info2'=>$cotacao->qnt_criancas
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Número de bebês:',
+                'info2'=>$cotacao->qnt_bebes
+            ])
 
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span>
-                        {{ $cotacao->telefone }}<br>
-
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Contato enviado em: </span>
-                        {{ $cotacao->created_at->format('d/m/Y - H:i') }}<br>
-                    </p>
-
-                    <p style="font-size:18px; font-weight:normal; margin-top:10px; text-align: left;">
-                        <span style="font-family:'Titillium Web', sans-serif;">1 - Para onde você quer ir?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Origem: </span>
-                        {{ $cotacao->origem }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Destino: </span>
-                        {{ $cotacao->destino }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">2 - Quando você quer ir?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Ida: </span>
-                        {{ $cotacao->data_ida }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Volta: </span>
-                        {{ $cotacao->data_volta }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Estas datas são flexíveis: </span>
-                        {{ $cotacao->datas_flexiveis }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">3 - Com quem você quer ir?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Adultos: </span>
-                        {{ $cotacao->qnt_adultos }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Crianças: </span>
-                        {{ $cotacao->qnt_criancas }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Bebês: </span>
-                        {{ $cotacao->qnt_bebes }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">4 - Transporte Aéreo</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Horário de ida: </span>
-                        {{ $cotacao->periodo_voo_ida }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Horário de volta: </span>
-                        {{ $cotacao->periodo_voo_volta }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Aeroporto de origem: </span>
-                        {{ $cotacao->aeroporto_origem }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Aeroporto de retorno: </span>
-                        {{ $cotacao->aeroporto_retorno }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Companhias aéreas de preferência: </span>
-                        {{ $cotacao->companias_aereas_preferenciais }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Número de paradas: </span>
-                        {{ $cotacao->numero_paradas }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Tempo de vôo: </span>
-                        {{ $cotacao->tempo_voo }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Preço desejado: </span>
-                        {{ $cotacao->aereo_preco_desejado }}<br>
-                    </p>
-
-                    <br><hr>
-                    <p style="font-size:12px; font-family:'Titillium Web', sans-serif; font-weight:bold; margin-top:0px;">
-                        * mensagem automática gerada a partir do formulário de cotação de aéreo *
-                    </p>
-
-                </td>
-            </tr>
+            <!-- 4 - Transporte Aéreo -->
+            @include('emails.layouts.th', [
+                'info1'=>'4 - Transporte Aéreo'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Horário de ida',
+                'info2'=>$cotacao->periodo_voo_ida
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Horário de volta',
+                'info2'=>$cotacao->periodo_voo_volta
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Aeroporto de origem',
+                'info2'=>$cotacao->aeroporto_origem
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Aeroporto de retorno',
+                'info2'=>$cotacao->aeroporto_retorno
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Companhias aéreas de preferência',
+                'info2'=>$cotacao->companias_aereas_preferenciais
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Número de paradas',
+                'info2'=>$cotacao->numero_paradas
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Tempo de vôo',
+                'info2'=>$cotacao->tempo_voo.' Horas'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Preço desejado',
+                'info2'=>'R$ '.$cotacao->aereo_preco_desejado
+            ])
         </tbody>
         </table>
+
+        <!-- Footer -->
+        <p style="font-size:12px; padding: 10px; font-family:'Titillium Web', sans-serif; font-weight:bold; text-align: center;    ">
+            * mensagem automática gerada a partir do formulário de cotação de pacote aéreo *
+        </p>
     </div>
 </td>
 
