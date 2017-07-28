@@ -87,20 +87,21 @@
                         {{ $cotacao->hospedagem_preco_desejado }}<br><br>
 
                         <span style="font-family:'Titillium Web', sans-serif;">6 - Transporte Interno</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif;">Transfer Para o Hotel</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Transporte interno: </span>
-                        {{ $cotacao->transporte_interno }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Tipos de transfer: </span>
-                        {{ $cotacao->tipos_transfer }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif;">Aluguel de Carro</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Categoria: </span>
-                        {{ $cotacao->categorias_carro }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Itens desejados: </span>
-                        {{ $cotacao->itens_carro }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Solicitações especiais: </span>
-                        {{ $cotacao->transporte_interno_solicitacoes }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Preço desejado: </span>
-                        {{ $cotacao->transporte_interno_preco_desejado }}<br><br>
+                        @if (! $cotacao->transporte_interno)
+                            <span style="font-family:'Titillium Web', sans-serif;">Transfer Para o Hotel</span><br>
+                            <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Tipos de transfer: </span>
+                            {{ $cotacao->tipos_transfer }}<br><br>
+                        @else
+                            <span style="font-family:'Titillium Web', sans-serif;">Aluguel de Carro</span><br>
+                            <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Categoria: </span>
+                            {{ $cotacao->categorias_carro }}<br>
+                            <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Itens desejados: </span>
+                            {{ $cotacao->itens_carro }}<br>
+                            <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Solicitações especiais: </span>
+                            {{ $cotacao->transporte_interno_solicitacoes }}<br>
+                            <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Preço desejado: </span>
+                            {{ $cotacao->transporte_interno_preco_desejado }}<br><br>
+                        @endif
 
                         <span style="font-family:'Titillium Web', sans-serif;">7 - Passeios e Experiências</span><br>
                         <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Interesses: </span>
@@ -119,7 +120,7 @@
 
                     <br><hr>
                     <p style="font-size:12px; font-family:'Titillium Web', sans-serif; font-weight:bold; margin-top:0px;">
-                        * mensagem automática gerada a partir do formulário de contato de agentes*
+                        * mensagem automática gerada a partir do formulário de cotação de pacote completo *
                     </p>
 
                 </td>

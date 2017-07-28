@@ -41,8 +41,8 @@ Route::get('/exemplo-email-cotacao-pacote', function () {
 Route::get('/exemplo-email-cotacao-hospedagem', function () {
     return view('emails.cotacao-hospedagem')->with('cotacao', App\Models\CotacaoHospedagem::latest()->first());
 });
-Route::get('/exemplo-email-cotacao-pacote-aereo', function () {
-    return view('emails.cotacao-pacote-aereo')->with('cotacao_aereos', App\Models\CotacaoAereo::latest()->first());
+Route::get('/exemplo-email-cotacao-aereo', function () {
+    return view('emails.cotacao-aereo')->with('cotacao', App\Models\CotacaoAereo::latest()->first());
 });
 
 

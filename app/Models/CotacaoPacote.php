@@ -461,6 +461,6 @@ class CotacaoPacote extends Model
      */
     public function getTemDatasFlexiveisAttribute() 
     {
-        return $this->datas_flexiveis ? 'sim' : 'não' ;
+        return $this->datas_flexiveis ? 'Sim' : 'Não' ;
     }
 }
