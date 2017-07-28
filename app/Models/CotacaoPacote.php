@@ -386,6 +386,12 @@ class CotacaoPacote extends Model
         $this->attributes['passeios_preco_desejado'] = $valorLimpo;
     }
 
+    public function setHospedagemServicosAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['hospedagem_servicos'] = $valorFinal;
+    }
+
     public function setTransporteInternoAttribute($value)
     {
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
@@ -409,8 +415,25 @@ class CotacaoPacote extends Model
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['itens_carro'] = $valorFinal;
     }
-    
 
+    public function setPasseiosInteressesAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['passeios_interesses'] = $valorFinal;
+    }
+
+    public function setNomesSeguroViagemAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['nomes_seguro_viagem'] = $valorFinal;
+    }
+
+    public function setDatasSeguroViagemAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
+    }
+    
     /**
      * getDataIdaFormatadaAttribute
      *
