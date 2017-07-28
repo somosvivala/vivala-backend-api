@@ -291,7 +291,7 @@ class CotacaoPacote extends Model
         'hospedagem_solicitacoes' => 'string',
         'hospedagem_preco_desejado' => 'float',
         'transporte_interno' => 'integer',
-        'tipos_transfer' => 'integer',
+        'tipos_transfer' => 'string',
         'categorias_carro' => 'string',
         'itens_carro' => 'string',
         'transporte_interno_solicitacoes' => 'string',
@@ -321,6 +321,13 @@ class CotacaoPacote extends Model
         'email' => 'required|email',
         'telefone' => 'required',
     ];
+
+
+
+
+
+
+
 
     public function setDataIdaAttribute($value)
     {
