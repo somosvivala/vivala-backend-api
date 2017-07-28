@@ -109,9 +109,9 @@ class CotacaoAereoAPIController extends AppBaseController
      */
     public function store(CreateCotacaoAereoAPIRequest $request)
     {
-        $input = $request->all();
+        $inputs = $request->all();
 
-        $cotacaoAereos = $this->cotacaoAereoRepository->create($input);
+        $cotacaoAereos = $this->cotacaoAereoRepository->create($inputs);
 
         return $this->sendResponse($cotacaoAereos->toArray(), 'Cotacao Aereo saved successfully');
     }

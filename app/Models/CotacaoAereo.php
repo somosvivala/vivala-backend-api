@@ -190,4 +190,70 @@ class CotacaoAereo extends Model
         'email' => 'required|email',
         'telefone' => 'required',
     ];
+
+
+    /**
+     * Mutator para data_ida, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setDataIdaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_ida'] = $cb->format('Y-m-d');
+    }
+
+    /**
+     * Mutator para data_volta, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setDataVoltaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_volta'] = $cb->format('Y-m-d');
+    }
+
+    /**
+     * Mutator para periodo_voo_ida, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setPeriodoVooIdaAttribute($value)
+    {
+        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : '';
+    }
+
+    /**
+     * Mutator para periodo_voo_volta, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setPeriodoVooVoltaAttribute($value)
+    {
+        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : '';
+    }
+
+    /**
+     * Mutator para numero_paradas, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setNumeroParadasAttribute($value)
+    {
+        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : '';
+    }
+
+
+    /**
+     * Mutator para aereo_preco_desejado, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setAereoPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['aereo_preco_desejado'] = $valorLimpo;
+    }
+
 }

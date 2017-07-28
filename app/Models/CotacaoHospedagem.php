@@ -163,4 +163,70 @@ class CotacaoHospedagem extends Model
         'email' => 'required|email',
         'telefone' => 'required',
     ];
+
+
+
+    /**
+     * Mutator para data_ida, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setDataIdaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_ida'] = $cb->format('Y-m-d');
+    }
+
+    /**
+     * Mutator para data_volta, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setDataVoltaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_volta'] = $cb->format('Y-m-d');
+    }
+
+    /**
+     * Mutator para tipo_quarto, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setTipoQuartoAttribute($value)
+    {
+        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : '';
+    }
+
+    /**
+     * Mutator para hospedagem_tipo, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setHospedagemTipoAttribute($value)
+    {
+        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : '';
+    }
+
+    /**
+     * Mutator para hospedagem_preco_desejado, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setHospedagemPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['hospedagem_preco_desejado'] = $valorLimpo;
+    }
+
+    /**
+     * Mutator para hospedagem_servicos, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setHospedagemServicosAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['hospedagem_servicos'] = $valorFinal;
+    }
 }

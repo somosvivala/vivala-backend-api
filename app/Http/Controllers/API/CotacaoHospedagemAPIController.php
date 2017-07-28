@@ -115,7 +115,7 @@ class CotacaoHospedagemAPIController extends AppBaseController
         //Usando metodos do ArrumaRequestCotacoesTrait para tratar a request inserindo os campos de acordo com o esperado
         $this->arrumaCamposHospedagem($request, $inputs);
 
-        $cotacaoHospedagems = $this->cotacaoHospedagemRepository->create($input);
+        $cotacaoHospedagems = $this->cotacaoHospedagemRepository->create($inputs);
 
         return $this->sendResponse($cotacaoHospedagems->toArray(), 'Cotacao Hospedagem saved successfully');
     }
