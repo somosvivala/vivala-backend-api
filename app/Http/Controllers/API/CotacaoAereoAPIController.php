@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Response;
 use App\Models\CotacaoAereo;
 use Illuminate\Http\Request;
+use App\Traits\ArrumaRequestCotacoesTrait;
 use App\Http\Controllers\AppBaseController;
 use App\Repositories\CotacaoAereoRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -16,6 +17,9 @@ use App\Http\Requests\API\CreateCotacaoAereoAPIRequest;
  */
 class CotacaoAereoAPIController extends AppBaseController
 {
+
+    use ArrumaRequestCotacoesTrait;
+
     /** @var CotacaoAereoRepository */
     private $cotacaoAereoRepository;
 

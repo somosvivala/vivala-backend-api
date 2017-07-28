@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Response;
 use Illuminate\Http\Request;
 use App\Models\CotacaoHospedagem;
+use App\Traits\ArrumaRequestCotacoesTrait;
 use App\Http\Controllers\AppBaseController;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\CotacaoHospedagemRepository;
@@ -16,6 +17,10 @@ use App\Http\Requests\API\CreateCotacaoHospedagemAPIRequest;
  */
 class CotacaoHospedagemAPIController extends AppBaseController
 {
+
+    /** Importando funcionalidades de mapear os campos para as requests **/
+    use ArrumaRequestCotacoesTrait;
+
     /** @var CotacaoHospedagemRepository */
     private $cotacaoHospedagemRepository;
 
@@ -105,7 +110,10 @@ class CotacaoHospedagemAPIController extends AppBaseController
      */
     public function store(CreateCotacaoHospedagemAPIRequest $request)
     {
-        $input = $request->all();
+        $inputs = $request->all();
+
+        //Usando metodos do ArrumaRequestCotacoesTrait para tratar a request inserindo os campos de acordo com o esperado
+        $this->arrumaCamposHospedagem($request, $inputs);
 
         $cotacaoHospedagems = $this->cotacaoHospedagemRepository->create($input);
 
