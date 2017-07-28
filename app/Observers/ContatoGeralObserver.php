@@ -2,10 +2,9 @@
 
 namespace App\Observers;
 
-use App\Mail\NovoContatoGeral;
-use App\Models\ContatoGeral;
 use Mail;
-
+use App\Models\ContatoGeral;
+use App\Mail\NovoContatoGeral;
 
 class ContatoGeralObserver
 {
@@ -17,6 +16,6 @@ class ContatoGeralObserver
      */
     public function created(ContatoGeral $contato)
     {
-        Mail::send( new NovoContatoGeral($contato) );
+        Mail::send(new NovoContatoGeral($contato));
     }
 }

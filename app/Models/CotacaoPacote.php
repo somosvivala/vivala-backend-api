@@ -217,10 +217,8 @@ class CotacaoPacote extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_pacotes';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'origem',
@@ -260,7 +258,7 @@ class CotacaoPacote extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -306,11 +304,11 @@ class CotacaoPacote extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -321,9 +319,8 @@ class CotacaoPacote extends Model
         'qnt_adultos' => 'required|integer',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required'
+        'telefone' => 'required',
     ];
-
 
     public function setDataIdaAttribute($value)
     {
@@ -336,7 +333,7 @@ class CotacaoPacote extends Model
         $cb = new \Carbon\Carbon($value);
         $this->attributes['data_volta'] = $cb->format('Y-m-d');
     }
-    
+
     public function setPeriodoVooIdaAttribute($value)
     {
         $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : '';
@@ -433,34 +430,34 @@ class CotacaoPacote extends Model
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
     }
-    
+
     /**
-     * getDataIdaFormatadaAttribute
+     * getDataIdaFormatadaAttribute.
      *
      * @return string
      */
-    public function getDataIdaFormatadaAttribute() 
+    public function getDataIdaFormatadaAttribute()
     {
-        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';   
+        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
     }
 
     /**
-     * getDataVoltaFormatadaAttribute
+     * getDataVoltaFormatadaAttribute.
      *
      * @return string
      */
-    public function getDataVoltaFormatadaAttribute() 
+    public function getDataVoltaFormatadaAttribute()
     {
-        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';   
+        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
     }
-    
+
     /**
-     * getTemDatasFlexiveisAttribute
+     * getTemDatasFlexiveisAttribute.
      *
      * @return string
      */
-    public function getTemDatasFlexiveisAttribute() 
+    public function getTemDatasFlexiveisAttribute()
     {
-        return $this->datas_flexiveis ? 'Sim' : 'Não' ;
+        return $this->datas_flexiveis ? 'Sim' : 'Não';
     }
 }

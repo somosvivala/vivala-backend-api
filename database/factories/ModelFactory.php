@@ -26,8 +26,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 //ContatoGeral
 $factory->define(App\Models\ContatoGeral::class, function (Faker\Generator $faker) {
     $firstname = $faker->firstname;
+
     return [
-        'nome_completo' => $firstname . " " . $faker->lastname,
+        'nome_completo' => $firstname.' '.$faker->lastname,
         'nome_preferencia' => $firstname,
         'email' => $faker->email,
         'telefone' => $faker->cellphoneNumber,
@@ -35,12 +36,12 @@ $factory->define(App\Models\ContatoGeral::class, function (Faker\Generator $fake
     ];
 });
 
-
 //ContatoAgente
 $factory->define(App\Models\ContatoAgente::class, function (Faker\Generator $faker) {
     $firstname = $faker->firstname;
+
     return [
-        'nome_completo' => $firstname . " " . $faker->lastname,
+        'nome_completo' => $firstname.' '.$faker->lastname,
         'nome_preferencia' => $firstname,
         'email' => $faker->email,
         'telefone' => $faker->cellphoneNumber,
@@ -50,10 +51,11 @@ $factory->define(App\Models\ContatoAgente::class, function (Faker\Generator $fak
 //ContatoCorporativo
 $factory->define(App\Models\ContatoCorporativo::class, function (Faker\Generator $faker) {
     $firstname = $faker->firstname;
+
     return [
-        'nome_empresa' => $faker->company . $faker->companySuffix,
-        'numero_funcionarios' => $faker->numberBetween(2,100),
-        'nome_contato' => $firstname . " " . $faker->lastname,
+        'nome_empresa' => $faker->company.$faker->companySuffix,
+        'numero_funcionarios' => $faker->numberBetween(2, 100),
+        'nome_contato' => $firstname.' '.$faker->lastname,
         'email' => $faker->email,
         'telefone' => $faker->cellphoneNumber,
         'mensagem' => $faker->text,
@@ -70,16 +72,15 @@ $factory->define(App\Models\InscricaoNewsletter::class, function (Faker\Generato
 
 //Experiencia
 $factory->define(App\Models\Experiencia::class, function (Faker\Generator $faker) {
-
     $data = $faker->dateTimeBetween('now', '+1 year');
     $dataInicio = new \Carbon\Carbon($data->format('Y-m-d'));
     $dataFim = $dataInicio->copy()->addDays($faker->randomDigit);
 
     return [
-        'titulo' => ucwords($faker->word ." ". $faker->region ." #". $faker->randomDigit) ,
+        'titulo' => ucwords($faker->word.' '.$faker->region.' #'.$faker->randomDigit),
         'descricao_listagem' => $faker->paragraph(2),
         'data_inicio' => $dataInicio,
-        'data_fim' => $dataFim
+        'data_fim' => $dataFim,
     ];
 });
 
@@ -93,16 +94,15 @@ $factory->define(App\Models\BlocoDescricao::class, function (Faker\Generator $fa
 
 //Expedicao
 $factory->define(App\Models\Expedicao::class, function (Faker\Generator $faker) {
-
     $data = $faker->dateTimeBetween('now', '+1 year');
     $dataInicio = new \Carbon\Carbon($data->format('Y-m-d'));
     $dataFim = $dataInicio->copy()->addDays($faker->randomDigit);
 
     return [
-        'titulo' => ucwords($faker->word ." ". $faker->region ." #". $faker->randomDigit) ,
+        'titulo' => ucwords($faker->word.' '.$faker->region.' #'.$faker->randomDigit),
         'descricao_listagem' => $faker->paragraph(2),
         'data_inicio' => $dataInicio,
-        'data_fim' => $dataFim
+        'data_fim' => $dataFim,
     ];
 });
 
@@ -125,6 +125,3 @@ $factory->define(App\Models\InscricaoExperiencia::class, function (Faker\Generat
         'experiencia_id' => \App\Models\Experiencia::first()->id,
     ];
 });
-
-
-

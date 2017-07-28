@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\ExperienciaDataTable;
-use App\Http\Requests;
+use App\Repositories\ExperienciaRepository;
 use App\Http\Requests\CreateExperienciaRequest;
 use App\Http\Requests\UpdateExperienciaRequest;
-use App\Repositories\ExperienciaRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class ExperienciaController extends AppBaseController
 {
-    /** @var  ExperienciaRepository */
+    /** @var ExperienciaRepository */
     private $experienciaRepository;
 
     public function __construct(ExperienciaRepository $experienciaRepo)

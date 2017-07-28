@@ -7,7 +7,7 @@ use App\Repositories\CotacaoHospedagemRepository;
 trait MakeCotacaoHospedagemTrait
 {
     /**
-     * Create fake instance of CotacaoHospedagem and save it in database
+     * Create fake instance of CotacaoHospedagem and save it in database.
      *
      * @param array $cotacaoHospedagemFields
      * @return CotacaoHospedagem
@@ -17,11 +17,12 @@ trait MakeCotacaoHospedagemTrait
         /** @var CotacaoHospedagemRepository $cotacaoHospedagemRepo */
         $cotacaoHospedagemRepo = App::make(CotacaoHospedagemRepository::class);
         $theme = $this->fakeCotacaoHospedagemData($cotacaoHospedagemFields);
+
         return $cotacaoHospedagemRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoHospedagem
+     * Get fake instance of CotacaoHospedagem.
      *
      * @param array $cotacaoHospedagemFields
      * @return CotacaoHospedagem
@@ -32,7 +33,7 @@ trait MakeCotacaoHospedagemTrait
     }
 
     /**
-     * Get fake data of CotacaoHospedagem
+     * Get fake data of CotacaoHospedagem.
      *
      * @param array $postFields
      * @return array
@@ -59,7 +60,7 @@ trait MakeCotacaoHospedagemTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoHospedagemFields);
     }
 }

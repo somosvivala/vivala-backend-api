@@ -36,16 +36,14 @@ class ContatoAgente extends Model
     use SoftDeletes;
 
     public $table = 'contato_agentes';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -57,18 +55,16 @@ class ContatoAgente extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
         'nome_completo' => 'required',
-        'email' => 'required|email'
+        'email' => 'required|email',
     ];
-
-    
 }

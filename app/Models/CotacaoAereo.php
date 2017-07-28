@@ -121,10 +121,8 @@ class CotacaoAereo extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_aereos';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'origem',
@@ -146,7 +144,7 @@ class CotacaoAereo extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -174,11 +172,11 @@ class CotacaoAereo extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -190,8 +188,6 @@ class CotacaoAereo extends Model
         'periodo_voo_ida' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required'
+        'telefone' => 'required',
     ];
-
-    
 }

@@ -67,16 +67,14 @@ class Experiencia extends Model
     use SoftDeletes;
 
     public $table = 'experiencias';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'titulo',
         'descricao_listagem',
         'data_inicio',
-        'data_fim'
+        'data_fim',
     ];
 
     /**
@@ -90,17 +88,15 @@ class Experiencia extends Model
         'data_inicio' => 'date',
         'data_fim' => 'date',
         'media_listagem_id' => 'integer',
-        'media_listagem_type' => 'string'
+        'media_listagem_type' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
-        
-    ];
 
-    
+    ];
 }

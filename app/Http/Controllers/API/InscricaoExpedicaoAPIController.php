@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\API\CreateInscricaoExpedicaoAPIRequest;
-use App\Http\Requests\API\UpdateInscricaoExpedicaoAPIRequest;
+use Response;
+use Illuminate\Http\Request;
 use App\Models\InscricaoExpedicao;
 use App\Repositories\ExpedicaoRepository;
-use App\Repositories\InscricaoExpedicaoRepository;
-use Illuminate\Http\Request;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Controllers\AppBaseController;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
+use App\Repositories\InscricaoExpedicaoRepository;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateInscricaoExpedicaoAPIRequest;
 
 /**
- * Class InscricaoExpedicaoController
- * @package App\Http\Controllers\API
+ * Class InscricaoExpedicaoController.
  */
-
 class InscricaoExpedicaoAPIController extends AppBaseController
 {
-    /** @var  InscricaoExpedicaoRepository */
+    /** @var InscricaoExpedicaoRepository */
     private $inscricaoExpedicaoRepository;
     private $expedicaoRepository;
 
@@ -124,5 +121,4 @@ class InscricaoExpedicaoAPIController extends AppBaseController
 
         return $this->sendResponse($inscricaoExpedicaos->toArray(), 'Inscricao Expedicao saved successfully');
     }
-
 }

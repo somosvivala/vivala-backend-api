@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\InscricaoExperienciaDataTable;
-use App\DataTables\Scopes\InscricaoPorExperienciaId;
-use App\Http\Controllers\AppBaseController;
-use App\Http\Requests;
-use App\Http\Requests\CreateInscricaoExperienciaRequest;
-use App\Http\Requests\UpdateInscricaoExperienciaRequest;
-use App\Repositories\ExperienciaRepository;
-use App\Repositories\InscricaoExperienciaRepository;
 use Flash;
 use Response;
 
+use App\Repositories\ExperienciaRepository;
+use App\DataTables\InscricaoExperienciaDataTable;
+use App\DataTables\Scopes\InscricaoPorExperienciaId;
+use App\Repositories\InscricaoExperienciaRepository;
+use App\Http\Requests\CreateInscricaoExperienciaRequest;
+use App\Http\Requests\UpdateInscricaoExperienciaRequest;
+
 class InscricaoExperienciaController extends AppBaseController
 {
-    /** @var  InscricaoExperienciaRepository */
+    /** @var InscricaoExperienciaRepository */
     private $inscricaoExperienciaRepository;
     private $experienciaRepository;
 
@@ -154,7 +153,7 @@ class InscricaoExperienciaController extends AppBaseController
     }
 
     /**
-     * Metodo para retornar a datatable de inscricoes de Experiencias de 1 Experiencias
+     * Metodo para retornar a datatable de inscricoes de Experiencias de 1 Experiencias.
      *
      * @param InscricaoExperienciasDataTable $datatable
      * @param mixed $experiencia_id
@@ -162,21 +161,20 @@ class InscricaoExperienciaController extends AppBaseController
     public function getInscricoes(InscricaoExperienciaDataTable $datatable, $experiencia_id)
     {
 
-        //Testa se a experiencia existe, se não redireciona para o indice de experiencias 
+        //Testa se a experiencia existe, se não redireciona para o indice de experiencias
         $experiencia = $this->experienciaRepository->findWithoutFail($experiencia_id);
         if (empty($experiencia)) {
             Flash::error('Experiencia not found');
+
             return redirect(route('experiencias.index'));
         }
 
-        //adiciona a Scope que filtra pela experiencia 
+        //adiciona a Scope que filtra pela experiencia
         return $datatable->addScope(new InscricaoPorExperienciaId($experiencia_id))
 
             //metodo render é analogo ao view->make(), aceita um segundo parametro array
             ->render('inscricao_experiencias.lista_por_experiencia', [
-                'Experiencia' => $experiencia
-            ]);       
+                'Experiencia' => $experiencia,
+            ]);
     }
-
-
 }

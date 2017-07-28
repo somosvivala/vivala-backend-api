@@ -2,10 +2,9 @@
 
 namespace App\Observers;
 
-use App\Mail\NovaInscricaoExperiencia;
-use App\Models\InscricaoExperiencia;
 use Mail;
-
+use App\Models\InscricaoExperiencia;
+use App\Mail\NovaInscricaoExperiencia;
 
 class InscricaoExperienciaObserver
 {
@@ -18,6 +17,6 @@ class InscricaoExperienciaObserver
     public function created(InscricaoExperiencia $inscricao)
     {
         \Log::info('Nova InscricaoExperiencia Criada - Disparando email');
-        Mail::send( new NovaInscricaoExperiencia($inscricao) );
+        Mail::send(new NovaInscricaoExperiencia($inscricao));
     }
 }

@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\CotacaoAereoDataTable;
-use App\Http\Requests;
+use App\Repositories\CotacaoAereoRepository;
 use App\Http\Requests\CreateCotacaoAereoRequest;
 use App\Http\Requests\UpdateCotacaoAereoRequest;
-use App\Repositories\CotacaoAereoRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class CotacaoAereoController extends AppBaseController
 {
-    /** @var  CotacaoAereoRepository */
+    /** @var CotacaoAereoRepository */
     private $cotacaoAereoRepository;
 
     public function __construct(CotacaoAereoRepository $cotacaoAereoRepo)

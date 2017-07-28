@@ -11,11 +11,11 @@ class FotoRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        
+
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {
@@ -23,7 +23,7 @@ class FotoRepository extends BaseRepository
     }
 
     /**
-     * Metodo para criar uma nova foto e retornar o id
+     * Metodo para criar uma nova foto e retornar o id.
      */
     public function uploadFotoUsuario($request)
     {
@@ -32,13 +32,13 @@ class FotoRepository extends BaseRepository
         if ($file && $file->isValid()) {
 
             //Criando path inicial para direcionar o arquivo
-            $destinationPath = public_path() . '/uploads/';
+            $destinationPath = public_path().'/uploads/';
             //Pega o formato da imagem
             $extension = Input::file('file')->getClientOriginalExtension();
 
             //usando o intervention para criar a imagem
             $filename = time();
-            $file = Image::make( $file->getRealPath() );
+            $file = Image::make($file->getRealPath());
             $upload_success = $file->save($destinationPath.$filename.'.'.$extension);
 
             //Se o upload da foto ocorreu com sucesso
@@ -53,21 +53,20 @@ class FotoRepository extends BaseRepository
                     'image_path' => $destinationPath,
                     'image_extension' => $extension,
                     'owner_id' => $request->owner_id,
-                    'owner_type' => $request->owner_type
+                    'owner_type' => $request->owner_type,
                 ]);
 
                 return [
                     'success' => true,
-                    'foto' => $Foto
+                    'foto' => $Foto,
                 ];
 
                 // Se nao tiver funcionado, retornar false no success para o js se manisfestar
             } else {
                 return [
-                    'success' => false
+                    'success' => false,
                 ];
             }
         }
     }
-    
 }

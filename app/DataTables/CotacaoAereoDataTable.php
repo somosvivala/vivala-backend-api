@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\CotacaoAereo;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class CotacaoAereoDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class CotacaoAereoDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -80,7 +78,7 @@ class CotacaoAereoDataTable extends DataTable
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo', 'title' => 'Nome'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio']
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio'],
         ];
     }
 

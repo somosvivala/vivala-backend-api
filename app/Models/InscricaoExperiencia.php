@@ -31,10 +31,8 @@ class InscricaoExperiencia extends Model
     use SoftDeletes;
 
     public $table = 'inscricao_experiencias';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nome',
@@ -43,7 +41,7 @@ class InscricaoExperiencia extends Model
         'cod_status',
         'nome_status',
         'experiencia_id',
-        'created_at'
+        'created_at',
     ];
 
     /**
@@ -57,22 +55,22 @@ class InscricaoExperiencia extends Model
         'telefone' => 'string',
         'cod_status' => 'integer',
         'nome_status' => 'string',
-        'experiencia_id' => 'integer'
+        'experiencia_id' => 'integer',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
         'nome' => 'required|string',
         'email' => 'required|email',
-        'telefone' => 'required|string'
+        'telefone' => 'required|string',
     ];
 
     /**
-     * Relacao de pertencimento com Experiencia
+     * Relacao de pertencimento com Experiencia.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/

@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\ContatoGeral;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class ContatoGeralDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class ContatoGeralDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -76,7 +74,7 @@ class ContatoGeralDataTable extends DataTable
             'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de envio']
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de envio'],
         ];
     }
 

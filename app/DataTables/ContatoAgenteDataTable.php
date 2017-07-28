@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\ContatoAgente;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class ContatoAgenteDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class ContatoAgenteDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 

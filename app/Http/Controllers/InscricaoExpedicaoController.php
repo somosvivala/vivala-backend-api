@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\InscricaoExpedicaoDataTable;
-use App\DataTables\Scopes\InscricaoPorExpedicaoId;
-use App\Http\Controllers\AppBaseController;
-use App\Http\Requests;
-use App\Http\Requests\CreateInscricaoExpedicaoRequest;
-use App\Http\Requests\UpdateInscricaoExpedicaoRequest;
-use App\Repositories\ExpedicaoRepository;
-use App\Repositories\InscricaoExpedicaoRepository;
 use Flash;
 use Response;
 
+use App\Repositories\ExpedicaoRepository;
+use App\DataTables\InscricaoExpedicaoDataTable;
+use App\DataTables\Scopes\InscricaoPorExpedicaoId;
+use App\Repositories\InscricaoExpedicaoRepository;
+use App\Http\Requests\CreateInscricaoExpedicaoRequest;
+use App\Http\Requests\UpdateInscricaoExpedicaoRequest;
+
 class InscricaoExpedicaoController extends AppBaseController
 {
-    /** @var  InscricaoExpedicaoRepository */
+    /** @var InscricaoExpedicaoRepository */
     private $inscricaoExpedicaoRepository;
     private $expedicaoRepository;
 
-    public function __construct(InscricaoExpedicaoRepository $inscricaoExpedicaoRepo, ExpedicaoRepository$expedicaoRepo)
+    public function __construct(InscricaoExpedicaoRepository $inscricaoExpedicaoRepo, ExpedicaoRepository $expedicaoRepo)
     {
         $this->inscricaoExpedicaoRepository = $inscricaoExpedicaoRepo;
         $this->expedicaoRepository = $expedicaoRepo;
@@ -153,9 +152,8 @@ class InscricaoExpedicaoController extends AppBaseController
         return redirect(route('inscricaoExpedicaos.index'));
     }
 
-
     /**
-     * Metodo para retornar a datatable de inscricoes de Expedicoes de 1 Expedicao
+     * Metodo para retornar a datatable de inscricoes de Expedicoes de 1 Expedicao.
      *
      * @param InscricaoExpedicaoDataTable $datatable
      * @param mixed $expedicao_id
@@ -167,19 +165,16 @@ class InscricaoExpedicaoController extends AppBaseController
         $expedicao = $this->expedicaoRepository->findWithoutFail($expedicao_id);
         if (empty($expedicao)) {
             Flash::error('Expedicao not found');
+
             return redirect(route('expedicaos.index'));
         }
 
-        //adiciona a Scope que filtra pela expedicao 
+        //adiciona a Scope que filtra pela expedicao
         return $datatable->addScope(new InscricaoPorExpedicaoId($expedicao_id))
 
             //metodo render é analogo ao view->make(), aceita um segundo parametro array
             ->render('inscricao_expedicaos.lista_por_expedicao', [
-                'Expedicao' => $expedicao
-            ]);       
+                'Expedicao' => $expedicao,
+            ]);
     }
-    
-
-
-
 }

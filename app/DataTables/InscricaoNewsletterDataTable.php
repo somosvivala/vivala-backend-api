@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\InscricaoNewsletter;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class InscricaoNewsletterDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class InscricaoNewsletterDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -74,7 +72,7 @@ class InscricaoNewsletterDataTable extends DataTable
         return [
             'nome' => ['name' => 'nome', 'data' => 'nome'],
             'email' => ['name' => 'email', 'data' => 'email'],
-            'created_at' => ['name' => 'created_at', 'title' => 'Data Inscrição', 'data' => 'created_at']
+            'created_at' => ['name' => 'created_at', 'title' => 'Data Inscrição', 'data' => 'created_at'],
         ];
     }
 

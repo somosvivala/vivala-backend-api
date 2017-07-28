@@ -101,10 +101,8 @@ class CotacaoHospedagem extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_hospedagems';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'hotel_ou_regiao',
@@ -122,7 +120,7 @@ class CotacaoHospedagem extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -146,11 +144,11 @@ class CotacaoHospedagem extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -163,8 +161,6 @@ class CotacaoHospedagem extends Model
         'qnt_quartos' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required'
+        'telefone' => 'required',
     ];
-
-    
 }

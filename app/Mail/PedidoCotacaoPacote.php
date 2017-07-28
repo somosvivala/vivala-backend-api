@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\CotacaoPacote;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -13,7 +12,7 @@ class PedidoCotacaoPacote extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * cotacao - Instancia de CotacaoPacote
+     * cotacao - Instancia de CotacaoPacote.
      *
      * @var App\Models\CotacaoPacote
      */

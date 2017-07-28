@@ -7,7 +7,7 @@ use App\Repositories\ContatoCorporativoRepository;
 trait MakeContatoCorporativoTrait
 {
     /**
-     * Create fake instance of ContatoCorporativo and save it in database
+     * Create fake instance of ContatoCorporativo and save it in database.
      *
      * @param array $contatoCorporativoFields
      * @return ContatoCorporativo
@@ -17,11 +17,12 @@ trait MakeContatoCorporativoTrait
         /** @var ContatoCorporativoRepository $contatoCorporativoRepo */
         $contatoCorporativoRepo = App::make(ContatoCorporativoRepository::class);
         $theme = $this->fakeContatoCorporativoData($contatoCorporativoFields);
+
         return $contatoCorporativoRepo->create($theme);
     }
 
     /**
-     * Get fake instance of ContatoCorporativo
+     * Get fake instance of ContatoCorporativo.
      *
      * @param array $contatoCorporativoFields
      * @return ContatoCorporativo
@@ -32,7 +33,7 @@ trait MakeContatoCorporativoTrait
     }
 
     /**
-     * Get fake data of ContatoCorporativo
+     * Get fake data of ContatoCorporativo.
      *
      * @param array $postFields
      * @return array
@@ -48,7 +49,7 @@ trait MakeContatoCorporativoTrait
             'nome_empresa' => $fake->word,
             'numero_funcionarios' => $fake->randomDigitNotNull,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $contatoCorporativoFields);
     }
 }

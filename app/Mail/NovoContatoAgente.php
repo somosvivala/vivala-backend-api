@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\ContatoAgente;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -13,7 +12,7 @@ class NovoContatoAgente extends Mailable
     use Queueable, SerializesModels;
 
     /**
-     * contatoAgente
+     * contatoAgente.
      *
      * @var mixed
      */

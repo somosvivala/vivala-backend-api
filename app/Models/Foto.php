@@ -60,17 +60,15 @@ class Foto extends Model
     use SoftDeletes;
 
     public $table = 'fotos';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'image_name',
         'image_path',
         'image_extension',
         'owner_id',
-        'owner_type'
+        'owner_type',
     ];
 
     /**
@@ -83,21 +81,20 @@ class Foto extends Model
         'image_path' => 'string',
         'image_extension' => 'string',
         'owner_id' => 'integer',
-        'owner_type' => 'string'
+        'owner_type' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-
     /**
-     * Binding Model Events
+     * Binding Model Events.
      *
      * OBS: Os Model Events só são disparados quando o trigger parte de uma instancia
      * do Model. Se partimos de outro model e modificarmos a relação o evento nao é disparado
@@ -111,38 +108,33 @@ class Foto extends Model
 
         /** Binding the delete model event to destroy the filesystem archive **/
         static::deleted(function ($photo) {
-            File::delete( public_path()  . '/uploads/' . $photo->image_name . '.' . $photo->image_extension);
+            File::delete(public_path().'/uploads/'.$photo->image_name.'.'.$photo->image_extension);
         });
-
     }
-
 
     /**
      * Relação polimorfica para que uma foto
-     * possa pertencer a um mais de 1 tipo de entidade
+     * possa pertencer a um mais de 1 tipo de entidade.
      */
     public function owner()
     {
         return $this->morphTo();
     }
 
-
     /**********************
      * Acessors / Mutators
      ************************/
 
     /**
-     * Definindo um acessor para a URL da foto
+     * Definindo um acessor para a URL da foto.
      */
     public function getURLAttribute()
     {
-        return url( '/uploads/' . $this->image_name . '.' . $this->image_extension );
+        return url('/uploads/'.$this->image_name.'.'.$this->image_extension);
     }
-
 
     public function destaque()
     {
         return $this->morphOne(App\Models\Expedicao::class, 'media_listagem');
     }
-    
 }

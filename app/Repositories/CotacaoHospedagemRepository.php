@@ -12,11 +12,11 @@ class CotacaoHospedagemRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'data_ida',
-        'data_volta'
+        'data_volta',
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {

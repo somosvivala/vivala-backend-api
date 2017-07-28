@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateContatoGeralAPIRequest;
-use App\Http\Requests\API\UpdateContatoGeralAPIRequest;
+use Response;
 use App\Models\ContatoGeral;
-use App\Repositories\ContatoGeralRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Repositories\ContatoGeralRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Response;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateContatoGeralAPIRequest;
 
 /**
- * Class ContatoGeralController
- * @package App\Http\Controllers\API
+ * Class ContatoGeralController.
  */
-
 class ContatoGeralAPIController extends AppBaseController
 {
-    /** @var  ContatoGeralRepository */
+    /** @var ContatoGeralRepository */
     private $contatoGeralRepository;
 
     public function __construct(ContatoGeralRepository $contatoGeralRepo)
@@ -114,5 +111,4 @@ class ContatoGeralAPIController extends AppBaseController
 
         return $this->sendResponse($contatoGerals->toArray(), 'Contato Geral saved successfully');
     }
-
 }

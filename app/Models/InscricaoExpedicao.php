@@ -31,10 +31,8 @@ class InscricaoExpedicao extends Model
     use SoftDeletes;
 
     public $table = 'inscricao_expedicaos';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nome',
@@ -43,7 +41,7 @@ class InscricaoExpedicao extends Model
         'cod_status',
         'nome_status',
         'expedicao_id',
-        'created_at'
+        'created_at',
     ];
 
     /**
@@ -57,18 +55,18 @@ class InscricaoExpedicao extends Model
         'telefone' => 'string',
         'cod_status' => 'integer',
         'nome_status' => 'string',
-        'expedicao_id' => 'integer'
+        'expedicao_id' => 'integer',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
         'nome' => 'required|string',
         'email' => 'required|email',
-        'telefone' => 'required|string'
+        'telefone' => 'required|string',
     ];
 
     /**
@@ -78,5 +76,4 @@ class InscricaoExpedicao extends Model
     {
         return $this->belongsTo(\App\Models\Expedicao::class, 'expedicao_id', 'id');
     }
-
 }

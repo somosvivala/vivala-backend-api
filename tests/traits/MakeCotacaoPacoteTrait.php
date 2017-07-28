@@ -7,7 +7,7 @@ use App\Repositories\CotacaoPacoteRepository;
 trait MakeCotacaoPacoteTrait
 {
     /**
-     * Create fake instance of CotacaoPacote and save it in database
+     * Create fake instance of CotacaoPacote and save it in database.
      *
      * @param array $cotacaoPacoteFields
      * @return CotacaoPacote
@@ -17,11 +17,12 @@ trait MakeCotacaoPacoteTrait
         /** @var CotacaoPacoteRepository $cotacaoPacoteRepo */
         $cotacaoPacoteRepo = App::make(CotacaoPacoteRepository::class);
         $theme = $this->fakeCotacaoPacoteData($cotacaoPacoteFields);
+
         return $cotacaoPacoteRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoPacote
+     * Get fake instance of CotacaoPacote.
      *
      * @param array $cotacaoPacoteFields
      * @return CotacaoPacote
@@ -32,7 +33,7 @@ trait MakeCotacaoPacoteTrait
     }
 
     /**
-     * Get fake data of CotacaoPacote
+     * Get fake data of CotacaoPacote.
      *
      * @param array $postFields
      * @return array
@@ -81,7 +82,7 @@ trait MakeCotacaoPacoteTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoPacoteFields);
     }
 }
