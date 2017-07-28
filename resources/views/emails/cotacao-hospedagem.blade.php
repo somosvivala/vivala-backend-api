@@ -1,81 +1,114 @@
 @extends('emails.template-email')
 
-@section('titulo', 'Nova cotação de Hospedagem!')
+@section('titulo', 'Nova cotação de Pacote Hospedagem!')
 
 @section('conteudo')
 
 <td bgcolor="#FFFFFF" style="clear:both!important; display:block!important; margin:0 auto!important; max-width:600px!important; padding:20px 30px 0 30px;">
-    <div style="display:block; margin:0 auto; max-width:600px;">
-        <table style="width: 100%; padding-bottom:0; margin-top:10px;">
+    <div style="display: block; margin: 0 auto; max-width:600px;">
+        <table style="width: 100%; padding-bottom:0;">
         <tbody>
-            <tr align="center">
-                <td align="center" style="text-align:center;">
-                    <h3 style="font-family:'Titillium Web', sans-serif;">Informações preenchidas pelo formulário do site.</h3>
+            <!-- Informações preenchidas pelo formulário do site. -->
+            @include('emails.layouts.th', [
+                'info1'=>'Informações preenchidas pelo formulário do site.'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Nome completo',
+                'info2'=>$cotacao->nome_completo
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Prefere ser chamado de',
+                'info2'=>$cotacao->nome_preferencia
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Email',
+                'info2'=>$cotacao->email
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Telefone',
+                'info2'=>$cotacao->telefone
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Contato enviado em',
+                'info2'=>$cotacao->created_at->format('d/m/Y - H:i')
+            ])
 
-                    <p style="font-size:18px; font-weight:normal; margin-top:10px; text-align: left;">
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Nome completo: </span>
-                        {{ $cotacao->nome_completo }}<br>
+            <!-- 2 - Quando o cliente quer ir. -->
+            @include('emails.layouts.th', [
+                'info1'=>'2 - Quando o cliente quer ir.'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Data de ida',
+                'info2'=>$cotacao->dataIdaFormatada
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Data de volta',
+                'info2'=>$cotacao->dataVoltaFormatada
+            ])
 
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Prefere ser chamado de: </span>
-                        {{ $cotacao->nome_preferencia }}<br>
+            <!-- 3 - Com quem o cliente quer ir. -->
+            @include('emails.layouts.th', [
+                'info1'=>'3 - Com quem o cliente quer ir.'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Número de adultos:',
+                'info2'=>$cotacao->qnt_adultos
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Número de crianças:',
+                'info2'=>$cotacao->qnt_criancas
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Número de bebês:',
+                'info2'=>$cotacao->qnt_bebes
+            ])
 
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Email: </span>
-                        {{ $cotacao->email }}<br>
+            <!-- 4 - Tipo de Quarto -->
+            @include('emails.layouts.th', [
+                'info1'=>'5 - Hospedagem'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'4 - Tipo de Quarto',
+                'info2'=>$cotacao->tipo_quarto
+            ])
 
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Telefone: </span>
-                        {{ $cotacao->telefone }}<br>
+            <!-- 5 - Quantidade de Quartos -->
+            @include('emails.layouts.th', [
+                'info1'=>'5 - Quantidade de Quartos'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Quantidade de quartos',
+                'info2'=>$cotacao->qnt_quartos
+            ])
 
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Contato enviado em: </span>
-                        {{ $cotacao->created_at->format('d/m/Y - H:i') }}<br>
-                    </p>
+            <!-- 6 - Serviços Incluídos Desejados -->
+            @include('emails.layouts.th', [
+                'info1'=>'6 - Serviços Incluídos Desejados'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Serviços incluídos desejados',
+                'info2'=>$cotacao->hospedagem_servicos
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Tipo de hospedagem',
+                'info2'=>$cotacao->hospedagem_tipo
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Preço desejado',
+                'info2'=>'R$ '.$cotacao->hospedagem_preco_desejado
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Solicitações especiais',
+                'info2'=>$cotacao->hospedagem_solicitacoes
+            ])
 
-                    <p style="font-size:18px; font-weight:normal; margin-top:10px; text-align: left;">
-                        <span style="font-family:'Titillium Web', sans-serif;">1 - Para onde você quer ir?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Origem: </span>
-                        {{ $cotacao->hotel_ou_regiao }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">2 - Quando?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Entrada: </span>
-                        {{ $cotacao->data_ida }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Saída: </span>
-                        {{ $cotacao->data_volta }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">3 - Com quem?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Adultos: </span>
-                        {{ $cotacao->qnt_adultos }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Crianças: </span>
-                        {{ $cotacao->qnt_criancas }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Bebês: </span>
-                        {{ $cotacao->qnt_bebes }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">4 - Tipo de quarto?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Opção: </span>
-                        {{ $cotacao->tipo_quarto }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">5 - Quantidade de quartos?</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Opção: </span>
-                        {{ $cotacao->qnt_quartos }}<br><br>
-
-                        <span style="font-family:'Titillium Web', sans-serif;">6 - Serviços Incluídos Desejados</span><br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Selecione quantas opções desejar: </span>
-                        {{ $cotacao->hospedagem_servicos }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Tipo de hospedagem: </span>
-                        {{ $cotacao->hospedagem_tipo }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Preço total: </span>
-                        {{ $cotacao->hospedagem_solicitacoes }}<br>
-                        <span style="font-family:'Titillium Web', sans-serif; font-weight:bold;">Solicitações especiais: </span>
-                        {{ $cotacao->hospedagem_preco_desejado }}<br>
-                    </p>
-
-                    <br><hr>
-                    <p style="font-size:12px; font-family:'Titillium Web', sans-serif; font-weight:bold; margin-top:0px;">
-                        * mensagem automática gerada a partir do formulário de cotação de hospedagem *
-                    </p>
-
-                </td>
-            </tr>
         </tbody>
         </table>
+
+        <!-- Footer -->
+        <p style="font-size:12px; padding: 10px; font-family:'Titillium Web', sans-serif; font-weight:bold; text-align: center;    ">
+            * mensagem automática gerada a partir do formulário de cotação de pacote hospedagem *
+        </p>
     </div>
 </td>
 

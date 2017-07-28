@@ -164,8 +164,6 @@ class CotacaoHospedagem extends Model
         'telefone' => 'required',
     ];
 
-
-
     /**
      * Mutator para data_ida, modificando antes de inserir no BD
      *
@@ -189,6 +187,36 @@ class CotacaoHospedagem extends Model
     }
 
     /**
+     * Mutator para periodo_voo_ida, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setPeriodoVooIdaAttribute($value)
+    {
+        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : '';
+    }
+
+    /**
+     * Mutator para periodo_voo_volta, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setPeriodoVooVoltaAttribute($value)
+    {
+        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : '';
+    }
+
+    /**
+     * Mutator para numero_paradas, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setNumeroParadasAttribute($value)
+    {
+        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : '';
+    }
+
+    /**
      * Mutator para tipo_quarto, modificando antes de inserir no BD
      *
      * @param mixed $value
@@ -209,6 +237,17 @@ class CotacaoHospedagem extends Model
     }
 
     /**
+     * Mutator para aereo_preco_desejado, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setAereoPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['aereo_preco_desejado'] = $valorLimpo;
+    }
+
+    /**
      * Mutator para hospedagem_preco_desejado, modificando antes de inserir no BD
      *
      * @param mixed $value
@@ -220,6 +259,28 @@ class CotacaoHospedagem extends Model
     }
 
     /**
+     * Mutator para transporte_interno_preco_desejado, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setTransporteInternoPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['transporte_interno_preco_desejado'] = $valorLimpo;
+    }
+
+    /**
+     * Mutator para passeios_preco_desejado, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setPasseiosPrecoDesejadoAttribute($value)
+    {
+        $valorLimpo = str_replace([' ', 'R$'], '', $value);
+        $this->attributes['passeios_preco_desejado'] = $valorLimpo;
+    }
+
+    /**
      * Mutator para hospedagem_servicos, modificando antes de inserir no BD
      *
      * @param mixed $value
@@ -228,5 +289,112 @@ class CotacaoHospedagem extends Model
     {
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['hospedagem_servicos'] = $valorFinal;
+    }
+
+    /**
+     * Mutator para transporte_interno, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setTransporteInternoAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['transporte_interno'] = $valorFinal;
+    }
+
+    /**
+     * Mutator para tipos_transfer, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setTiposTransferAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['tipos_transfer'] = $valorFinal;
+    }
+
+    /**
+     * Mutator para categorias_carro, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setCategoriasCarroAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['categorias_carro'] = $valorFinal;
+    }
+
+    /**
+     * Mutator para itens_carro, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setItensCarroAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['itens_carro'] = $valorFinal;
+    }
+
+    /**
+     * Mutator para passeios_interesses, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setPasseiosInteressesAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['passeios_interesses'] = $valorFinal;
+    }
+
+    /**
+     * Mutator para nomes_seguro_viagem, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setNomesSeguroViagemAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['nomes_seguro_viagem'] = $valorFinal;
+    }
+
+    /**
+     * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD
+     *
+     * @param mixed $value
+     */
+    public function setDatasSeguroViagemAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
+    }
+
+    /**
+     * getDataIdaFormatadaAttribute.
+     *
+     * @return string
+     */
+    public function getDataIdaFormatadaAttribute()
+    {
+        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+    }
+
+    /**
+     * getDataVoltaFormatadaAttribute.
+     *
+     * @return string
+     */
+    public function getDataVoltaFormatadaAttribute()
+    {
+        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+    }
+
+    /**
+     * getTemDatasFlexiveisAttribute.
+     *
+     * @return string
+     */
+    public function getTemDatasFlexiveisAttribute()
+    {
+        return $this->datas_flexiveis ? 'Sim' : 'Não';
     }
 }
