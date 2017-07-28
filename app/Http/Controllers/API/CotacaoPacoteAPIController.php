@@ -108,9 +108,111 @@ class CotacaoPacoteAPIController extends AppBaseController
      */
     public function store(CreateCotacaoPacoteAPIRequest $request)
     {
-        $input = $request->all();
 
-        $cotacaoPacotes = $this->cotacaoPacoteRepository->create($input);
+        $inputs = $request->all();
+        $servicosHospedagem = [];
+        if ( $request->cafe_manha ) {
+            $servicosHospedagem[] = 'Café da Manhã';
+        }
+        if ( $request->piscina ) {
+            $servicosHospedagem[] = 'Piscina';
+        }
+        if ( $request->wifi ) {
+            $servicosHospedagem[] = 'Wifi';
+        }
+        if ( $request->academia ) {
+            $servicosHospedagem[] = 'Academia';
+        }
+        if ( $request->estacionamento ) {
+            $servicosHospedagem[] = 'Estacionamento';
+        }
+        if ( $request->cancelamento_gratis ) {
+            $servicosHospedagem[] = 'Cancelamento gratis';
+        }
+
+        //Se tiver algum servicoHospedagem selecionado adicioanar o array na request
+        if ( !empty($servicosHospedagem) ){
+            $inputs = array_merge($inputs, ['hospedagem_servicos' => $servicosHospedagem]); 
+        }
+
+        //LIDAR COM Checkboxes de Transport interno
+        if ( $request->transfer || $request->aluguel ) {
+            $transporteInterno = $request->transfer ? 0 : 1;
+            $inputs = array_merge($inputs, ['transporte_interno' => $transporteInterno]); 
+        }
+        
+        $tiposTransfer = [];
+        if ( $request->carro_compartilhado ) {
+            $tiposTransfer[] = 'Carro compartilhado';
+        }
+        if ( $request->carro_compartilhado ) {
+            $tiposTransfer[] = 'carro_compartilhado';
+        }
+        if ( $request->van_compartilhada ) {
+            $tiposTransfer[] = 'van_compartilhada';
+        }
+        if ( $request->carro_privativo ) {
+            $tiposTransfer[] = 'carro_privativo';
+        }
+
+        //Se tiver tipos transfer inserir na variavel
+        if ( !empty($tiposTransfer) ){
+            $inputs = array_merge($inputs, ['tipos_transfer' => $tiposTransfer]); 
+        }
+        
+        $categoriasCarro = array();
+        if ( $request->intermediario ) {
+            $categoriasCarro[] = 'Intermediario';
+        }
+        if ( $request->compacto ) {
+            $categoriasCarro[] = 'Compacto';
+        }
+        if ( $request->economico ) {
+            $categoriasCarro[] = 'Economico';
+        }
+        if ( $request->suv ) {
+            $categoriasCarro[] = 'SUV';
+        }
+        if ( $request->minivan ) {
+            $categoriasCarro[] = 'Minivan';
+        }
+        if ( $request->premium ) {
+            $categoriasCarro[] = 'Premium';
+        }
+        if ( $request->luxo ) {
+            $categoriasCarro[] = 'Luxo';
+        }
+        if ( !empty($categoriasCarro) ){
+           $inputs = array_merge($inputs, ['categorias_carro' => $categoriasCarro]); 
+        }
+
+
+        if ( $request->ar ) {
+            $ItensCarro[] = 'Ar';
+        }
+        if ( $request->direcao_hidraulica ) {
+            $ItensCarro[] = 'Direção hidráulica';
+        }
+        if ( $request->vidro_eletrico ) {
+            $ItensCarro[] = 'Vidro elétrico';
+        }
+        if ( $request->automatico ) {
+            $ItensCarro[] = 'Automático';
+        }
+        if ( $request->quatro_portas ) {
+            $ItensCarro[] = 'Quatro portas';
+        }
+        if ( $request->cd_usb ) {
+            $ItensCarro[] = 'CD ou USB';
+        }
+        if ( $request->radio ) {
+            $ItensCarro[] = 'Radio';
+        }
+        if ( !empty($ItensCarro) ){
+           $inputs = array_merge($inputs, ['itens_carro' => $ItensCarro]); 
+        }
+
+        $cotacaoPacotes = $this->cotacaoPacoteRepository->create($inputs);
 
         return $this->sendResponse($cotacaoPacotes->toArray(), 'Cotacao Pacote saved successfully');
     }

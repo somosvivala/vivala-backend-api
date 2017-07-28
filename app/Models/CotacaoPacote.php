@@ -385,6 +385,30 @@ class CotacaoPacote extends Model
         $valorLimpo = str_replace([' ', 'R$'], '', $value);
         $this->attributes['passeios_preco_desejado'] = $valorLimpo;
     }
+
+    public function setTransporteInternoAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['transporte_interno'] = $valorFinal;
+    }
+
+    public function setTiposTransferAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['tipos_transfer'] = $valorFinal;
+    }
+
+    public function setCategoriasCarroAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['categorias_carro'] = $valorFinal;
+    }
+
+    public function setItensCarroAttribute($value)
+    {
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $this->attributes['itens_carro'] = $valorFinal;
+    }
     
 
     /**
