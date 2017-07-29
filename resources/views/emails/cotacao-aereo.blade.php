@@ -1,6 +1,6 @@
 @extends('emails.template-email')
 
-@section('titulo', 'Nova cotação de Pacote Aéreo!')
+@section('titulo', 'Nova cotação de transporte Aéreo!')
 
 @section('conteudo')
 

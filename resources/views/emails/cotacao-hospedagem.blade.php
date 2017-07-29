@@ -1,6 +1,6 @@
 @extends('emails.template-email')
 
-@section('titulo', 'Nova cotação de Pacote Hospedagem!')
+@section('titulo', 'Nova cotação de Hospedagem!')
 
 @section('conteudo')
 
@@ -107,7 +107,7 @@
 
         <!-- Footer -->
         <p style="font-size:12px; padding: 10px; font-family:'Titillium Web', sans-serif; font-weight:bold; text-align: center;    ">
-            * mensagem automática gerada a partir do formulário de cotação de pacote hospedagem *
+            * mensagem automática gerada a partir do formulário de cotação de hospedagem *
         </p>
     </div>
 </td>
