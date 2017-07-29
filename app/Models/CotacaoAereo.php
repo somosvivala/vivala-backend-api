@@ -184,11 +184,8 @@ class CotacaoAereo extends Model
         'origem' => 'required',
         'destino' => 'required',
         'data_ida' => 'required',
-        'qnt_adultos' => 'required|integer',
-        'periodo_voo_ida' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required',
     ];
 
     /**
