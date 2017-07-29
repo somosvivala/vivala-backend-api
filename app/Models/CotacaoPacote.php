@@ -316,7 +316,6 @@ class CotacaoPacote extends Model
         'origem' => 'required',
         'destino' => 'required',
         'data_ida' => 'required',
-        'qnt_adultos' => 'required|integer',
         'nome_completo' => 'required',
         'email' => 'required|email',
         'telefone' => 'required',
