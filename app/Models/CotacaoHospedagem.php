@@ -155,9 +155,6 @@ class CotacaoHospedagem extends Model
     public static $rules = [
         'hotel_ou_regiao' => 'required',
         'data_ida' => 'required',
-        'qnt_adultos' => 'required|integer',
-        'qnt_criancas' => 'required|integer',
-        'qnt_bebes' => 'required|integer',
         'qnt_quartos' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
