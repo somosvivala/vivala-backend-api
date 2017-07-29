@@ -768,11 +768,6 @@
                 "mensagem": {
                     "description": "mensagem",
                     "type": "string"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
                 }
             }
         },
@@ -866,8 +861,8 @@
                     "description": "aeroporto_origem",
                     "type": "string"
                 },
-                "aeroporto_retorno": {
-                    "description": "aeroporto_retorno",
+                "aeroporto_destino": {
+                    "description": "aeroporto_destino",
                     "type": "string"
                 },
                 "companias_aereas_preferenciais": {
@@ -1053,8 +1048,8 @@
                     "description": "aeroporto_origem",
                     "type": "string"
                 },
-                "aeroporto_retorno": {
-                    "description": "aeroporto_retorno",
+                "aeroporto_destino": {
+                    "description": "aeroporto_destino",
                     "type": "string"
                 },
                 "companias_aereas_preferenciais": {
