@@ -114,8 +114,7 @@ class InscricaoExperienciaAPIController extends AppBaseController
             return $this->sendError('Experiencia not found');
         }
 
-        $request->request->add(['experiencia_id' => $Experiencia->id]);
-        $input = $request->all();
+        $input = array_merge($request->all(), ['experiencia_id' => $idExp]);
 
         /** @var InscricaoExperiencia $inscricaoExperiencia */
         $inscricaoExperiencias = $this->inscricaoExperienciaRepository->create($input);

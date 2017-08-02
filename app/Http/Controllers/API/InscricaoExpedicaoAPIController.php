@@ -114,8 +114,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
             return $this->sendError('Expedicao not found');
         }
 
-        $request->request->add(['expedicao_id' => $Expedicao->id]);
-        $input = $request->all();
+        $input = array_merge($request->all(), ['expedicao_id' => $idExp]);
 
         $inscricaoExpedicaos = $this->inscricaoExpedicaoRepository->create($input);
 
