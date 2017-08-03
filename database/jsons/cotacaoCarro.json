@@ -1,0 +1,106 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "cidade_retirada",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "cidade_devolucao",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "data_retirada",
+        "dbType": "dateTime",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "data_devolucao",
+        "dbType": "dateTime",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "categorias_carro",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "itens_carro",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "carro_solicitacoes",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "carro_preco_desejado",
+        "dbType": "float:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "nome_completo",
+        "dbType": "string",
+        "validations": "required",
+        "htmlType": "text"
+    },
+    {
+        "name": "nome_preferencia",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "email",
+        "dbType": "string",
+        "validations": "required|email",
+        "htmlType": "text"
+    },
+    {
+        "name": "telefone",
+        "dbType": "string:nullable",
+        "validations": "required",
+        "htmlType": "text"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]
