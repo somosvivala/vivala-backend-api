@@ -49,12 +49,12 @@
         "htmlType": "text"
     },
     {
-        "name": "carro_solicitacoes",
+        "name": "solicitacoes_carro",
         "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
-        "name": "carro_preco_desejado",
+        "name": "preco_desejado_carro",
         "dbType": "float:nullable",
         "htmlType": "text"
     },

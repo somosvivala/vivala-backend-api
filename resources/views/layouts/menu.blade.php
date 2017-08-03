@@ -46,3 +46,8 @@
 <li class="{{ Request::is('inscricaoNewsletters*') ? 'active' : '' }}">
     <a href="{!! route('inscricaoNewsletters.index') !!}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>Newsletter</span></a>
 </li>
+
+<li class="{{ Request::is('cotacaoCarros*') ? 'active' : '' }}">
+    <a href="{!! route('cotacaoCarros.index') !!}"><i class="fa fa-edit"></i><span>CotacaoCarros</span></a>
+</li>
+

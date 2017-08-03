@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Vivalá Backend API",
+        "title": "Laravel Generator APIs",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -291,6 +291,80 @@
                                 },
                                 "data": {
                                     "$ref": "#/definitions/CotacaoAereo"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/cotacoes/carro": {
+            "get": {
+                "tags": [
+                    "CotacaoCarro"
+                ],
+                "summary": "Get a listing of the CotacaoCarros.",
+                "description": "Get all CotacaoCarros",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CotacaoCarro"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CotacaoCarro"
+                ],
+                "summary": "Store a newly created CotacaoCarro in storage",
+                "description": "Store CotacaoCarro",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoCarro that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoCarro"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoCarro"
                                 },
                                 "message": {
                                     "type": "string"
@@ -880,6 +954,68 @@
                 },
                 "aereo_preco_desejado": {
                     "description": "aereo_preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "nome_completo": {
+                    "description": "nome_completo",
+                    "type": "string"
+                },
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "telefone": {
+                    "description": "telefone",
+                    "type": "string"
+                }
+            }
+        },
+        "CotacaoCarro": {
+            "required": [
+                "cidade_retirada",
+                "cidade_devolucao",
+                "data_retirada",
+                "data_devolucao",
+                "nome_completo",
+                "email",
+                "telefone"
+            ],
+            "properties": {
+                "cidade_retirada": {
+                    "description": "cidade_retirada",
+                    "type": "string"
+                },
+                "data_retirada": {
+                    "description": "data_ida",
+                    "type": "string"
+                },
+                "cidade_devolucao": {
+                    "description": "cidade_devolucao",
+                    "type": "string"
+                },
+                "data_devolucao": {
+                    "description": "data_volta",
+                    "type": "string"
+                },
+                "categorias_carro": {
+                    "description": "categorias_carro",
+                    "type": "string"
+                },
+                "itens_carro": {
+                    "description": "itens_carro",
+                    "type": "string"
+                },
+                "solicitacoes_carro": {
+                    "description": "solicitacoes_carro",
+                    "type": "string"
+                },
+                "preco_desejado_carro": {
+                    "description": "preco_desejado_carro",
                     "type": "number",
                     "format": "float"
                 },

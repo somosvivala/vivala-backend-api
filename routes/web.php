@@ -74,3 +74,8 @@ Route::resource('contatoGeral', 'ContatoGeralController', ['middleware' => 'auth
 Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middleware' => 'auth']);
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth']);
 Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth']);
+
+
+
+
+Route::resource('cotacaoCarros', 'CotacaoCarroController');
