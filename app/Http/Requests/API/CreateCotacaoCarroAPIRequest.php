@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
+use App\Http\Requests\API\BaseAPIRequest;
 use App\Models\CotacaoCarro;
-use InfyOm\Generator\Request\APIRequest;
 
-class CreateCotacaoCarroAPIRequest extends APIRequest
+class CreateCotacaoCarroAPIRequest extends BaseAPIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
