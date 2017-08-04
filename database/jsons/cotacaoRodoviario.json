@@ -11,65 +11,70 @@
         "inIndex": false
     },
     {
-        "name": "cidade_retirada",
+        "name": "origem",
         "dbType": "string",
         "htmlType": "text",
         "validations": "required",
         "searchable": true
     },
     {
-        "name": "cidade_devolucao",
+        "name": "destino",
         "dbType": "string",
         "htmlType": "text",
         "validations": "required",
         "searchable": true
     },
     {
-        "name": "data_retirada",
+        "name": "data_ida",
         "dbType": "date",
         "htmlType": "date",
         "validations": "required",
         "searchable": true
     },
     {
-        "name": "data_devolucao",
-        "dbType": "date",
+        "name": "data_volta",
+        "dbType": "date:nullable",
         "htmlType": "date",
-        "validations": "required",
         "searchable": true
     },
     {
-        "name": "hora_retirada",
-        "dbType": "string",
-        "validations": "required",
+        "name": "sem_volta",
+        "dbType": "boolean:nullable",
+        "htmlType": "radio,Sim:1,Não:0",
+        "searchable": true
+    },
+    {
+        "name": "datas_flexiveis",
+        "dbType": "boolean:nullable",
+        "htmlType": "radio,Sim:1,Não:0",
+        "searchable": true
+    },
+    {
+        "name": "qnt_passageiros",
+        "dbType": "integer:nullable",
+        "htmlType": "text",
+        "validations": "required|integer"
+    },
+    {
+        "name": "hora_ida",
+        "dbType": "string:nullable",
         "htmlType": "string",
         "searchable": true
     },
     {
-        "name": "hora_devolucao",
-        "dbType": "string",
-        "validations": "required",
+        "name": "hora_volta",
+        "dbType": "string:nullable",
         "htmlType": "string",
         "searchable": true
     },
     {
-        "name": "categorias_carro",
+        "name": "companias_preferenciais",
         "dbType": "string:nullable",
         "htmlType": "text"
     },
     {
-        "name": "itens_carro",
+        "name": "duracao_maxima",
         "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "solicitacoes_carro",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
-        "name": "preco_desejado_carro",
-        "dbType": "float:nullable",
         "htmlType": "text"
     },
     {
