@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Laravel Generator APIs",
+        "title": "Vivalá Backend API",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -981,6 +981,8 @@
                 "cidade_devolucao",
                 "data_retirada",
                 "data_devolucao",
+                "hora_retirada",
+                "hora_devolucao",
                 "nome_completo",
                 "email",
                 "telefone"
@@ -990,16 +992,26 @@
                     "description": "cidade_retirada",
                     "type": "string"
                 },
-                "data_retirada": {
-                    "description": "data_ida",
-                    "type": "string"
-                },
                 "cidade_devolucao": {
                     "description": "cidade_devolucao",
                     "type": "string"
                 },
+                "data_retirada": {
+                    "description": "data_retirada",
+                    "type": "string",
+                    "format": "date"
+                },
                 "data_devolucao": {
-                    "description": "data_volta",
+                    "description": "data_devolucao",
+                    "type": "string",
+                    "format": "date"
+                },
+                "hora_retirada": {
+                    "description": "hora_retirada",
+                    "type": "string"
+                },
+                "hora_devolucao": {
+                    "description": "hora_devolucao",
                     "type": "string"
                 },
                 "categorias_carro": {
