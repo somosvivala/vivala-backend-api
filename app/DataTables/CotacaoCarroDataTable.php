@@ -76,6 +76,8 @@ class CotacaoCarroDataTable extends DataTable
             'cidade_devolucao' => ['name' => 'cidade_devolucao', 'data' => 'cidade_devolucao'],
             'data_retirada' => ['name' => 'data_retirada', 'data' => 'data_retirada'],
             'data_devolucao' => ['name' => 'data_devolucao', 'data' => 'data_devolucao'],
+            'hora_retirada' => ['name' => 'hora_retirada', 'data' => 'hora_retirada'],
+            'hora_devolucao' => ['name' => 'hora_devolucao', 'data' => 'hora_devolucao'],
             'categorias_carro' => ['name' => 'categorias_carro', 'data' => 'categorias_carro'],
             'itens_carro' => ['name' => 'itens_carro', 'data' => 'itens_carro'],
             'solicitacoes_carro' => ['name' => 'solicitacoes_carro', 'data' => 'solicitacoes_carro'],

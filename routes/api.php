@@ -69,4 +69,3 @@ Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', 
 
 
 
-

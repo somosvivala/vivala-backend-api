@@ -28,6 +28,18 @@
     <p>{!! $cotacaoCarro->data_devolucao !!}</p>
 </div>
 
+<!-- Hora Retirada Field -->
+<div class="form-group">
+    {!! Form::label('hora_retirada', 'Hora Retirada:') !!}
+    <p>{!! $cotacaoCarro->hora_retirada !!}</p>
+</div>
+
+<!-- Hora Devolucao Field -->
+<div class="form-group">
+    {!! Form::label('hora_devolucao', 'Hora Devolucao:') !!}
+    <p>{!! $cotacaoCarro->hora_devolucao !!}</p>
+</div>
+
 <!-- Categorias Carro Field -->
 <div class="form-group">
     {!! Form::label('categorias_carro', 'Categorias Carro:') !!}

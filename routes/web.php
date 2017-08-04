@@ -78,4 +78,6 @@ Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'aut
 
 
 
+
+
 Route::resource('cotacaoCarros', 'CotacaoCarroController');

@@ -15,10 +15,12 @@ class CreateCotacaoCarrosTable extends Migration
     {
         Schema::create('cotacao_carros', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cidade_retirada')->nullable();
-            $table->string('cidade_devolucao')->nullable();
-            $table->dateTime('data_retirada');
-            $table->dateTime('data_devolucao');
+            $table->string('cidade_retirada');
+            $table->string('cidade_devolucao');
+            $table->date('data_retirada');
+            $table->date('data_devolucao');
+            $table->string('hora_retirada');
+            $table->string('hora_devolucao');
             $table->string('categorias_carro')->nullable();
             $table->string('itens_carro')->nullable();
             $table->string('solicitacoes_carro')->nullable();

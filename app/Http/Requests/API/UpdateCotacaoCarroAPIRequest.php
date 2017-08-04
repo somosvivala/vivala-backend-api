@@ -5,7 +5,7 @@ namespace App\Http\Requests\API;
 use App\Models\CotacaoCarro;
 use InfyOm\Generator\Request\APIRequest;
 
-class CreateCotacaoCarroAPIRequest extends APIRequest
+class UpdateCotacaoCarroAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.

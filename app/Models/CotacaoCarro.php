@@ -8,15 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="CotacaoCarro",
- *      required={"cidade_retirada", "cidade_devolucao", "data_retirada", "data_devolucao", "nome_completo", "email", "telefone"},
+ *      required={"cidade_retirada", "cidade_devolucao", "data_retirada", "data_devolucao", "hora_retirada", "hora_devolucao", "nome_completo", "email", "telefone"},
  *      @SWG\Property(
  *          property="cidade_retirada",
  *          description="cidade_retirada",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="data_retirada",
- *          description="data_ida",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -25,8 +20,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="data_retirada",
+ *          description="data_retirada",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
  *          property="data_devolucao",
- *          description="data_volta",
+ *          description="data_devolucao",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="hora_retirada",
+ *          description="hora_retirada",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="hora_devolucao",
+ *          description="hora_devolucao",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -77,14 +89,27 @@ class CotacaoCarro extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_carros';
+    
+    /**
+     * The attributes that should be treated as \Carbon\Carbon instances
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
-    protected $dates = ['deleted_at'];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     public $fillable = [
         'cidade_retirada',
         'cidade_devolucao',
         'data_retirada',
         'data_devolucao',
+        'hora_retirada',
+        'hora_devolucao',
         'categorias_carro',
         'itens_carro',
         'solicitacoes_carro',
@@ -103,8 +128,10 @@ class CotacaoCarro extends Model
     protected $casts = [
         'cidade_retirada' => 'string',
         'cidade_devolucao' => 'string',
-        'data_retirada' => 'datetime',
-        'data_devolucao' => 'datetime',
+        'data_retirada' => 'date',
+        'data_devolucao' => 'date',
+        'hora_retirada' => 'string',
+        'hora_devolucao' => 'string',
         'categorias_carro' => 'string',
         'itens_carro' => 'string',
         'solicitacoes_carro' => 'string',
@@ -123,15 +150,17 @@ class CotacaoCarro extends Model
     public static $rules = [
         'cidade_retirada' => 'required',
         'cidade_devolucao' => 'required',
-        'data_retirada' => 'required|date',
-        'data_devolucao' => 'required|date',
+        'data_retirada' => 'required',
+        'data_devolucao' => 'required',
+        'hora_retirada' => 'required',
+        'hora_devolucao' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
         'telefone' => 'required'
     ];
 
     /**
-     * Mutator para data_ida, modificando antes de inserir no BD
+     * Mutator para data_retirada, modificando antes de inserir no BD
      *
      * @param mixed $value
      */
@@ -142,7 +171,7 @@ class CotacaoCarro extends Model
     }
 
     /**
-     * Mutator para data_volta, modificando antes de inserir no BD
+     * Mutator para data_devolucao, modificando antes de inserir no BD
      *
      * @param mixed $value
      */
@@ -184,5 +213,6 @@ class CotacaoCarro extends Model
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['itens_carro'] = $valorFinal;
     }
+    
     
 }

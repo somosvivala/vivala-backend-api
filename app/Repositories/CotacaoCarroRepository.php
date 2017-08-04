@@ -14,7 +14,9 @@ class CotacaoCarroRepository extends BaseRepository
         'cidade_retirada',
         'cidade_devolucao',
         'data_retirada',
-        'data_devolucao'
+        'data_devolucao',
+        'hora_retirada',
+        'hora_devolucao'
     ];
 
     /**

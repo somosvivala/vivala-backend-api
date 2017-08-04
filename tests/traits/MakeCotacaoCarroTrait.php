@@ -46,6 +46,8 @@ trait MakeCotacaoCarroTrait
             'cidade_devolucao' => $fake->word,
             'data_retirada' => $fake->word,
             'data_devolucao' => $fake->word,
+            'hora_retirada' => $fake->word,
+            'hora_devolucao' => $fake->word,
             'categorias_carro' => $fake->word,
             'itens_carro' => $fake->word,
             'solicitacoes_carro' => $fake->word,
