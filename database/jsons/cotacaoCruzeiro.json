@@ -1,0 +1,122 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "origem",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "destino",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "data_ida",
+        "dbType": "dateTime",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "data_volta",
+        "dbType": "dateTime:nullable",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "datas_flexiveis",
+        "dbType": "boolean:nullable",
+        "htmlType": "radio,Sim:1,Não:0",
+        "searchable": true
+    },
+    {
+        "name": "qnt_adultos",
+        "dbType": "integer:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "qnt_criancas",
+        "dbType": "integer:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "qnt_bebes",
+        "dbType": "integer:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "preco_desejado",
+        "dbType": "float:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "companias_preferenciais",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "max_dias",
+        "dbType": "integer:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "nome_completo",
+        "dbType": "string",
+        "validations": "required",
+        "htmlType": "text"
+    },
+    {
+        "name": "nome_preferencia",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "email",
+        "dbType": "string",
+        "validations": "required|email",
+        "htmlType": "text"
+    },
+    {
+        "name": "telefone",
+        "dbType": "string:nullable",
+        "validations": "required",
+        "htmlType": "text"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]

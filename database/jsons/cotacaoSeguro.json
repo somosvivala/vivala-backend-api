@@ -1,0 +1,107 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "origem",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "destino",
+        "dbType": "string",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "data_ida",
+        "dbType": "date",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "data_volta",
+        "dbType": "date",
+        "htmlType": "date",
+        "validations": "required",
+        "searchable": true
+    },
+    {
+        "name": "esportes_radicais",
+        "dbType": "boolean:nullable",
+        "htmlType": "radio,Sim:1,Não:0",
+        "searchable": true
+    },
+    {
+        "name": "solicitacoes",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "nomes_seguro_viagem",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "datas_nascimento_seguro_viagem",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "nome_completo",
+        "dbType": "string",
+        "validations": "required",
+        "htmlType": "text"
+    },
+    {
+        "name": "nome_preferencia",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "email",
+        "dbType": "string",
+        "validations": "required|email",
+        "htmlType": "text"
+    },
+    {
+        "name": "telefone",
+        "dbType": "string:nullable",
+        "validations": "required",
+        "htmlType": "text"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]
