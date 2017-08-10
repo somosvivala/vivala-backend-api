@@ -26,14 +26,14 @@
     },
     {
         "name": "data_ida",
-        "dbType": "dateTime",
+        "dbType": "date",
         "htmlType": "date",
         "validations": "required",
         "searchable": true
     },
     {
         "name": "data_volta",
-        "dbType": "dateTime:nullable",
+        "dbType": "date:nullable",
         "htmlType": "date",
         "validations": "required",
         "searchable": true
@@ -72,6 +72,11 @@
     {
         "name": "max_dias",
         "dbType": "integer:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "solicitacoes",
+        "dbType": "string:nullable",
         "htmlType": "text"
     },
     {

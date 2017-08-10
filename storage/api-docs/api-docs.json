@@ -376,6 +376,80 @@
                 }
             }
         },
+        "/cotacoes/cruzeiro": {
+            "get": {
+                "tags": [
+                    "CotacaoCruzeiro"
+                ],
+                "summary": "Get a listing of the CotacaoCruzeiros.",
+                "description": "Get all CotacaoCruzeiros",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CotacaoCruzeiro"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CotacaoCruzeiro"
+                ],
+                "summary": "Store a newly created CotacaoCruzeiro in storage",
+                "description": "Store CotacaoCruzeiro",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoCruzeiro that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoCruzeiro"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoCruzeiro"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/cotacoes/hospedagem": {
             "get": {
                 "tags": [
@@ -1104,6 +1178,90 @@
                     "description": "preco_desejado_carro",
                     "type": "number",
                     "format": "float"
+                },
+                "nome_completo": {
+                    "description": "nome_completo",
+                    "type": "string"
+                },
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "telefone": {
+                    "description": "telefone",
+                    "type": "string"
+                }
+            }
+        },
+        "CotacaoCruzeiro": {
+            "required": [
+                "origem",
+                "destino",
+                "data_ida",
+                "data_volta",
+                "nome_completo",
+                "email",
+                "telefone"
+            ],
+            "properties": {
+                "origem": {
+                    "description": "origem",
+                    "type": "string"
+                },
+                "destino": {
+                    "description": "destino",
+                    "type": "string"
+                },
+                "data_ida": {
+                    "description": "data_ida",
+                    "type": "string",
+                    "format": "date"
+                },
+                "data_volta": {
+                    "description": "data_volta",
+                    "type": "string",
+                    "format": "date"
+                },
+                "datas_flexiveis": {
+                    "description": "datas_flexiveis",
+                    "type": "boolean"
+                },
+                "qnt_adultos": {
+                    "description": "qnt_adultos",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_criancas": {
+                    "description": "qnt_criancas",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_bebes": {
+                    "description": "qnt_bebes",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "preco_desejado": {
+                    "description": "preco_desejado",
+                    "type": "number",
+                    "format": "float"
+                },
+                "companias_preferenciais": {
+                    "description": "companias_preferenciais",
+                    "type": "string"
+                },
+                "max_dias": {
+                    "description": "max_dias",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "solicitacoes": {
+                    "description": "solicitacoes",
+                    "type": "string"
                 },
                 "nome_completo": {
                     "description": "nome_completo",

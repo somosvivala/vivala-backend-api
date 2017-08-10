@@ -56,3 +56,7 @@
     <a href="{!! route('cotacaoRodoviarios.index') !!}"><i class="fa fa-edit"></i><span>CotacaoRodoviarios</span></a>
 </li>
 
+<li class="{{ Request::is('cotacaoCruzeiros*') ? 'active' : '' }}">
+    <a href="{!! route('cotacaoCruzeiros.index') !!}"><i class="fa fa-edit"></i><span>CotacaoCruzeiros</span></a>
+</li>
+
