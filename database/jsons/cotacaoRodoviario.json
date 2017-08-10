@@ -78,6 +78,11 @@
         "htmlType": "text"
     },
     {
+        "name": "solicitacoes",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
         "name": "nome_completo",
         "dbType": "string",
         "validations": "required",

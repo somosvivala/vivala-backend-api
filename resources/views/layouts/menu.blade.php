@@ -52,3 +52,7 @@
     <a href="{!! route('cotacaoCarros.index') !!}"><i class="fa fa-edit"></i><span>CotacaoCarros</span></a>
 </li>
 
+<li class="{{ Request::is('cotacaoRodoviarios*') ? 'active' : '' }}">
+    <a href="{!! route('cotacaoRodoviarios.index') !!}"><i class="fa fa-edit"></i><span>CotacaoRodoviarios</span></a>
+</li>
+

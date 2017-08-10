@@ -32,6 +32,10 @@ Route::resource('cotacoes/aereo', 'CotacaoAereoAPIController', [
 Route::resource('cotacoes/carro', 'CotacaoCarroAPIController', [
     'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
+Route::resource('cotacoes/rodoviario', 'CotacaoRodoviarioAPIController', [
+    'except' => ['update', 'destroy', 'edit', 'create', 'show'],
+]);
+
 
 /*
  * Contatos -- Rotas das resources relacionadas aos contatos
@@ -66,6 +70,8 @@ Route::resource('expedicoes.inscricoes', 'InscricaoExpedicaoAPIController', [
 Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', [
     'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
+
+
 
 
 
