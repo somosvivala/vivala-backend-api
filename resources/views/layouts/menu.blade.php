@@ -67,8 +67,3 @@
 <li class="{{ Request::is('cotacaoSeguros*') ? 'active' : '' }}">
     <a href="{!! route('cotacaoSeguros.index') !!}"><i class="fa fa-edit"></i><span>CotacaoSeguros</span></a>
 </li>
-
-<li class="{{ Request::is('cotacaoSeguros*') ? 'active' : '' }}">
-    <a href="{!! route('cotacaoSeguros.index') !!}"><i class="fa fa-edit"></i><span>CotacaoSeguros</span></a>
-</li>
-
