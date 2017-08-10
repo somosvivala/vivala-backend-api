@@ -50,11 +50,6 @@
         "htmlType": "text"
     },
     {
-        "name": "nomes_seguro_viagem",
-        "dbType": "string:nullable",
-        "htmlType": "text"
-    },
-    {
         "name": "datas_nascimento_seguro_viagem",
         "dbType": "string:nullable",
         "htmlType": "text"

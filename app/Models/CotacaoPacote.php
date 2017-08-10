@@ -519,7 +519,7 @@ class CotacaoPacote extends Model
      *
      * @param mixed $value
      */
-    public function setDatasSeguroViagemAttribute($value)
+    public function setDatasNascimentoSeguroViagemAttribute($value)
     {
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;

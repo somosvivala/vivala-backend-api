@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Laravel Generator APIs",
+        "title": "Vivalá Backend API",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -735,6 +735,80 @@
                                 },
                                 "data": {
                                     "$ref": "#/definitions/CotacaoRodoviario"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/cotacoes/seguro": {
+            "get": {
+                "tags": [
+                    "CotacaoSeguro"
+                ],
+                "summary": "Get a listing of the CotacaoSeguros.",
+                "description": "Get all CotacaoSeguros",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CotacaoSeguro"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CotacaoSeguro"
+                ],
+                "summary": "Store a newly created CotacaoSeguro in storage",
+                "description": "Store CotacaoSeguro",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoSeguro that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoSeguro"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoSeguro"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1750,6 +1824,65 @@
                 },
                 "solicitacoes": {
                     "description": "solicitacoes",
+                    "type": "string"
+                },
+                "nome_completo": {
+                    "description": "nome_completo",
+                    "type": "string"
+                },
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "telefone": {
+                    "description": "telefone",
+                    "type": "string"
+                }
+            }
+        },
+        "CotacaoSeguro": {
+            "required": [
+                "origem",
+                "destino",
+                "data_ida",
+                "data_volta",
+                "nome_completo",
+                "email",
+                "telefone"
+            ],
+            "properties": {
+                "origem": {
+                    "description": "origem",
+                    "type": "string"
+                },
+                "destino": {
+                    "description": "destino",
+                    "type": "string"
+                },
+                "data_ida": {
+                    "description": "data_ida",
+                    "type": "string",
+                    "format": "date"
+                },
+                "data_volta": {
+                    "description": "data_volta",
+                    "type": "string",
+                    "format": "date"
+                },
+                "esportes_radicais": {
+                    "description": "esportes_radicais",
+                    "type": "boolean"
+                },
+                "solicitacoes": {
+                    "description": "solicitacoes",
+                    "type": "string"
+                },
+                "datas_nascimento_seguro_viagem": {
+                    "description": "datas_nascimento_seguro_viagem",
                     "type": "string"
                 },
                 "nome_completo": {
