@@ -60,3 +60,7 @@
     <a href="{!! route('cotacaoCruzeiros.index') !!}"><i class="fa fa-edit"></i><span>CotacaoCruzeiros</span></a>
 </li>
 
+<li class="{{ Request::is('cotacaoPasseios*') ? 'active' : '' }}">
+    <a href="{!! route('cotacaoPasseios.index') !!}"><i class="fa fa-edit"></i><span>CotacaoPasseios</span></a>
+</li>
+

@@ -52,7 +52,7 @@
         "htmlType": "text"
     },
     {
-        "name": "passeios_solicitacoes",
+        "name": "solicitacoes",
         "dbType": "string:nullable",
         "htmlType": "text"
     },

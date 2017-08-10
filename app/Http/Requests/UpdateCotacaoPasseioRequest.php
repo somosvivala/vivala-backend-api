@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests;
 
-use App\Models\CotacaoCarro;
-use InfyOm\Generator\Request\APIRequest;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Models\CotacaoPasseio;
 
-class UpdateCotacaoCarroAPIRequest extends APIRequest
+class UpdateCotacaoPasseioRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,6 +25,6 @@ class UpdateCotacaoCarroAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return CotacaoCarro::$rules;
+        return CotacaoPasseio::$rules;
     }
 }

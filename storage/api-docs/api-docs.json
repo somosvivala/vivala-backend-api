@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "Vivalá Backend API",
+        "title": "Laravel Generator APIs",
         "version": "1.0.0"
     },
     "basePath": "/api/",
@@ -587,6 +587,80 @@
                                 },
                                 "data": {
                                     "$ref": "#/definitions/CotacaoPacote"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/cotacoes/passeio": {
+            "get": {
+                "tags": [
+                    "CotacaoPasseio"
+                ],
+                "summary": "Get a listing of the CotacaoPasseios.",
+                "description": "Get all CotacaoPasseios",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CotacaoPasseio"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CotacaoPasseio"
+                ],
+                "summary": "Store a newly created CotacaoPasseio in storage",
+                "description": "Store CotacaoPasseio",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CotacaoPasseio that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CotacaoPasseio"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CotacaoPasseio"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1527,6 +1601,76 @@
                 "datas_nascimento_seguro_viagem": {
                     "description": "datas_nascimento_seguro_viagem",
                     "type": "string"
+                },
+                "nome_completo": {
+                    "description": "nome_completo",
+                    "type": "string"
+                },
+                "nome_preferencia": {
+                    "description": "nome_preferencia",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "email",
+                    "type": "string"
+                },
+                "telefone": {
+                    "description": "telefone",
+                    "type": "string"
+                }
+            }
+        },
+        "CotacaoPasseio": {
+            "required": [
+                "destino",
+                "data_ida",
+                "data_volta",
+                "nome_completo",
+                "email",
+                "telefone"
+            ],
+            "properties": {
+                "destino": {
+                    "description": "destino",
+                    "type": "string"
+                },
+                "data_ida": {
+                    "description": "data_ida",
+                    "type": "string",
+                    "format": "date"
+                },
+                "data_volta": {
+                    "description": "data_volta",
+                    "type": "string",
+                    "format": "date"
+                },
+                "qnt_adultos": {
+                    "description": "qnt_adultos",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_criancas": {
+                    "description": "qnt_criancas",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "qnt_bebes": {
+                    "description": "qnt_bebes",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "passeios_interesses": {
+                    "description": "passeios_interesses",
+                    "type": "string"
+                },
+                "solicitacoes": {
+                    "description": "solicitacoes",
+                    "type": "string"
+                },
+                "preco_desejado": {
+                    "description": "preco_desejado",
+                    "type": "number",
+                    "format": "float"
                 },
                 "nome_completo": {
                     "description": "nome_completo",

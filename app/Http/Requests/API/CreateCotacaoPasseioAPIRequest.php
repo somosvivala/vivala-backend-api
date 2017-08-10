@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\API;
 
-use App\Models\CotacaoRodoviario;
-use InfyOm\Generator\Request\APIRequest;
+use App\Http\Requests\API\BaseAPIRequest;
+use App\Models\CotacaoPasseio;
 
-class UpdateCotacaoRodoviarioAPIRequest extends APIRequest
+class CreateCotacaoPasseioAPIRequest extends BaseAPIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,6 @@ class UpdateCotacaoRodoviarioAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return CotacaoRodoviario::$rules;
+        return CotacaoPasseio::$rules;
     }
 }
