@@ -55,7 +55,9 @@ Route::get('/exemplo-email-cotacao-carro', function () {
 Route::get('/exemplo-email-cotacao-passeio', function () {
     return view('emails.cotacao-passeio')->with('cotacao', App\Models\CotacaoPasseio::latest()->first());
 });
-
+Route::get('/exemplo-email-cotacao-seguro', function () {
+    return view('emails.cotacao-seguro')->with('cotacao', App\Models\CotacaoSeguro::latest()->first());
+});
 
 
 

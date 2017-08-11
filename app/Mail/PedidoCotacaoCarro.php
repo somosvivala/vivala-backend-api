@@ -38,7 +38,7 @@ class PedidoCotacaoCarro extends Mailable
     {
         return $this->to(env('EMAIL_DESTINO_COTACAO_CARRO'))
             ->from('contato@vivala.com.br')
-            ->subject('[VIVALÁ] Novo Pedido de cotação de alguel de carro!')
+            ->subject('[VIVALÁ] Novo Pedido de cotação de aluguel de carro!')
             ->view('emails.cotacao-carro');
     }
 }
