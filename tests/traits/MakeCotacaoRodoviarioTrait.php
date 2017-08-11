@@ -7,7 +7,7 @@ use App\Repositories\CotacaoRodoviarioRepository;
 trait MakeCotacaoRodoviarioTrait
 {
     /**
-     * Create fake instance of CotacaoRodoviario and save it in database
+     * Create fake instance of CotacaoRodoviario and save it in database.
      *
      * @param array $cotacaoRodoviarioFields
      * @return CotacaoRodoviario
@@ -17,11 +17,12 @@ trait MakeCotacaoRodoviarioTrait
         /** @var CotacaoRodoviarioRepository $cotacaoRodoviarioRepo */
         $cotacaoRodoviarioRepo = App::make(CotacaoRodoviarioRepository::class);
         $theme = $this->fakeCotacaoRodoviarioData($cotacaoRodoviarioFields);
+
         return $cotacaoRodoviarioRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoRodoviario
+     * Get fake instance of CotacaoRodoviario.
      *
      * @param array $cotacaoRodoviarioFields
      * @return CotacaoRodoviario
@@ -32,7 +33,7 @@ trait MakeCotacaoRodoviarioTrait
     }
 
     /**
-     * Get fake data of CotacaoRodoviario
+     * Get fake data of CotacaoRodoviario.
      *
      * @param array $postFields
      * @return array
@@ -59,7 +60,7 @@ trait MakeCotacaoRodoviarioTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoRodoviarioFields);
     }
 }

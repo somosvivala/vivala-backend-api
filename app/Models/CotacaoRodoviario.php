@@ -99,10 +99,8 @@ class CotacaoRodoviario extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_rodoviarios';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'origem',
@@ -120,7 +118,7 @@ class CotacaoRodoviario extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -144,11 +142,11 @@ class CotacaoRodoviario extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -159,8 +157,6 @@ class CotacaoRodoviario extends Model
         'qnt_passageiros' => 'required|integer',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required'
+        'telefone' => 'required',
     ];
-
-    
 }

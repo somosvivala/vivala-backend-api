@@ -7,7 +7,7 @@ use App\Repositories\CotacaoSeguroRepository;
 trait MakeCotacaoSeguroTrait
 {
     /**
-     * Create fake instance of CotacaoSeguro and save it in database
+     * Create fake instance of CotacaoSeguro and save it in database.
      *
      * @param array $cotacaoSeguroFields
      * @return CotacaoSeguro
@@ -17,11 +17,12 @@ trait MakeCotacaoSeguroTrait
         /** @var CotacaoSeguroRepository $cotacaoSeguroRepo */
         $cotacaoSeguroRepo = App::make(CotacaoSeguroRepository::class);
         $theme = $this->fakeCotacaoSeguroData($cotacaoSeguroFields);
+
         return $cotacaoSeguroRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoSeguro
+     * Get fake instance of CotacaoSeguro.
      *
      * @param array $cotacaoSeguroFields
      * @return CotacaoSeguro
@@ -32,7 +33,7 @@ trait MakeCotacaoSeguroTrait
     }
 
     /**
-     * Get fake data of CotacaoSeguro
+     * Get fake data of CotacaoSeguro.
      *
      * @param array $postFields
      * @return array
@@ -54,7 +55,7 @@ trait MakeCotacaoSeguroTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoSeguroFields);
     }
 }

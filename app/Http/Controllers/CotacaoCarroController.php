@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\CotacaoCarroDataTable;
-use App\Http\Requests;
+use App\Repositories\CotacaoCarroRepository;
 use App\Http\Requests\CreateCotacaoCarroRequest;
 use App\Http\Requests\UpdateCotacaoCarroRequest;
-use App\Repositories\CotacaoCarroRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class CotacaoCarroController extends AppBaseController
 {
-    /** @var  CotacaoCarroRepository */
+    /** @var CotacaoCarroRepository */
     private $cotacaoCarroRepository;
 
     public function __construct(CotacaoCarroRepository $cotacaoCarroRepo)

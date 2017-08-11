@@ -17,8 +17,7 @@ use App\Http\Requests\API\CreateCotacaoHospedagemAPIRequest;
  */
 class CotacaoHospedagemAPIController extends AppBaseController
 {
-
-    /** Importando funcionalidades de mapear os campos para as requests **/
+    /* Importando funcionalidades de mapear os campos para as requests **/
     use ArrumaRequestCotacoesTrait;
 
     /** @var CotacaoHospedagemRepository */

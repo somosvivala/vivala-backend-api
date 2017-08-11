@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateCotacaoSeguroAPIRequest;
-use App\Http\Requests\API\UpdateCotacaoSeguroAPIRequest;
-use App\Models\CotacaoSeguro;
-use App\Repositories\CotacaoSeguroRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\CotacaoSeguro;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\CotacaoSeguroRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateCotacaoSeguroAPIRequest;
 
 /**
- * Class CotacaoSeguroController
- * @package App\Http\Controllers\API
+ * Class CotacaoSeguroController.
  */
-
 class CotacaoSeguroAPIController extends AppBaseController
 {
-    /** @var  CotacaoSeguroRepository */
+    /** @var CotacaoSeguroRepository */
     private $cotacaoSeguroRepository;
 
     public function __construct(CotacaoSeguroRepository $cotacaoSeguroRepo)
@@ -114,5 +111,4 @@ class CotacaoSeguroAPIController extends AppBaseController
 
         return $this->sendResponse($cotacaoSeguros->toArray(), 'Cotacao Seguro saved successfully');
     }
-
 }

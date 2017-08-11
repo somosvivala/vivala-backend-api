@@ -13,11 +13,11 @@ class CotacaoPasseioRepository extends BaseRepository
     protected $fieldSearchable = [
         'destino',
         'data_ida',
-        'data_volta'
+        'data_volta',
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Flash;
 use Response;
-
 use App\Repositories\ExperienciaRepository;
 use App\DataTables\InscricaoExperienciaDataTable;
 use App\DataTables\Scopes\InscricaoPorExperienciaId;

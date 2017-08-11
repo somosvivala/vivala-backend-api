@@ -15,11 +15,11 @@ class CotacaoSeguroRepository extends BaseRepository
         'destino',
         'data_ida',
         'data_volta',
-        'esportes_radicais'
+        'esportes_radicais',
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {

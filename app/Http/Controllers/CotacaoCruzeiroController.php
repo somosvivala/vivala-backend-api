@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\CotacaoCruzeiroDataTable;
-use App\Http\Requests;
+use App\Repositories\CotacaoCruzeiroRepository;
 use App\Http\Requests\CreateCotacaoCruzeiroRequest;
 use App\Http\Requests\UpdateCotacaoCruzeiroRequest;
-use App\Repositories\CotacaoCruzeiroRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class CotacaoCruzeiroController extends AppBaseController
 {
-    /** @var  CotacaoCruzeiroRepository */
+    /** @var CotacaoCruzeiroRepository */
     private $cotacaoCruzeiroRepository;
 
     public function __construct(CotacaoCruzeiroRepository $cotacaoCruzeiroRepo)

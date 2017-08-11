@@ -18,11 +18,11 @@ class CotacaoRodoviarioRepository extends BaseRepository
         'sem_volta',
         'datas_flexiveis',
         'hora_ida',
-        'hora_volta'
+        'hora_volta',
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {

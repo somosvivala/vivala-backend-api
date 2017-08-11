@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\Mail\PedidoCotacaoPacote;
-use App\Models\CotacaoPacote;
 use Mail;
+use App\Models\CotacaoPacote;
+use App\Mail\PedidoCotacaoPacote;
 
 class CotacaoPacoteObserver
 {

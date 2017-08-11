@@ -17,7 +17,6 @@ use App\Http\Requests\API\CreateCotacaoAereoAPIRequest;
  */
 class CotacaoAereoAPIController extends AppBaseController
 {
-
     use ArrumaRequestCotacoesTrait;
 
     /** @var CotacaoAereoRepository */
