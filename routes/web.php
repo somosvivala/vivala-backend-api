@@ -43,6 +43,13 @@ Route::get('/exemplo-email-cotacao-hospedagem', function () {
 Route::get('/exemplo-email-cotacao-aereo', function () {
     return view('emails.cotacao-aereo')->with('cotacao', App\Models\CotacaoAereo::latest()->first());
 });
+Route::get('/exemplo-email-cotacao-rodoviario', function () {
+    return view('emails.cotacao-rodoviario')->with('cotacao', App\Models\CotacaoRodoviario::latest()->first());
+});
+
+
+
+
 
 //Newsletter
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth']);

@@ -159,4 +159,70 @@ class CotacaoRodoviario extends Model
         'email' => 'required|email',
         'telefone' => 'required',
     ];
+
+
+    /**
+     * Mutator para data_ida, modificando antes de inserir no BD.
+     *
+     * @param mixed $value
+     */
+    public function setDataIdaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_ida'] = $cb->format('Y-m-d');
+    }
+
+    /**
+     * Mutator para data_volta, modificando antes de inserir no BD.
+     *
+     * @param mixed $value
+     */
+    public function setDataVoltaAttribute($value)
+    {
+        $cb = new \Carbon\Carbon($value);
+        $this->attributes['data_volta'] = $cb->format('Y-m-d');
+    }
+
+
+    /**
+     * getDataIdaFormatadaAttribute.
+     *
+     * @return string
+     */
+    public function getDataIdaFormatadaAttribute()
+    {
+        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+    }
+
+    /**
+     * getDataVoltaFormatadaAttribute.
+     *
+     * @return string
+     */
+    public function getDataVoltaFormatadaAttribute()
+    {
+        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+    }
+
+    /**
+     * getTemDatasFlexiveisAttribute.
+     *
+     * @return string
+     */
+    public function getTemDatasFlexiveisAttribute()
+    {
+        return $this->datas_flexiveis ? 'Sim' : 'Não';
+    }
+
+    /**
+     * getTemDatasFlexiveisAttribute.
+     *
+     * @return string
+     */
+    public function getSomenteIdaAttribute()
+    {
+        return $this->sem_volta ? 'Sim' : 'Não';
+    }
+    
+
 }
