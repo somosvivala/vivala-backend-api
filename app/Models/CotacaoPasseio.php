@@ -87,15 +87,13 @@ class CotacaoPasseio extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_passeios';
-    
 
     /**
-     * The attributes that should be treated as \Carbon\Carbon instances
+     * The attributes that should be treated as \Carbon\Carbon instances.
      *
      * @var array
      */
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
-
 
     /**
      * The attributes that are mass assignable.
@@ -115,7 +113,7 @@ class CotacaoPasseio extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -136,11 +134,11 @@ class CotacaoPasseio extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Mutator para preco_desejado, modificando antes de inserir no BD
+     * Mutator para preco_desejado, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -151,7 +149,7 @@ class CotacaoPasseio extends Model
     }
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -161,11 +159,11 @@ class CotacaoPasseio extends Model
         'data_volta' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required'
+        'telefone' => 'required',
     ];
 
     /**
-     * Mutator para data_ida, modificando antes de inserir no BD
+     * Mutator para data_ida, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -176,7 +174,7 @@ class CotacaoPasseio extends Model
     }
 
     /**
-     * Mutator para data_volta, modificando antes de inserir no BD
+     * Mutator para data_volta, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -187,7 +185,7 @@ class CotacaoPasseio extends Model
     }
 
     /**
-     * Mutator para passeios_interesses, modificando antes de inserir no BD
+     * Mutator para passeios_interesses, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -196,7 +194,6 @@ class CotacaoPasseio extends Model
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['passeios_interesses'] = $valorFinal;
     }
-    
 
     /**
      * getDataIdaFormatadaAttribute.
@@ -227,5 +224,4 @@ class CotacaoPasseio extends Model
     {
         return $this->datas_flexiveis ? 'Sim' : 'Não';
     }
-    
 }

@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateCotacaoRodoviarioAPIRequest;
-use App\Http\Requests\API\UpdateCotacaoRodoviarioAPIRequest;
-use App\Models\CotacaoRodoviario;
-use App\Repositories\CotacaoRodoviarioRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\CotacaoRodoviario;
+use App\Http\Controllers\AppBaseController;
+use Prettus\Repository\Criteria\RequestCriteria;
+use App\Repositories\CotacaoRodoviarioRepository;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateCotacaoRodoviarioAPIRequest;
 
 /**
- * Class CotacaoRodoviarioController
- * @package App\Http\Controllers\API
+ * Class CotacaoRodoviarioController.
  */
-
 class CotacaoRodoviarioAPIController extends AppBaseController
 {
-    /** @var  CotacaoRodoviarioRepository */
+    /** @var CotacaoRodoviarioRepository */
     private $cotacaoRodoviarioRepository;
 
     public function __construct(CotacaoRodoviarioRepository $cotacaoRodoviarioRepo)
@@ -114,5 +111,4 @@ class CotacaoRodoviarioAPIController extends AppBaseController
 
         return $this->sendResponse($cotacaoRodoviarios->toArray(), 'Cotacao Rodoviario saved successfully');
     }
-
 }

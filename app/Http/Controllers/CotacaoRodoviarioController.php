@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\CotacaoRodoviarioDataTable;
-use App\Http\Requests;
+use App\Repositories\CotacaoRodoviarioRepository;
 use App\Http\Requests\CreateCotacaoRodoviarioRequest;
 use App\Http\Requests\UpdateCotacaoRodoviarioRequest;
-use App\Repositories\CotacaoRodoviarioRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class CotacaoRodoviarioController extends AppBaseController
 {
-    /** @var  CotacaoRodoviarioRepository */
+    /** @var CotacaoRodoviarioRepository */
     private $cotacaoRodoviarioRepository;
 
     public function __construct(CotacaoRodoviarioRepository $cotacaoRodoviarioRepo)

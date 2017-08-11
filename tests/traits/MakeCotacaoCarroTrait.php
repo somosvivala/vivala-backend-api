@@ -7,7 +7,7 @@ use App\Repositories\CotacaoCarroRepository;
 trait MakeCotacaoCarroTrait
 {
     /**
-     * Create fake instance of CotacaoCarro and save it in database
+     * Create fake instance of CotacaoCarro and save it in database.
      *
      * @param array $cotacaoCarroFields
      * @return CotacaoCarro
@@ -17,11 +17,12 @@ trait MakeCotacaoCarroTrait
         /** @var CotacaoCarroRepository $cotacaoCarroRepo */
         $cotacaoCarroRepo = App::make(CotacaoCarroRepository::class);
         $theme = $this->fakeCotacaoCarroData($cotacaoCarroFields);
+
         return $cotacaoCarroRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoCarro
+     * Get fake instance of CotacaoCarro.
      *
      * @param array $cotacaoCarroFields
      * @return CotacaoCarro
@@ -32,7 +33,7 @@ trait MakeCotacaoCarroTrait
     }
 
     /**
-     * Get fake data of CotacaoCarro
+     * Get fake data of CotacaoCarro.
      *
      * @param array $postFields
      * @return array
@@ -57,7 +58,7 @@ trait MakeCotacaoCarroTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoCarroFields);
     }
 }

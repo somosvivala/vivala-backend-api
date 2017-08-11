@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateCotacaoPasseioAPIRequest;
-use App\Http\Requests\API\UpdateCotacaoPasseioAPIRequest;
-use App\Models\CotacaoPasseio;
-use App\Repositories\CotacaoPasseioRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\CotacaoPasseio;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\CotacaoPasseioRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateCotacaoPasseioAPIRequest;
 
 /**
- * Class CotacaoPasseioController
- * @package App\Http\Controllers\API
+ * Class CotacaoPasseioController.
  */
-
 class CotacaoPasseioAPIController extends AppBaseController
 {
-    /** @var  CotacaoPasseioRepository */
+    /** @var CotacaoPasseioRepository */
     private $cotacaoPasseioRepository;
 
     public function __construct(CotacaoPasseioRepository $cotacaoPasseioRepo)

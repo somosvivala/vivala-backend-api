@@ -7,7 +7,7 @@ use App\Repositories\CotacaoCruzeiroRepository;
 trait MakeCotacaoCruzeiroTrait
 {
     /**
-     * Create fake instance of CotacaoCruzeiro and save it in database
+     * Create fake instance of CotacaoCruzeiro and save it in database.
      *
      * @param array $cotacaoCruzeiroFields
      * @return CotacaoCruzeiro
@@ -17,11 +17,12 @@ trait MakeCotacaoCruzeiroTrait
         /** @var CotacaoCruzeiroRepository $cotacaoCruzeiroRepo */
         $cotacaoCruzeiroRepo = App::make(CotacaoCruzeiroRepository::class);
         $theme = $this->fakeCotacaoCruzeiroData($cotacaoCruzeiroFields);
+
         return $cotacaoCruzeiroRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoCruzeiro
+     * Get fake instance of CotacaoCruzeiro.
      *
      * @param array $cotacaoCruzeiroFields
      * @return CotacaoCruzeiro
@@ -32,7 +33,7 @@ trait MakeCotacaoCruzeiroTrait
     }
 
     /**
-     * Get fake data of CotacaoCruzeiro
+     * Get fake data of CotacaoCruzeiro.
      *
      * @param array $postFields
      * @return array
@@ -59,7 +60,7 @@ trait MakeCotacaoCruzeiroTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoCruzeiroFields);
     }
 }

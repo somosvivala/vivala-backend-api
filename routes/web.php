@@ -79,5 +79,3 @@ Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController');
 Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController');
 Route::resource('cotacaoPasseios', 'CotacaoPasseioController');
 Route::resource('cotacaoSeguros', 'CotacaoSeguroController');
-
-

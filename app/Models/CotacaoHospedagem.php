@@ -162,7 +162,7 @@ class CotacaoHospedagem extends Model
     ];
 
     /**
-     * Mutator para data_ida, modificando antes de inserir no BD
+     * Mutator para data_ida, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -173,7 +173,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para data_volta, modificando antes de inserir no BD
+     * Mutator para data_volta, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -184,7 +184,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para periodo_voo_ida, modificando antes de inserir no BD
+     * Mutator para periodo_voo_ida, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -194,7 +194,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para periodo_voo_volta, modificando antes de inserir no BD
+     * Mutator para periodo_voo_volta, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -204,7 +204,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para numero_paradas, modificando antes de inserir no BD
+     * Mutator para numero_paradas, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -214,7 +214,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para tipo_quarto, modificando antes de inserir no BD
+     * Mutator para tipo_quarto, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -224,7 +224,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para hospedagem_tipo, modificando antes de inserir no BD
+     * Mutator para hospedagem_tipo, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -234,7 +234,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para aereo_preco_desejado, modificando antes de inserir no BD
+     * Mutator para aereo_preco_desejado, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -245,7 +245,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para hospedagem_preco_desejado, modificando antes de inserir no BD
+     * Mutator para hospedagem_preco_desejado, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -256,7 +256,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para transporte_interno_preco_desejado, modificando antes de inserir no BD
+     * Mutator para transporte_interno_preco_desejado, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -267,7 +267,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para passeios_preco_desejado, modificando antes de inserir no BD
+     * Mutator para passeios_preco_desejado, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -278,7 +278,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para hospedagem_servicos, modificando antes de inserir no BD
+     * Mutator para hospedagem_servicos, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -289,7 +289,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para transporte_interno, modificando antes de inserir no BD
+     * Mutator para transporte_interno, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -300,7 +300,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para tipos_transfer, modificando antes de inserir no BD
+     * Mutator para tipos_transfer, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -311,7 +311,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para categorias_carro, modificando antes de inserir no BD
+     * Mutator para categorias_carro, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -322,7 +322,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para itens_carro, modificando antes de inserir no BD
+     * Mutator para itens_carro, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -333,7 +333,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para passeios_interesses, modificando antes de inserir no BD
+     * Mutator para passeios_interesses, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -344,7 +344,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para nomes_seguro_viagem, modificando antes de inserir no BD
+     * Mutator para nomes_seguro_viagem, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -355,7 +355,7 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD
+     * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */

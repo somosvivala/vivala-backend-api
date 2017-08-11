@@ -89,14 +89,13 @@ class CotacaoCarro extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_carros';
-    
+
     /**
-     * The attributes that should be treated as \Carbon\Carbon instances
+     * The attributes that should be treated as \Carbon\Carbon instances.
      *
      * @var array
      */
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
-
 
     /**
      * The attributes that are mass assignable.
@@ -117,7 +116,7 @@ class CotacaoCarro extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -139,11 +138,11 @@ class CotacaoCarro extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -156,11 +155,11 @@ class CotacaoCarro extends Model
         'hora_devolucao' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required'
+        'telefone' => 'required',
     ];
 
     /**
-     * Mutator para data_retirada, modificando antes de inserir no BD
+     * Mutator para data_retirada, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -171,7 +170,7 @@ class CotacaoCarro extends Model
     }
 
     /**
-     * Mutator para data_devolucao, modificando antes de inserir no BD
+     * Mutator para data_devolucao, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -180,9 +179,9 @@ class CotacaoCarro extends Model
         $cb = new \Carbon\Carbon($value);
         $this->attributes['data_devolucao'] = $cb->format('Y-m-d');
     }
-    
+
     /**
-     * Mutator para preco_desejado_carro, modificando antes de inserir no BD
+     * Mutator para preco_desejado_carro, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -193,7 +192,7 @@ class CotacaoCarro extends Model
     }
 
     /**
-     * Mutator para categorias_carro, modificando antes de inserir no BD
+     * Mutator para categorias_carro, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -204,7 +203,7 @@ class CotacaoCarro extends Model
     }
 
     /**
-     * Mutator para itens_carro, modificando antes de inserir no BD
+     * Mutator para itens_carro, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -213,6 +212,4 @@ class CotacaoCarro extends Model
         $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['itens_carro'] = $valorFinal;
     }
-    
-    
 }

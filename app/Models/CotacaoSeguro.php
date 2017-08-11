@@ -73,15 +73,13 @@ class CotacaoSeguro extends Model
     use SoftDeletes;
 
     public $table = 'cotacao_seguros';
-    
 
     /**
-     * The attributes that should be treated as \Carbon\Carbon instances
+     * The attributes that should be treated as \Carbon\Carbon instances.
      *
      * @var array
      */
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
-
 
     /**
      * The attributes that are mass assignable.
@@ -99,7 +97,7 @@ class CotacaoSeguro extends Model
         'nome_completo',
         'nome_preferencia',
         'email',
-        'telefone'
+        'telefone',
     ];
 
     /**
@@ -118,11 +116,11 @@ class CotacaoSeguro extends Model
         'nome_completo' => 'string',
         'nome_preferencia' => 'string',
         'email' => 'string',
-        'telefone' => 'string'
+        'telefone' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -133,12 +131,11 @@ class CotacaoSeguro extends Model
         'data_volta' => 'required',
         'nome_completo' => 'required',
         'email' => 'required|email',
-        'telefone' => 'required'
+        'telefone' => 'required',
     ];
 
-
     /**
-     * Mutator para data_ida, modificando antes de inserir no BD
+     * Mutator para data_ida, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -149,7 +146,7 @@ class CotacaoSeguro extends Model
     }
 
     /**
-     * Mutator para data_volta, modificando antes de inserir no BD
+     * Mutator para data_volta, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
@@ -159,9 +156,8 @@ class CotacaoSeguro extends Model
         $this->attributes['data_volta'] = $cb->format('Y-m-d');
     }
 
-
     /**
-     * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD
+     * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */

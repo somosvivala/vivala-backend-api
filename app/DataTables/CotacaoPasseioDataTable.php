@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\CotacaoPasseio;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class CotacaoPasseioDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class CotacaoPasseioDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -84,7 +82,7 @@ class CotacaoPasseioDataTable extends DataTable
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
             'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
             'email' => ['name' => 'email', 'data' => 'email'],
-            'telefone' => ['name' => 'telefone', 'data' => 'telefone']
+            'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
         ];
     }
 

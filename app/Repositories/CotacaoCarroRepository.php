@@ -16,11 +16,11 @@ class CotacaoCarroRepository extends BaseRepository
         'data_retirada',
         'data_devolucao',
         'hora_retirada',
-        'hora_devolucao'
+        'hora_devolucao',
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {

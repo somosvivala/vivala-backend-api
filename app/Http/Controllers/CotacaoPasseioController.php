@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\CotacaoPasseioDataTable;
-use App\Http\Requests;
+use App\Repositories\CotacaoPasseioRepository;
 use App\Http\Requests\CreateCotacaoPasseioRequest;
 use App\Http\Requests\UpdateCotacaoPasseioRequest;
-use App\Repositories\CotacaoPasseioRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class CotacaoPasseioController extends AppBaseController
 {
-    /** @var  CotacaoPasseioRepository */
+    /** @var CotacaoPasseioRepository */
     private $cotacaoPasseioRepository;
 
     public function __construct(CotacaoPasseioRepository $cotacaoPasseioRepo)

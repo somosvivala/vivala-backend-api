@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateCotacaoCruzeiroAPIRequest;
-use App\Http\Requests\API\UpdateCotacaoCruzeiroAPIRequest;
-use App\Models\CotacaoCruzeiro;
-use App\Repositories\CotacaoCruzeiroRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Http\Request;
+use App\Models\CotacaoCruzeiro;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\CotacaoCruzeiroRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use App\Http\Requests\API\CreateCotacaoCruzeiroAPIRequest;
 
 /**
- * Class CotacaoCruzeiroController
- * @package App\Http\Controllers\API
+ * Class CotacaoCruzeiroController.
  */
-
 class CotacaoCruzeiroAPIController extends AppBaseController
 {
-    /** @var  CotacaoCruzeiroRepository */
+    /** @var CotacaoCruzeiroRepository */
     private $cotacaoCruzeiroRepository;
 
     public function __construct(CotacaoCruzeiroRepository $cotacaoCruzeiroRepo)
@@ -114,5 +111,4 @@ class CotacaoCruzeiroAPIController extends AppBaseController
 
         return $this->sendResponse($cotacaoCruzeiros->toArray(), 'Cotacao Cruzeiro saved successfully');
     }
-
 }
