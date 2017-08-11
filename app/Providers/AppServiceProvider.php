@@ -6,8 +6,11 @@ use App\Models\ContatoAgente;
 use App\Models\ContatoCorporativo;
 use App\Models\ContatoGeral;
 use App\Models\CotacaoAereo;
+use App\Models\CotacaoCarro;
+use App\Models\CotacaoCruzeiro;
 use App\Models\CotacaoHospedagem;
 use App\Models\CotacaoPacote;
+use App\Models\CotacaoPasseio;
 use App\Models\CotacaoRodoviario;
 use App\Models\InscricaoExpedicao;
 use App\Models\InscricaoExperiencia;
@@ -15,8 +18,11 @@ use App\Observers\ContatoAgenteObserver;
 use App\Observers\ContatoCorporativoObserver;
 use App\Observers\ContatoGeralObserver;
 use App\Observers\CotacaoAereoObserver;
+use App\Observers\CotacaoCarroObserver;
+use App\Observers\CotacaoCruzeiroObserver;
 use App\Observers\CotacaoHospedagemObserver;
 use App\Observers\CotacaoPacoteObserver;
+use App\Observers\CotacaoPasseioObserver;
 use App\Observers\CotacaoRodoviarioObserver;
 use App\Observers\InscricaoExpedicaoObserver;
 use App\Observers\InscricaoExperienciaObserver;
@@ -45,6 +51,9 @@ class AppServiceProvider extends ServiceProvider
         CotacaoHospedagem::observe(CotacaoHospedagemObserver::class);
         CotacaoAereo::observe(CotacaoAereoObserver::class);
         CotacaoRodoviario::observe(CotacaoRodoviarioObserver::class);
+        CotacaoCarro::observe(CotacaoCarroObserver::class);
+        CotacaoCruzeiro::observe(CotacaoCruzeiroObserver::class);
+        CotacaoPasseio::observe(CotacaoPasseioObserver::class);
     }
 
     /**

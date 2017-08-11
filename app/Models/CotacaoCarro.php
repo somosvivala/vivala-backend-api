@@ -170,6 +170,25 @@ class CotacaoCarro extends Model
     }
 
     /**
+     * getDataRetiradaFormatadaAttribute
+     *
+     */
+    public function getDataRetiradaFormatadaAttribute()
+    {
+        return $this->data_devolucao ? $this->data_devolucao->format('d/m/Y') : '';
+    }
+
+    /**
+     * getDataDevolucaoFormatadaAttribute
+     *
+     */
+    public function getDataDevolucaoFormatadaAttribute()
+    {
+        return $this->data_devolucao ? $this->data_devolucao->format('d/m/Y') : '';
+    }
+
+
+    /**
      * Mutator para data_devolucao, modificando antes de inserir no BD.
      *
      * @param mixed $value
