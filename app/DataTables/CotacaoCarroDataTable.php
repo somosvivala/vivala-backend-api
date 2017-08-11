@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\CotacaoCarro;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class CotacaoCarroDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class CotacaoCarroDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -85,7 +83,7 @@ class CotacaoCarroDataTable extends DataTable
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
             'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
             'email' => ['name' => 'email', 'data' => 'email'],
-            'telefone' => ['name' => 'telefone', 'data' => 'telefone']
+            'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
         ];
     }
 

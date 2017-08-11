@@ -7,7 +7,7 @@ use App\Repositories\CotacaoPasseioRepository;
 trait MakeCotacaoPasseioTrait
 {
     /**
-     * Create fake instance of CotacaoPasseio and save it in database
+     * Create fake instance of CotacaoPasseio and save it in database.
      *
      * @param array $cotacaoPasseioFields
      * @return CotacaoPasseio
@@ -17,11 +17,12 @@ trait MakeCotacaoPasseioTrait
         /** @var CotacaoPasseioRepository $cotacaoPasseioRepo */
         $cotacaoPasseioRepo = App::make(CotacaoPasseioRepository::class);
         $theme = $this->fakeCotacaoPasseioData($cotacaoPasseioFields);
+
         return $cotacaoPasseioRepo->create($theme);
     }
 
     /**
-     * Get fake instance of CotacaoPasseio
+     * Get fake instance of CotacaoPasseio.
      *
      * @param array $cotacaoPasseioFields
      * @return CotacaoPasseio
@@ -32,7 +33,7 @@ trait MakeCotacaoPasseioTrait
     }
 
     /**
-     * Get fake data of CotacaoPasseio
+     * Get fake data of CotacaoPasseio.
      *
      * @param array $postFields
      * @return array
@@ -56,7 +57,7 @@ trait MakeCotacaoPasseioTrait
             'email' => $fake->word,
             'telefone' => $fake->word,
             'created_at' => $fake->word,
-            'updated_at' => $fake->word
+            'updated_at' => $fake->word,
         ], $cotacaoPasseioFields);
     }
 }
