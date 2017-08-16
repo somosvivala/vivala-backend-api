@@ -102,4 +102,38 @@ class Expedicao extends Model
     {
         return $this->morphMany(\App\Models\Foto::class, 'owner');
     }
+
+    /**
+     * Scope para filtrar as experiencias futuras
+     *
+     * @param mixed $query
+     */
+    public function scopeFuturas($query)
+    {
+        return $query->where('data_inicio', '>', \Carbon\Carbon::now());
+    }
+
+    /**
+     * Scope para filtrar as experiencias passadas
+     *
+     * @param mixed $query
+     */
+    public function scopePassadas($query)
+    {
+        return $query->where('data_inicio', '<', \Carbon\Carbon::now());
+    }
+
+    /**
+     * Acessor para determinar se as inscricoes estao abertas (Data inicio está no futuro)
+     *
+     */
+    public function getInscricoesAbertasAttribute()
+    {
+        return $this->data_inicio->isFuture();
+    }
+    
+    
+    
+
+
 }

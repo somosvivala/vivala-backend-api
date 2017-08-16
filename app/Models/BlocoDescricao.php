@@ -83,8 +83,22 @@ class BlocoDescricao extends Model
      * @var array
      */
     public static $rules = [
-
     ];
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    public $hidden = [
+        'id',
+        'owner_id',
+        'owner_type',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+    
 
     /**
      * Um bloco de descricao pode pertencer a qualquer outro model (Rel. Polimorfica).

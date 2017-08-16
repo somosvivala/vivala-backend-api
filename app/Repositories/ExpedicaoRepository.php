@@ -21,4 +21,16 @@ class ExpedicaoRepository extends BaseRepository
     {
         return Expedicao::class;
     }
+    
+    public function getEdicoesFuturas()
+    {
+        return $this->model->futuras()->get();
+    }
+
+    public function getEdicoesPassadas()
+    {
+        return $this->model->passadas()->get();
+    }
+    
+
 }
