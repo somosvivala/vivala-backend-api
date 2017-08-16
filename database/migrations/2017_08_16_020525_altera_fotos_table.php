@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AlteraFotosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('fotos', function (Blueprint $table) {
+            $table->string('cloudinary_id')->nullable();
+            $table->string('image_name')->nullable()->change();
+            $table->string('image_path')->nullable()->change();
+            $table->string('image_extension')->nullable()->change();
+            $table->integer('owner_id')->nullable()->change();
+            $table->string('owner_type')->nullable()->change();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('fotos', function (Blueprint $table) {
+            $table->string('image_name')->change();
+            $table->string('image_path')->change();
+            $table->string('image_extension')->change();
+            $table->integer('owner_id')->change();
+            $table->string('owner_type')->change();
+        });
+    }
+}

@@ -64,6 +64,7 @@ class Foto extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
+        'cloudinary_id',
         'image_name',
         'image_path',
         'image_extension',
@@ -77,6 +78,7 @@ class Foto extends Model
      * @var array
      */
     protected $casts = [
+        'cloudinary_id' => 'string',
         'image_name' => 'string',
         'image_path' => 'string',
         'image_extension' => 'string',
