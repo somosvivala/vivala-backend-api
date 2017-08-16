@@ -6,7 +6,7 @@ use League\Fractal\TransformerAbstract;
 use App\Models\Expedicao;
 
 /**
- * Class ExpedicaoTransformer
+ * Class ExpedicaoTransformer - Transformador de Expedicoes para a tela de Listagem
  * @package namespace App\Transformers;
  */
 class ExpedicaoListagemTransformer extends TransformerAbstract
