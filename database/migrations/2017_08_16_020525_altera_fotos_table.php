@@ -37,6 +37,12 @@ class AlteraFotosTable extends Migration
             });
         }
 
+        if ( Schema::hasColumn('fotos', 'cloudinary_id') ) {
+            Schema::table('fotos', function (Blueprint $table) {
+                $table->dropColumn('cloudinary_id')->nullable();
+            });
+        }
+        
         Schema::table('fotos', function (Blueprint $table) {
             $table->string('image_name')->change();
             $table->string('image_path')->change();
