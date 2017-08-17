@@ -104,6 +104,15 @@ class Expedicao extends Model
     }
 
     /**
+     * Uma Expedicao possui varios videos.
+     */
+    public function videos()
+    {
+        return $this->morphMany(\App\Models\Video::class, 'owner');
+    }
+    
+
+    /**
      * Scope para filtrar as experiencias futuras
      *
      * @param mixed $query
@@ -130,6 +139,36 @@ class Expedicao extends Model
     public function getInscricoesAbertasAttribute()
     {
         return $this->data_inicio->isFuture();
+    }
+    
+    
+    /**
+     * Acessor para pegar todas as medias do slider na ordem correta
+     *
+     */
+    public function getMediasSliderAttribute()
+    {
+        $fotos = $this->fotos;
+        $videos = $this->videos;
+
+        $medias = [];
+        
+        $fotos->each( function ($Media) use (&$medias) {
+            $Media->type = 'photo';
+            $Media->code = $Media->cloudinary_id;
+            unset($Media->cloudinary_id);
+
+            $medias[] = $Media;
+        });
+
+        $videos->each( function ($Media) use (&$medias) {
+            $Media->type = 'video';
+            $Media->code = $Media->partial_url;
+            unset($Media->partial_url);
+            $medias[] = $Media;
+        });
+
+        return collect($medias)->sortBy('ordem')->all();
     }
     
     

@@ -95,6 +95,34 @@ class Foto extends Model
 
     ];
 
+    public $hidden = [
+        'id',
+        'url',
+        'created_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+        'image_name',
+        'image_path',
+        'image_extension',
+        'owner_id',
+        'owner_type',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['type'];
+
+
+    public function getTypeAttribute() {
+        return "photo";
+    }
+    
+    
+
     /**
      * Binding Model Events.
      *

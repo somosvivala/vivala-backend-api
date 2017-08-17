@@ -23,7 +23,7 @@ class ExpedicaoTransformer extends TransformerAbstract
         return [
             "titulo" => $model->titulo,
             "inscricoes_abertas" => $model->inscricoesAbertas,
-            "fotos_slider" => $model->fotos->pluck(['cloudinary_id'])->all(),
+            "itens_slider" => $model->mediasSlider,
             "descricoes" => $model->blocosDescricao->all(),
         ];
     }

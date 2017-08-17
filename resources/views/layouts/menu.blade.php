@@ -70,3 +70,8 @@
 </li>
 
 
+
+<li class="{{ Request::is('videos*') ? 'active' : '' }}">
+    <a href="{!! route('videos.index') !!}"><i class="fa fa-edit"></i><span>Videos</span></a>
+</li>
+

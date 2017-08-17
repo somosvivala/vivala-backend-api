@@ -14,6 +14,7 @@ class AlteraFotosTable extends Migration
     public function up()
     {
         Schema::table('fotos', function (Blueprint $table) {
+            $table->integer('ordem')->nullable();
             $table->string('cloudinary_id')->nullable();
             $table->string('image_name')->nullable()->change();
             $table->string('image_path')->nullable()->change();
@@ -30,6 +31,12 @@ class AlteraFotosTable extends Migration
      */
     public function down()
     {
+        if ( Schema::hasColumn('fotos', 'ordem') ) {
+            Schema::table('fotos', function (Blueprint $table) {
+                $table->dropColumn('ordem')->nullable();
+            });
+        }
+
         Schema::table('fotos', function (Blueprint $table) {
             $table->string('image_name')->change();
             $table->string('image_path')->change();
