@@ -64,6 +64,7 @@ class Foto extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
+        'ordem',
         'cloudinary_id',
         'image_name',
         'image_path',
