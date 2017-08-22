@@ -75,3 +75,8 @@
     <a href="{!! route('videos.index') !!}"><i class="fa fa-edit"></i><span>Videos</span></a>
 </li>
 
+
+<li class="{{ Request::is('agentes*') ? 'active' : '' }}">
+    <a href="{!! route('agentes.index') !!}"><i class="fa fa-edit"></i><span>Agentes</span></a>
+</li>
+

@@ -99,4 +99,6 @@ class Experiencia extends Model
     public static $rules = [
 
     ];
+
+    
 }

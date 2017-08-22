@@ -99,5 +99,4 @@ Route::resource('cotacaoSeguros', 'CotacaoSeguroController');
 
 
 Route::resource('videos', 'VideoController');
-
-Route::resource('videos', 'VideoController');
+Route::resource('agentes', 'AgenteController');

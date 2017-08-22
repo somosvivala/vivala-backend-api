@@ -1,0 +1,55 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "nome",
+        "dbType": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "cidade",
+        "dbType": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "estado",
+        "dbType": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "destaque",
+        "dbType": "boolean:default,false",
+        "htmlType": "radio,Sim:1,Não:0"
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]
