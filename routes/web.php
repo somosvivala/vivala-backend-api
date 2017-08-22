@@ -59,8 +59,6 @@ Route::get('/exemplo-email-cotacao-seguro', function () {
     return view('emails.cotacao-seguro')->with('cotacao', App\Models\CotacaoSeguro::latest()->first());
 });
 
-
-
 //Newsletter
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth']);
 
@@ -96,7 +94,6 @@ Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController');
 Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController');
 Route::resource('cotacaoPasseios', 'CotacaoPasseioController');
 Route::resource('cotacaoSeguros', 'CotacaoSeguroController');
-
 
 Route::resource('videos', 'VideoController');
 Route::resource('agentes', 'AgenteController');

@@ -60,15 +60,13 @@ class Video extends Model
     use SoftDeletes;
 
     public $table = 'videos';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'ordem', 'nome', 'url', 'partial_url',
         'owner_id',
-        'owner_type'
+        'owner_type',
     ];
 
     /**
@@ -81,16 +79,16 @@ class Video extends Model
         'url' => 'string',
         'partial_url' => 'string',
         'owner_id' => 'integer',
-        'owner_type' => 'string'
+        'owner_type' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     public $hidden = [
@@ -112,14 +110,14 @@ class Video extends Model
      */
     protected $appends = ['type'];
 
-
-    public function getTypeAttribute() {
-        return "video";
+    public function getTypeAttribute()
+    {
+        return 'video';
     }
-    
+
     /**
-     * Relação polimorfica para que um video 
-     * possa pertencer a um mais de 1 tipo de entidade na mesma relacao
+     * Relação polimorfica para que um video
+     * possa pertencer a um mais de 1 tipo de entidade na mesma relacao.
      */
     public function owner()
     {

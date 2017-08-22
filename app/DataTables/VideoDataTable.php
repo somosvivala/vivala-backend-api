@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\Video;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class VideoDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class VideoDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 
@@ -76,7 +74,7 @@ class VideoDataTable extends DataTable
             'url' => ['name' => 'url', 'data' => 'url'],
             'partial_url' => ['name' => 'partial_url', 'data' => 'partial_url'],
             'owner_id' => ['name' => 'owner_id', 'data' => 'owner_id'],
-            'owner_type' => ['name' => 'owner_type', 'data' => 'owner_type']
+            'owner_type' => ['name' => 'owner_type', 'data' => 'owner_type'],
         ];
     }
 

@@ -2,18 +2,16 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use App\Models\Expedicao;
+use League\Fractal\TransformerAbstract;
 
 /**
- * Class ExpedicaoTransformer - Transformador de Expedicoes para a tela de Listagem
- * @package namespace App\Transformers;
+ * Class ExpedicaoTransformer - Transformador de Expedicoes para a tela de Listagem.
  */
 class ExpedicaoListagemTransformer extends TransformerAbstract
 {
-
     /**
-     * Transform the \Expedicao entity
+     * Transform the \Expedicao entity.
      * @param \Expedicao $model
      *
      * @return array
@@ -21,10 +19,10 @@ class ExpedicaoListagemTransformer extends TransformerAbstract
     public function transform(Expedicao $model)
     {
         return [
-            "id" => $model->id,
-            "titulo" => $model->titulo,
-            "foto" => $model->mediaListagem ? $model->mediaListagem->cloudinary_id : null,
-            "descricao" => $model->descricao_listagem,
+            'id' => $model->id,
+            'titulo' => $model->titulo,
+            'foto' => $model->mediaListagem ? $model->mediaListagem->cloudinary_id : null,
+            'descricao' => $model->descricao_listagem,
         ];
     }
 }

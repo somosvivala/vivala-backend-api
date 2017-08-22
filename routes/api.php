@@ -79,14 +79,9 @@ Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', 
     'except' => ['update', 'destroy', 'edit', 'create', 'show'],
 ]);
 
-
-/**
+/*
  * Rotas para conteudo dinamico
  */
 Route::get('conteudo/expedicoes', 'ExpedicoesAPIController@getListagem');
 Route::get('conteudo/expedicoes/{id}', 'ExpedicoesAPIController@getInterna');
-
 Route::get('conteudo/agentes', 'AgentesAPIController@getListagem');
-
-
-

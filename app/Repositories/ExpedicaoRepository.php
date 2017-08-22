@@ -21,9 +21,9 @@ class ExpedicaoRepository extends BaseRepository
     {
         return Expedicao::class;
     }
-    
+
     /**
-     * Metodo para retornar as edicoes futuras das expedicoes
+     * Metodo para retornar as edicoes futuras das expedicoes.
      *
      * @return App\Models\Expedicao
      */
@@ -33,7 +33,7 @@ class ExpedicaoRepository extends BaseRepository
     }
 
     /**
-     * Metodo para retornar as edicoes passadas das expedicoes
+     * Metodo para retornar as edicoes passadas das expedicoes.
      *
      * @return App\Models\Expedicao
      */
@@ -41,6 +41,4 @@ class ExpedicaoRepository extends BaseRepository
     {
         return $this->model->passadas()->get();
     }
-    
-
 }
