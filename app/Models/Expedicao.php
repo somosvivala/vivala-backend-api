@@ -110,10 +110,9 @@ class Expedicao extends Model
     {
         return $this->morphMany(\App\Models\Video::class, 'owner');
     }
-    
 
     /**
-     * Scope para filtrar as experiencias futuras
+     * Scope para filtrar as experiencias futuras.
      *
      * @param mixed $query
      */
@@ -123,7 +122,7 @@ class Expedicao extends Model
     }
 
     /**
-     * Scope para filtrar as experiencias passadas
+     * Scope para filtrar as experiencias passadas.
      *
      * @param mixed $query
      */
@@ -133,18 +132,15 @@ class Expedicao extends Model
     }
 
     /**
-     * Acessor para determinar se as inscricoes estao abertas (Data inicio está no futuro)
-     *
+     * Acessor para determinar se as inscricoes estao abertas (Data inicio está no futuro).
      */
     public function getInscricoesAbertasAttribute()
     {
         return $this->data_inicio->isFuture();
     }
-    
-    
+
     /**
-     * Acessor para pegar todas as medias do slider na ordem correta
-     *
+     * Acessor para pegar todas as medias do slider na ordem correta.
      */
     public function getMediasSliderAttribute()
     {
@@ -152,8 +148,8 @@ class Expedicao extends Model
         $videos = $this->videos;
 
         $medias = [];
-        
-        $fotos->each( function ($Media) use (&$medias) {
+
+        $fotos->each(function ($Media) use (&$medias) {
             $Media->type = 'photo';
             $Media->code = $Media->cloudinary_id;
             unset($Media->cloudinary_id);
@@ -161,7 +157,7 @@ class Expedicao extends Model
             $medias[] = $Media;
         });
 
-        $videos->each( function ($Media) use (&$medias) {
+        $videos->each(function ($Media) use (&$medias) {
             $Media->type = 'video';
             $Media->code = $Media->partial_url;
             unset($Media->partial_url);
@@ -170,9 +166,4 @@ class Expedicao extends Model
 
         return collect($medias)->sortBy('ordem')->all();
     }
-    
-    
-    
-
-
 }

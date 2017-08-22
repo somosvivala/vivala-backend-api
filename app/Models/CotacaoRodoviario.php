@@ -160,7 +160,6 @@ class CotacaoRodoviario extends Model
         'telefone' => 'required',
     ];
 
-
     /**
      * Mutator para data_ida, modificando antes de inserir no BD.
      *
@@ -182,7 +181,6 @@ class CotacaoRodoviario extends Model
         $cb = new \Carbon\Carbon($value);
         $this->attributes['data_volta'] = $cb->format('Y-m-d');
     }
-
 
     /**
      * getDataIdaFormatadaAttribute.
@@ -223,6 +221,4 @@ class CotacaoRodoviario extends Model
     {
         return $this->sem_volta ? 'Sim' : 'Não';
     }
-    
-
 }

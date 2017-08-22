@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Flash;
+use Response;
 use App\DataTables\VideoDataTable;
-use App\Http\Requests;
+use App\Repositories\VideoRepository;
 use App\Http\Requests\CreateVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
-use App\Repositories\VideoRepository;
-use Flash;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 class VideoController extends AppBaseController
 {
-    /** @var  VideoRepository */
+    /** @var VideoRepository */
     private $videoRepository;
 
     public function __construct(VideoRepository $videoRepo)

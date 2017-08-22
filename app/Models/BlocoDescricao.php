@@ -98,7 +98,6 @@ class BlocoDescricao extends Model
         'updated_at',
         'deleted_at',
     ];
-    
 
     /**
      * Um bloco de descricao pode pertencer a qualquer outro model (Rel. Polimorfica).

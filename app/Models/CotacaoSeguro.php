@@ -163,18 +163,17 @@ class CotacaoSeguro extends Model
     public function setDatasNascimentoSeguroViagemAttribute($value)
     {
         $arrayNovo = null;
-        if ( is_array($value) ) {
+        if (is_array($value)) {
 
             //Formatando as datas do array antes de implodir em uma string
-            $arrayNovo = array_map(function($item) {
+            $arrayNovo = array_map(function ($item) {
                 return ( new \Carbon\Carbon($item) )->format('d/m/Y');
             }, $value);
-        }   
-
-        if ( $arrayNovo ) {
-            $valorFinal = is_array($arrayNovo) ? implode(', ', $arrayNovo) : $value;
         }
-        else {
+
+        if ($arrayNovo) {
+            $valorFinal = is_array($arrayNovo) ? implode(', ', $arrayNovo) : $value;
+        } else {
             $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         }
 
@@ -201,9 +200,8 @@ class CotacaoSeguro extends Model
         return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
     }
 
-
     /**
-     * getEnvolveEsportesRadicaisAttribute
+     * getEnvolveEsportesRadicaisAttribute.
      *
      * @return string
      */
@@ -211,5 +209,4 @@ class CotacaoSeguro extends Model
     {
         return $this->esportes_radicais ? 'Sim' : 'Não';
     }
-    
 }
