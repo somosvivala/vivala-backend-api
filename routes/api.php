@@ -85,6 +85,5 @@ Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', 
  */
 Route::get('conteudo/expedicoes', 'ExpedicoesAPIController@getListagem');
 Route::get('conteudo/expedicoes/{id}', 'ExpedicoesAPIController@getInterna');
-Route::get('conteudo/experiencias/{id}', 'ExperienciasAPIController@getInterna');
 
 

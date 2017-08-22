@@ -66,10 +66,7 @@ class Video extends Model
 
 
     public $fillable = [
-        'ordem',
-        'nome',
-        'url',
-        'partial_url',
+        'ordem', 'nome', 'url', 'partial_url',
         'owner_id',
         'owner_type'
     ];
