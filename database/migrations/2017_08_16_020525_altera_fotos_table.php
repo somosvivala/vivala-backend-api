@@ -31,18 +31,18 @@ class AlteraFotosTable extends Migration
      */
     public function down()
     {
-        if ( Schema::hasColumn('fotos', 'ordem') ) {
+        if (Schema::hasColumn('fotos', 'ordem')) {
             Schema::table('fotos', function (Blueprint $table) {
                 $table->dropColumn('ordem')->nullable();
             });
         }
 
-        if ( Schema::hasColumn('fotos', 'cloudinary_id') ) {
+        if (Schema::hasColumn('fotos', 'cloudinary_id')) {
             Schema::table('fotos', function (Blueprint $table) {
                 $table->dropColumn('cloudinary_id')->nullable();
             });
         }
-        
+
         Schema::table('fotos', function (Blueprint $table) {
             $table->string('image_name')->change();
             $table->string('image_path')->change();

@@ -117,12 +117,10 @@ class Foto extends Model
      */
     protected $appends = ['type'];
 
-
-    public function getTypeAttribute() {
-        return "photo";
+    public function getTypeAttribute()
+    {
+        return 'photo';
     }
-    
-    
 
     /**
      * Binding Model Events.

@@ -2,10 +2,9 @@
 
 namespace App\Mail;
 
-use App\Models\CotacaoRodoviario;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Models\CotacaoRodoviario;
 use Illuminate\Queue\SerializesModels;
 
 class PedidoCotacaoRodoviario extends Mailable

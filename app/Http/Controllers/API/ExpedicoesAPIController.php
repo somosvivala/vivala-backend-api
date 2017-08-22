@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\AppBaseController;
-use App\Http\Controllers\Controller;
 use App\Models\Expedicao;
 use App\Repositories\ExpedicaoRepository;
-use Illuminate\Http\Request;
+use App\Http\Controllers\AppBaseController;
 
 class ExpedicoesAPIController extends AppBaseController
 {
     /**
-     * Instancia do repositorio de expedicoes, contendo as operacoes com o BD 
+     * Instancia do repositorio de expedicoes, contendo as operacoes com o BD.
      *
-     * @var ExpedicaoRepository 
+     * @var ExpedicaoRepository
      */
     private $expedicaoRepository;
 
     /**
-     * Construtor recebendo instancia do repositorio
+     * Construtor recebendo instancia do repositorio.
      *
      * @param ExpedicaoRepository $expedicaoRepo
      */
@@ -28,11 +26,11 @@ class ExpedicoesAPIController extends AppBaseController
     }
 
     /**
-     * Metodo para retornar o JSON de uma expedicao
+     * Metodo para retornar o JSON de uma expedicao.
      *
      * @return JSON
      */
-    public function getInterna($id) 
+    public function getInterna($id)
     {
         $Expedicao = $this->expedicaoRepository->findWithoutFail($id);
 
@@ -41,16 +39,16 @@ class ExpedicoesAPIController extends AppBaseController
         }
 
         $transformer = new \App\Transformers\ExpedicaoTransformer();
+
         return $transformer->transform($Expedicao);
     }
 
-    
     /**
-     * Metodo para retornar o JSON da listagem de expedições, separando-as em edicoes futuras/passadas
+     * Metodo para retornar o JSON da listagem de expedições, separando-as em edicoes futuras/passadas.
      *
      * @return JSON
      */
-    public function getListagem() 
+    public function getListagem()
     {
         //Instanciando o transformer que conhece o formato correto das expedicoes na listagem
         $transformer = new \App\Transformers\ExpedicaoListagemTransformer();
@@ -73,7 +71,5 @@ class ExpedicoesAPIController extends AppBaseController
             'edicoes_futuras' => $futuras,
             'edicoes_passadas' => $passadas,
         ];
-        
     }
-
 }
