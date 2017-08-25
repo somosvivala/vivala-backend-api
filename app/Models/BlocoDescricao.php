@@ -106,4 +106,16 @@ class BlocoDescricao extends Model
     {
         return $this->morphTo();
     }
+
+    
+
+    /**
+     * Acessor para fazer o htmlspecialchars do editor de texto
+     *
+     * @param mixed $value
+     */
+    public function getTextoAttribute($value) 
+    {
+        return $value ? htmlspecialchars($value, ENT_QUOTES) : '';
+    }
 }

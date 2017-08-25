@@ -103,6 +103,6 @@ class Agente extends Model
      */
     public function getLocalAttribute()
     {
-        return ucwords($this->cidade . " " . $this->estado);
+        return ucwords($this->cidade . ", " . $this->estado);
     }   
 }

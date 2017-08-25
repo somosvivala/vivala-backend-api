@@ -166,4 +166,5 @@ class Expedicao extends Model
 
         return collect($medias)->sortBy('ordem')->values()->toArray();
     }
+
 }
