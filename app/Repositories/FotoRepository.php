@@ -71,9 +71,11 @@ class FotoRepository extends BaseRepository
     }
 
     /**
-     * Metodo para criar uma nova foto e retornar o id.
+     * uploadAndCreate - Guarda o arquivo no /uploads/ e cria a Foto
+     *
+     * @param mixed $request
      */
-    public function uploadFoto($request)
+    public function uploadAndCreate($request)
     {
         //Testando se o file é valido
         $file = $request->file('file');
@@ -92,6 +94,7 @@ class FotoRepository extends BaseRepository
             //Se o upload da foto ocorreu com sucesso
             if ($upload_success) {
 
+                //adicionando as informações da foto na request
                 $request->request->add([
                     'image_name' => $filename,
                     'image_path' => $destinationPath,
@@ -99,9 +102,8 @@ class FotoRepository extends BaseRepository
                 ]);
 
                 //Criando e persistindo no BD uma nova foto já associada ao user
-                $novaFoto = $this->model->make($request->all());
-
-                return dd($request->all(), $novaFoto);
+                $novaFoto = $this->model->create($request->all());
+                return $novaFoto;
 
                 // Se nao tiver funcionado, retornar false no success para o js se manisfestar
             } else {
@@ -112,5 +114,23 @@ class FotoRepository extends BaseRepository
         }
     }
 
+    /**
+     * sendToCloudinary
+     *
+     * @param mixed $fullPath
+     * @param mixed $publicId
+     */
+    public function sendToCloudinary($foto, $publicId)
+    {
 
+        $retornoCloudinary = \Cloudder::upload($foto->fullPath, $publicId);
+        
+        $foto->update([
+            'cloudinary_id' => \Cloudder::get()
+        ]);
+
+       return  ;
+
+
+    }
 }

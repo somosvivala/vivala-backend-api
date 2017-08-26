@@ -178,6 +178,8 @@ return [
         Yajra\Datatables\ButtonsServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
 
+        JD\Cloudder\CloudderServiceProvider::class,
+
         //Lib para lidar com imagens
         Intervention\Image\ImageServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
@@ -190,6 +192,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
     ],
 
     /*
@@ -242,6 +245,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Cloudder' => 'JD\Cloudder\Facades\Cloudder'
     ],
 
 ];

@@ -22,8 +22,8 @@
             @include('dropzone.modal', [
             'modal_id' => 'modal-blocosDescricao',
             'formUrl' => 'photo-upload',
-            'owner_id' => 'idx',
-            'owner_type' => 'App\Teasda'
+            'owner_id' => '1',
+            'owner_type' => 'App\Models\Agente'
             ])
         </div>
 

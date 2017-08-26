@@ -155,7 +155,8 @@ class FotoController extends AppBaseController
     public function teste(Request $request) 
     {
 
-        return $this->fotoRepository->uploadFoto($request);
+        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+        $this->fotoRepository->sendToCloudinary($novaFoto, 'publicIDXYZ');
 
     }
 

@@ -162,6 +162,15 @@ class Foto extends Model
         return url('/uploads/'.$this->image_name.'.'.$this->image_extension);
     }
 
+    /**
+     * Definindo um acessor para o fullpath da foto.
+     */
+    public function getFullPathAttribute()
+    {
+        return $this->image_path.$this->image_name.'.'.$this->image_extension;
+    }
+    
+
     public function destaque()
     {
         return $this->morphOne(App\Models\Expedicao::class, 'media_listagem');
