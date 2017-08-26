@@ -151,4 +151,12 @@ class FotoController extends AppBaseController
 
         return redirect(route('fotos.index'));
     }
+
+    public function teste(Request $request) 
+    {
+
+        return $this->fotoRepository->uploadFoto($request);
+
+    }
+
 }

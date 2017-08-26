@@ -70,7 +70,7 @@ class CotacaoRodoviarioDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'origem' => ['name' => 'origem', 'data' => 'origem'],
+            'origem' => ['name' => 'origem',  'visible' => false, 'data' => 'origem'],
             'destino' => ['name' => 'destino', 'data' => 'destino'],
             'data_ida' => ['name' => 'data_ida', 'data' => 'data_ida'],
             'data_volta' => ['name' => 'data_volta', 'data' => 'data_volta'],
@@ -80,12 +80,12 @@ class CotacaoRodoviarioDataTable extends DataTable
             'hora_ida' => ['name' => 'hora_ida', 'data' => 'hora_ida'],
             'hora_volta' => ['name' => 'hora_volta', 'data' => 'hora_volta'],
             'companias_preferenciais' => ['name' => 'companias_preferenciais', 'data' => 'companias_preferenciais'],
-            'duracao_maxima' => ['name' => 'duracao_maxima', 'data' => 'duracao_maxima'],
-            'solicitacoes' => ['name' => 'solicitacoes', 'data' => 'solicitacoes'],
-            'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
-            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
-            'email' => ['name' => 'email', 'data' => 'email'],
-            'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
+            'duracao_maxima' => ['name' => 'duracao_maxima',  'visibility' => 'hidden', 'data' => 'duracao_maxima'],
+            'solicitacoes' => ['name' => 'solicitacoes',  'visibility' => 'hidden', 'data' => 'solicitacoes'],
+            'nome_completo' => ['name' => 'nome_completo',  'visibility' => 'hidden', 'data' => 'nome_completo'],
+            'nome_preferencia' => ['name' => 'nome_preferencia',  'visibility' => 'hidden', 'data' => 'nome_preferencia'],
+            'email' => ['name' => 'email',  'visibility' => 'hidden', 'data' => 'email'],
+            'telefone' => ['name' => 'telefone', 'visibility' => 'hidden',  'data' => 'telefone'],
         ];
     }
 

@@ -6,7 +6,7 @@
                     <span aria-hidden="true">×</span></button>
                 <h4 class="modal-title">@yield('modal-title')</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="min-height:200px; height:100%">
                 @yield('modal-body')
             </div>
             <div class="modal-footer">

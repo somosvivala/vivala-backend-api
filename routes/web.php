@@ -97,3 +97,6 @@ Route::resource('cotacaoSeguros', 'CotacaoSeguroController');
 
 Route::resource('videos', 'VideoController');
 Route::resource('agentes', 'AgenteController');
+
+
+Route::post('photo-upload', 'FotoController@teste');

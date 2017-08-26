@@ -1,0 +1,13 @@
+.container-area-upload {
+  margin: auto;
+  width: 80%;
+}
+
+.container-area-upload .dropzone {
+  background: #cdcdcd;
+  min-height: 150px;
+  border: 5px dashed rgba(255, 129, 0, 0.69);
+  text-align: center;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlc291cmNlcy9hc3NldHMvc2Fzcy90ZXNzZXJhY3Quc2NzcyJdLCJzb3VyY2VzQ29udGVudCI6WyJcbi5jb250YWluZXItYXJlYS11cGxvYWQge1xuICAgIG1hcmdpbjogYXV0bztcbiAgICB3aWR0aDogODAlO1xuXG4gICAgLmRyb3B6b25lIHtcbiAgICAgICAgYmFja2dyb3VuZDogI2NkY2RjZDtcblxuICAgICAgICBtaW4taGVpZ2h0OiAxNTBweDtcbiAgICAgICAgYm9yZGVyOiA1cHggZGFzaGVkIHJnYmEoMjU1LCAxMjksIDAsIDAuNjkpO1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgfVxufVxuXG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsQUFBQSxzQkFBc0IsQ0FBQztFQUNuQixNQUFNLEVBQUUsSUFBSTtFQUNaLEtBQUssRUFBRSxHQUFHO0NBU2I7O0FBWEQsQUFJSSxzQkFKa0IsQ0FJbEIsU0FBUyxDQUFDO0VBQ04sVUFBVSxFQUFFLE9BQU87RUFFbkIsVUFBVSxFQUFFLEtBQUs7RUFDakIsTUFBTSxFQUFFLEdBQUcsQ0FBQyxNQUFNLENBQUMsdUJBQXVCO0VBQzFDLFVBQVUsRUFBRSxNQUFNO0NBQ3JCIn0= */

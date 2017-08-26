@@ -1,0 +1,14 @@
+
+.container-area-upload {
+    margin: auto;
+    width: 80%;
+
+    .dropzone {
+        background: #cdcdcd;
+
+        min-height: 150px;
+        border: 5px dashed rgba(255, 129, 0, 0.69);
+        text-align: center;
+    }
+}
+

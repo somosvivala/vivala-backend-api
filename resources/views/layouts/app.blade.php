@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">
     @yield('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="skin-blue sidebar-mini">
@@ -113,14 +114,15 @@
 </div>
 
 
+<script src="/js/app.js"></script>
+
 <!-- jQuery 3.1.1 -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
 <!-- AdminLTE App -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
+
 
 @yield('scripts')
 </body>

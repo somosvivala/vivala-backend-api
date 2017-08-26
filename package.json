@@ -17,5 +17,9 @@
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
+  },
+  "dependencies": {
+    "cropper": "^3.0.0-rc.3",
+    "cropperjs": "^1.0.0-rc.3"
   }
 }

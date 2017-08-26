@@ -11,6 +11,13 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js([        
+        'resources/assets/js/app.js',
+        'node_modules/cropper/dist/cropper.min.js'
+    ], 'public/js')
 
+   .styles('resources/assets/css/dropzone.css', 'public/css/dropzone.css')
+   .styles('node_modules/cropper/dist/cropper.css', 'public/css/cropper.css')
+
+   .sass( 'resources/assets/sass/app.scss', 'public/css/')
+   .sass( 'resources/assets/sass/tesseract.scss', 'public/css/');
