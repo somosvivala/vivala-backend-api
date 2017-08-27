@@ -18,3 +18,4 @@ public/uploads
 public/uploads/*
 public/css/*
 public/js/*
+.*.php.swo
