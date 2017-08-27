@@ -76,7 +76,7 @@ class Expedicao extends Model
      */
     public function inscricoes()
     {
-        return $this->hasMany(App\Models\InscricaoExpedicao::class);
+        return $this->hasMany(\App\Models\InscricaoExpedicao::class);
     }
 
     /**

@@ -77,7 +77,7 @@ class BlocoDescricaoController extends AppBaseController
         if (empty($blocoDescricao)) {
             Flash::error('Bloco Descricao not found');
 
-            return redirect(route('blocoDescricaos.index'));
+            return redirect()->back();
         }
 
         return view('bloco_descricaos.show')->with('blocoDescricao', $blocoDescricao);
@@ -97,7 +97,7 @@ class BlocoDescricaoController extends AppBaseController
         if (empty($blocoDescricao)) {
             Flash::error('Bloco Descricao not found');
 
-            return redirect(route('blocoDescricaos.index'));
+            return redirect()->back();
         }
 
         return view('bloco_descricaos.edit')->with('blocoDescricao', $blocoDescricao);
@@ -118,14 +118,14 @@ class BlocoDescricaoController extends AppBaseController
         if (empty($blocoDescricao)) {
             Flash::error('Bloco Descricao not found');
 
-            return redirect(route('blocoDescricaos.index'));
+            return redirect()->back();
         }
 
         $blocoDescricao = $this->blocoDescricaoRepository->update($request->all(), $id);
 
         Flash::success('Bloco Descricao updated successfully.');
 
-        return redirect(route('blocoDescricaos.index'));
+        return redirect()->back();
     }
 
     /**
@@ -142,13 +142,13 @@ class BlocoDescricaoController extends AppBaseController
         if (empty($blocoDescricao)) {
             Flash::error('Bloco Descricao not found');
 
-            return redirect(route('blocoDescricaos.index'));
+            return redirect()->back();
         }
 
         $this->blocoDescricaoRepository->delete($id);
 
         Flash::success('Bloco Descricao deleted successfully.');
 
-        return redirect(route('blocoDescricaos.index'));
+        return redirect()->back();
     }
 }

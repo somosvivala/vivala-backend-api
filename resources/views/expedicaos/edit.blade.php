@@ -101,11 +101,9 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="tab_inscricoes">
-
+                        <h3>Numero de Inscritos: {{ $expedicao->inscricoes()->count() }}</h3>
                         <hr>
-                         {{-- TODO: Arranjar maneira de usar a datatable na aba ou outra abordagem
-                            @include('inscricao_expedicaos.table') 
-                         --}}
+                        <a class="btn btn-primary" href="/expedicaos/{{$expedicao->id}}/inscricoes">Ver tabela de Inscritos &nbsp; <i class="fa fa-eye"></i></a>
                     </div>
 
 

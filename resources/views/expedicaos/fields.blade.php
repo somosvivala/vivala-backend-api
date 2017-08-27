@@ -13,13 +13,13 @@
 <!-- Data Inicio Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('data_inicio', 'Data Inicio:') !!}
-    {!! Form::date('data_inicio', null, ['class' => 'form-control']) !!}
+    {!! Form::date('data_inicio', isset($expedicao) ? $expedicao->data_inicio : '' , ['class' => 'form-control']) !!}
 </div>
 
 <!-- Data Fim Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('data_fim', 'Data Fim:') !!}
-    {!! Form::date('data_fim', null, ['class' => 'form-control']) !!}
+    {!! Form::date('data_fim', isset($expedicao) ? $expedicao->data_fim : '' , ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
