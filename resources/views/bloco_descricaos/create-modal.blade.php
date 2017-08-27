@@ -1,6 +1,6 @@
 @extends('layouts.partials.modal')
 
-@section('modal-id', $modal_id)
+@section('modal-id') id='{{$modal_id}}' @overwrite
 
 @section('modal-title', 'Criando um bloco de descrição')
 

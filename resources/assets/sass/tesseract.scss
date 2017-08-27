@@ -43,9 +43,10 @@ ul#listagem-medias-slider-exp {
     text-align: center;
     
     li.media-item {
+        margin-bottom: 1rem;
         min-height: 100px;
         .img-media-slider, .video-media-slider {
-            max-width:300px;
+            max-width:100%;
             max-height:120px;
         }
     }

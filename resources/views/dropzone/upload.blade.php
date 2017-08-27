@@ -7,6 +7,10 @@
             {!! Form::hidden('owner_type', isset($owner_type) ? $owner_type : '') !!}
         </div>
 
+        @if ( isset($ordem) )
+            {!! Form::hidden('ordem', $ordem) !!}
+        @endif
+
         <div class="fallback">
             <input name="file" type="file" multiple />
         </div>

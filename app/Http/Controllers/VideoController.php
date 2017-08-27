@@ -49,13 +49,16 @@ class VideoController extends AppBaseController
      */
     public function store(CreateVideoRequest $request)
     {
+        $ytURL = 'https://youtu.be/'.$request->partial_url; 
+        $request->request->add(['url' => $ytURL]);
+
         $input = $request->all();
 
         $video = $this->videoRepository->create($input);
 
         Flash::success('Video saved successfully.');
 
-        return redirect(route('videos.index'));
+        return redirect()->back();
     }
 
     /**

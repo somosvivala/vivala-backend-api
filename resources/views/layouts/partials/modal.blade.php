@@ -1,4 +1,4 @@
-<div class="modal fade" id="@yield('modal-id')" style="display: none;">
+<div class="modal fade" @yield('modal-id') style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

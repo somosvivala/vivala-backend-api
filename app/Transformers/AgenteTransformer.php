@@ -23,7 +23,7 @@ class AgenteTransformer extends TransformerAbstract
         return [
             "nome" => $model->nome,
             "local" => $model->local,
-            "foto" => $model->foto->cloudinary_id
+            "foto" => $model->foto ? $model->foto->cloudinary_id : null
         ];
     }
 }
