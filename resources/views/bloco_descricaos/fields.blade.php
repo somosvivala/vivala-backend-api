@@ -1,5 +1,5 @@
 <!-- Titulo Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-xs-12">
     {!! Form::label('titulo', 'Titulo:') !!}
     {!! Form::text('titulo', null, ['class' => 'form-control']) !!}
 </div>

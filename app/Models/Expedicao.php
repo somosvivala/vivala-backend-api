@@ -167,4 +167,27 @@ class Expedicao extends Model
         return collect($medias)->sortBy('ordem')->values()->toArray();
     }
 
+
+
+    /**
+     * Acessor para pegar o titulo transformado sem espacos e com _
+     *
+     * @return string
+     */
+    public function getTituloCloudinaryAttribute()
+    {
+        $semAcentos = $this->tiraAcentos($this->titulo);
+        return preg_replace("/[ ,#]/", "_", strtolower($semAcentos));
+    }   
+
+    /**
+     * tiraAcentos
+     *
+     * @param mixed $string
+     */
+    public function tiraAcentos($string) 
+    { 
+        return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$string);
+    }
+
 }

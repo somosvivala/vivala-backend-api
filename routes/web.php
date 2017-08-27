@@ -99,7 +99,10 @@ Route::resource('videos', 'VideoController', ['middleware' => 'auth']);
 Route::resource('agentes', 'AgenteController', ['middleware' => 'auth']);
 
 
-Route::post('photo-upload', 'FotoController@teste')->middleware('auth');
 Route::get('agentes/{id}/foto', 'AgenteController@getFotoAgente')->middleware('auth');
 Route::post('agentes/{id}/foto', 'AgenteController@postFotoAgente')->middleware('auth');
 
+Route::get('expedicaos/{id}/foto-listagem', 'ExpedicaoController@getFotoListagem')->middleware('auth');
+Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListagem')->middleware('auth');
+
+Route::get('expedicaos/{id}/create-descricoes', 'ExpedicaoController@getCreateDescricoes')->middleware('auth');

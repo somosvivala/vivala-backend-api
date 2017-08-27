@@ -154,6 +154,11 @@ class AgenteController extends AppBaseController
     }
 
     
+    /**
+     * Serve a view de upload de foto de agente
+     *
+     * @param mixed $id
+     */
     public function getFotoAgente($id)
     {
         $agente = $this->agenteRepository->findWithoutFail($id);

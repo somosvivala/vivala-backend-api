@@ -60,7 +60,7 @@ class BlocoDescricaoController extends AppBaseController
 
         Flash::success('Bloco Descricao saved successfully.');
 
-        return redirect(route('blocoDescricaos.index'));
+        return redirect()->back();
     }
 
     /**

@@ -114,6 +114,17 @@ class Agente extends Model
      */
     public function getNomeCloudinaryAttribute()
     {
-        return preg_replace("/ /", "_", strtolower($this->nome));
+        $semAcentos = $this->tiraAcentos($this->nome);
+        return preg_replace("/ /", "_", strtolower($semAcentos));
     }   
+
+    /**
+     * tiraAcentos
+     *
+     * @param mixed $string
+     */
+    public function tiraAcentos($string) 
+    { 
+        return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$string);
+    }
 }
