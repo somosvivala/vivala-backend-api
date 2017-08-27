@@ -89,16 +89,17 @@ Route::resource('contatoGeral', 'ContatoGeralController', ['middleware' => 'auth
 Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middleware' => 'auth']);
 Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth']);
 Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth']);
-Route::resource('cotacaoCarros', 'CotacaoCarroController');
-Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController');
-Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController');
-Route::resource('cotacaoPasseios', 'CotacaoPasseioController');
-Route::resource('cotacaoSeguros', 'CotacaoSeguroController');
+Route::resource('cotacaoCarros', 'CotacaoCarroController', ['middleware' => 'auth']);
+Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController', ['middleware' => 'auth']);
+Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController', ['middleware' => 'auth']);
+Route::resource('cotacaoPasseios', 'CotacaoPasseioController', ['middleware' => 'auth']);
+Route::resource('cotacaoSeguros', 'CotacaoSeguroController', ['middleware' => 'auth']);
 
-Route::resource('videos', 'VideoController');
-Route::resource('agentes', 'AgenteController');
+Route::resource('videos', 'VideoController', ['middleware' => 'auth']);
+Route::resource('agentes', 'AgenteController', ['middleware' => 'auth']);
 
 
-Route::post('photo-upload', 'FotoController@teste');
-Route::get('agentes/{id}/foto', 'AgenteController@getFotoAgente');
-Route::post('agentes/{id}/foto', 'AgenteController@postFotoAgente');
+Route::post('photo-upload', 'FotoController@teste')->middleware('auth');
+Route::get('agentes/{id}/foto', 'AgenteController@getFotoAgente')->middleware('auth');
+Route::post('agentes/{id}/foto', 'AgenteController@postFotoAgente')->middleware('auth');
+
