@@ -6,9 +6,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Agente
-        </h1>
+        <h2>Passo 2 - Insira uma foto para o agente</h2>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')
@@ -16,8 +14,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <h2>Insira uma foto para esse agente</h2>
+                    <div class="col-xs-12 text-center mx-auto">
                         
                         @include('dropzone.upload', [
                             'formUrl' => 'agentes/'.$Agente->id.'/foto',

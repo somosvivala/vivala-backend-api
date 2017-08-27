@@ -151,13 +151,4 @@ class FotoController extends AppBaseController
 
         return redirect(route('fotos.index'));
     }
-
-    public function teste(Request $request) 
-    {
-
-        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
-        $this->fotoRepository->sendToCloudinary($novaFoto, 'publicIDXYZ');
-
-    }
-
 }

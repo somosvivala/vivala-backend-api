@@ -4,6 +4,7 @@ $(function () {
 
     var myDropzone = new Dropzone("#dropzone-container", {
         uploadMultiple: false,
+        dictDefaultMessage: "<h2>Clique ou arraste arquivos</h2> <i class='fa fa-3x fa-hand-o-down'></i>",
         init: function () {
 
             //Função executada quando o upload der certo

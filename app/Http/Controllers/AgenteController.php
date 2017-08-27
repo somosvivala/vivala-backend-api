@@ -171,7 +171,7 @@ class AgenteController extends AppBaseController
         $agente = $this->agenteRepository->findWithoutFail($id);
 
         if ( $agente->foto ) {
-            $agente->foto()->delete();
+            $agente->foto->delete();
         }
 
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
