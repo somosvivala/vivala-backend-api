@@ -12,7 +12,6 @@
             <td style="width:5%">
                 {!! Form::open(['route' => ['blocoDescricaos.destroy', $blocoDescricao->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('blocoDescricaos.edit', [$blocoDescricao->id]) !!}" class='btn btn-default btn-small'><i class="glyphicon glyphicon-pencil"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-small', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

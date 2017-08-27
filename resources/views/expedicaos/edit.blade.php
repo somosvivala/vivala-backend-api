@@ -3,7 +3,7 @@
 @section('content')
 <section class="content-header">
     <h1>
-        Expedição {{ $expedicao->titulo }}
+        Editando a Expedição
     </h1>
 </section>
 <div class="content">
@@ -50,10 +50,8 @@
 
                     </div>
                     <div class="tab-pane" id="tab_blocosDescricao">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-blocosDescricao">
-                            <i class="fa fa-plus margin-r-3"></i> &nbsp; Adicionar descrição
-                        </button>
 
+                                <a class="btn btn-primary" href="#modal-foto" data-toggle="modal" data-target="#modal-blocosDescricao">Adicionar bloco de descricao &nbsp; <i class="fa fa-file-text"></i></a>
                         <hr>
 
                         @include('bloco_descricaos.create-modal', [
@@ -65,7 +63,7 @@
                         @include('bloco_descricaos.table', ['blocoDescricaos' => $expedicao->blocosDescricao])
                     </div>
                     <div class="tab-pane" id="tab_fotoListagem">
-                        <img src="//res.cloudinary.com/vivala/image/upload/{{ $expedicao->mediaListagem->cloudinary_id }}" alt="Foto da {{ $expedicao->titulo}}">
+                        <img src="//res.cloudinary.com/vivala/image/upload/{{ $expedicao->mediaListagem ? $expedicao->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $expedicao->titulo}}">
                         <a class="btn btn-primary" href="/expedicaos/{{$expedicao->id}}/foto-listagem">Trocar Foto &nbsp; <i class="fa fa-pencil"></i></a>
 
                     </div>
