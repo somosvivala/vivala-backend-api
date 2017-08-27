@@ -17,9 +17,7 @@
                     <div class="col-xs-12 text-center mx-auto">
                         
                         @include('dropzone.upload', [
-                            'formUrl' => 'expedicaos/'.$expedicao->id.'/foto-listagem',
-                            'owner_id' => $expedicao->id,
-                            'owner_type' => get_class($expedicao)
+                            'formUrl' => 'expedicaos/'.$expedicao->id.'/foto-listagem'
                         ])
 
                     </div>

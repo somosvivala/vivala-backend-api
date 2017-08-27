@@ -1,4 +1,5 @@
 
+//DROPZONE
 .container-area-upload {
     margin: auto;
     width: 80%;
@@ -31,7 +32,23 @@
     .dz-success-mark {
         display: none;
     }
-
-
 }
+
+//MEDIAS SLIDER
+
+ul#listagem-medias-slider-exp {
+    padding-top: 2rem;
+    min-height: 120px;
+    list-style-type: none;
+    text-align: center;
+    
+    li.media-item {
+        min-height: 100px;
+        .img-media-slider, .video-media-slider {
+            max-width:300px;
+            max-height:120px;
+        }
+    }
+}
+
 

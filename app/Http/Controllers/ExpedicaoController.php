@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\ExpedicaoDataTable;
 use App\Http\Requests\CreateExpedicaoRequest;
+use App\Http\Requests\CreateFotoInternaExpRequest;
 use App\Http\Requests\CreateFotoListagemExpRequest;
 use App\Http\Requests\UpdateExpedicaoRequest;
 use App\Repositories\ExpedicaoRepository;
@@ -165,26 +166,18 @@ class ExpedicaoController extends AppBaseController
         return view('expedicaos.create_foto_listagem')->with('expedicao', $expedicao);
     }
 
-    /**
-     * Metodo para retornar a view para settar a foto da listagem da Expedicao
-     * 
-     * @param mixed $id
-     */
-    public function getCreateDescricoes($id)
-    {
-        $expedicao = $this->expedicaoRepository->findWithoutFail($id);
-        return view('expedicaos.create_descricoes')->with('expedicao', $expedicao);
-    }
 
     public function postFotoListagem(CreateFotoListagemExpRequest $request, $id)
     {
         $expedicao = $this->expedicaoRepository->findWithoutFail($id);
 
-        if ( $expedicao->foto ) {
-            $expedicao->foto->delete();
+        if ( $expedicao->mediaListagem ) {
+            $expedicao->mediaListagem->delete();
         }
 
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+
+        $expedicao->mediaListagem()->associate($novaFoto)->push();
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
         $publicId = $expedicao->tituloCloudinary ."_". $novaFoto->image_name;
@@ -206,6 +199,51 @@ class ExpedicaoController extends AppBaseController
     }
 
 
+    public function postCreateMediasInterna(CreateFotoInternaExpRequest $request, $id)
+    {
+        $expedicao = $this->expedicaoRepository->findWithoutFail($id);
+        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+
+        //Monta o public ID a partir do nome do expedicao e da timestamp da foto
+        $publicId = $expedicao->tituloCloudinary ."_". $novaFoto->image_name;
+        $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
+
+        //Se tiver enviado pro Cloudinary com sucesso
+        if ($retorno) {
+            return [
+                'success' => true,
+                'redirectURL' => "/expedicaos/$id/create-medias-interna",
+                'message' => 'Foto inserida! Recarregando...'
+            ];
+        }
+
+        else {
+            Flash::error('Erro no upload da foto!');
+            return redirect("expedicaos/$id")->with('expedicao', $expedicao);
+        }
+    }
+    
 
 
+    /**
+     * Metodo para retornar a view para criar as descricoes de uma expedicao
+     * 
+     * @param mixed $id
+     */
+    public function getCreateDescricoes($id)
+    {
+        $expedicao = $this->expedicaoRepository->findWithoutFail($id);
+        return view('expedicaos.create_descricoes')->with('expedicao', $expedicao);
+    }
+
+    /**
+     * Metodo para retornar a view para criar as fotos / videos da interna de uma expedicao
+     * 
+     * @param mixed $id
+     */
+    public function getCreateMediasInterna($id)
+    {
+        $expedicao = $this->expedicaoRepository->findWithoutFail($id);
+        return view('expedicaos.create_medias')->with('expedicao', $expedicao);
+    }
 }

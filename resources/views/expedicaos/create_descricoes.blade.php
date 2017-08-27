@@ -30,7 +30,7 @@
 
                         @include('bloco_descricaos.table', ['blocoDescricaos' => $expedicao->blocosDescricao])
 
-                        <a href="/expedicoes/{{ $expedicao->id }}/medias-slider" class="btn btn-info">
+                        <a href="/expedicaos/{{ $expedicao->id }}/create-medias-interna" class="btn btn-info">
                             Proximo <i class="fa fa-arrow-right"></i> 
                         </a>
                     </div>
