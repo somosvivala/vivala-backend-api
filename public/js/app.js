@@ -10384,18 +10384,19 @@ $(function () {
         init: function init() {
 
             //Função executada quando o upload der certo
-            this.on('success', function (filrome) {
+            this.on('success', function (data, response) {
+
                 swal({
                     type: 'success',
                     title: 'Sucesso',
-                    text: 'Foto atualizada! Recarregando..',
+                    text: response.message,
                     timer: 2000
                 });
 
                 //Redirect apos algum tempo
-                //               setTimeout( function() {
-                //                   window.location = filrome.xhr.responseURL;
-                //               }, 1800);
+                setTimeout(function () {
+                    window.location = response.redirectURL;
+                }, 1800);
             });
 
             //Função executada quando a foto for uploaded com sucesso

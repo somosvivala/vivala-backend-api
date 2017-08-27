@@ -160,17 +160,33 @@ class AgenteController extends AppBaseController
         return view('agentes.uploadfoto')->with('Agente', $agente);
     }
 
+    /**
+     * postFotoAgente - Recebe o POST da foto de Agente, deleta a ultima foto caso exista e faz o upload da nova
+     *
+     * @param CreateFotoAgenteRequest $request
+     * @param mixed $id
+     */
     public function postFotoAgente(CreateFotoAgenteRequest $request, $id)
     {
         $agente = $this->agenteRepository->findWithoutFail($id);
+
+        if ( $agente->foto ) {
+            $agente->foto()->delete();
+        }
+
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+
+        //Monta o public ID a partir do nome do agente e da timestamp da foto
         $publicId = $agente->nomeCloudinary ."_". $novaFoto->image_name;
-        
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
 
+        //Se tiver enviado pro Cloudinary com sucesso
         if ($retorno) {
-            Flash::success('Agente criado com sucesso!');
-            return redirect("agentes/$id")->with('agente', $agente);
+            return [
+                'success' => true,
+                'redirectURL' => "/agentes/$id",
+                'message' => 'Foto de Agente atualizada! Recarregando...'
+            ];
         }
 
         else {
