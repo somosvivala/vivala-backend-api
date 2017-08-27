@@ -100,3 +100,5 @@ Route::resource('agentes', 'AgenteController');
 
 
 Route::post('photo-upload', 'FotoController@teste');
+Route::get('agentes/{id}/foto', 'AgenteController@getFotoAgente');
+Route::post('agentes/{id}/foto', 'AgenteController@postFotoAgente');

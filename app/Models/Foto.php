@@ -137,7 +137,7 @@ class Foto extends Model
 
         /** Binding the delete model event to destroy the filesystem archive **/
         static::deleted(function ($photo) {
-            File::delete(public_path().'/uploads/'.$photo->image_name.'.'.$photo->image_extension);
+            \File::delete(public_path().'/uploads/'.$photo->image_name.'.'.$photo->image_extension);
         });
     }
 

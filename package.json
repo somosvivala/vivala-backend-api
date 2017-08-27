@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "cropper": "^3.0.0-rc.3",
-    "cropperjs": "^1.0.0-rc.3"
+    "cropperjs": "^1.0.0-rc.3",
+    "sweetalert2": "^6.6.9"
   }
 }

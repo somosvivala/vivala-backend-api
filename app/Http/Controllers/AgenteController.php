@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\AgenteDataTable;
+use App\Http\Controllers\AppBaseController;
 use App\Http\Requests;
 use App\Http\Requests\CreateAgenteRequest;
+use App\Http\Requests\CreateFotoAgenteRequest;
 use App\Http\Requests\UpdateAgenteRequest;
 use App\Repositories\AgenteRepository;
+use App\Repositories\FotoRepository;
 use Flash;
-use App\Http\Controllers\AppBaseController;
 use Response;
 
 class AgenteController extends AppBaseController
@@ -16,8 +18,12 @@ class AgenteController extends AppBaseController
     /** @var  AgenteRepository */
     private $agenteRepository;
 
-    public function __construct(AgenteRepository $agenteRepo)
+    /** @var  FotoRepository */
+    private $fotoRepository;
+
+    public function __construct(FotoRepository $fotoRepo, AgenteRepository $agenteRepo)
     {
+        $this->fotoRepository = $fotoRepo;
         $this->agenteRepository = $agenteRepo;
     }
 
@@ -55,9 +61,7 @@ class AgenteController extends AppBaseController
 
         $agente = $this->agenteRepository->create($input);
 
-        Flash::success('Agente saved successfully.');
-
-        return redirect(route('agentes.index'));
+        return redirect("agentes/".$agente->id."/foto");
     }
 
     /**
@@ -147,5 +151,31 @@ class AgenteController extends AppBaseController
         Flash::success('Agente deleted successfully.');
 
         return redirect(route('agentes.index'));
+    }
+
+    
+    public function getFotoAgente($id)
+    {
+        $agente = $this->agenteRepository->findWithoutFail($id);
+        return view('agentes.uploadfoto')->with('Agente', $agente);
+    }
+
+    public function postFotoAgente(CreateFotoAgenteRequest $request, $id)
+    {
+        $agente = $this->agenteRepository->findWithoutFail($id);
+        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+        $publicId = $agente->nomeCloudinary ."_". $novaFoto->image_name;
+        
+        $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
+
+        if ($retorno) {
+            Flash::success('Agente criado com sucesso!');
+            return redirect("agentes/$id")->with('agente', $agente);
+        }
+
+        else {
+            Flash::error('Erro no upload da foto!');
+            return redirect("agentes/$id")->with('agente', $agente);
+        }
     }
 }

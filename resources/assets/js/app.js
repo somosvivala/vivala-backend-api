@@ -11,14 +11,3 @@ window.Dropzone = require('./dropzone');
 
 Dropzone.autoDiscover = false;
 
-//require('./dropzone-cropper.js')
-//
-var myDropzone = new Dropzone("#dropzone-container", {
-    addRemoveLinks: true,
-    uploadMultiple: false,
-    init: function () {
-        this.on('success', function (file) {
-        });
-    }
-});
-//

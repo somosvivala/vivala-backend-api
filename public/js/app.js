@@ -63,2073 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(module) {/*
- *
- * More info at [www.dropzonejs.com](http://www.dropzonejs.com)
- *
- * Copyright (c) 2012, Matias Meno
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- */
-
-(function () {
-  var Dropzone,
-      Emitter,
-      ExifRestore,
-      camelize,
-      contentLoaded,
-      detectVerticalSquash,
-      drawImageIOSFix,
-      noop,
-      without,
-      slice = [].slice,
-      extend1 = function extend1(child, parent) {
-    for (var key in parent) {
-      if (hasProp.call(parent, key)) child[key] = parent[key];
-    }function ctor() {
-      this.constructor = child;
-    }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
-  },
-      hasProp = {}.hasOwnProperty;
-
-  noop = function noop() {};
-
-  Emitter = function () {
-    function Emitter() {}
-
-    Emitter.prototype.addEventListener = Emitter.prototype.on;
-
-    Emitter.prototype.on = function (event, fn) {
-      this._callbacks = this._callbacks || {};
-      if (!this._callbacks[event]) {
-        this._callbacks[event] = [];
-      }
-      this._callbacks[event].push(fn);
-      return this;
-    };
-
-    Emitter.prototype.emit = function () {
-      var args, callback, callbacks, event, j, len;
-      event = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-      this._callbacks = this._callbacks || {};
-      callbacks = this._callbacks[event];
-      if (callbacks) {
-        for (j = 0, len = callbacks.length; j < len; j++) {
-          callback = callbacks[j];
-          callback.apply(this, args);
-        }
-      }
-      return this;
-    };
-
-    Emitter.prototype.removeListener = Emitter.prototype.off;
-
-    Emitter.prototype.removeAllListeners = Emitter.prototype.off;
-
-    Emitter.prototype.removeEventListener = Emitter.prototype.off;
-
-    Emitter.prototype.off = function (event, fn) {
-      var callback, callbacks, i, j, len;
-      if (!this._callbacks || arguments.length === 0) {
-        this._callbacks = {};
-        return this;
-      }
-      callbacks = this._callbacks[event];
-      if (!callbacks) {
-        return this;
-      }
-      if (arguments.length === 1) {
-        delete this._callbacks[event];
-        return this;
-      }
-      for (i = j = 0, len = callbacks.length; j < len; i = ++j) {
-        callback = callbacks[i];
-        if (callback === fn) {
-          callbacks.splice(i, 1);
-          break;
-        }
-      }
-      return this;
-    };
-
-    return Emitter;
-  }();
-
-  Dropzone = function (superClass) {
-    var extend, resolveOption;
-
-    extend1(Dropzone, superClass);
-
-    Dropzone.prototype.Emitter = Emitter;
-
-    /*
-    This is a list of all available events you can register on a dropzone object.
-    
-    You can register an event handler like this:
-    
-        dropzone.on("dragEnter", function() { });
-     */
-
-    Dropzone.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "addedfiles", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached", "queuecomplete"];
-
-    Dropzone.prototype.defaultOptions = {
-      url: null,
-      method: "post",
-      withCredentials: false,
-      timeout: 30000,
-      parallelUploads: 2,
-      uploadMultiple: false,
-      maxFilesize: 256,
-      paramName: "file",
-      createImageThumbnails: true,
-      maxThumbnailFilesize: 10,
-      thumbnailWidth: 120,
-      thumbnailHeight: 120,
-      thumbnailMethod: 'crop',
-      resizeWidth: null,
-      resizeHeight: null,
-      resizeMimeType: null,
-      resizeQuality: 0.8,
-      resizeMethod: 'contain',
-      filesizeBase: 1000,
-      maxFiles: null,
-      params: {},
-      headers: null,
-      clickable: true,
-      ignoreHiddenFiles: true,
-      acceptedFiles: null,
-      acceptedMimeTypes: null,
-      autoProcessQueue: true,
-      autoQueue: true,
-      addRemoveLinks: false,
-      previewsContainer: null,
-      hiddenInputContainer: "body",
-      capture: null,
-      renameFilename: null,
-      renameFile: null,
-      forceFallback: false,
-      dictDefaultMessage: "Drop files here to upload",
-      dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
-      dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
-      dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
-      dictInvalidFileType: "You can't upload files of this type.",
-      dictResponseError: "Server responded with {{statusCode}} code.",
-      dictCancelUpload: "Cancel upload",
-      dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
-      dictRemoveFile: "Remove file",
-      dictRemoveFileConfirmation: null,
-      dictMaxFilesExceeded: "You can not upload any more files.",
-      dictFileSizeUnits: {
-        tb: "TB",
-        gb: "GB",
-        mb: "MB",
-        kb: "KB",
-        b: "b"
-      },
-      init: function init() {
-        return noop;
-      },
-      accept: function accept(file, done) {
-        return done();
-      },
-      fallback: function fallback() {
-        var child, j, len, messageElement, ref, span;
-        this.element.className = this.element.className + " dz-browser-not-supported";
-        ref = this.element.getElementsByTagName("div");
-        for (j = 0, len = ref.length; j < len; j++) {
-          child = ref[j];
-          if (/(^| )dz-message($| )/.test(child.className)) {
-            messageElement = child;
-            child.className = "dz-message";
-            continue;
-          }
-        }
-        if (!messageElement) {
-          messageElement = Dropzone.createElement("<div class=\"dz-message\"><span></span></div>");
-          this.element.appendChild(messageElement);
-        }
-        span = messageElement.getElementsByTagName("span")[0];
-        if (span) {
-          if (span.textContent != null) {
-            span.textContent = this.options.dictFallbackMessage;
-          } else if (span.innerText != null) {
-            span.innerText = this.options.dictFallbackMessage;
-          }
-        }
-        return this.element.appendChild(this.getFallbackForm());
-      },
-      resize: function resize(file, width, height, resizeMethod) {
-        var info, srcRatio, trgRatio;
-        info = {
-          srcX: 0,
-          srcY: 0,
-          srcWidth: file.width,
-          srcHeight: file.height
-        };
-        srcRatio = file.width / file.height;
-        if (width == null && height == null) {
-          width = info.srcWidth;
-          height = info.srcHeight;
-        } else if (width == null) {
-          width = height * srcRatio;
-        } else if (height == null) {
-          height = width / srcRatio;
-        }
-        width = Math.min(width, info.srcWidth);
-        height = Math.min(height, info.srcHeight);
-        trgRatio = width / height;
-        if (info.srcWidth > width || info.srcHeight > height) {
-          if (resizeMethod === 'crop') {
-            if (srcRatio > trgRatio) {
-              info.srcHeight = file.height;
-              info.srcWidth = info.srcHeight * trgRatio;
-            } else {
-              info.srcWidth = file.width;
-              info.srcHeight = info.srcWidth / trgRatio;
-            }
-          } else if (resizeMethod === 'contain') {
-            if (srcRatio > trgRatio) {
-              height = width / srcRatio;
-            } else {
-              width = height * srcRatio;
-            }
-          } else {
-            throw new Error("Unknown resizeMethod '" + resizeMethod + "'");
-          }
-        }
-        info.srcX = (file.width - info.srcWidth) / 2;
-        info.srcY = (file.height - info.srcHeight) / 2;
-        info.trgWidth = width;
-        info.trgHeight = height;
-        return info;
-      },
-      transformFile: function transformFile(file, done) {
-        if ((this.options.resizeWidth || this.options.resizeHeight) && file.type.match(/image.*/)) {
-          return this.resizeImage(file, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
-        } else {
-          return done(file);
-        }
-      },
-      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n      <title>Check</title>\n      <defs></defs>\n      <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n        <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" id=\"Oval-2\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\" sketch:type=\"MSShapeGroup\"></path>\n      </g>\n    </svg>\n  </div>\n  <div class=\"dz-error-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n      <title>Error</title>\n      <defs></defs>\n      <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n        <g id=\"Check-+-Oval-2\" sketch:type=\"MSLayerGroup\" stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\">\n          <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" id=\"Oval-2\" sketch:type=\"MSShapeGroup\"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>",
-
-      /*
-      Those functions register themselves to the events on init and handle all
-      the user interface specific stuff. Overwriting them won't break the upload
-      but can break the way it's displayed.
-      You can overwrite them if you don't like the default behavior. If you just
-      want to add an additional event handler, register it on the dropzone object
-      and don't overwrite those options.
-       */
-      drop: function drop(e) {
-        return this.element.classList.remove("dz-drag-hover");
-      },
-      dragstart: noop,
-      dragend: function dragend(e) {
-        return this.element.classList.remove("dz-drag-hover");
-      },
-      dragenter: function dragenter(e) {
-        return this.element.classList.add("dz-drag-hover");
-      },
-      dragover: function dragover(e) {
-        return this.element.classList.add("dz-drag-hover");
-      },
-      dragleave: function dragleave(e) {
-        return this.element.classList.remove("dz-drag-hover");
-      },
-      paste: noop,
-      reset: function reset() {
-        return this.element.classList.remove("dz-started");
-      },
-      addedfile: function addedfile(file) {
-        var j, k, l, len, len1, len2, node, ref, ref1, ref2, removeFileEvent, removeLink, results;
-        if (this.element === this.previewsContainer) {
-          this.element.classList.add("dz-started");
-        }
-        if (this.previewsContainer) {
-          file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
-          file.previewTemplate = file.previewElement;
-          this.previewsContainer.appendChild(file.previewElement);
-          ref = file.previewElement.querySelectorAll("[data-dz-name]");
-          for (j = 0, len = ref.length; j < len; j++) {
-            node = ref[j];
-            node.textContent = file.name;
-          }
-          ref1 = file.previewElement.querySelectorAll("[data-dz-size]");
-          for (k = 0, len1 = ref1.length; k < len1; k++) {
-            node = ref1[k];
-            node.innerHTML = this.filesize(file.size);
-          }
-          if (this.options.addRemoveLinks) {
-            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
-            file.previewElement.appendChild(file._removeLink);
-          }
-          removeFileEvent = function (_this) {
-            return function (e) {
-              e.preventDefault();
-              e.stopPropagation();
-              if (file.status === Dropzone.UPLOADING) {
-                return Dropzone.confirm(_this.options.dictCancelUploadConfirmation, function () {
-                  return _this.removeFile(file);
-                });
-              } else {
-                if (_this.options.dictRemoveFileConfirmation) {
-                  return Dropzone.confirm(_this.options.dictRemoveFileConfirmation, function () {
-                    return _this.removeFile(file);
-                  });
-                } else {
-                  return _this.removeFile(file);
-                }
-              }
-            };
-          }(this);
-          ref2 = file.previewElement.querySelectorAll("[data-dz-remove]");
-          results = [];
-          for (l = 0, len2 = ref2.length; l < len2; l++) {
-            removeLink = ref2[l];
-            results.push(removeLink.addEventListener("click", removeFileEvent));
-          }
-          return results;
-        }
-      },
-      removedfile: function removedfile(file) {
-        var ref;
-        if (file.previewElement) {
-          if ((ref = file.previewElement) != null) {
-            ref.parentNode.removeChild(file.previewElement);
-          }
-        }
-        return this._updateMaxFilesReachedClass();
-      },
-      thumbnail: function thumbnail(file, dataUrl) {
-        var j, len, ref, thumbnailElement;
-        if (file.previewElement) {
-          file.previewElement.classList.remove("dz-file-preview");
-          ref = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
-          for (j = 0, len = ref.length; j < len; j++) {
-            thumbnailElement = ref[j];
-            thumbnailElement.alt = file.name;
-            thumbnailElement.src = dataUrl;
-          }
-          return setTimeout(function (_this) {
-            return function () {
-              return file.previewElement.classList.add("dz-image-preview");
-            };
-          }(this), 1);
-        }
-      },
-      error: function error(file, message) {
-        var j, len, node, ref, results;
-        if (file.previewElement) {
-          file.previewElement.classList.add("dz-error");
-          if (typeof message !== "String" && message.error) {
-            message = message.error;
-          }
-          ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
-          results = [];
-          for (j = 0, len = ref.length; j < len; j++) {
-            node = ref[j];
-            results.push(node.textContent = message);
-          }
-          return results;
-        }
-      },
-      errormultiple: noop,
-      processing: function processing(file) {
-        if (file.previewElement) {
-          file.previewElement.classList.add("dz-processing");
-          if (file._removeLink) {
-            return file._removeLink.textContent = this.options.dictCancelUpload;
-          }
-        }
-      },
-      processingmultiple: noop,
-      uploadprogress: function uploadprogress(file, progress, bytesSent) {
-        var j, len, node, ref, results;
-        if (file.previewElement) {
-          ref = file.previewElement.querySelectorAll("[data-dz-uploadprogress]");
-          results = [];
-          for (j = 0, len = ref.length; j < len; j++) {
-            node = ref[j];
-            if (node.nodeName === 'PROGRESS') {
-              results.push(node.value = progress);
-            } else {
-              results.push(node.style.width = progress + "%");
-            }
-          }
-          return results;
-        }
-      },
-      totaluploadprogress: noop,
-      sending: noop,
-      sendingmultiple: noop,
-      success: function success(file) {
-        if (file.previewElement) {
-          return file.previewElement.classList.add("dz-success");
-        }
-      },
-      successmultiple: noop,
-      canceled: function canceled(file) {
-        return this.emit("error", file, "Upload canceled.");
-      },
-      canceledmultiple: noop,
-      complete: function complete(file) {
-        if (file._removeLink) {
-          file._removeLink.textContent = this.options.dictRemoveFile;
-        }
-        if (file.previewElement) {
-          return file.previewElement.classList.add("dz-complete");
-        }
-      },
-      completemultiple: noop,
-      maxfilesexceeded: noop,
-      maxfilesreached: noop,
-      queuecomplete: noop,
-      addedfiles: noop
-    };
-
-    extend = function extend() {
-      var j, key, len, object, objects, target, val;
-      target = arguments[0], objects = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-      for (j = 0, len = objects.length; j < len; j++) {
-        object = objects[j];
-        for (key in object) {
-          val = object[key];
-          target[key] = val;
-        }
-      }
-      return target;
-    };
-
-    function Dropzone(element1, options) {
-      var elementOptions, fallback, ref;
-      this.element = element1;
-      this.version = Dropzone.version;
-      this.defaultOptions.previewTemplate = this.defaultOptions.previewTemplate.replace(/\n*/g, "");
-      this.clickableElements = [];
-      this.listeners = [];
-      this.files = [];
-      if (typeof this.element === "string") {
-        this.element = document.querySelector(this.element);
-      }
-      if (!(this.element && this.element.nodeType != null)) {
-        throw new Error("Invalid dropzone element.");
-      }
-      if (this.element.dropzone) {
-        throw new Error("Dropzone already attached.");
-      }
-      Dropzone.instances.push(this);
-      this.element.dropzone = this;
-      elementOptions = (ref = Dropzone.optionsForElement(this.element)) != null ? ref : {};
-      this.options = extend({}, this.defaultOptions, elementOptions, options != null ? options : {});
-      if (this.options.forceFallback || !Dropzone.isBrowserSupported()) {
-        return this.options.fallback.call(this);
-      }
-      if (this.options.url == null) {
-        this.options.url = this.element.getAttribute("action");
-      }
-      if (!this.options.url) {
-        throw new Error("No URL provided.");
-      }
-      if (this.options.acceptedFiles && this.options.acceptedMimeTypes) {
-        throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
-      }
-      if (this.options.acceptedMimeTypes) {
-        this.options.acceptedFiles = this.options.acceptedMimeTypes;
-        delete this.options.acceptedMimeTypes;
-      }
-      if (this.options.renameFilename != null) {
-        this.options.renameFile = function (_this) {
-          return function (file) {
-            return _this.options.renameFilename.call(_this, file.name, file);
-          };
-        }(this);
-      }
-      this.options.method = this.options.method.toUpperCase();
-      if ((fallback = this.getExistingFallback()) && fallback.parentNode) {
-        fallback.parentNode.removeChild(fallback);
-      }
-      if (this.options.previewsContainer !== false) {
-        if (this.options.previewsContainer) {
-          this.previewsContainer = Dropzone.getElement(this.options.previewsContainer, "previewsContainer");
-        } else {
-          this.previewsContainer = this.element;
-        }
-      }
-      if (this.options.clickable) {
-        if (this.options.clickable === true) {
-          this.clickableElements = [this.element];
-        } else {
-          this.clickableElements = Dropzone.getElements(this.options.clickable, "clickable");
-        }
-      }
-      this.init();
-    }
-
-    Dropzone.prototype.getAcceptedFiles = function () {
-      var file, j, len, ref, results;
-      ref = this.files;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        file = ref[j];
-        if (file.accepted) {
-          results.push(file);
-        }
-      }
-      return results;
-    };
-
-    Dropzone.prototype.getRejectedFiles = function () {
-      var file, j, len, ref, results;
-      ref = this.files;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        file = ref[j];
-        if (!file.accepted) {
-          results.push(file);
-        }
-      }
-      return results;
-    };
-
-    Dropzone.prototype.getFilesWithStatus = function (status) {
-      var file, j, len, ref, results;
-      ref = this.files;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        file = ref[j];
-        if (file.status === status) {
-          results.push(file);
-        }
-      }
-      return results;
-    };
-
-    Dropzone.prototype.getQueuedFiles = function () {
-      return this.getFilesWithStatus(Dropzone.QUEUED);
-    };
-
-    Dropzone.prototype.getUploadingFiles = function () {
-      return this.getFilesWithStatus(Dropzone.UPLOADING);
-    };
-
-    Dropzone.prototype.getAddedFiles = function () {
-      return this.getFilesWithStatus(Dropzone.ADDED);
-    };
-
-    Dropzone.prototype.getActiveFiles = function () {
-      var file, j, len, ref, results;
-      ref = this.files;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        file = ref[j];
-        if (file.status === Dropzone.UPLOADING || file.status === Dropzone.QUEUED) {
-          results.push(file);
-        }
-      }
-      return results;
-    };
-
-    Dropzone.prototype.init = function () {
-      var eventName, j, len, noPropagation, ref, ref1, setupHiddenFileInput;
-      if (this.element.tagName === "form") {
-        this.element.setAttribute("enctype", "multipart/form-data");
-      }
-      if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
-        this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
-      }
-      if (this.clickableElements.length) {
-        setupHiddenFileInput = function (_this) {
-          return function () {
-            if (_this.hiddenFileInput) {
-              _this.hiddenFileInput.parentNode.removeChild(_this.hiddenFileInput);
-            }
-            _this.hiddenFileInput = document.createElement("input");
-            _this.hiddenFileInput.setAttribute("type", "file");
-            if (_this.options.maxFiles == null || _this.options.maxFiles > 1) {
-              _this.hiddenFileInput.setAttribute("multiple", "multiple");
-            }
-            _this.hiddenFileInput.className = "dz-hidden-input";
-            if (_this.options.acceptedFiles != null) {
-              _this.hiddenFileInput.setAttribute("accept", _this.options.acceptedFiles);
-            }
-            if (_this.options.capture != null) {
-              _this.hiddenFileInput.setAttribute("capture", _this.options.capture);
-            }
-            _this.hiddenFileInput.style.visibility = "hidden";
-            _this.hiddenFileInput.style.position = "absolute";
-            _this.hiddenFileInput.style.top = "0";
-            _this.hiddenFileInput.style.left = "0";
-            _this.hiddenFileInput.style.height = "0";
-            _this.hiddenFileInput.style.width = "0";
-            document.querySelector(_this.options.hiddenInputContainer).appendChild(_this.hiddenFileInput);
-            return _this.hiddenFileInput.addEventListener("change", function () {
-              var file, files, j, len;
-              files = _this.hiddenFileInput.files;
-              if (files.length) {
-                for (j = 0, len = files.length; j < len; j++) {
-                  file = files[j];
-                  _this.addFile(file);
-                }
-              }
-              _this.emit("addedfiles", files);
-              return setupHiddenFileInput();
-            });
-          };
-        }(this);
-        setupHiddenFileInput();
-      }
-      this.URL = (ref = window.URL) != null ? ref : window.webkitURL;
-      ref1 = this.events;
-      for (j = 0, len = ref1.length; j < len; j++) {
-        eventName = ref1[j];
-        this.on(eventName, this.options[eventName]);
-      }
-      this.on("uploadprogress", function (_this) {
-        return function () {
-          return _this.updateTotalUploadProgress();
-        };
-      }(this));
-      this.on("removedfile", function (_this) {
-        return function () {
-          return _this.updateTotalUploadProgress();
-        };
-      }(this));
-      this.on("canceled", function (_this) {
-        return function (file) {
-          return _this.emit("complete", file);
-        };
-      }(this));
-      this.on("complete", function (_this) {
-        return function (file) {
-          if (_this.getAddedFiles().length === 0 && _this.getUploadingFiles().length === 0 && _this.getQueuedFiles().length === 0) {
-            return setTimeout(function () {
-              return _this.emit("queuecomplete");
-            }, 0);
-          }
-        };
-      }(this));
-      noPropagation = function noPropagation(e) {
-        e.stopPropagation();
-        if (e.preventDefault) {
-          return e.preventDefault();
-        } else {
-          return e.returnValue = false;
-        }
-      };
-      this.listeners = [{
-        element: this.element,
-        events: {
-          "dragstart": function (_this) {
-            return function (e) {
-              return _this.emit("dragstart", e);
-            };
-          }(this),
-          "dragenter": function (_this) {
-            return function (e) {
-              noPropagation(e);
-              return _this.emit("dragenter", e);
-            };
-          }(this),
-          "dragover": function (_this) {
-            return function (e) {
-              var efct;
-              try {
-                efct = e.dataTransfer.effectAllowed;
-              } catch (undefined) {}
-              e.dataTransfer.dropEffect = 'move' === efct || 'linkMove' === efct ? 'move' : 'copy';
-              noPropagation(e);
-              return _this.emit("dragover", e);
-            };
-          }(this),
-          "dragleave": function (_this) {
-            return function (e) {
-              return _this.emit("dragleave", e);
-            };
-          }(this),
-          "drop": function (_this) {
-            return function (e) {
-              noPropagation(e);
-              return _this.drop(e);
-            };
-          }(this),
-          "dragend": function (_this) {
-            return function (e) {
-              return _this.emit("dragend", e);
-            };
-          }(this)
-        }
-      }];
-      this.clickableElements.forEach(function (_this) {
-        return function (clickableElement) {
-          return _this.listeners.push({
-            element: clickableElement,
-            events: {
-              "click": function click(evt) {
-                if (clickableElement !== _this.element || evt.target === _this.element || Dropzone.elementInside(evt.target, _this.element.querySelector(".dz-message"))) {
-                  _this.hiddenFileInput.click();
-                }
-                return true;
-              }
-            }
-          });
-        };
-      }(this));
-      this.enable();
-      return this.options.init.call(this);
-    };
-
-    Dropzone.prototype.destroy = function () {
-      var ref;
-      this.disable();
-      this.removeAllFiles(true);
-      if ((ref = this.hiddenFileInput) != null ? ref.parentNode : void 0) {
-        this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
-        this.hiddenFileInput = null;
-      }
-      delete this.element.dropzone;
-      return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
-    };
-
-    Dropzone.prototype.updateTotalUploadProgress = function () {
-      var activeFiles, file, j, len, ref, totalBytes, totalBytesSent, totalUploadProgress;
-      totalBytesSent = 0;
-      totalBytes = 0;
-      activeFiles = this.getActiveFiles();
-      if (activeFiles.length) {
-        ref = this.getActiveFiles();
-        for (j = 0, len = ref.length; j < len; j++) {
-          file = ref[j];
-          totalBytesSent += file.upload.bytesSent;
-          totalBytes += file.upload.total;
-        }
-        totalUploadProgress = 100 * totalBytesSent / totalBytes;
-      } else {
-        totalUploadProgress = 100;
-      }
-      return this.emit("totaluploadprogress", totalUploadProgress, totalBytes, totalBytesSent);
-    };
-
-    Dropzone.prototype._getParamName = function (n) {
-      if (typeof this.options.paramName === "function") {
-        return this.options.paramName(n);
-      } else {
-        return "" + this.options.paramName + (this.options.uploadMultiple ? "[" + n + "]" : "");
-      }
-    };
-
-    Dropzone.prototype._renameFile = function (file) {
-      if (typeof this.options.renameFile !== "function") {
-        return file.name;
-      }
-      return this.options.renameFile(file);
-    };
-
-    Dropzone.prototype.getFallbackForm = function () {
-      var existingFallback, fields, fieldsString, form;
-      if (existingFallback = this.getExistingFallback()) {
-        return existingFallback;
-      }
-      fieldsString = "<div class=\"dz-fallback\">";
-      if (this.options.dictFallbackText) {
-        fieldsString += "<p>" + this.options.dictFallbackText + "</p>";
-      }
-      fieldsString += "<input type=\"file\" name=\"" + this._getParamName(0) + "\" " + (this.options.uploadMultiple ? 'multiple="multiple"' : void 0) + " /><input type=\"submit\" value=\"Upload!\"></div>";
-      fields = Dropzone.createElement(fieldsString);
-      if (this.element.tagName !== "FORM") {
-        form = Dropzone.createElement("<form action=\"" + this.options.url + "\" enctype=\"multipart/form-data\" method=\"" + this.options.method + "\"></form>");
-        form.appendChild(fields);
-      } else {
-        this.element.setAttribute("enctype", "multipart/form-data");
-        this.element.setAttribute("method", this.options.method);
-      }
-      return form != null ? form : fields;
-    };
-
-    Dropzone.prototype.getExistingFallback = function () {
-      var fallback, getFallback, j, len, ref, tagName;
-      getFallback = function getFallback(elements) {
-        var el, j, len;
-        for (j = 0, len = elements.length; j < len; j++) {
-          el = elements[j];
-          if (/(^| )fallback($| )/.test(el.className)) {
-            return el;
-          }
-        }
-      };
-      ref = ["div", "form"];
-      for (j = 0, len = ref.length; j < len; j++) {
-        tagName = ref[j];
-        if (fallback = getFallback(this.element.getElementsByTagName(tagName))) {
-          return fallback;
-        }
-      }
-    };
-
-    Dropzone.prototype.setupEventListeners = function () {
-      var elementListeners, event, j, len, listener, ref, results;
-      ref = this.listeners;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        elementListeners = ref[j];
-        results.push(function () {
-          var ref1, results1;
-          ref1 = elementListeners.events;
-          results1 = [];
-          for (event in ref1) {
-            listener = ref1[event];
-            results1.push(elementListeners.element.addEventListener(event, listener, false));
-          }
-          return results1;
-        }());
-      }
-      return results;
-    };
-
-    Dropzone.prototype.removeEventListeners = function () {
-      var elementListeners, event, j, len, listener, ref, results;
-      ref = this.listeners;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        elementListeners = ref[j];
-        results.push(function () {
-          var ref1, results1;
-          ref1 = elementListeners.events;
-          results1 = [];
-          for (event in ref1) {
-            listener = ref1[event];
-            results1.push(elementListeners.element.removeEventListener(event, listener, false));
-          }
-          return results1;
-        }());
-      }
-      return results;
-    };
-
-    Dropzone.prototype.disable = function () {
-      var file, j, len, ref, results;
-      this.clickableElements.forEach(function (element) {
-        return element.classList.remove("dz-clickable");
-      });
-      this.removeEventListeners();
-      ref = this.files;
-      results = [];
-      for (j = 0, len = ref.length; j < len; j++) {
-        file = ref[j];
-        results.push(this.cancelUpload(file));
-      }
-      return results;
-    };
-
-    Dropzone.prototype.enable = function () {
-      this.clickableElements.forEach(function (element) {
-        return element.classList.add("dz-clickable");
-      });
-      return this.setupEventListeners();
-    };
-
-    Dropzone.prototype.filesize = function (size) {
-      var cutoff, i, j, len, selectedSize, selectedUnit, unit, units;
-      selectedSize = 0;
-      selectedUnit = "b";
-      if (size > 0) {
-        units = ['tb', 'gb', 'mb', 'kb', 'b'];
-        for (i = j = 0, len = units.length; j < len; i = ++j) {
-          unit = units[i];
-          cutoff = Math.pow(this.options.filesizeBase, 4 - i) / 10;
-          if (size >= cutoff) {
-            selectedSize = size / Math.pow(this.options.filesizeBase, 4 - i);
-            selectedUnit = unit;
-            break;
-          }
-        }
-        selectedSize = Math.round(10 * selectedSize) / 10;
-      }
-      return "<strong>" + selectedSize + "</strong> " + this.options.dictFileSizeUnits[selectedUnit];
-    };
-
-    Dropzone.prototype._updateMaxFilesReachedClass = function () {
-      if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
-        if (this.getAcceptedFiles().length === this.options.maxFiles) {
-          this.emit('maxfilesreached', this.files);
-        }
-        return this.element.classList.add("dz-max-files-reached");
-      } else {
-        return this.element.classList.remove("dz-max-files-reached");
-      }
-    };
-
-    Dropzone.prototype.drop = function (e) {
-      var files, items;
-      if (!e.dataTransfer) {
-        return;
-      }
-      this.emit("drop", e);
-      files = e.dataTransfer.files;
-      this.emit("addedfiles", files);
-      if (files.length) {
-        items = e.dataTransfer.items;
-        if (items && items.length && items[0].webkitGetAsEntry != null) {
-          this._addFilesFromItems(items);
-        } else {
-          this.handleFiles(files);
-        }
-      }
-    };
-
-    Dropzone.prototype.paste = function (e) {
-      var items, ref;
-      if ((e != null ? (ref = e.clipboardData) != null ? ref.items : void 0 : void 0) == null) {
-        return;
-      }
-      this.emit("paste", e);
-      items = e.clipboardData.items;
-      if (items.length) {
-        return this._addFilesFromItems(items);
-      }
-    };
-
-    Dropzone.prototype.handleFiles = function (files) {
-      var file, j, len, results;
-      results = [];
-      for (j = 0, len = files.length; j < len; j++) {
-        file = files[j];
-        results.push(this.addFile(file));
-      }
-      return results;
-    };
-
-    Dropzone.prototype._addFilesFromItems = function (items) {
-      var entry, item, j, len, results;
-      results = [];
-      for (j = 0, len = items.length; j < len; j++) {
-        item = items[j];
-        if (item.webkitGetAsEntry != null && (entry = item.webkitGetAsEntry())) {
-          if (entry.isFile) {
-            results.push(this.addFile(item.getAsFile()));
-          } else if (entry.isDirectory) {
-            results.push(this._addFilesFromDirectory(entry, entry.name));
-          } else {
-            results.push(void 0);
-          }
-        } else if (item.getAsFile != null) {
-          if (item.kind == null || item.kind === "file") {
-            results.push(this.addFile(item.getAsFile()));
-          } else {
-            results.push(void 0);
-          }
-        } else {
-          results.push(void 0);
-        }
-      }
-      return results;
-    };
-
-    Dropzone.prototype._addFilesFromDirectory = function (directory, path) {
-      var dirReader, errorHandler, readEntries;
-      dirReader = directory.createReader();
-      errorHandler = function errorHandler(error) {
-        return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log(error) : void 0 : void 0;
-      };
-      readEntries = function (_this) {
-        return function () {
-          return dirReader.readEntries(function (entries) {
-            var entry, j, len;
-            if (entries.length > 0) {
-              for (j = 0, len = entries.length; j < len; j++) {
-                entry = entries[j];
-                if (entry.isFile) {
-                  entry.file(function (file) {
-                    if (_this.options.ignoreHiddenFiles && file.name.substring(0, 1) === '.') {
-                      return;
-                    }
-                    file.fullPath = path + "/" + file.name;
-                    return _this.addFile(file);
-                  });
-                } else if (entry.isDirectory) {
-                  _this._addFilesFromDirectory(entry, path + "/" + entry.name);
-                }
-              }
-              readEntries();
-            }
-            return null;
-          }, errorHandler);
-        };
-      }(this);
-      return readEntries();
-    };
-
-    Dropzone.prototype.accept = function (file, done) {
-      if (file.size > this.options.maxFilesize * 1024 * 1024) {
-        return done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
-      } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
-        return done(this.options.dictInvalidFileType);
-      } else if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
-        done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
-        return this.emit("maxfilesexceeded", file);
-      } else {
-        return this.options.accept.call(this, file, done);
-      }
-    };
-
-    Dropzone.prototype.addFile = function (file) {
-      file.upload = {
-        progress: 0,
-        total: file.size,
-        bytesSent: 0,
-        filename: this._renameFile(file)
-      };
-      this.files.push(file);
-      file.status = Dropzone.ADDED;
-      this.emit("addedfile", file);
-      this._enqueueThumbnail(file);
-      return this.accept(file, function (_this) {
-        return function (error) {
-          if (error) {
-            file.accepted = false;
-            _this._errorProcessing([file], error);
-          } else {
-            file.accepted = true;
-            if (_this.options.autoQueue) {
-              _this.enqueueFile(file);
-            }
-          }
-          return _this._updateMaxFilesReachedClass();
-        };
-      }(this));
-    };
-
-    Dropzone.prototype.enqueueFiles = function (files) {
-      var file, j, len;
-      for (j = 0, len = files.length; j < len; j++) {
-        file = files[j];
-        this.enqueueFile(file);
-      }
-      return null;
-    };
-
-    Dropzone.prototype.enqueueFile = function (file) {
-      if (file.status === Dropzone.ADDED && file.accepted === true) {
-        file.status = Dropzone.QUEUED;
-        if (this.options.autoProcessQueue) {
-          return setTimeout(function (_this) {
-            return function () {
-              return _this.processQueue();
-            };
-          }(this), 0);
-        }
-      } else {
-        throw new Error("This file can't be queued because it has already been processed or was rejected.");
-      }
-    };
-
-    Dropzone.prototype._thumbnailQueue = [];
-
-    Dropzone.prototype._processingThumbnail = false;
-
-    Dropzone.prototype._enqueueThumbnail = function (file) {
-      if (this.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.options.maxThumbnailFilesize * 1024 * 1024) {
-        this._thumbnailQueue.push(file);
-        return setTimeout(function (_this) {
-          return function () {
-            return _this._processThumbnailQueue();
-          };
-        }(this), 0);
-      }
-    };
-
-    Dropzone.prototype._processThumbnailQueue = function () {
-      var file;
-      if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
-        return;
-      }
-      this._processingThumbnail = true;
-      file = this._thumbnailQueue.shift();
-      return this.createThumbnail(file, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (_this) {
-        return function (dataUrl) {
-          _this.emit("thumbnail", file, dataUrl);
-          _this._processingThumbnail = false;
-          return _this._processThumbnailQueue();
-        };
-      }(this));
-    };
-
-    Dropzone.prototype.removeFile = function (file) {
-      if (file.status === Dropzone.UPLOADING) {
-        this.cancelUpload(file);
-      }
-      this.files = without(this.files, file);
-      this.emit("removedfile", file);
-      if (this.files.length === 0) {
-        return this.emit("reset");
-      }
-    };
-
-    Dropzone.prototype.removeAllFiles = function (cancelIfNecessary) {
-      var file, j, len, ref;
-      if (cancelIfNecessary == null) {
-        cancelIfNecessary = false;
-      }
-      ref = this.files.slice();
-      for (j = 0, len = ref.length; j < len; j++) {
-        file = ref[j];
-        if (file.status !== Dropzone.UPLOADING || cancelIfNecessary) {
-          this.removeFile(file);
-        }
-      }
-      return null;
-    };
-
-    Dropzone.prototype.resizeImage = function (file, width, height, resizeMethod, callback) {
-      return this.createThumbnail(file, width, height, resizeMethod, false, function (_this) {
-        return function (dataUrl, canvas) {
-          var resizeMimeType, resizedDataURL;
-          if (canvas === null) {
-            return callback(file);
-          } else {
-            resizeMimeType = _this.options.resizeMimeType;
-            if (resizeMimeType == null) {
-              resizeMimeType = file.type;
-            }
-            resizedDataURL = canvas.toDataURL(resizeMimeType, _this.options.resizeQuality);
-            if (resizeMimeType === 'image/jpeg' || resizeMimeType === 'image/jpg') {
-              resizedDataURL = ExifRestore.restore(file.dataURL, resizedDataURL);
-            }
-            return callback(Dropzone.dataURItoBlob(resizedDataURL));
-          }
-        };
-      }(this));
-    };
-
-    Dropzone.prototype.createThumbnail = function (file, width, height, resizeMethod, fixOrientation, callback) {
-      var fileReader;
-      fileReader = new FileReader();
-      fileReader.onload = function (_this) {
-        return function () {
-          file.dataURL = fileReader.result;
-          if (file.type === "image/svg+xml") {
-            if (callback != null) {
-              callback(fileReader.result);
-            }
-            return;
-          }
-          return _this.createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback);
-        };
-      }(this);
-      return fileReader.readAsDataURL(file);
-    };
-
-    Dropzone.prototype.createThumbnailFromUrl = function (file, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
-      var img;
-      img = document.createElement("img");
-      if (crossOrigin) {
-        img.crossOrigin = crossOrigin;
-      }
-      img.onload = function (_this) {
-        return function () {
-          var loadExif;
-          loadExif = function loadExif(callback) {
-            return callback(1);
-          };
-          if (typeof EXIF !== "undefined" && EXIF !== null && fixOrientation) {
-            loadExif = function loadExif(callback) {
-              return EXIF.getData(img, function () {
-                return callback(EXIF.getTag(this, 'Orientation'));
-              });
-            };
-          }
-          return loadExif(function (orientation) {
-            var canvas, ctx, ref, ref1, ref2, ref3, resizeInfo, thumbnail;
-            file.width = img.width;
-            file.height = img.height;
-            resizeInfo = _this.options.resize.call(_this, file, width, height, resizeMethod);
-            canvas = document.createElement("canvas");
-            ctx = canvas.getContext("2d");
-            canvas.width = resizeInfo.trgWidth;
-            canvas.height = resizeInfo.trgHeight;
-            if (orientation > 4) {
-              canvas.width = resizeInfo.trgHeight;
-              canvas.height = resizeInfo.trgWidth;
-            }
-            switch (orientation) {
-              case 2:
-                ctx.translate(canvas.width, 0);
-                ctx.scale(-1, 1);
-                break;
-              case 3:
-                ctx.translate(canvas.width, canvas.height);
-                ctx.rotate(Math.PI);
-                break;
-              case 4:
-                ctx.translate(0, canvas.height);
-                ctx.scale(1, -1);
-                break;
-              case 5:
-                ctx.rotate(0.5 * Math.PI);
-                ctx.scale(1, -1);
-                break;
-              case 6:
-                ctx.rotate(0.5 * Math.PI);
-                ctx.translate(0, -canvas.height);
-                break;
-              case 7:
-                ctx.rotate(0.5 * Math.PI);
-                ctx.translate(canvas.width, -canvas.height);
-                ctx.scale(-1, 1);
-                break;
-              case 8:
-                ctx.rotate(-0.5 * Math.PI);
-                ctx.translate(-canvas.width, 0);
-            }
-            drawImageIOSFix(ctx, img, (ref = resizeInfo.srcX) != null ? ref : 0, (ref1 = resizeInfo.srcY) != null ? ref1 : 0, resizeInfo.srcWidth, resizeInfo.srcHeight, (ref2 = resizeInfo.trgX) != null ? ref2 : 0, (ref3 = resizeInfo.trgY) != null ? ref3 : 0, resizeInfo.trgWidth, resizeInfo.trgHeight);
-            thumbnail = canvas.toDataURL("image/png");
-            if (callback != null) {
-              return callback(thumbnail, canvas);
-            }
-          });
-        };
-      }(this);
-      if (callback != null) {
-        img.onerror = callback;
-      }
-      return img.src = file.dataURL;
-    };
-
-    Dropzone.prototype.processQueue = function () {
-      var i, parallelUploads, processingLength, queuedFiles;
-      parallelUploads = this.options.parallelUploads;
-      processingLength = this.getUploadingFiles().length;
-      i = processingLength;
-      if (processingLength >= parallelUploads) {
-        return;
-      }
-      queuedFiles = this.getQueuedFiles();
-      if (!(queuedFiles.length > 0)) {
-        return;
-      }
-      if (this.options.uploadMultiple) {
-        return this.processFiles(queuedFiles.slice(0, parallelUploads - processingLength));
-      } else {
-        while (i < parallelUploads) {
-          if (!queuedFiles.length) {
-            return;
-          }
-          this.processFile(queuedFiles.shift());
-          i++;
-        }
-      }
-    };
-
-    Dropzone.prototype.processFile = function (file) {
-      return this.processFiles([file]);
-    };
-
-    Dropzone.prototype.processFiles = function (files) {
-      var file, j, len;
-      for (j = 0, len = files.length; j < len; j++) {
-        file = files[j];
-        file.processing = true;
-        file.status = Dropzone.UPLOADING;
-        this.emit("processing", file);
-      }
-      if (this.options.uploadMultiple) {
-        this.emit("processingmultiple", files);
-      }
-      return this.uploadFiles(files);
-    };
-
-    Dropzone.prototype._getFilesWithXhr = function (xhr) {
-      var file, files;
-      return files = function () {
-        var j, len, ref, results;
-        ref = this.files;
-        results = [];
-        for (j = 0, len = ref.length; j < len; j++) {
-          file = ref[j];
-          if (file.xhr === xhr) {
-            results.push(file);
-          }
-        }
-        return results;
-      }.call(this);
-    };
-
-    Dropzone.prototype.cancelUpload = function (file) {
-      var groupedFile, groupedFiles, j, k, len, len1, ref;
-      if (file.status === Dropzone.UPLOADING) {
-        groupedFiles = this._getFilesWithXhr(file.xhr);
-        for (j = 0, len = groupedFiles.length; j < len; j++) {
-          groupedFile = groupedFiles[j];
-          groupedFile.status = Dropzone.CANCELED;
-        }
-        file.xhr.abort();
-        for (k = 0, len1 = groupedFiles.length; k < len1; k++) {
-          groupedFile = groupedFiles[k];
-          this.emit("canceled", groupedFile);
-        }
-        if (this.options.uploadMultiple) {
-          this.emit("canceledmultiple", groupedFiles);
-        }
-      } else if ((ref = file.status) === Dropzone.ADDED || ref === Dropzone.QUEUED) {
-        file.status = Dropzone.CANCELED;
-        this.emit("canceled", file);
-        if (this.options.uploadMultiple) {
-          this.emit("canceledmultiple", [file]);
-        }
-      }
-      if (this.options.autoProcessQueue) {
-        return this.processQueue();
-      }
-    };
-
-    resolveOption = function resolveOption() {
-      var args, option;
-      option = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-      if (typeof option === 'function') {
-        return option.apply(this, args);
-      }
-      return option;
-    };
-
-    Dropzone.prototype.uploadFile = function (file) {
-      return this.uploadFiles([file]);
-    };
-
-    Dropzone.prototype.uploadFiles = function (files) {
-      var doneCounter, doneFunction, file, formData, handleError, headerName, headerValue, headers, i, input, inputName, inputType, j, k, key, l, len, len1, len2, len3, m, method, o, option, progressObj, ref, ref1, ref2, ref3, ref4, ref5, response, results, updateProgress, url, value, xhr;
-      xhr = new XMLHttpRequest();
-      for (j = 0, len = files.length; j < len; j++) {
-        file = files[j];
-        file.xhr = xhr;
-      }
-      method = resolveOption(this.options.method, files);
-      url = resolveOption(this.options.url, files);
-      xhr.open(method, url, true);
-      xhr.timeout = resolveOption(this.options.timeout, files);
-      xhr.withCredentials = !!this.options.withCredentials;
-      response = null;
-      handleError = function (_this) {
-        return function () {
-          var k, len1, results;
-          results = [];
-          for (k = 0, len1 = files.length; k < len1; k++) {
-            file = files[k];
-            results.push(_this._errorProcessing(files, response || _this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr));
-          }
-          return results;
-        };
-      }(this);
-      updateProgress = function (_this) {
-        return function (e) {
-          var allFilesFinished, k, l, len1, len2, len3, m, progress, results;
-          if (e != null) {
-            progress = 100 * e.loaded / e.total;
-            for (k = 0, len1 = files.length; k < len1; k++) {
-              file = files[k];
-              file.upload.progress = progress;
-              file.upload.total = e.total;
-              file.upload.bytesSent = e.loaded;
-            }
-          } else {
-            allFilesFinished = true;
-            progress = 100;
-            for (l = 0, len2 = files.length; l < len2; l++) {
-              file = files[l];
-              if (!(file.upload.progress === 100 && file.upload.bytesSent === file.upload.total)) {
-                allFilesFinished = false;
-              }
-              file.upload.progress = progress;
-              file.upload.bytesSent = file.upload.total;
-            }
-            if (allFilesFinished) {
-              return;
-            }
-          }
-          results = [];
-          for (m = 0, len3 = files.length; m < len3; m++) {
-            file = files[m];
-            results.push(_this.emit("uploadprogress", file, progress, file.upload.bytesSent));
-          }
-          return results;
-        };
-      }(this);
-      xhr.onload = function (_this) {
-        return function (e) {
-          var error1, ref;
-          if (files[0].status === Dropzone.CANCELED) {
-            return;
-          }
-          if (xhr.readyState !== 4) {
-            return;
-          }
-          if (xhr.responseType !== 'arraybuffer' && xhr.responseType !== 'blob') {
-            response = xhr.responseText;
-            if (xhr.getResponseHeader("content-type") && ~xhr.getResponseHeader("content-type").indexOf("application/json")) {
-              try {
-                response = JSON.parse(response);
-              } catch (error1) {
-                e = error1;
-                response = "Invalid JSON response from server.";
-              }
-            }
-          }
-          updateProgress();
-          if (!(200 <= (ref = xhr.status) && ref < 300)) {
-            return handleError();
-          } else {
-            return _this._finished(files, response, e);
-          }
-        };
-      }(this);
-      xhr.onerror = function (_this) {
-        return function () {
-          if (files[0].status === Dropzone.CANCELED) {
-            return;
-          }
-          return handleError();
-        };
-      }(this);
-      progressObj = (ref = xhr.upload) != null ? ref : xhr;
-      progressObj.onprogress = updateProgress;
-      headers = {
-        "Accept": "application/json",
-        "Cache-Control": "no-cache",
-        "X-Requested-With": "XMLHttpRequest"
-      };
-      if (this.options.headers) {
-        extend(headers, this.options.headers);
-      }
-      for (headerName in headers) {
-        headerValue = headers[headerName];
-        if (headerValue) {
-          xhr.setRequestHeader(headerName, headerValue);
-        }
-      }
-      formData = new FormData();
-      if (this.options.params) {
-        ref1 = this.options.params;
-        for (key in ref1) {
-          value = ref1[key];
-          formData.append(key, value);
-        }
-      }
-      for (k = 0, len1 = files.length; k < len1; k++) {
-        file = files[k];
-        this.emit("sending", file, xhr, formData);
-      }
-      if (this.options.uploadMultiple) {
-        this.emit("sendingmultiple", files, xhr, formData);
-      }
-      if (this.element.tagName === "FORM") {
-        ref2 = this.element.querySelectorAll("input, textarea, select, button");
-        for (l = 0, len2 = ref2.length; l < len2; l++) {
-          input = ref2[l];
-          inputName = input.getAttribute("name");
-          inputType = input.getAttribute("type");
-          if (input.tagName === "SELECT" && input.hasAttribute("multiple")) {
-            ref3 = input.options;
-            for (m = 0, len3 = ref3.length; m < len3; m++) {
-              option = ref3[m];
-              if (option.selected) {
-                formData.append(inputName, option.value);
-              }
-            }
-          } else if (!inputType || (ref4 = inputType.toLowerCase()) !== "checkbox" && ref4 !== "radio" || input.checked) {
-            formData.append(inputName, input.value);
-          }
-        }
-      }
-      doneCounter = 0;
-      results = [];
-      for (i = o = 0, ref5 = files.length - 1; 0 <= ref5 ? o <= ref5 : o >= ref5; i = 0 <= ref5 ? ++o : --o) {
-        doneFunction = function (_this) {
-          return function (file, paramName, fileName) {
-            return function (transformedFile) {
-              formData.append(paramName, transformedFile, fileName);
-              if (++doneCounter === files.length) {
-                return _this.submitRequest(xhr, formData, files);
-              }
-            };
-          };
-        }(this);
-        results.push(this.options.transformFile.call(this, files[i], doneFunction(files[i], this._getParamName(i), files[i].upload.filename)));
-      }
-      return results;
-    };
-
-    Dropzone.prototype.submitRequest = function (xhr, formData, files) {
-      return xhr.send(formData);
-    };
-
-    Dropzone.prototype._finished = function (files, responseText, e) {
-      var file, j, len;
-      for (j = 0, len = files.length; j < len; j++) {
-        file = files[j];
-        file.status = Dropzone.SUCCESS;
-        this.emit("success", file, responseText, e);
-        this.emit("complete", file);
-      }
-      if (this.options.uploadMultiple) {
-        this.emit("successmultiple", files, responseText, e);
-        this.emit("completemultiple", files);
-      }
-      if (this.options.autoProcessQueue) {
-        return this.processQueue();
-      }
-    };
-
-    Dropzone.prototype._errorProcessing = function (files, message, xhr) {
-      var file, j, len;
-      for (j = 0, len = files.length; j < len; j++) {
-        file = files[j];
-        file.status = Dropzone.ERROR;
-        this.emit("error", file, message, xhr);
-        this.emit("complete", file);
-      }
-      if (this.options.uploadMultiple) {
-        this.emit("errormultiple", files, message, xhr);
-        this.emit("completemultiple", files);
-      }
-      if (this.options.autoProcessQueue) {
-        return this.processQueue();
-      }
-    };
-
-    return Dropzone;
-  }(Emitter);
-
-  Dropzone.version = "5.1.1";
-
-  Dropzone.options = {};
-
-  Dropzone.optionsForElement = function (element) {
-    if (element.getAttribute("id")) {
-      return Dropzone.options[camelize(element.getAttribute("id"))];
-    } else {
-      return void 0;
-    }
-  };
-
-  Dropzone.instances = [];
-
-  Dropzone.forElement = function (element) {
-    if (typeof element === "string") {
-      element = document.querySelector(element);
-    }
-    if ((element != null ? element.dropzone : void 0) == null) {
-      throw new Error("No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone.");
-    }
-    return element.dropzone;
-  };
-
-  Dropzone.autoDiscover = true;
-
-  Dropzone.discover = function () {
-    var checkElements, dropzone, dropzones, j, len, results;
-    if (document.querySelectorAll) {
-      dropzones = document.querySelectorAll(".dropzone");
-    } else {
-      dropzones = [];
-      checkElements = function checkElements(elements) {
-        var el, j, len, results;
-        results = [];
-        for (j = 0, len = elements.length; j < len; j++) {
-          el = elements[j];
-          if (/(^| )dropzone($| )/.test(el.className)) {
-            results.push(dropzones.push(el));
-          } else {
-            results.push(void 0);
-          }
-        }
-        return results;
-      };
-      checkElements(document.getElementsByTagName("div"));
-      checkElements(document.getElementsByTagName("form"));
-    }
-    results = [];
-    for (j = 0, len = dropzones.length; j < len; j++) {
-      dropzone = dropzones[j];
-      if (Dropzone.optionsForElement(dropzone) !== false) {
-        results.push(new Dropzone(dropzone));
-      } else {
-        results.push(void 0);
-      }
-    }
-    return results;
-  };
-
-  Dropzone.blacklistedBrowsers = [/opera.*Macintosh.*version\/12/i];
-
-  Dropzone.isBrowserSupported = function () {
-    var capableBrowser, j, len, ref, regex;
-    capableBrowser = true;
-    if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
-      if (!("classList" in document.createElement("a"))) {
-        capableBrowser = false;
-      } else {
-        ref = Dropzone.blacklistedBrowsers;
-        for (j = 0, len = ref.length; j < len; j++) {
-          regex = ref[j];
-          if (regex.test(navigator.userAgent)) {
-            capableBrowser = false;
-            continue;
-          }
-        }
-      }
-    } else {
-      capableBrowser = false;
-    }
-    return capableBrowser;
-  };
-
-  Dropzone.dataURItoBlob = function (dataURI) {
-    var ab, byteString, i, ia, j, mimeString, ref;
-    byteString = atob(dataURI.split(',')[1]);
-    mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    ab = new ArrayBuffer(byteString.length);
-    ia = new Uint8Array(ab);
-    for (i = j = 0, ref = byteString.length; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], {
-      type: mimeString
-    });
-  };
-
-  without = function without(list, rejectedItem) {
-    var item, j, len, results;
-    results = [];
-    for (j = 0, len = list.length; j < len; j++) {
-      item = list[j];
-      if (item !== rejectedItem) {
-        results.push(item);
-      }
-    }
-    return results;
-  };
-
-  camelize = function camelize(str) {
-    return str.replace(/[\-_](\w)/g, function (match) {
-      return match.charAt(1).toUpperCase();
-    });
-  };
-
-  Dropzone.createElement = function (string) {
-    var div;
-    div = document.createElement("div");
-    div.innerHTML = string;
-    return div.childNodes[0];
-  };
-
-  Dropzone.elementInside = function (element, container) {
-    if (element === container) {
-      return true;
-    }
-    while (element = element.parentNode) {
-      if (element === container) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  Dropzone.getElement = function (el, name) {
-    var element;
-    if (typeof el === "string") {
-      element = document.querySelector(el);
-    } else if (el.nodeType != null) {
-      element = el;
-    }
-    if (element == null) {
-      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector or a plain HTML element.");
-    }
-    return element;
-  };
-
-  Dropzone.getElements = function (els, name) {
-    var e, el, elements, error1, j, k, len, len1, ref;
-    if (els instanceof Array) {
-      elements = [];
-      try {
-        for (j = 0, len = els.length; j < len; j++) {
-          el = els[j];
-          elements.push(this.getElement(el, name));
-        }
-      } catch (error1) {
-        e = error1;
-        elements = null;
-      }
-    } else if (typeof els === "string") {
-      elements = [];
-      ref = document.querySelectorAll(els);
-      for (k = 0, len1 = ref.length; k < len1; k++) {
-        el = ref[k];
-        elements.push(el);
-      }
-    } else if (els.nodeType != null) {
-      elements = [els];
-    }
-    if (!(elements != null && elements.length)) {
-      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector, a plain HTML element or a list of those.");
-    }
-    return elements;
-  };
-
-  Dropzone.confirm = function (question, accepted, rejected) {
-    if (window.confirm(question)) {
-      return accepted();
-    } else if (rejected != null) {
-      return rejected();
-    }
-  };
-
-  Dropzone.isValidFile = function (file, acceptedFiles) {
-    var baseMimeType, j, len, mimeType, validType;
-    if (!acceptedFiles) {
-      return true;
-    }
-    acceptedFiles = acceptedFiles.split(",");
-    mimeType = file.type;
-    baseMimeType = mimeType.replace(/\/.*$/, "");
-    for (j = 0, len = acceptedFiles.length; j < len; j++) {
-      validType = acceptedFiles[j];
-      validType = validType.trim();
-      if (validType.charAt(0) === ".") {
-        if (file.name.toLowerCase().indexOf(validType.toLowerCase(), file.name.length - validType.length) !== -1) {
-          return true;
-        }
-      } else if (/\/\*$/.test(validType)) {
-        if (baseMimeType === validType.replace(/\/.*$/, "")) {
-          return true;
-        }
-      } else {
-        if (mimeType === validType) {
-          return true;
-        }
-      }
-    }
-    return false;
-  };
-
-  if (typeof jQuery !== "undefined" && jQuery !== null) {
-    jQuery.fn.dropzone = function (options) {
-      return this.each(function () {
-        return new Dropzone(this, options);
-      });
-    };
-  }
-
-  if (typeof module !== "undefined" && module !== null) {
-    module.exports = Dropzone;
-  } else {
-    window.Dropzone = Dropzone;
-  }
-
-  Dropzone.ADDED = "added";
-
-  Dropzone.QUEUED = "queued";
-
-  Dropzone.ACCEPTED = Dropzone.QUEUED;
-
-  Dropzone.UPLOADING = "uploading";
-
-  Dropzone.PROCESSING = Dropzone.UPLOADING;
-
-  Dropzone.CANCELED = "canceled";
-
-  Dropzone.ERROR = "error";
-
-  Dropzone.SUCCESS = "success";
-
-  /*
-  
-  Bugfix for iOS 6 and 7
-  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
-  based on the work of https://github.com/stomita/ios-imagefile-megapixel
-   */
-
-  detectVerticalSquash = function detectVerticalSquash(img) {
-    var alpha, canvas, ctx, data, ey, ih, iw, py, ratio, sy;
-    iw = img.naturalWidth;
-    ih = img.naturalHeight;
-    canvas = document.createElement("canvas");
-    canvas.width = 1;
-    canvas.height = ih;
-    ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-    data = ctx.getImageData(1, 0, 1, ih).data;
-    sy = 0;
-    ey = ih;
-    py = ih;
-    while (py > sy) {
-      alpha = data[(py - 1) * 4 + 3];
-      if (alpha === 0) {
-        ey = py;
-      } else {
-        sy = py;
-      }
-      py = ey + sy >> 1;
-    }
-    ratio = py / ih;
-    if (ratio === 0) {
-      return 1;
-    } else {
-      return ratio;
-    }
-  };
-
-  drawImageIOSFix = function drawImageIOSFix(ctx, img, sx, sy, sw, sh, dx, dy, dw, dh) {
-    var vertSquashRatio;
-    vertSquashRatio = detectVerticalSquash(img);
-    return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
-  };
-
-  ExifRestore = function () {
-    function ExifRestore() {}
-
-    ExifRestore.KEY_STR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
-
-    ExifRestore.encode64 = function (input) {
-      var chr1, chr2, chr3, enc1, enc2, enc3, enc4, i, output;
-      output = '';
-      chr1 = void 0;
-      chr2 = void 0;
-      chr3 = '';
-      enc1 = void 0;
-      enc2 = void 0;
-      enc3 = void 0;
-      enc4 = '';
-      i = 0;
-      while (true) {
-        chr1 = input[i++];
-        chr2 = input[i++];
-        chr3 = input[i++];
-        enc1 = chr1 >> 2;
-        enc2 = (chr1 & 3) << 4 | chr2 >> 4;
-        enc3 = (chr2 & 15) << 2 | chr3 >> 6;
-        enc4 = chr3 & 63;
-        if (isNaN(chr2)) {
-          enc3 = enc4 = 64;
-        } else if (isNaN(chr3)) {
-          enc4 = 64;
-        }
-        output = output + this.KEY_STR.charAt(enc1) + this.KEY_STR.charAt(enc2) + this.KEY_STR.charAt(enc3) + this.KEY_STR.charAt(enc4);
-        chr1 = chr2 = chr3 = '';
-        enc1 = enc2 = enc3 = enc4 = '';
-        if (!(i < input.length)) {
-          break;
-        }
-      }
-      return output;
-    };
-
-    ExifRestore.restore = function (origFileBase64, resizedFileBase64) {
-      var image, rawImage, segments;
-      if (!origFileBase64.match('data:image/jpeg;base64,')) {
-        return resizedFileBase64;
-      }
-      rawImage = this.decode64(origFileBase64.replace('data:image/jpeg;base64,', ''));
-      segments = this.slice2Segments(rawImage);
-      image = this.exifManipulation(resizedFileBase64, segments);
-      return 'data:image/jpeg;base64,' + this.encode64(image);
-    };
-
-    ExifRestore.exifManipulation = function (resizedFileBase64, segments) {
-      var aBuffer, exifArray, newImageArray;
-      exifArray = this.getExifArray(segments);
-      newImageArray = this.insertExif(resizedFileBase64, exifArray);
-      aBuffer = new Uint8Array(newImageArray);
-      return aBuffer;
-    };
-
-    ExifRestore.getExifArray = function (segments) {
-      var seg, x;
-      seg = void 0;
-      x = 0;
-      while (x < segments.length) {
-        seg = segments[x];
-        if (seg[0] === 255 & seg[1] === 225) {
-          return seg;
-        }
-        x++;
-      }
-      return [];
-    };
-
-    ExifRestore.insertExif = function (resizedFileBase64, exifArray) {
-      var array, ato, buf, imageData, mae, separatePoint;
-      imageData = resizedFileBase64.replace('data:image/jpeg;base64,', '');
-      buf = this.decode64(imageData);
-      separatePoint = buf.indexOf(255, 3);
-      mae = buf.slice(0, separatePoint);
-      ato = buf.slice(separatePoint);
-      array = mae;
-      array = array.concat(exifArray);
-      array = array.concat(ato);
-      return array;
-    };
-
-    ExifRestore.slice2Segments = function (rawImageArray) {
-      var endPoint, head, length, seg, segments;
-      head = 0;
-      segments = [];
-      while (true) {
-        if (rawImageArray[head] === 255 & rawImageArray[head + 1] === 218) {
-          break;
-        }
-        if (rawImageArray[head] === 255 & rawImageArray[head + 1] === 216) {
-          head += 2;
-        } else {
-          length = rawImageArray[head + 2] * 256 + rawImageArray[head + 3];
-          endPoint = head + length + 2;
-          seg = rawImageArray.slice(head, endPoint);
-          segments.push(seg);
-          head = endPoint;
-        }
-        if (head > rawImageArray.length) {
-          break;
-        }
-      }
-      return segments;
-    };
-
-    ExifRestore.decode64 = function (input) {
-      var base64test, buf, chr1, chr2, chr3, enc1, enc2, enc3, enc4, i, output;
-      output = '';
-      chr1 = void 0;
-      chr2 = void 0;
-      chr3 = '';
-      enc1 = void 0;
-      enc2 = void 0;
-      enc3 = void 0;
-      enc4 = '';
-      i = 0;
-      buf = [];
-      base64test = /[^A-Za-z0-9\+\/\=]/g;
-      if (base64test.exec(input)) {
-        console.warning('There were invalid base64 characters in the input text.\n' + 'Valid base64 characters are A-Z, a-z, 0-9, \'+\', \'/\',and \'=\'\n' + 'Expect errors in decoding.');
-      }
-      input = input.replace(/[^A-Za-z0-9\+\/\=]/g, '');
-      while (true) {
-        enc1 = this.KEY_STR.indexOf(input.charAt(i++));
-        enc2 = this.KEY_STR.indexOf(input.charAt(i++));
-        enc3 = this.KEY_STR.indexOf(input.charAt(i++));
-        enc4 = this.KEY_STR.indexOf(input.charAt(i++));
-        chr1 = enc1 << 2 | enc2 >> 4;
-        chr2 = (enc2 & 15) << 4 | enc3 >> 2;
-        chr3 = (enc3 & 3) << 6 | enc4;
-        buf.push(chr1);
-        if (enc3 !== 64) {
-          buf.push(chr2);
-        }
-        if (enc4 !== 64) {
-          buf.push(chr3);
-        }
-        chr1 = chr2 = chr3 = '';
-        enc1 = enc2 = enc3 = enc4 = '';
-        if (!(i < input.length)) {
-          break;
-        }
-      }
-      return buf;
-    };
-
-    return ExifRestore;
-  }();
-
-  /*
-   * contentloaded.js
-   *
-   * Author: Diego Perini (diego.perini at gmail.com)
-   * Summary: cross-browser wrapper for DOMContentLoaded
-   * Updated: 20101020
-   * License: MIT
-   * Version: 1.2
-   *
-   * URL:
-   * http://javascript.nwbox.com/ContentLoaded/
-   * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
-   */
-
-  contentLoaded = function contentLoaded(win, fn) {
-    var add, doc, done, _init, _poll, pre, rem, root, top;
-    done = false;
-    top = true;
-    doc = win.document;
-    root = doc.documentElement;
-    add = doc.addEventListener ? "addEventListener" : "attachEvent";
-    rem = doc.addEventListener ? "removeEventListener" : "detachEvent";
-    pre = doc.addEventListener ? "" : "on";
-    _init = function init(e) {
-      if (e.type === "readystatechange" && doc.readyState !== "complete") {
-        return;
-      }
-      (e.type === "load" ? win : doc)[rem](pre + e.type, _init, false);
-      if (!done && (done = true)) {
-        return fn.call(win, e.type || e);
-      }
-    };
-    _poll = function poll() {
-      var e, error1;
-      try {
-        root.doScroll("left");
-      } catch (error1) {
-        e = error1;
-        setTimeout(_poll, 50);
-        return;
-      }
-      return _init("poll");
-    };
-    if (doc.readyState !== "complete") {
-      if (doc.createEventObject && root.doScroll) {
-        try {
-          top = !win.frameElement;
-        } catch (undefined) {}
-        if (top) {
-          _poll();
-        }
-      }
-      doc[add](pre + "DOMContentLoaded", _init, false);
-      doc[add](pre + "readystatechange", _init, false);
-      return win[add](pre + "load", _init, false);
-    }
-  };
-
-  Dropzone._autoDiscoverFunction = function () {
-    if (Dropzone.autoDiscover) {
-      return Dropzone.discover();
-    }
-  };
-
-  contentLoaded(window, Dropzone._autoDiscoverFunction);
-}).call(this);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12389,7 +10327,7 @@ return jQuery;
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -12417,7 +10355,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -12427,22 +10365,54 @@ module.exports = function(module) {
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(7);
+__webpack_require__(8);
 
-window.Dropzone = __webpack_require__(0);
+window.Dropzone = __webpack_require__(9);
 
 Dropzone.autoDiscover = false;
 
-//require('./dropzone-cropper.js')
-//
-var myDropzone = new Dropzone("#dropzone-container", {
-    addRemoveLinks: true,
-    uploadMultiple: false,
-    init: function init() {
-        this.on('success', function (file) {});
-    }
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+$(function () {
+
+    var swal = __webpack_require__(12);
+
+    var myDropzone = new Dropzone("#dropzone-container", {
+        uploadMultiple: false,
+        init: function init() {
+
+            //Função executada quando o upload der certo
+            this.on('success', function (filrome) {
+                swal({
+                    type: 'success',
+                    title: 'Sucesso',
+                    text: 'Foto atualizada! Recarregando..',
+                    timer: 2000
+                });
+
+                //Redirect apos algum tempo
+                //               setTimeout( function() {
+                //                   window.location = filrome.xhr.responseURL;
+                //               }, 1800);
+            });
+
+            //Função executada quando a foto for uploaded com sucesso
+            this.on('error', function (file, data, xhr) {
+                var responseJSON = JSON.parse(xhr.response);
+
+                swal({
+                    type: 'error',
+                    title: 'Erro',
+                    text: responseJSON.file[0]
+                });
+
+                myDropzone.removeFile(file);
+            });
+        }
+    });
 });
-//
 
 /***/ }),
 /* 4 */
@@ -12458,7 +10428,7 @@ var myDropzone = new Dropzone("#dropzone-container", {
  * Date: 2017-07-07T13:00:47.346Z
  */
 
-!function(t,e){ true?e(__webpack_require__(1)):"function"==typeof define&&define.amd?define(["jquery"],e):e(t.jQuery)}(this,function(t){"use strict";function e(t){return"number"==typeof t&&!isNaN(t)}function i(t){return"undefined"==typeof t}function a(t,i){var a=[];return e(i)&&a.push(i),a.slice.apply(t,a)}function o(t,e){for(var i=arguments.length,o=Array(i>2?i-2:0),n=2;n<i;n++)o[n-2]=arguments[n];return function(){for(var i=arguments.length,n=Array(i),r=0;r<i;r++)n[r]=arguments[r];return t.apply(e,o.concat(a(n)))}}function n(e){var i=[];return t.each(e,function(t){i.push(t)}),i}function r(t){var e=t.match(/^(https?:)\/\/([^:\/?#]+):?(\d*)/i);return e&&(e[1]!==location.protocol||e[2]!==location.hostname||e[3]!==location.port)}function h(t){var e="timestamp="+(new Date).getTime();return t+(t.indexOf("?")===-1?"?":"&")+e}function s(t,e){if(t.naturalWidth&&!$)return void e(t.naturalWidth,t.naturalHeight);var i=document.createElement("img");i.onload=function(){e(this.width,this.height)},i.src=t.src}function d(t){var i=[],a=t.translateX,o=t.translateY,n=t.rotate,r=t.scaleX,h=t.scaleY;return e(a)&&0!==a&&i.push("translateX("+a+"px)"),e(o)&&0!==o&&i.push("translateY("+o+"px)"),e(n)&&0!==n&&i.push("rotate("+n+"deg)"),e(r)&&1!==r&&i.push("scaleX("+r+")"),e(h)&&1!==h&&i.push("scaleY("+h+")"),i.length?i.join(" "):"none"}function c(t,e){var i=Math.abs(t.degree)%180,a=(i>90?180-i:i)*Math.PI/180,o=Math.sin(a),n=Math.cos(a),r=t.width,h=t.height,s=t.aspectRatio,d=void 0,c=void 0;return e?(d=r/(n+o/s),c=d/s):(d=r*n+h*o,c=r*o+h*n),{width:d,height:c}}function l(i,a,o){var n=t("<canvas>")[0],r=n.getContext("2d"),h=0,s=0,d=a.naturalWidth,l=a.naturalHeight,p=a.rotate,m=a.scaleX,g=a.scaleY,u=e(m)&&e(g)&&(1!==m||1!==g),f=e(p)&&0!==p,v=f||u,w=d*Math.abs(m||1),x=l*Math.abs(g||1),b=void 0,y=void 0,C=void 0;return u&&(b=w/2,y=x/2),f&&(C=c({width:w,height:x,degree:p}),w=C.width,x=C.height,b=w/2,y=x/2),n.width=w,n.height=x,o.fillColor&&(r.fillStyle=o.fillColor,r.fillRect(0,0,w,x)),v&&(h=-d/2,s=-l/2,r.save(),r.translate(b,y)),f&&r.rotate(p*Math.PI/180),u&&r.scale(m,g),r.imageSmoothingEnabled=!!o.imageSmoothingEnabled,o.imageSmoothingQuality&&(r.imageSmoothingQuality=o.imageSmoothingQuality),r.drawImage(i,Math.floor(h),Math.floor(s),Math.floor(d),Math.floor(l)),v&&r.restore(),n}function p(t,e,i){var a="",o=void 0;for(o=e,i+=e;o<i;o++)a+=B(t.getUint8(o));return a}function m(t){var e=new DataView(t),i=e.byteLength,a=void 0,o=void 0,n=void 0,r=void 0,h=void 0,s=void 0,d=void 0,c=void 0,l=void 0,m=void 0;if(255===e.getUint8(0)&&216===e.getUint8(1))for(l=2;l<i;){if(255===e.getUint8(l)&&225===e.getUint8(l+1)){d=l;break}l++}if(d&&(o=d+4,n=d+10,"Exif"===p(e,o,4)&&(s=e.getUint16(n),h=18761===s,(h||19789===s)&&42===e.getUint16(n+2,h)&&(r=e.getUint32(n+4,h),r>=8&&(c=n+r)))),c)for(i=e.getUint16(c,h),m=0;m<i;m++)if(l=c+12*m+2,274===e.getUint16(l,h)){l+=8,a=e.getUint16(l,h),$&&e.setUint16(l,1,h);break}return a}function g(t){var e=t.replace(y,""),i=atob(e),a=i.length,o=new ArrayBuffer(a),n=new Uint8Array(o),r=void 0;for(r=0;r<a;r++)n[r]=i.charCodeAt(r);return o}function u(t){var e=new Uint8Array(t),i=e.length,a="",o=void 0;for(o=0;o<i;o++)a+=B(e[o]);return"data:image/jpeg;base64,"+btoa(a)}function f(e,i){var a=e.pageX,o=e.pageY,n={endX:a,endY:o};return i?n:t.extend({startX:a,startY:o},n)}function v(e){var i=t.extend({},e),a=[];return t.each(e,function(e,o){delete i[e],t.each(i,function(t,e){var i=Math.abs(o.startX-e.startX),n=Math.abs(o.startY-e.startY),r=Math.abs(o.endX-e.endX),h=Math.abs(o.endY-e.endY),s=Math.sqrt(i*i+n*n),d=Math.sqrt(r*r+h*h),c=(d-s)/s;a.push(c)})}),a.sort(function(t,e){return Math.abs(t)<Math.abs(e)}),a[0]}function w(e){var i=0,a=0,o=0;return t.each(e,function(t,e){var n=e.startX,r=e.startY;i+=n,a+=r,o+=1}),i/=o,a/=o,{pageX:i,pageY:a}}t="default"in t?t.default:t;var x={viewMode:0,dragMode:"crop",aspectRatio:NaN,data:null,preview:"",responsive:!0,restore:!0,checkCrossOrigin:!0,checkOrientation:!0,modal:!0,guides:!0,center:!0,highlight:!0,background:!0,autoCrop:!0,autoCropArea:.8,movable:!0,rotatable:!0,scalable:!0,zoomable:!0,zoomOnTouch:!0,zoomOnWheel:!0,wheelZoomRatio:.1,cropBoxMovable:!0,cropBoxResizable:!0,toggleDragModeOnDblclick:!0,minCanvasWidth:0,minCanvasHeight:0,minCropBoxWidth:0,minCropBoxHeight:0,minContainerWidth:200,minContainerHeight:100,ready:null,cropstart:null,cropmove:null,cropend:null,crop:null,zoom:null},b='<div class="cropper-container"><div class="cropper-wrap-box"><div class="cropper-canvas"></div></div><div class="cropper-drag-box"></div><div class="cropper-crop-box"><span class="cropper-view-box"></span><span class="cropper-dashed dashed-h"></span><span class="cropper-dashed dashed-v"></span><span class="cropper-center"></span><span class="cropper-face"></span><span class="cropper-line line-e" data-action="e"></span><span class="cropper-line line-n" data-action="n"></span><span class="cropper-line line-w" data-action="w"></span><span class="cropper-line line-s" data-action="s"></span><span class="cropper-point point-e" data-action="e"></span><span class="cropper-point point-n" data-action="n"></span><span class="cropper-point point-w" data-action="w"></span><span class="cropper-point point-s" data-action="s"></span><span class="cropper-point point-ne" data-action="ne"></span><span class="cropper-point point-nw" data-action="nw"></span><span class="cropper-point point-sw" data-action="sw"></span><span class="cropper-point point-se" data-action="se"></span></div></div>',y=/^data:.*,/,C=/(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i,M="undefined"!=typeof window?window.navigator:null,$=M&&C.test(M.userAgent),B=String.fromCharCode,k={render:function(){var t=this;t.initContainer(),t.initCanvas(),t.initCropBox(),t.renderCanvas(),t.cropped&&t.renderCropBox()},initContainer:function(){var t=this,e=t.options,i=t.$element,a=t.$container,o=t.$cropper,n="cropper-hidden";o.addClass(n),i.removeClass(n),o.css(t.container={width:Math.max(a.width(),Number(e.minContainerWidth)||200),height:Math.max(a.height(),Number(e.minContainerHeight)||100)}),i.addClass(n),o.removeClass(n)},initCanvas:function(){var e=this,i=e.options.viewMode,a=e.container,o=a.width,n=a.height,r=e.image,h=r.naturalWidth,s=r.naturalHeight,d=Math.abs(r.rotate)%180===90,c=d?s:h,l=d?h:s,p=c/l,m=o,g=n;n*p>o?3===i?m=n*p:g=o/p:3===i?g=o/p:m=n*p;var u={naturalWidth:c,naturalHeight:l,aspectRatio:p,width:m,height:g};u.oldLeft=u.left=(o-m)/2,u.oldTop=u.top=(n-g)/2,e.canvas=u,e.limited=1===i||2===i,e.limitCanvas(!0,!0),e.initialImage=t.extend({},r),e.initialCanvas=t.extend({},u)},limitCanvas:function(t,e){var i=this,a=i.options,o=a.viewMode,n=i.container,r=n.width,h=n.height,s=i.canvas,d=s.aspectRatio,c=i.cropBox,l=i.cropped&&c;if(t){var p=Number(a.minCanvasWidth)||0,m=Number(a.minCanvasHeight)||0;o&&(o>1?(p=Math.max(p,r),m=Math.max(m,h),3===o&&(m*d>p?p=m*d:m=p/d)):p?p=Math.max(p,l?c.width:0):m?m=Math.max(m,l?c.height:0):l&&(p=c.width,m=c.height,m*d>p?p=m*d:m=p/d)),p&&m?m*d>p?m=p/d:p=m*d:p?m=p/d:m&&(p=m*d),s.minWidth=p,s.minHeight=m,s.maxWidth=1/0,s.maxHeight=1/0}if(e)if(o){var g=r-s.width,u=h-s.height;s.minLeft=Math.min(0,g),s.minTop=Math.min(0,u),s.maxLeft=Math.max(0,g),s.maxTop=Math.max(0,u),l&&i.limited&&(s.minLeft=Math.min(c.left,c.left+c.width-s.width),s.minTop=Math.min(c.top,c.top+c.height-s.height),s.maxLeft=c.left,s.maxTop=c.top,2===o&&(s.width>=r&&(s.minLeft=Math.min(0,g),s.maxLeft=Math.max(0,g)),s.height>=h&&(s.minTop=Math.min(0,u),s.maxTop=Math.max(0,u))))}else s.minLeft=-s.width,s.minTop=-s.height,s.maxLeft=r,s.maxTop=h},renderCanvas:function(t){var e=this,i=e.canvas,a=e.image,o=a.rotate,n=a.naturalWidth,r=a.naturalHeight;if(e.rotated){e.rotated=!1;var h=c({width:a.width,height:a.height,degree:o}),s=h.width/h.height,l=1===a.aspectRatio;if(l||s!==i.aspectRatio){if(i.left-=(h.width-i.width)/2,i.top-=(h.height-i.height)/2,i.width=h.width,i.height=h.height,i.aspectRatio=s,i.naturalWidth=n,i.naturalHeight=r,l&&o%90||o%180){var p=c({width:n,height:r,degree:o});i.naturalWidth=p.width,i.naturalHeight=p.height}e.limitCanvas(!0,!1)}}(i.width>i.maxWidth||i.width<i.minWidth)&&(i.left=i.oldLeft),(i.height>i.maxHeight||i.height<i.minHeight)&&(i.top=i.oldTop),i.width=Math.min(Math.max(i.width,i.minWidth),i.maxWidth),i.height=Math.min(Math.max(i.height,i.minHeight),i.maxHeight),e.limitCanvas(!1,!0),i.oldLeft=i.left=Math.min(Math.max(i.left,i.minLeft),i.maxLeft),i.oldTop=i.top=Math.min(Math.max(i.top,i.minTop),i.maxTop),e.$canvas.css({width:i.width,height:i.height,transform:d({translateX:i.left,translateY:i.top})}),e.renderImage(),e.cropped&&e.limited&&e.limitCropBox(!0,!0),t&&e.output()},renderImage:function(e){var i=this,a=i.canvas,o=i.image,n=void 0;o.rotate&&(n=c({width:a.width,height:a.height,degree:o.rotate,aspectRatio:o.aspectRatio},!0)),t.extend(o,n?{width:n.width,height:n.height,left:(a.width-n.width)/2,top:(a.height-n.height)/2}:{width:a.width,height:a.height,left:0,top:0}),i.$clone.css({width:o.width,height:o.height,transform:d(t.extend({translateX:o.left,translateY:o.top},o))}),e&&i.output()},initCropBox:function(){var e=this,i=e.options,a=e.canvas,o=i.aspectRatio,n=Number(i.autoCropArea)||.8,r={width:a.width,height:a.height};o&&(a.height*o>a.width?r.height=r.width/o:r.width=r.height*o),e.cropBox=r,e.limitCropBox(!0,!0),r.width=Math.min(Math.max(r.width,r.minWidth),r.maxWidth),r.height=Math.min(Math.max(r.height,r.minHeight),r.maxHeight),r.width=Math.max(r.minWidth,r.width*n),r.height=Math.max(r.minHeight,r.height*n),r.oldLeft=r.left=a.left+(a.width-r.width)/2,r.oldTop=r.top=a.top+(a.height-r.height)/2,e.initialCropBox=t.extend({},r)},limitCropBox:function(t,e){var i=this,a=i.options,o=a.aspectRatio,n=i.container,r=n.width,h=n.height,s=i.canvas,d=i.cropBox,c=i.limited;if(t){var l=Number(a.minCropBoxWidth)||0,p=Number(a.minCropBoxHeight)||0,m=Math.min(r,c?s.width:r),g=Math.min(h,c?s.height:h);l=Math.min(l,r),p=Math.min(p,h),o&&(l&&p?p*o>l?p=l/o:l=p*o:l?p=l/o:p&&(l=p*o),g*o>m?g=m/o:m=g*o),d.minWidth=Math.min(l,m),d.minHeight=Math.min(p,g),d.maxWidth=m,d.maxHeight=g}e&&(c?(d.minLeft=Math.max(0,s.left),d.minTop=Math.max(0,s.top),d.maxLeft=Math.min(r,s.left+s.width)-d.width,d.maxTop=Math.min(h,s.top+s.height)-d.height):(d.minLeft=0,d.minTop=0,d.maxLeft=r-d.width,d.maxTop=h-d.height))},renderCropBox:function(){var t=this,e=t.options,i=t.container,a=i.width,o=i.height,n=t.cropBox;(n.width>n.maxWidth||n.width<n.minWidth)&&(n.left=n.oldLeft),(n.height>n.maxHeight||n.height<n.minHeight)&&(n.top=n.oldTop),n.width=Math.min(Math.max(n.width,n.minWidth),n.maxWidth),n.height=Math.min(Math.max(n.height,n.minHeight),n.maxHeight),t.limitCropBox(!1,!0),n.oldLeft=n.left=Math.min(Math.max(n.left,n.minLeft),n.maxLeft),n.oldTop=n.top=Math.min(Math.max(n.top,n.minTop),n.maxTop),e.movable&&e.cropBoxMovable&&t.$face.data("action",n.width===a&&n.height===o?"move":"all"),t.$cropBox.css({width:n.width,height:n.height,transform:d({translateX:n.left,translateY:n.top})}),t.cropped&&t.limited&&t.limitCanvas(!0,!0),t.disabled||t.output()},output:function(){var t=this;t.preview(),t.completed&&t.trigger("crop",t.getData())}},T="preview",D={initPreview:function(){var e=this,i=e.crossOrigin,a=i?e.crossOriginUrl:e.url,o=document.createElement("img");i&&(o.crossOrigin=i),o.src=a;var n=t(o);e.$preview=t(e.options.preview),e.$clone2=n,e.$viewBox.html(n),e.$preview.each(function(e,o){var n=t(o),r=document.createElement("img");n.data(T,{width:n.width(),height:n.height(),html:n.html()}),i&&(r.crossOrigin=i),r.src=a,r.style.cssText='display:block;width:100%;height:auto;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;image-orientation:0deg!important;"',n.html(r)})},resetPreview:function(){this.$preview.each(function(e,i){var a=t(i),o=a.data(T);a.css({width:o.width,height:o.height}).html(o.html).removeData(T)})},preview:function(){var e=this,i=e.image,a=e.canvas,o=e.cropBox,n=o.width,r=o.height,h=i.width,s=i.height,c=o.left-a.left-i.left,l=o.top-a.top-i.top;e.cropped&&!e.disabled&&(e.$clone2.css({width:h,height:s,transform:d(t.extend({translateX:-c,translateY:-l},i))}),e.$preview.each(function(e,a){var o=t(a),p=o.data(T),m=p.width,g=p.height,u=m,f=g,v=1;n&&(v=m/n,f=r*v),r&&f>g&&(v=g/r,u=n*v,f=g),o.css({width:u,height:f}).find("img").css({width:h*v,height:s*v,transform:d(t.extend({translateX:-c*v,translateY:-l*v},i))})}))}},X="undefined"!=typeof window?window.PointerEvent:null,Y=X?"pointerdown":"touchstart mousedown",W=X?"pointermove":"touchmove mousemove",H=X?" pointerup pointercancel":"touchend touchcancel mouseup",O="wheel mousewheel DOMMouseScroll",z="dblclick",R="resize",E="cropstart",L="cropmove",N="cropend",I="crop",P="zoom",U={bind:function(){var e=this,i=e.options,a=e.$element,n=e.$cropper;t.isFunction(i.cropstart)&&a.on(E,i.cropstart),t.isFunction(i.cropmove)&&a.on(L,i.cropmove),t.isFunction(i.cropend)&&a.on(N,i.cropend),t.isFunction(i.crop)&&a.on(I,i.crop),t.isFunction(i.zoom)&&a.on(P,i.zoom),n.on(Y,o(e.cropStart,this)),i.zoomable&&i.zoomOnWheel&&n.on(O,o(e.wheel,this)),i.toggleDragModeOnDblclick&&n.on(z,o(e.dblclick,this)),t(document).on(W,e.onCropMove=o(e.cropMove,this)).on(H,e.onCropEnd=o(e.cropEnd,this)),i.responsive&&t(window).on(R,e.onResize=o(e.resize,this))},unbind:function(){var e=this,i=e.options,a=e.$element,o=e.$cropper;t.isFunction(i.cropstart)&&a.off(E,i.cropstart),t.isFunction(i.cropmove)&&a.off(L,i.cropmove),t.isFunction(i.cropend)&&a.off(N,i.cropend),t.isFunction(i.crop)&&a.off(I,i.crop),t.isFunction(i.zoom)&&a.off(P,i.zoom),o.off(Y,e.cropStart),i.zoomable&&i.zoomOnWheel&&o.off(O,e.wheel),i.toggleDragModeOnDblclick&&o.off(z,e.dblclick),t(document).off(W,e.onCropMove).off(H,e.onCropEnd),i.responsive&&t(window).off(R,e.onResize)}},A=/^(e|w|s|n|se|sw|ne|nw|all|crop|move|zoom)$/,S={resize:function(){var e=this,i=e.options,a=e.$container,o=e.container,n=Number(i.minContainerWidth)||200,r=Number(i.minContainerHeight)||100;if(!e.disabled&&o.width!==n&&o.height!==r){var h=a.width()/o.width;1===h&&a.height()===o.height||!function(){var a=void 0,o=void 0;i.restore&&(a=e.getCanvasData(),o=e.getCropBoxData()),e.render(),i.restore&&(e.setCanvasData(t.each(a,function(t,e){a[t]=e*h})),e.setCropBoxData(t.each(o,function(t,e){o[t]=e*h})))}()}},dblclick:function(){var t=this;t.disabled||"none"===t.options.dragMode||t.setDragMode(t.$dragBox.hasClass("cropper-crop")?"move":"crop")},wheel:function(t){var e=this,i=t.originalEvent||t,a=Number(e.options.wheelZoomRatio)||.1;if(!e.disabled&&(t.preventDefault(),!e.wheeling)){e.wheeling=!0,setTimeout(function(){e.wheeling=!1},50);var o=1;i.deltaY?o=i.deltaY>0?1:-1:i.wheelDelta?o=-i.wheelDelta/120:i.detail&&(o=i.detail>0?1:-1),e.zoom(-o*a,t)}},cropStart:function(e){var i=this;if(!i.disabled){var a=i.options,o=i.pointers,r=e.originalEvent,h=void 0;r&&r.changedTouches?t.each(r.changedTouches,function(t,e){o[e.identifier]=f(e)}):o[r&&r.pointerId||0]=f(r||e),h=n(o).length>1&&a.zoomable&&a.zoomOnTouch?"zoom":t(e.target).data("action"),A.test(h)&&(i.trigger("cropstart",{originalEvent:r,action:h}).isDefaultPrevented()||(e.preventDefault(),i.action=h,i.cropping=!1,"crop"===h&&(i.cropping=!0,i.$dragBox.addClass("cropper-modal"))))}},cropMove:function(e){var i=this,a=i.action;if(!i.disabled&&a){var o=i.pointers,n=e.originalEvent;e.preventDefault(),i.trigger("cropmove",{originalEvent:n,action:a}).isDefaultPrevented()||(n&&n.changedTouches?t.each(n.changedTouches,function(e,i){t.extend(o[i.identifier],f(i,!0))}):t.extend(o[n&&n.pointerId||0],f(n||e,!0)),i.change(e))}},cropEnd:function(e){var i=this;if(!i.disabled){var a=i.action,o=i.pointers,r=e.originalEvent;r&&r.changedTouches?t.each(r.changedTouches,function(t,e){delete o[e.identifier]}):delete o[r&&r.pointerId||0],a&&(e.preventDefault(),n(o).length||(i.action=""),i.cropping&&(i.cropping=!1,i.$dragBox.toggleClass("cropper-modal",i.cropped&&i.options.modal)),i.trigger("cropend",{originalEvent:r,action:a}))}}},j="e",F="w",Q="s",q="n",K="se",Z="sw",V="ne",G="nw",J={change:function(e){var i=this,a=i.options,o=i.pointers,r=o[n(o)[0]],h=i.container,s=i.canvas,d=i.cropBox,c=i.action,l=a.aspectRatio,p=d.width,m=d.height,g=d.left,u=d.top,f=g+p,w=u+m,x=0,b=0,y=h.width,C=h.height,M=!0,$=void 0;!l&&e.shiftKey&&(l=p&&m?p/m:1),i.limited&&(x=d.minLeft,b=d.minTop,y=x+Math.min(h.width,s.width,s.left+s.width),C=b+Math.min(h.height,s.height,s.top+s.height));var B={x:r.endX-r.startX,y:r.endY-r.startY};switch(l&&(B.X=B.y*l,B.Y=B.x/l),c){case"all":g+=B.x,u+=B.y;break;case j:if(B.x>=0&&(f>=y||l&&(u<=b||w>=C))){M=!1;break}p+=B.x,l&&(m=p/l,u-=B.Y/2),p<0&&(c=F,p=0);break;case q:if(B.y<=0&&(u<=b||l&&(g<=x||f>=y))){M=!1;break}m-=B.y,u+=B.y,l&&(p=m*l,g+=B.X/2),m<0&&(c=Q,m=0);break;case F:if(B.x<=0&&(g<=x||l&&(u<=b||w>=C))){M=!1;break}p-=B.x,g+=B.x,l&&(m=p/l,u+=B.Y/2),p<0&&(c=j,p=0);break;case Q:if(B.y>=0&&(w>=C||l&&(g<=x||f>=y))){M=!1;break}m+=B.y,l&&(p=m*l,g-=B.X/2),m<0&&(c=q,m=0);break;case V:if(l){if(B.y<=0&&(u<=b||f>=y)){M=!1;break}m-=B.y,u+=B.y,p=m*l}else B.x>=0?f<y?p+=B.x:B.y<=0&&u<=b&&(M=!1):p+=B.x,B.y<=0?u>b&&(m-=B.y,u+=B.y):(m-=B.y,u+=B.y);p<0&&m<0?(c=Z,m=0,p=0):p<0?(c=G,p=0):m<0&&(c=K,m=0);break;case G:if(l){if(B.y<=0&&(u<=b||g<=x)){M=!1;break}m-=B.y,u+=B.y,p=m*l,g+=B.X}else B.x<=0?g>x?(p-=B.x,g+=B.x):B.y<=0&&u<=b&&(M=!1):(p-=B.x,g+=B.x),B.y<=0?u>b&&(m-=B.y,u+=B.y):(m-=B.y,u+=B.y);p<0&&m<0?(c=K,m=0,p=0):p<0?(c=V,p=0):m<0&&(c=Z,m=0);break;case Z:if(l){if(B.x<=0&&(g<=x||w>=C)){M=!1;break}p-=B.x,g+=B.x,m=p/l}else B.x<=0?g>x?(p-=B.x,g+=B.x):B.y>=0&&w>=C&&(M=!1):(p-=B.x,g+=B.x),B.y>=0?w<C&&(m+=B.y):m+=B.y;p<0&&m<0?(c=V,m=0,p=0):p<0?(c=K,p=0):m<0&&(c=G,m=0);break;case K:if(l){if(B.x>=0&&(f>=y||w>=C)){M=!1;break}p+=B.x,m=p/l}else B.x>=0?f<y?p+=B.x:B.y>=0&&w>=C&&(M=!1):p+=B.x,B.y>=0?w<C&&(m+=B.y):m+=B.y;p<0&&m<0?(c=G,m=0,p=0):p<0?(c=Z,p=0):m<0&&(c=V,m=0);break;case"move":i.move(B.x,B.y),M=!1;break;case"zoom":i.zoom(v(o),e.originalEvent),M=!1;break;case"crop":if(!B.x||!B.y){M=!1;break}$=i.$cropper.offset(),g=r.startX-$.left,u=r.startY-$.top,p=d.minWidth,m=d.minHeight,B.x>0?c=B.y>0?K:V:B.x<0&&(g-=p,c=B.y>0?Z:G),B.y<0&&(u-=m),i.cropped||(i.$cropBox.removeClass("cropper-hidden"),i.cropped=!0,i.limited&&i.limitCropBox(!0,!0))}M&&(d.width=p,d.height=m,d.left=g,d.top=u,i.action=c,i.renderCropBox()),t.each(o,function(t,e){e.startX=e.endX,e.startY=e.endY})}},_=function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")},tt=function(){function t(t,e){for(var i=0;i<e.length;i++){var a=e[i];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(t,a.key,a)}}return function(e,i,a){return i&&t(e.prototype,i),a&&t(e,a),e}}(),et=function(t){if(Array.isArray(t)){for(var e=0,i=Array(t.length);e<t.length;e++)i[e]=t[e];return i}return Array.from(t)},it={crop:function(){var t=this;t.ready&&!t.disabled&&(t.cropped||(t.cropped=!0,t.limitCropBox(!0,!0),t.options.modal&&t.$dragBox.addClass("cropper-modal"),t.$cropBox.removeClass("cropper-hidden")),t.setCropBoxData(t.initialCropBox))},reset:function(){var e=this;e.ready&&!e.disabled&&(e.image=t.extend({},e.initialImage),e.canvas=t.extend({},e.initialCanvas),e.cropBox=t.extend({},e.initialCropBox),e.renderCanvas(),e.cropped&&e.renderCropBox())},clear:function(){var e=this;e.cropped&&!e.disabled&&(t.extend(e.cropBox,{left:0,top:0,width:0,height:0}),e.cropped=!1,e.renderCropBox(),e.limitCanvas(!0,!0),e.renderCanvas(),e.$dragBox.removeClass("cropper-modal"),e.$cropBox.addClass("cropper-hidden"))},replace:function(t,e){var i=this;!i.disabled&&t&&(i.isImg&&i.$element.attr("src",t),e?(i.url=t,i.$clone.attr("src",t),i.ready&&i.$preview.find("img").add(i.$clone2).attr("src",t)):(i.isImg&&(i.replaced=!0),i.options.data=null,i.load(t)))},enable:function(){var t=this;t.ready&&(t.disabled=!1,t.$cropper.removeClass("cropper-disabled"))},disable:function(){var t=this;t.ready&&(t.disabled=!0,t.$cropper.addClass("cropper-disabled"))},destroy:function(){var t=this,e=t.$element;t.loaded?(t.isImg&&t.replaced&&e.attr("src",t.originalUrl),t.unbuild(),e.removeClass("cropper-hidden")):t.isImg?e.off("load",t.start):t.$clone&&t.$clone.remove(),e.removeData("cropper")},move:function(t,e){var a=this,o=a.canvas;a.moveTo(i(t)?t:o.left+Number(t),i(e)?e:o.top+Number(e))},moveTo:function(t,a){var o=this,n=o.canvas,r=!1;i(a)&&(a=t),t=Number(t),a=Number(a),o.ready&&!o.disabled&&o.options.movable&&(e(t)&&(n.left=t,r=!0),e(a)&&(n.top=a,r=!0),r&&o.renderCanvas(!0))},zoom:function(t,e){var i=this,a=i.canvas;t=Number(t),t=t<0?1/(1-t):1+t,i.zoomTo(a.width*t/a.naturalWidth,e)},zoomTo:function(t,e){var i=this,a=i.options,o=i.pointers,r=i.canvas,h=r.width,s=r.height,d=r.naturalWidth,c=r.naturalHeight;if(t=Number(t),t>=0&&i.ready&&!i.disabled&&a.zoomable){var l=d*t,p=c*t,m=void 0;if(e&&(m=e.originalEvent),i.trigger("zoom",{originalEvent:m,oldRatio:h/d,ratio:l/d}).isDefaultPrevented())return;if(m){var g=i.$cropper.offset(),u=o&&n(o).length?w(o):{pageX:e.pageX||m.pageX||0,pageY:e.pageY||m.pageY||0};r.left-=(l-h)*((u.pageX-g.left-r.left)/h),r.top-=(p-s)*((u.pageY-g.top-r.top)/s)}else r.left-=(l-h)/2,r.top-=(p-s)/2;r.width=l,r.height=p,i.renderCanvas(!0)}},rotate:function(t){var e=this;e.rotateTo((e.image.rotate||0)+Number(t))},rotateTo:function(t){var i=this;t=Number(t),e(t)&&i.ready&&!i.disabled&&i.options.rotatable&&(i.image.rotate=t%360,i.rotated=!0,i.renderCanvas(!0))},scale:function(t,a){var o=this,n=o.image,r=!1;i(a)&&(a=t),t=Number(t),a=Number(a),o.ready&&!o.disabled&&o.options.scalable&&(e(t)&&(n.scaleX=t,r=!0),e(a)&&(n.scaleY=a,r=!0),r&&o.renderImage(!0))},scaleX:function(t){var i=this,a=i.image.scaleY;i.scale(t,e(a)?a:1)},scaleY:function(t){var i=this,a=i.image.scaleX;i.scale(e(a)?a:1,t)},getData:function(e){var i=this,a=i.options,o=i.image,n=i.canvas,r=i.cropBox,h=void 0,s=void 0;return i.ready&&i.cropped?(s={x:r.left-n.left,y:r.top-n.top,width:r.width,height:r.height},h=o.width/o.naturalWidth,t.each(s,function(t,i){i/=h,s[t]=e?Math.round(i):i})):s={x:0,y:0,width:0,height:0},a.rotatable&&(s.rotate=o.rotate||0),a.scalable&&(s.scaleX=o.scaleX||1,s.scaleY=o.scaleY||1),s},setData:function(i){var a=this,o=a.options,n=a.image,r=a.canvas,h={},s=void 0,d=void 0,c=void 0;t.isFunction(i)&&(i=i.call(a.element)),a.ready&&!a.disabled&&t.isPlainObject(i)&&(o.rotatable&&e(i.rotate)&&i.rotate!==n.rotate&&(n.rotate=i.rotate,a.rotated=s=!0),o.scalable&&(e(i.scaleX)&&i.scaleX!==n.scaleX&&(n.scaleX=i.scaleX,d=!0),e(i.scaleY)&&i.scaleY!==n.scaleY&&(n.scaleY=i.scaleY,d=!0)),s?a.renderCanvas():d&&a.renderImage(),c=n.width/n.naturalWidth,e(i.x)&&(h.left=i.x*c+r.left),e(i.y)&&(h.top=i.y*c+r.top),e(i.width)&&(h.width=i.width*c),e(i.height)&&(h.height=i.height*c),a.setCropBoxData(h))},getContainerData:function(){return this.ready?this.container:{}},getImageData:function(){return this.loaded?this.image:{}},getCanvasData:function(){var e=this,i=e.canvas,a={};return e.ready&&t.each(["left","top","width","height","naturalWidth","naturalHeight"],function(t,e){a[e]=i[e]}),a},setCanvasData:function(i){var a=this,o=a.canvas,n=o.aspectRatio;t.isFunction(i)&&(i=i.call(a.$element)),a.ready&&!a.disabled&&t.isPlainObject(i)&&(e(i.left)&&(o.left=i.left),e(i.top)&&(o.top=i.top),e(i.width)?(o.width=i.width,o.height=i.width/n):e(i.height)&&(o.height=i.height,o.width=i.height*n),a.renderCanvas(!0))},getCropBoxData:function(){var t=this,e=t.cropBox;return t.ready&&t.cropped?{left:e.left,top:e.top,width:e.width,height:e.height}:{}},setCropBoxData:function(i){var a=this,o=a.cropBox,n=a.options.aspectRatio,r=void 0,h=void 0;t.isFunction(i)&&(i=i.call(a.$element)),a.ready&&a.cropped&&!a.disabled&&t.isPlainObject(i)&&(e(i.left)&&(o.left=i.left),e(i.top)&&(o.top=i.top),e(i.width)&&i.width!==o.width&&(r=!0,o.width=i.width),e(i.height)&&i.height!==o.height&&(h=!0,o.height=i.height),n&&(r?o.height=o.width/n:h&&(o.width=o.height*n)),a.renderCropBox())},getCroppedCanvas:function(e){var i=this;if(!i.ready||!window.HTMLCanvasElement)return null;if(t.isPlainObject(e)||(e={}),!i.cropped)return l(i.$clone[0],i.image,e);var a=i.getData(),o=a.width,n=a.height,r=o/n,h=void 0,s=void 0,d=void 0;t.isPlainObject(e)&&(h=e.width,s=e.height,h?(s=h/r,d=h/o):s&&(h=s*r,d=s/n));var c=Math.floor(h||o),p=Math.floor(s||n),m=t("<canvas>")[0],g=m.getContext("2d");m.width=c,m.height=p,e.fillColor&&(g.fillStyle=e.fillColor,g.fillRect(0,0,c,p));var u=function(){var t=l(i.$clone[0],i.image,e),r=t.width,h=t.height,s=i.canvas,c=[t],p=a.x+s.naturalWidth*(Math.abs(a.scaleX||1)-1)/2,m=a.y+s.naturalHeight*(Math.abs(a.scaleY||1)-1)/2,g=void 0,u=void 0,f=void 0,v=void 0,w=void 0,x=void 0;return p<=-o||p>r?p=g=f=w=0:p<=0?(f=-p,p=0,g=w=Math.min(r,o+p)):p<=r&&(f=0,g=w=Math.min(o,r-p)),g<=0||m<=-n||m>h?m=u=v=x=0:m<=0?(v=-m,m=0,u=x=Math.min(h,n+m)):m<=h&&(v=0,u=x=Math.min(n,h-m)),c.push(Math.floor(p),Math.floor(m),Math.floor(g),Math.floor(u)),d&&(f*=d,v*=d,w*=d,x*=d),w>0&&x>0&&c.push(Math.floor(f),Math.floor(v),Math.floor(w),Math.floor(x)),c}();return g.imageSmoothingEnabled=!!e.imageSmoothingEnabled,e.imageSmoothingQuality&&(g.imageSmoothingQuality=e.imageSmoothingQuality),g.drawImage.apply(g,et(u)),m},setAspectRatio:function(t){var e=this,a=e.options;e.disabled||i(t)||(a.aspectRatio=Math.max(0,t)||NaN,e.ready&&(e.initCropBox(),e.cropped&&e.renderCropBox()))},setDragMode:function(t){var e=this,i=e.options,a=void 0,o=void 0;e.loaded&&!e.disabled&&(a="crop"===t,o=i.movable&&"move"===t,t=a||o?t:"none",e.$dragBox.data("action",t).toggleClass("cropper-crop",a).toggleClass("cropper-move",o),i.cropBoxMovable||e.$face.data("action",t).toggleClass("cropper-crop",a).toggleClass("cropper-move",o))}},at="cropper-hidden",ot=/^data:/,nt=/^data:image\/jpeg;base64,/,rt=function(){function e(i,a){_(this,e);var o=this;o.$element=t(i),o.options=t.extend({},x,t.isPlainObject(a)&&a),o.loaded=!1,o.ready=!1,o.completed=!1,o.rotated=!1,o.cropped=!1,o.disabled=!1,o.replaced=!1,o.limited=!1,o.wheeling=!1,o.isImg=!1,o.originalUrl="",o.canvas=null,o.cropBox=null,o.pointers={},o.init()}return tt(e,[{key:"init",value:function(){var t=this,e=t.$element,i=void 0;if(e.is("img")){if(t.isImg=!0,t.originalUrl=i=e.attr("src"),!i)return;i=e.prop("src")}else e.is("canvas")&&window.HTMLCanvasElement&&(i=e[0].toDataURL());t.load(i)}},{key:"trigger",value:function(e,i){var a=t.Event(e,i);return this.$element.trigger(a),a}},{key:"load",value:function(e){var i=this,a=i.options,o=i.$element;if(e){if(i.url=e,i.image={},!a.checkOrientation||!window.ArrayBuffer)return void i.clone();if(ot.test(e))return void(nt.test(e)?i.read(g(e)):i.clone());var n=new XMLHttpRequest;n.onerror=n.onabort=t.proxy(function(){i.clone()},this),n.onload=function(){i.read(this.response)},a.checkCrossOrigin&&r(e)&&o.prop("crossOrigin")&&(e=h(e)),n.open("get",e),n.responseType="arraybuffer",n.withCredentials="use-credentials"===o.prop("crossOrigin"),n.send()}}},{key:"read",value:function(t){var e=this,i=e.options,a=m(t),o=e.image,n=0,r=1,h=1;if(a>1)switch(e.url=u(t),a){case 2:r=-1;break;case 3:n=-180;break;case 4:h=-1;break;case 5:n=90,h=-1;break;case 6:n=90;break;case 7:n=90,r=-1;break;case 8:n=-90}i.rotatable&&(o.rotate=n),i.scalable&&(o.scaleX=r,o.scaleY=h),e.clone()}},{key:"clone",value:function(){var e=this,i=e.options,a=e.$element,o=e.url,n="",s=void 0;i.checkCrossOrigin&&r(o)&&(n=a.prop("crossOrigin"),n?s=o:(n="anonymous",s=h(o))),e.crossOrigin=n,e.crossOriginUrl=s;var d=document.createElement("img");n&&(d.crossOrigin=n),d.src=s||o;var c=t(d);e.$clone=c,e.isImg?a[0].complete?e.start():a.one("load",t.proxy(e.start,this)):c.one("load",t.proxy(e.start,this)).one("error",t.proxy(e.stop,this)).addClass("cropper-hide").insertAfter(a)}},{key:"start",value:function(){var e=this,i=e.$clone,a=e.$element;e.isImg||(i.off("error",e.stop),a=i),s(a[0],function(i,a){t.extend(e.image,{naturalWidth:i,naturalHeight:a,aspectRatio:i/a}),e.loaded=!0,e.build()})}},{key:"stop",value:function(){var t=this;t.$clone.remove(),t.$clone=null}},{key:"build",value:function(){var e=this,i=e.options,a=e.$element,o=e.$clone,n=void 0,r=void 0,h=void 0;e.loaded&&(e.ready&&e.unbuild(),e.$container=a.parent(),e.$cropper=n=t(b),e.$canvas=n.find(".cropper-canvas").append(o),e.$dragBox=n.find(".cropper-drag-box"),e.$cropBox=r=n.find(".cropper-crop-box"),e.$viewBox=n.find(".cropper-view-box"),e.$face=h=r.find(".cropper-face"),a.addClass(at).after(n),e.isImg||o.removeClass("cropper-hide"),e.initPreview(),e.bind(),i.aspectRatio=Math.max(0,i.aspectRatio)||NaN,i.viewMode=Math.max(0,Math.min(3,Math.round(i.viewMode)))||0,e.cropped=i.autoCrop,i.autoCrop?i.modal&&e.$dragBox.addClass("cropper-modal"):r.addClass(at),i.guides||r.find(".cropper-dashed").addClass(at),i.center||r.find(".cropper-center").addClass(at),i.cropBoxMovable&&h.addClass("cropper-move").data("action","all"),i.highlight||h.addClass("cropper-invisible"),i.background&&n.addClass("cropper-bg"),i.cropBoxResizable||r.find(".cropper-line, .cropper-point").addClass(at),e.setDragMode(i.dragMode),e.render(),e.ready=!0,e.setData(i.data),e.completing=setTimeout(function(){t.isFunction(i.ready)&&a.one("ready",i.ready),e.trigger("ready"),e.trigger("crop",e.getData()),e.completed=!0},0))}},{key:"unbuild",value:function(){var t=this;t.ready&&(t.completed||clearTimeout(t.completing),t.ready=!1,t.completed=!1,t.initialImage=null,t.initialCanvas=null,t.initialCropBox=null,t.container=null,t.canvas=null,t.cropBox=null,t.unbind(),t.resetPreview(),t.$preview=null,t.$viewBox=null,t.$cropBox=null,t.$dragBox=null,t.$canvas=null,t.$container=null,t.$cropper.remove(),t.$cropper=null)}}],[{key:"setDefaults",value:function(e){t.extend(x,t.isPlainObject(e)&&e)}}]),e}();t.extend(rt.prototype,k),t.extend(rt.prototype,D),t.extend(rt.prototype,U),t.extend(rt.prototype,S),t.extend(rt.prototype,J),t.extend(rt.prototype,it);var ht="cropper",st=t.fn.cropper;t.fn.cropper=function(e){for(var i=arguments.length,a=Array(i>1?i-1:0),o=1;o<i;o++)a[o-1]=arguments[o];var n=void 0;return this.each(function(i,o){var r=t(o),h=r.data(ht);if(!h){if(/destroy/.test(e))return;var s=t.extend({},r.data(),t.isPlainObject(e)&&e);r.data(ht,h=new rt(o,s))}if("string"==typeof e){var d=h[e];t.isFunction(d)&&(n=d.apply(h,a))}}),"undefined"!=typeof n?n:this},t.fn.cropper.Constructor=rt,t.fn.cropper.setDefaults=rt.setDefaults,t.fn.cropper.noConflict=function(){return t.fn.cropper=st,this}});
+!function(t,e){ true?e(__webpack_require__(0)):"function"==typeof define&&define.amd?define(["jquery"],e):e(t.jQuery)}(this,function(t){"use strict";function e(t){return"number"==typeof t&&!isNaN(t)}function i(t){return"undefined"==typeof t}function a(t,i){var a=[];return e(i)&&a.push(i),a.slice.apply(t,a)}function o(t,e){for(var i=arguments.length,o=Array(i>2?i-2:0),n=2;n<i;n++)o[n-2]=arguments[n];return function(){for(var i=arguments.length,n=Array(i),r=0;r<i;r++)n[r]=arguments[r];return t.apply(e,o.concat(a(n)))}}function n(e){var i=[];return t.each(e,function(t){i.push(t)}),i}function r(t){var e=t.match(/^(https?:)\/\/([^:\/?#]+):?(\d*)/i);return e&&(e[1]!==location.protocol||e[2]!==location.hostname||e[3]!==location.port)}function h(t){var e="timestamp="+(new Date).getTime();return t+(t.indexOf("?")===-1?"?":"&")+e}function s(t,e){if(t.naturalWidth&&!$)return void e(t.naturalWidth,t.naturalHeight);var i=document.createElement("img");i.onload=function(){e(this.width,this.height)},i.src=t.src}function d(t){var i=[],a=t.translateX,o=t.translateY,n=t.rotate,r=t.scaleX,h=t.scaleY;return e(a)&&0!==a&&i.push("translateX("+a+"px)"),e(o)&&0!==o&&i.push("translateY("+o+"px)"),e(n)&&0!==n&&i.push("rotate("+n+"deg)"),e(r)&&1!==r&&i.push("scaleX("+r+")"),e(h)&&1!==h&&i.push("scaleY("+h+")"),i.length?i.join(" "):"none"}function c(t,e){var i=Math.abs(t.degree)%180,a=(i>90?180-i:i)*Math.PI/180,o=Math.sin(a),n=Math.cos(a),r=t.width,h=t.height,s=t.aspectRatio,d=void 0,c=void 0;return e?(d=r/(n+o/s),c=d/s):(d=r*n+h*o,c=r*o+h*n),{width:d,height:c}}function l(i,a,o){var n=t("<canvas>")[0],r=n.getContext("2d"),h=0,s=0,d=a.naturalWidth,l=a.naturalHeight,p=a.rotate,m=a.scaleX,g=a.scaleY,u=e(m)&&e(g)&&(1!==m||1!==g),f=e(p)&&0!==p,v=f||u,w=d*Math.abs(m||1),x=l*Math.abs(g||1),b=void 0,y=void 0,C=void 0;return u&&(b=w/2,y=x/2),f&&(C=c({width:w,height:x,degree:p}),w=C.width,x=C.height,b=w/2,y=x/2),n.width=w,n.height=x,o.fillColor&&(r.fillStyle=o.fillColor,r.fillRect(0,0,w,x)),v&&(h=-d/2,s=-l/2,r.save(),r.translate(b,y)),f&&r.rotate(p*Math.PI/180),u&&r.scale(m,g),r.imageSmoothingEnabled=!!o.imageSmoothingEnabled,o.imageSmoothingQuality&&(r.imageSmoothingQuality=o.imageSmoothingQuality),r.drawImage(i,Math.floor(h),Math.floor(s),Math.floor(d),Math.floor(l)),v&&r.restore(),n}function p(t,e,i){var a="",o=void 0;for(o=e,i+=e;o<i;o++)a+=B(t.getUint8(o));return a}function m(t){var e=new DataView(t),i=e.byteLength,a=void 0,o=void 0,n=void 0,r=void 0,h=void 0,s=void 0,d=void 0,c=void 0,l=void 0,m=void 0;if(255===e.getUint8(0)&&216===e.getUint8(1))for(l=2;l<i;){if(255===e.getUint8(l)&&225===e.getUint8(l+1)){d=l;break}l++}if(d&&(o=d+4,n=d+10,"Exif"===p(e,o,4)&&(s=e.getUint16(n),h=18761===s,(h||19789===s)&&42===e.getUint16(n+2,h)&&(r=e.getUint32(n+4,h),r>=8&&(c=n+r)))),c)for(i=e.getUint16(c,h),m=0;m<i;m++)if(l=c+12*m+2,274===e.getUint16(l,h)){l+=8,a=e.getUint16(l,h),$&&e.setUint16(l,1,h);break}return a}function g(t){var e=t.replace(y,""),i=atob(e),a=i.length,o=new ArrayBuffer(a),n=new Uint8Array(o),r=void 0;for(r=0;r<a;r++)n[r]=i.charCodeAt(r);return o}function u(t){var e=new Uint8Array(t),i=e.length,a="",o=void 0;for(o=0;o<i;o++)a+=B(e[o]);return"data:image/jpeg;base64,"+btoa(a)}function f(e,i){var a=e.pageX,o=e.pageY,n={endX:a,endY:o};return i?n:t.extend({startX:a,startY:o},n)}function v(e){var i=t.extend({},e),a=[];return t.each(e,function(e,o){delete i[e],t.each(i,function(t,e){var i=Math.abs(o.startX-e.startX),n=Math.abs(o.startY-e.startY),r=Math.abs(o.endX-e.endX),h=Math.abs(o.endY-e.endY),s=Math.sqrt(i*i+n*n),d=Math.sqrt(r*r+h*h),c=(d-s)/s;a.push(c)})}),a.sort(function(t,e){return Math.abs(t)<Math.abs(e)}),a[0]}function w(e){var i=0,a=0,o=0;return t.each(e,function(t,e){var n=e.startX,r=e.startY;i+=n,a+=r,o+=1}),i/=o,a/=o,{pageX:i,pageY:a}}t="default"in t?t.default:t;var x={viewMode:0,dragMode:"crop",aspectRatio:NaN,data:null,preview:"",responsive:!0,restore:!0,checkCrossOrigin:!0,checkOrientation:!0,modal:!0,guides:!0,center:!0,highlight:!0,background:!0,autoCrop:!0,autoCropArea:.8,movable:!0,rotatable:!0,scalable:!0,zoomable:!0,zoomOnTouch:!0,zoomOnWheel:!0,wheelZoomRatio:.1,cropBoxMovable:!0,cropBoxResizable:!0,toggleDragModeOnDblclick:!0,minCanvasWidth:0,minCanvasHeight:0,minCropBoxWidth:0,minCropBoxHeight:0,minContainerWidth:200,minContainerHeight:100,ready:null,cropstart:null,cropmove:null,cropend:null,crop:null,zoom:null},b='<div class="cropper-container"><div class="cropper-wrap-box"><div class="cropper-canvas"></div></div><div class="cropper-drag-box"></div><div class="cropper-crop-box"><span class="cropper-view-box"></span><span class="cropper-dashed dashed-h"></span><span class="cropper-dashed dashed-v"></span><span class="cropper-center"></span><span class="cropper-face"></span><span class="cropper-line line-e" data-action="e"></span><span class="cropper-line line-n" data-action="n"></span><span class="cropper-line line-w" data-action="w"></span><span class="cropper-line line-s" data-action="s"></span><span class="cropper-point point-e" data-action="e"></span><span class="cropper-point point-n" data-action="n"></span><span class="cropper-point point-w" data-action="w"></span><span class="cropper-point point-s" data-action="s"></span><span class="cropper-point point-ne" data-action="ne"></span><span class="cropper-point point-nw" data-action="nw"></span><span class="cropper-point point-sw" data-action="sw"></span><span class="cropper-point point-se" data-action="se"></span></div></div>',y=/^data:.*,/,C=/(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i,M="undefined"!=typeof window?window.navigator:null,$=M&&C.test(M.userAgent),B=String.fromCharCode,k={render:function(){var t=this;t.initContainer(),t.initCanvas(),t.initCropBox(),t.renderCanvas(),t.cropped&&t.renderCropBox()},initContainer:function(){var t=this,e=t.options,i=t.$element,a=t.$container,o=t.$cropper,n="cropper-hidden";o.addClass(n),i.removeClass(n),o.css(t.container={width:Math.max(a.width(),Number(e.minContainerWidth)||200),height:Math.max(a.height(),Number(e.minContainerHeight)||100)}),i.addClass(n),o.removeClass(n)},initCanvas:function(){var e=this,i=e.options.viewMode,a=e.container,o=a.width,n=a.height,r=e.image,h=r.naturalWidth,s=r.naturalHeight,d=Math.abs(r.rotate)%180===90,c=d?s:h,l=d?h:s,p=c/l,m=o,g=n;n*p>o?3===i?m=n*p:g=o/p:3===i?g=o/p:m=n*p;var u={naturalWidth:c,naturalHeight:l,aspectRatio:p,width:m,height:g};u.oldLeft=u.left=(o-m)/2,u.oldTop=u.top=(n-g)/2,e.canvas=u,e.limited=1===i||2===i,e.limitCanvas(!0,!0),e.initialImage=t.extend({},r),e.initialCanvas=t.extend({},u)},limitCanvas:function(t,e){var i=this,a=i.options,o=a.viewMode,n=i.container,r=n.width,h=n.height,s=i.canvas,d=s.aspectRatio,c=i.cropBox,l=i.cropped&&c;if(t){var p=Number(a.minCanvasWidth)||0,m=Number(a.minCanvasHeight)||0;o&&(o>1?(p=Math.max(p,r),m=Math.max(m,h),3===o&&(m*d>p?p=m*d:m=p/d)):p?p=Math.max(p,l?c.width:0):m?m=Math.max(m,l?c.height:0):l&&(p=c.width,m=c.height,m*d>p?p=m*d:m=p/d)),p&&m?m*d>p?m=p/d:p=m*d:p?m=p/d:m&&(p=m*d),s.minWidth=p,s.minHeight=m,s.maxWidth=1/0,s.maxHeight=1/0}if(e)if(o){var g=r-s.width,u=h-s.height;s.minLeft=Math.min(0,g),s.minTop=Math.min(0,u),s.maxLeft=Math.max(0,g),s.maxTop=Math.max(0,u),l&&i.limited&&(s.minLeft=Math.min(c.left,c.left+c.width-s.width),s.minTop=Math.min(c.top,c.top+c.height-s.height),s.maxLeft=c.left,s.maxTop=c.top,2===o&&(s.width>=r&&(s.minLeft=Math.min(0,g),s.maxLeft=Math.max(0,g)),s.height>=h&&(s.minTop=Math.min(0,u),s.maxTop=Math.max(0,u))))}else s.minLeft=-s.width,s.minTop=-s.height,s.maxLeft=r,s.maxTop=h},renderCanvas:function(t){var e=this,i=e.canvas,a=e.image,o=a.rotate,n=a.naturalWidth,r=a.naturalHeight;if(e.rotated){e.rotated=!1;var h=c({width:a.width,height:a.height,degree:o}),s=h.width/h.height,l=1===a.aspectRatio;if(l||s!==i.aspectRatio){if(i.left-=(h.width-i.width)/2,i.top-=(h.height-i.height)/2,i.width=h.width,i.height=h.height,i.aspectRatio=s,i.naturalWidth=n,i.naturalHeight=r,l&&o%90||o%180){var p=c({width:n,height:r,degree:o});i.naturalWidth=p.width,i.naturalHeight=p.height}e.limitCanvas(!0,!1)}}(i.width>i.maxWidth||i.width<i.minWidth)&&(i.left=i.oldLeft),(i.height>i.maxHeight||i.height<i.minHeight)&&(i.top=i.oldTop),i.width=Math.min(Math.max(i.width,i.minWidth),i.maxWidth),i.height=Math.min(Math.max(i.height,i.minHeight),i.maxHeight),e.limitCanvas(!1,!0),i.oldLeft=i.left=Math.min(Math.max(i.left,i.minLeft),i.maxLeft),i.oldTop=i.top=Math.min(Math.max(i.top,i.minTop),i.maxTop),e.$canvas.css({width:i.width,height:i.height,transform:d({translateX:i.left,translateY:i.top})}),e.renderImage(),e.cropped&&e.limited&&e.limitCropBox(!0,!0),t&&e.output()},renderImage:function(e){var i=this,a=i.canvas,o=i.image,n=void 0;o.rotate&&(n=c({width:a.width,height:a.height,degree:o.rotate,aspectRatio:o.aspectRatio},!0)),t.extend(o,n?{width:n.width,height:n.height,left:(a.width-n.width)/2,top:(a.height-n.height)/2}:{width:a.width,height:a.height,left:0,top:0}),i.$clone.css({width:o.width,height:o.height,transform:d(t.extend({translateX:o.left,translateY:o.top},o))}),e&&i.output()},initCropBox:function(){var e=this,i=e.options,a=e.canvas,o=i.aspectRatio,n=Number(i.autoCropArea)||.8,r={width:a.width,height:a.height};o&&(a.height*o>a.width?r.height=r.width/o:r.width=r.height*o),e.cropBox=r,e.limitCropBox(!0,!0),r.width=Math.min(Math.max(r.width,r.minWidth),r.maxWidth),r.height=Math.min(Math.max(r.height,r.minHeight),r.maxHeight),r.width=Math.max(r.minWidth,r.width*n),r.height=Math.max(r.minHeight,r.height*n),r.oldLeft=r.left=a.left+(a.width-r.width)/2,r.oldTop=r.top=a.top+(a.height-r.height)/2,e.initialCropBox=t.extend({},r)},limitCropBox:function(t,e){var i=this,a=i.options,o=a.aspectRatio,n=i.container,r=n.width,h=n.height,s=i.canvas,d=i.cropBox,c=i.limited;if(t){var l=Number(a.minCropBoxWidth)||0,p=Number(a.minCropBoxHeight)||0,m=Math.min(r,c?s.width:r),g=Math.min(h,c?s.height:h);l=Math.min(l,r),p=Math.min(p,h),o&&(l&&p?p*o>l?p=l/o:l=p*o:l?p=l/o:p&&(l=p*o),g*o>m?g=m/o:m=g*o),d.minWidth=Math.min(l,m),d.minHeight=Math.min(p,g),d.maxWidth=m,d.maxHeight=g}e&&(c?(d.minLeft=Math.max(0,s.left),d.minTop=Math.max(0,s.top),d.maxLeft=Math.min(r,s.left+s.width)-d.width,d.maxTop=Math.min(h,s.top+s.height)-d.height):(d.minLeft=0,d.minTop=0,d.maxLeft=r-d.width,d.maxTop=h-d.height))},renderCropBox:function(){var t=this,e=t.options,i=t.container,a=i.width,o=i.height,n=t.cropBox;(n.width>n.maxWidth||n.width<n.minWidth)&&(n.left=n.oldLeft),(n.height>n.maxHeight||n.height<n.minHeight)&&(n.top=n.oldTop),n.width=Math.min(Math.max(n.width,n.minWidth),n.maxWidth),n.height=Math.min(Math.max(n.height,n.minHeight),n.maxHeight),t.limitCropBox(!1,!0),n.oldLeft=n.left=Math.min(Math.max(n.left,n.minLeft),n.maxLeft),n.oldTop=n.top=Math.min(Math.max(n.top,n.minTop),n.maxTop),e.movable&&e.cropBoxMovable&&t.$face.data("action",n.width===a&&n.height===o?"move":"all"),t.$cropBox.css({width:n.width,height:n.height,transform:d({translateX:n.left,translateY:n.top})}),t.cropped&&t.limited&&t.limitCanvas(!0,!0),t.disabled||t.output()},output:function(){var t=this;t.preview(),t.completed&&t.trigger("crop",t.getData())}},T="preview",D={initPreview:function(){var e=this,i=e.crossOrigin,a=i?e.crossOriginUrl:e.url,o=document.createElement("img");i&&(o.crossOrigin=i),o.src=a;var n=t(o);e.$preview=t(e.options.preview),e.$clone2=n,e.$viewBox.html(n),e.$preview.each(function(e,o){var n=t(o),r=document.createElement("img");n.data(T,{width:n.width(),height:n.height(),html:n.html()}),i&&(r.crossOrigin=i),r.src=a,r.style.cssText='display:block;width:100%;height:auto;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;image-orientation:0deg!important;"',n.html(r)})},resetPreview:function(){this.$preview.each(function(e,i){var a=t(i),o=a.data(T);a.css({width:o.width,height:o.height}).html(o.html).removeData(T)})},preview:function(){var e=this,i=e.image,a=e.canvas,o=e.cropBox,n=o.width,r=o.height,h=i.width,s=i.height,c=o.left-a.left-i.left,l=o.top-a.top-i.top;e.cropped&&!e.disabled&&(e.$clone2.css({width:h,height:s,transform:d(t.extend({translateX:-c,translateY:-l},i))}),e.$preview.each(function(e,a){var o=t(a),p=o.data(T),m=p.width,g=p.height,u=m,f=g,v=1;n&&(v=m/n,f=r*v),r&&f>g&&(v=g/r,u=n*v,f=g),o.css({width:u,height:f}).find("img").css({width:h*v,height:s*v,transform:d(t.extend({translateX:-c*v,translateY:-l*v},i))})}))}},X="undefined"!=typeof window?window.PointerEvent:null,Y=X?"pointerdown":"touchstart mousedown",W=X?"pointermove":"touchmove mousemove",H=X?" pointerup pointercancel":"touchend touchcancel mouseup",O="wheel mousewheel DOMMouseScroll",z="dblclick",R="resize",E="cropstart",L="cropmove",N="cropend",I="crop",P="zoom",U={bind:function(){var e=this,i=e.options,a=e.$element,n=e.$cropper;t.isFunction(i.cropstart)&&a.on(E,i.cropstart),t.isFunction(i.cropmove)&&a.on(L,i.cropmove),t.isFunction(i.cropend)&&a.on(N,i.cropend),t.isFunction(i.crop)&&a.on(I,i.crop),t.isFunction(i.zoom)&&a.on(P,i.zoom),n.on(Y,o(e.cropStart,this)),i.zoomable&&i.zoomOnWheel&&n.on(O,o(e.wheel,this)),i.toggleDragModeOnDblclick&&n.on(z,o(e.dblclick,this)),t(document).on(W,e.onCropMove=o(e.cropMove,this)).on(H,e.onCropEnd=o(e.cropEnd,this)),i.responsive&&t(window).on(R,e.onResize=o(e.resize,this))},unbind:function(){var e=this,i=e.options,a=e.$element,o=e.$cropper;t.isFunction(i.cropstart)&&a.off(E,i.cropstart),t.isFunction(i.cropmove)&&a.off(L,i.cropmove),t.isFunction(i.cropend)&&a.off(N,i.cropend),t.isFunction(i.crop)&&a.off(I,i.crop),t.isFunction(i.zoom)&&a.off(P,i.zoom),o.off(Y,e.cropStart),i.zoomable&&i.zoomOnWheel&&o.off(O,e.wheel),i.toggleDragModeOnDblclick&&o.off(z,e.dblclick),t(document).off(W,e.onCropMove).off(H,e.onCropEnd),i.responsive&&t(window).off(R,e.onResize)}},A=/^(e|w|s|n|se|sw|ne|nw|all|crop|move|zoom)$/,S={resize:function(){var e=this,i=e.options,a=e.$container,o=e.container,n=Number(i.minContainerWidth)||200,r=Number(i.minContainerHeight)||100;if(!e.disabled&&o.width!==n&&o.height!==r){var h=a.width()/o.width;1===h&&a.height()===o.height||!function(){var a=void 0,o=void 0;i.restore&&(a=e.getCanvasData(),o=e.getCropBoxData()),e.render(),i.restore&&(e.setCanvasData(t.each(a,function(t,e){a[t]=e*h})),e.setCropBoxData(t.each(o,function(t,e){o[t]=e*h})))}()}},dblclick:function(){var t=this;t.disabled||"none"===t.options.dragMode||t.setDragMode(t.$dragBox.hasClass("cropper-crop")?"move":"crop")},wheel:function(t){var e=this,i=t.originalEvent||t,a=Number(e.options.wheelZoomRatio)||.1;if(!e.disabled&&(t.preventDefault(),!e.wheeling)){e.wheeling=!0,setTimeout(function(){e.wheeling=!1},50);var o=1;i.deltaY?o=i.deltaY>0?1:-1:i.wheelDelta?o=-i.wheelDelta/120:i.detail&&(o=i.detail>0?1:-1),e.zoom(-o*a,t)}},cropStart:function(e){var i=this;if(!i.disabled){var a=i.options,o=i.pointers,r=e.originalEvent,h=void 0;r&&r.changedTouches?t.each(r.changedTouches,function(t,e){o[e.identifier]=f(e)}):o[r&&r.pointerId||0]=f(r||e),h=n(o).length>1&&a.zoomable&&a.zoomOnTouch?"zoom":t(e.target).data("action"),A.test(h)&&(i.trigger("cropstart",{originalEvent:r,action:h}).isDefaultPrevented()||(e.preventDefault(),i.action=h,i.cropping=!1,"crop"===h&&(i.cropping=!0,i.$dragBox.addClass("cropper-modal"))))}},cropMove:function(e){var i=this,a=i.action;if(!i.disabled&&a){var o=i.pointers,n=e.originalEvent;e.preventDefault(),i.trigger("cropmove",{originalEvent:n,action:a}).isDefaultPrevented()||(n&&n.changedTouches?t.each(n.changedTouches,function(e,i){t.extend(o[i.identifier],f(i,!0))}):t.extend(o[n&&n.pointerId||0],f(n||e,!0)),i.change(e))}},cropEnd:function(e){var i=this;if(!i.disabled){var a=i.action,o=i.pointers,r=e.originalEvent;r&&r.changedTouches?t.each(r.changedTouches,function(t,e){delete o[e.identifier]}):delete o[r&&r.pointerId||0],a&&(e.preventDefault(),n(o).length||(i.action=""),i.cropping&&(i.cropping=!1,i.$dragBox.toggleClass("cropper-modal",i.cropped&&i.options.modal)),i.trigger("cropend",{originalEvent:r,action:a}))}}},j="e",F="w",Q="s",q="n",K="se",Z="sw",V="ne",G="nw",J={change:function(e){var i=this,a=i.options,o=i.pointers,r=o[n(o)[0]],h=i.container,s=i.canvas,d=i.cropBox,c=i.action,l=a.aspectRatio,p=d.width,m=d.height,g=d.left,u=d.top,f=g+p,w=u+m,x=0,b=0,y=h.width,C=h.height,M=!0,$=void 0;!l&&e.shiftKey&&(l=p&&m?p/m:1),i.limited&&(x=d.minLeft,b=d.minTop,y=x+Math.min(h.width,s.width,s.left+s.width),C=b+Math.min(h.height,s.height,s.top+s.height));var B={x:r.endX-r.startX,y:r.endY-r.startY};switch(l&&(B.X=B.y*l,B.Y=B.x/l),c){case"all":g+=B.x,u+=B.y;break;case j:if(B.x>=0&&(f>=y||l&&(u<=b||w>=C))){M=!1;break}p+=B.x,l&&(m=p/l,u-=B.Y/2),p<0&&(c=F,p=0);break;case q:if(B.y<=0&&(u<=b||l&&(g<=x||f>=y))){M=!1;break}m-=B.y,u+=B.y,l&&(p=m*l,g+=B.X/2),m<0&&(c=Q,m=0);break;case F:if(B.x<=0&&(g<=x||l&&(u<=b||w>=C))){M=!1;break}p-=B.x,g+=B.x,l&&(m=p/l,u+=B.Y/2),p<0&&(c=j,p=0);break;case Q:if(B.y>=0&&(w>=C||l&&(g<=x||f>=y))){M=!1;break}m+=B.y,l&&(p=m*l,g-=B.X/2),m<0&&(c=q,m=0);break;case V:if(l){if(B.y<=0&&(u<=b||f>=y)){M=!1;break}m-=B.y,u+=B.y,p=m*l}else B.x>=0?f<y?p+=B.x:B.y<=0&&u<=b&&(M=!1):p+=B.x,B.y<=0?u>b&&(m-=B.y,u+=B.y):(m-=B.y,u+=B.y);p<0&&m<0?(c=Z,m=0,p=0):p<0?(c=G,p=0):m<0&&(c=K,m=0);break;case G:if(l){if(B.y<=0&&(u<=b||g<=x)){M=!1;break}m-=B.y,u+=B.y,p=m*l,g+=B.X}else B.x<=0?g>x?(p-=B.x,g+=B.x):B.y<=0&&u<=b&&(M=!1):(p-=B.x,g+=B.x),B.y<=0?u>b&&(m-=B.y,u+=B.y):(m-=B.y,u+=B.y);p<0&&m<0?(c=K,m=0,p=0):p<0?(c=V,p=0):m<0&&(c=Z,m=0);break;case Z:if(l){if(B.x<=0&&(g<=x||w>=C)){M=!1;break}p-=B.x,g+=B.x,m=p/l}else B.x<=0?g>x?(p-=B.x,g+=B.x):B.y>=0&&w>=C&&(M=!1):(p-=B.x,g+=B.x),B.y>=0?w<C&&(m+=B.y):m+=B.y;p<0&&m<0?(c=V,m=0,p=0):p<0?(c=K,p=0):m<0&&(c=G,m=0);break;case K:if(l){if(B.x>=0&&(f>=y||w>=C)){M=!1;break}p+=B.x,m=p/l}else B.x>=0?f<y?p+=B.x:B.y>=0&&w>=C&&(M=!1):p+=B.x,B.y>=0?w<C&&(m+=B.y):m+=B.y;p<0&&m<0?(c=G,m=0,p=0):p<0?(c=Z,p=0):m<0&&(c=V,m=0);break;case"move":i.move(B.x,B.y),M=!1;break;case"zoom":i.zoom(v(o),e.originalEvent),M=!1;break;case"crop":if(!B.x||!B.y){M=!1;break}$=i.$cropper.offset(),g=r.startX-$.left,u=r.startY-$.top,p=d.minWidth,m=d.minHeight,B.x>0?c=B.y>0?K:V:B.x<0&&(g-=p,c=B.y>0?Z:G),B.y<0&&(u-=m),i.cropped||(i.$cropBox.removeClass("cropper-hidden"),i.cropped=!0,i.limited&&i.limitCropBox(!0,!0))}M&&(d.width=p,d.height=m,d.left=g,d.top=u,i.action=c,i.renderCropBox()),t.each(o,function(t,e){e.startX=e.endX,e.startY=e.endY})}},_=function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")},tt=function(){function t(t,e){for(var i=0;i<e.length;i++){var a=e[i];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(t,a.key,a)}}return function(e,i,a){return i&&t(e.prototype,i),a&&t(e,a),e}}(),et=function(t){if(Array.isArray(t)){for(var e=0,i=Array(t.length);e<t.length;e++)i[e]=t[e];return i}return Array.from(t)},it={crop:function(){var t=this;t.ready&&!t.disabled&&(t.cropped||(t.cropped=!0,t.limitCropBox(!0,!0),t.options.modal&&t.$dragBox.addClass("cropper-modal"),t.$cropBox.removeClass("cropper-hidden")),t.setCropBoxData(t.initialCropBox))},reset:function(){var e=this;e.ready&&!e.disabled&&(e.image=t.extend({},e.initialImage),e.canvas=t.extend({},e.initialCanvas),e.cropBox=t.extend({},e.initialCropBox),e.renderCanvas(),e.cropped&&e.renderCropBox())},clear:function(){var e=this;e.cropped&&!e.disabled&&(t.extend(e.cropBox,{left:0,top:0,width:0,height:0}),e.cropped=!1,e.renderCropBox(),e.limitCanvas(!0,!0),e.renderCanvas(),e.$dragBox.removeClass("cropper-modal"),e.$cropBox.addClass("cropper-hidden"))},replace:function(t,e){var i=this;!i.disabled&&t&&(i.isImg&&i.$element.attr("src",t),e?(i.url=t,i.$clone.attr("src",t),i.ready&&i.$preview.find("img").add(i.$clone2).attr("src",t)):(i.isImg&&(i.replaced=!0),i.options.data=null,i.load(t)))},enable:function(){var t=this;t.ready&&(t.disabled=!1,t.$cropper.removeClass("cropper-disabled"))},disable:function(){var t=this;t.ready&&(t.disabled=!0,t.$cropper.addClass("cropper-disabled"))},destroy:function(){var t=this,e=t.$element;t.loaded?(t.isImg&&t.replaced&&e.attr("src",t.originalUrl),t.unbuild(),e.removeClass("cropper-hidden")):t.isImg?e.off("load",t.start):t.$clone&&t.$clone.remove(),e.removeData("cropper")},move:function(t,e){var a=this,o=a.canvas;a.moveTo(i(t)?t:o.left+Number(t),i(e)?e:o.top+Number(e))},moveTo:function(t,a){var o=this,n=o.canvas,r=!1;i(a)&&(a=t),t=Number(t),a=Number(a),o.ready&&!o.disabled&&o.options.movable&&(e(t)&&(n.left=t,r=!0),e(a)&&(n.top=a,r=!0),r&&o.renderCanvas(!0))},zoom:function(t,e){var i=this,a=i.canvas;t=Number(t),t=t<0?1/(1-t):1+t,i.zoomTo(a.width*t/a.naturalWidth,e)},zoomTo:function(t,e){var i=this,a=i.options,o=i.pointers,r=i.canvas,h=r.width,s=r.height,d=r.naturalWidth,c=r.naturalHeight;if(t=Number(t),t>=0&&i.ready&&!i.disabled&&a.zoomable){var l=d*t,p=c*t,m=void 0;if(e&&(m=e.originalEvent),i.trigger("zoom",{originalEvent:m,oldRatio:h/d,ratio:l/d}).isDefaultPrevented())return;if(m){var g=i.$cropper.offset(),u=o&&n(o).length?w(o):{pageX:e.pageX||m.pageX||0,pageY:e.pageY||m.pageY||0};r.left-=(l-h)*((u.pageX-g.left-r.left)/h),r.top-=(p-s)*((u.pageY-g.top-r.top)/s)}else r.left-=(l-h)/2,r.top-=(p-s)/2;r.width=l,r.height=p,i.renderCanvas(!0)}},rotate:function(t){var e=this;e.rotateTo((e.image.rotate||0)+Number(t))},rotateTo:function(t){var i=this;t=Number(t),e(t)&&i.ready&&!i.disabled&&i.options.rotatable&&(i.image.rotate=t%360,i.rotated=!0,i.renderCanvas(!0))},scale:function(t,a){var o=this,n=o.image,r=!1;i(a)&&(a=t),t=Number(t),a=Number(a),o.ready&&!o.disabled&&o.options.scalable&&(e(t)&&(n.scaleX=t,r=!0),e(a)&&(n.scaleY=a,r=!0),r&&o.renderImage(!0))},scaleX:function(t){var i=this,a=i.image.scaleY;i.scale(t,e(a)?a:1)},scaleY:function(t){var i=this,a=i.image.scaleX;i.scale(e(a)?a:1,t)},getData:function(e){var i=this,a=i.options,o=i.image,n=i.canvas,r=i.cropBox,h=void 0,s=void 0;return i.ready&&i.cropped?(s={x:r.left-n.left,y:r.top-n.top,width:r.width,height:r.height},h=o.width/o.naturalWidth,t.each(s,function(t,i){i/=h,s[t]=e?Math.round(i):i})):s={x:0,y:0,width:0,height:0},a.rotatable&&(s.rotate=o.rotate||0),a.scalable&&(s.scaleX=o.scaleX||1,s.scaleY=o.scaleY||1),s},setData:function(i){var a=this,o=a.options,n=a.image,r=a.canvas,h={},s=void 0,d=void 0,c=void 0;t.isFunction(i)&&(i=i.call(a.element)),a.ready&&!a.disabled&&t.isPlainObject(i)&&(o.rotatable&&e(i.rotate)&&i.rotate!==n.rotate&&(n.rotate=i.rotate,a.rotated=s=!0),o.scalable&&(e(i.scaleX)&&i.scaleX!==n.scaleX&&(n.scaleX=i.scaleX,d=!0),e(i.scaleY)&&i.scaleY!==n.scaleY&&(n.scaleY=i.scaleY,d=!0)),s?a.renderCanvas():d&&a.renderImage(),c=n.width/n.naturalWidth,e(i.x)&&(h.left=i.x*c+r.left),e(i.y)&&(h.top=i.y*c+r.top),e(i.width)&&(h.width=i.width*c),e(i.height)&&(h.height=i.height*c),a.setCropBoxData(h))},getContainerData:function(){return this.ready?this.container:{}},getImageData:function(){return this.loaded?this.image:{}},getCanvasData:function(){var e=this,i=e.canvas,a={};return e.ready&&t.each(["left","top","width","height","naturalWidth","naturalHeight"],function(t,e){a[e]=i[e]}),a},setCanvasData:function(i){var a=this,o=a.canvas,n=o.aspectRatio;t.isFunction(i)&&(i=i.call(a.$element)),a.ready&&!a.disabled&&t.isPlainObject(i)&&(e(i.left)&&(o.left=i.left),e(i.top)&&(o.top=i.top),e(i.width)?(o.width=i.width,o.height=i.width/n):e(i.height)&&(o.height=i.height,o.width=i.height*n),a.renderCanvas(!0))},getCropBoxData:function(){var t=this,e=t.cropBox;return t.ready&&t.cropped?{left:e.left,top:e.top,width:e.width,height:e.height}:{}},setCropBoxData:function(i){var a=this,o=a.cropBox,n=a.options.aspectRatio,r=void 0,h=void 0;t.isFunction(i)&&(i=i.call(a.$element)),a.ready&&a.cropped&&!a.disabled&&t.isPlainObject(i)&&(e(i.left)&&(o.left=i.left),e(i.top)&&(o.top=i.top),e(i.width)&&i.width!==o.width&&(r=!0,o.width=i.width),e(i.height)&&i.height!==o.height&&(h=!0,o.height=i.height),n&&(r?o.height=o.width/n:h&&(o.width=o.height*n)),a.renderCropBox())},getCroppedCanvas:function(e){var i=this;if(!i.ready||!window.HTMLCanvasElement)return null;if(t.isPlainObject(e)||(e={}),!i.cropped)return l(i.$clone[0],i.image,e);var a=i.getData(),o=a.width,n=a.height,r=o/n,h=void 0,s=void 0,d=void 0;t.isPlainObject(e)&&(h=e.width,s=e.height,h?(s=h/r,d=h/o):s&&(h=s*r,d=s/n));var c=Math.floor(h||o),p=Math.floor(s||n),m=t("<canvas>")[0],g=m.getContext("2d");m.width=c,m.height=p,e.fillColor&&(g.fillStyle=e.fillColor,g.fillRect(0,0,c,p));var u=function(){var t=l(i.$clone[0],i.image,e),r=t.width,h=t.height,s=i.canvas,c=[t],p=a.x+s.naturalWidth*(Math.abs(a.scaleX||1)-1)/2,m=a.y+s.naturalHeight*(Math.abs(a.scaleY||1)-1)/2,g=void 0,u=void 0,f=void 0,v=void 0,w=void 0,x=void 0;return p<=-o||p>r?p=g=f=w=0:p<=0?(f=-p,p=0,g=w=Math.min(r,o+p)):p<=r&&(f=0,g=w=Math.min(o,r-p)),g<=0||m<=-n||m>h?m=u=v=x=0:m<=0?(v=-m,m=0,u=x=Math.min(h,n+m)):m<=h&&(v=0,u=x=Math.min(n,h-m)),c.push(Math.floor(p),Math.floor(m),Math.floor(g),Math.floor(u)),d&&(f*=d,v*=d,w*=d,x*=d),w>0&&x>0&&c.push(Math.floor(f),Math.floor(v),Math.floor(w),Math.floor(x)),c}();return g.imageSmoothingEnabled=!!e.imageSmoothingEnabled,e.imageSmoothingQuality&&(g.imageSmoothingQuality=e.imageSmoothingQuality),g.drawImage.apply(g,et(u)),m},setAspectRatio:function(t){var e=this,a=e.options;e.disabled||i(t)||(a.aspectRatio=Math.max(0,t)||NaN,e.ready&&(e.initCropBox(),e.cropped&&e.renderCropBox()))},setDragMode:function(t){var e=this,i=e.options,a=void 0,o=void 0;e.loaded&&!e.disabled&&(a="crop"===t,o=i.movable&&"move"===t,t=a||o?t:"none",e.$dragBox.data("action",t).toggleClass("cropper-crop",a).toggleClass("cropper-move",o),i.cropBoxMovable||e.$face.data("action",t).toggleClass("cropper-crop",a).toggleClass("cropper-move",o))}},at="cropper-hidden",ot=/^data:/,nt=/^data:image\/jpeg;base64,/,rt=function(){function e(i,a){_(this,e);var o=this;o.$element=t(i),o.options=t.extend({},x,t.isPlainObject(a)&&a),o.loaded=!1,o.ready=!1,o.completed=!1,o.rotated=!1,o.cropped=!1,o.disabled=!1,o.replaced=!1,o.limited=!1,o.wheeling=!1,o.isImg=!1,o.originalUrl="",o.canvas=null,o.cropBox=null,o.pointers={},o.init()}return tt(e,[{key:"init",value:function(){var t=this,e=t.$element,i=void 0;if(e.is("img")){if(t.isImg=!0,t.originalUrl=i=e.attr("src"),!i)return;i=e.prop("src")}else e.is("canvas")&&window.HTMLCanvasElement&&(i=e[0].toDataURL());t.load(i)}},{key:"trigger",value:function(e,i){var a=t.Event(e,i);return this.$element.trigger(a),a}},{key:"load",value:function(e){var i=this,a=i.options,o=i.$element;if(e){if(i.url=e,i.image={},!a.checkOrientation||!window.ArrayBuffer)return void i.clone();if(ot.test(e))return void(nt.test(e)?i.read(g(e)):i.clone());var n=new XMLHttpRequest;n.onerror=n.onabort=t.proxy(function(){i.clone()},this),n.onload=function(){i.read(this.response)},a.checkCrossOrigin&&r(e)&&o.prop("crossOrigin")&&(e=h(e)),n.open("get",e),n.responseType="arraybuffer",n.withCredentials="use-credentials"===o.prop("crossOrigin"),n.send()}}},{key:"read",value:function(t){var e=this,i=e.options,a=m(t),o=e.image,n=0,r=1,h=1;if(a>1)switch(e.url=u(t),a){case 2:r=-1;break;case 3:n=-180;break;case 4:h=-1;break;case 5:n=90,h=-1;break;case 6:n=90;break;case 7:n=90,r=-1;break;case 8:n=-90}i.rotatable&&(o.rotate=n),i.scalable&&(o.scaleX=r,o.scaleY=h),e.clone()}},{key:"clone",value:function(){var e=this,i=e.options,a=e.$element,o=e.url,n="",s=void 0;i.checkCrossOrigin&&r(o)&&(n=a.prop("crossOrigin"),n?s=o:(n="anonymous",s=h(o))),e.crossOrigin=n,e.crossOriginUrl=s;var d=document.createElement("img");n&&(d.crossOrigin=n),d.src=s||o;var c=t(d);e.$clone=c,e.isImg?a[0].complete?e.start():a.one("load",t.proxy(e.start,this)):c.one("load",t.proxy(e.start,this)).one("error",t.proxy(e.stop,this)).addClass("cropper-hide").insertAfter(a)}},{key:"start",value:function(){var e=this,i=e.$clone,a=e.$element;e.isImg||(i.off("error",e.stop),a=i),s(a[0],function(i,a){t.extend(e.image,{naturalWidth:i,naturalHeight:a,aspectRatio:i/a}),e.loaded=!0,e.build()})}},{key:"stop",value:function(){var t=this;t.$clone.remove(),t.$clone=null}},{key:"build",value:function(){var e=this,i=e.options,a=e.$element,o=e.$clone,n=void 0,r=void 0,h=void 0;e.loaded&&(e.ready&&e.unbuild(),e.$container=a.parent(),e.$cropper=n=t(b),e.$canvas=n.find(".cropper-canvas").append(o),e.$dragBox=n.find(".cropper-drag-box"),e.$cropBox=r=n.find(".cropper-crop-box"),e.$viewBox=n.find(".cropper-view-box"),e.$face=h=r.find(".cropper-face"),a.addClass(at).after(n),e.isImg||o.removeClass("cropper-hide"),e.initPreview(),e.bind(),i.aspectRatio=Math.max(0,i.aspectRatio)||NaN,i.viewMode=Math.max(0,Math.min(3,Math.round(i.viewMode)))||0,e.cropped=i.autoCrop,i.autoCrop?i.modal&&e.$dragBox.addClass("cropper-modal"):r.addClass(at),i.guides||r.find(".cropper-dashed").addClass(at),i.center||r.find(".cropper-center").addClass(at),i.cropBoxMovable&&h.addClass("cropper-move").data("action","all"),i.highlight||h.addClass("cropper-invisible"),i.background&&n.addClass("cropper-bg"),i.cropBoxResizable||r.find(".cropper-line, .cropper-point").addClass(at),e.setDragMode(i.dragMode),e.render(),e.ready=!0,e.setData(i.data),e.completing=setTimeout(function(){t.isFunction(i.ready)&&a.one("ready",i.ready),e.trigger("ready"),e.trigger("crop",e.getData()),e.completed=!0},0))}},{key:"unbuild",value:function(){var t=this;t.ready&&(t.completed||clearTimeout(t.completing),t.ready=!1,t.completed=!1,t.initialImage=null,t.initialCanvas=null,t.initialCropBox=null,t.container=null,t.canvas=null,t.cropBox=null,t.unbind(),t.resetPreview(),t.$preview=null,t.$viewBox=null,t.$cropBox=null,t.$dragBox=null,t.$canvas=null,t.$container=null,t.$cropper.remove(),t.$cropper=null)}}],[{key:"setDefaults",value:function(e){t.extend(x,t.isPlainObject(e)&&e)}}]),e}();t.extend(rt.prototype,k),t.extend(rt.prototype,D),t.extend(rt.prototype,U),t.extend(rt.prototype,S),t.extend(rt.prototype,J),t.extend(rt.prototype,it);var ht="cropper",st=t.fn.cropper;t.fn.cropper=function(e){for(var i=arguments.length,a=Array(i>1?i-1:0),o=1;o<i;o++)a[o-1]=arguments[o];var n=void 0;return this.each(function(i,o){var r=t(o),h=r.data(ht);if(!h){if(/destroy/.test(e))return;var s=t.extend({},r.data(),t.isPlainObject(e)&&e);r.data(ht,h=new rt(o,s))}if("string"==typeof e){var d=h[e];t.isFunction(d)&&(n=d.apply(h,a))}}),"undefined"!=typeof n?n:this},t.fn.cropper.Constructor=rt,t.fn.cropper.setDefaults=rt.setDefaults,t.fn.cropper.noConflict=function(){return t.fn.cropper=st,this}});
 
 /***/ }),
 /* 5 */
@@ -12476,8 +10446,14 @@ var myDropzone = new Dropzone("#dropzone-container", {
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define(t):e.Sweetalert2=t()}(this,function(){"use strict";var e={title:"",titleText:"",text:"",html:"",type:null,customClass:"",target:"body",animation:!0,allowOutsideClick:!0,allowEscapeKey:!0,allowEnterKey:!0,showConfirmButton:!0,showCancelButton:!1,preConfirm:null,confirmButtonText:"OK",confirmButtonColor:"#3085d6",confirmButtonClass:null,cancelButtonText:"Cancel",cancelButtonColor:"#aaa",cancelButtonClass:null,buttonsStyling:!0,reverseButtons:!1,focusCancel:!1,showCloseButton:!1,showLoaderOnConfirm:!1,imageUrl:null,imageWidth:null,imageHeight:null,imageClass:null,timer:null,width:500,padding:20,background:"#fff",input:null,inputPlaceholder:"",inputValue:"",inputOptions:{},inputAutoTrim:!0,inputClass:null,inputAttributes:{},inputValidator:null,progressSteps:[],currentProgressStep:null,progressStepsDistance:"40px",onOpen:null,onClose:null,useRejections:!0},t=function(e){var t={};for(var n in e)t[e[n]]="swal2-"+e[n];return t},n=t(["container","shown","iosfix","modal","overlay","fade","show","hide","noanimation","close","title","content","buttonswrapper","confirm","cancel","icon","image","input","file","range","select","radio","checkbox","textarea","inputerror","validationerror","progresssteps","activeprogressstep","progresscircle","progressline","loading","styled"]),o=t(["success","warning","info","question","error"]),r=function(e,t){(e=String(e).replace(/[^0-9a-f]/gi,"")).length<6&&(e=e[0]+e[0]+e[1]+e[1]+e[2]+e[2]),t=t||0;for(var n="#",o=0;o<3;o++){var r=parseInt(e.substr(2*o,2),16);n+=("00"+(r=Math.round(Math.min(Math.max(0,r+r*t),255)).toString(16))).substr(r.length)}return n},i=function(e){var t=[];for(var n in e)-1===t.indexOf(e[n])&&t.push(e[n]);return t},a={previousWindowKeyDown:null,previousActiveElement:null,previousBodyPadding:null},l=function(e){var t=u();t&&t.parentNode.removeChild(t);{if("undefined"!=typeof document){var o=document.createElement("div");o.className=n.container,o.innerHTML=s,("string"==typeof e.target?document.querySelector(e.target):e.target).appendChild(o);var r=c(),i=B(r,n.input),a=B(r,n.file),l=r.querySelector("."+n.range+" input"),d=r.querySelector("."+n.range+" output"),p=B(r,n.select),f=r.querySelector("."+n.checkbox+" input"),m=B(r,n.textarea);return i.oninput=function(){$.resetValidationError()},i.onkeydown=function(t){setTimeout(function(){13===t.keyCode&&e.allowEnterKey&&(t.stopPropagation(),$.clickConfirm())},0)},a.onchange=function(){$.resetValidationError()},l.oninput=function(){$.resetValidationError(),d.value=l.value},l.onchange=function(){$.resetValidationError(),l.previousSibling.value=l.value},p.onchange=function(){$.resetValidationError()},f.onchange=function(){$.resetValidationError()},m.oninput=function(){$.resetValidationError()},r}console.error("SweetAlert2 requires document to initialize")}},s=('\n <div role="dialog" aria-labelledby="'+n.title+'" aria-describedby="'+n.content+'" class="'+n.modal+'" tabindex="-1">\n   <ul class="'+n.progresssteps+'"></ul>\n   <div class="'+n.icon+" "+o.error+'">\n     <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>\n   </div>\n   <div class="'+n.icon+" "+o.question+'">?</div>\n   <div class="'+n.icon+" "+o.warning+'">!</div>\n   <div class="'+n.icon+" "+o.info+'">i</div>\n   <div class="'+n.icon+" "+o.success+'">\n     <div class="swal2-success-circular-line-left"></div>\n     <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>\n     <div class="swal2-success-ring"></div> <div class="swal2-success-fix"></div>\n     <div class="swal2-success-circular-line-right"></div>\n   </div>\n   <img class="'+n.image+'" />\n   <h2 class="'+n.title+'" id="'+n.title+'"></h2>\n   <div id="'+n.content+'" class="'+n.content+'"></div>\n   <input class="'+n.input+'" />\n   <input type="file" class="'+n.file+'" />\n   <div class="'+n.range+'">\n     <output></output>\n     <input type="range" />\n   </div>\n   <select class="'+n.select+'"></select>\n   <div class="'+n.radio+'"></div>\n   <label for="'+n.checkbox+'" class="'+n.checkbox+'">\n     <input type="checkbox" />\n   </label>\n   <textarea class="'+n.textarea+'"></textarea>\n   <div class="'+n.validationerror+'"></div>\n   <div class="'+n.buttonswrapper+'">\n     <button type="button" class="'+n.confirm+'">OK</button>\n     <button type="button" class="'+n.cancel+'">Cancel</button>\n   </div>\n   <button type="button" class="'+n.close+'" aria-label="Close this dialog">×</button>\n </div>\n').replace(/(^|\n)\s*/g,""),u=function(){return document.body.querySelector("."+n.container)},c=function(){return u()?u().querySelector("."+n.modal):null},d=function(){return c().querySelectorAll("."+n.icon)},p=function(e){return u()?u().querySelector("."+e):null},f=function(){return p(n.title)},m=function(){return p(n.content)},v=function(){return p(n.image)},g=function(){return p(n.buttonswrapper)},h=function(){return p(n.progresssteps)},y=function(){return p(n.validationerror)},b=function(){return p(n.confirm)},w=function(){return p(n.cancel)},C=function(){return p(n.close)},k=function(e){var t=[b(),w()];e&&t.reverse();var n=Array.from(c().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])')).sort(function(e,t){return e=parseInt(e.getAttribute("tabindex")),t=parseInt(t.getAttribute("tabindex")),e>t?1:e<t?-1:0}),o=Array.prototype.slice.call(c().querySelectorAll('button, input:not([type=hidden]), textarea, select, a, [tabindex="0"]'));return i(t.concat(n,o))},x=function(e,t){return!!e.classList&&e.classList.contains(t)},S=function(e){if(e.focus(),"file"!==e.type){var t=e.value;e.value="",e.value=t}},E=function(e,t){e&&t&&t.split(/\s+/).filter(Boolean).forEach(function(t){e.classList.add(t)})},A=function(e,t){e&&t&&t.split(/\s+/).filter(Boolean).forEach(function(t){e.classList.remove(t)})},B=function(e,t){for(var n=0;n<e.childNodes.length;n++)if(x(e.childNodes[n],t))return e.childNodes[n]},P=function(e,t){t||(t="block"),e.style.opacity="",e.style.display=t},L=function(e){e.style.opacity="",e.style.display="none"},T=function(e){for(;e.firstChild;)e.removeChild(e.firstChild)},q=function(e){return e.offsetWidth||e.offsetHeight||e.getClientRects().length},M=function(e,t){e.style.removeProperty?e.style.removeProperty(t):e.style.removeAttribute(t)},V=function(e){if(!q(e))return!1;if("function"==typeof MouseEvent){var t=new MouseEvent("click",{view:window,bubbles:!1,cancelable:!0});e.dispatchEvent(t)}else if(document.createEvent){var n=document.createEvent("MouseEvents");n.initEvent("click",!1,!1),e.dispatchEvent(n)}else document.createEventObject?e.fireEvent("onclick"):"function"==typeof e.onclick&&e.onclick()},O=function(){var e=document.createElement("div"),t={WebkitAnimation:"webkitAnimationEnd",OAnimation:"oAnimationEnd oanimationend",msAnimation:"MSAnimationEnd",animation:"animationend"};for(var n in t)if(t.hasOwnProperty(n)&&void 0!==e.style[n])return t[n];return!1}(),H=function(){if(window.onkeydown=a.previousWindowKeyDown,a.previousActiveElement&&a.previousActiveElement.focus){var e=window.scrollX,t=window.scrollY;a.previousActiveElement.focus(),e&&t&&window.scrollTo(e,t)}},N=function(){if("ontouchstart"in window||navigator.msMaxTouchPoints)return 0;var e=document.createElement("div");e.style.width="50px",e.style.height="50px",e.style.overflow="scroll",document.body.appendChild(e);var t=e.offsetWidth-e.clientWidth;return document.body.removeChild(e),t},j=function(e,t){var n=void 0;return function(){clearTimeout(n),n=setTimeout(function(){n=null,e()},t)}},I="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},R=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},K=R({},e),D=[],W=void 0,U=function(e){("string"==typeof e.target&&!document.querySelector(e.target)||"string"!=typeof e.target&&!e.target.appendChild)&&(console.warn('SweetAlert2: Target parameter is not valid, defaulting to "body"'),e.target="body");var t=void 0,r=c(),i="string"==typeof e.target?document.querySelector(e.target):e.target;t=r&&i&&r.parentNode!==i.parentNode?l(e):r||l(e);for(var a in e)$.isValidParameter(a)||console.warn('SweetAlert2: Unknown parameter "'+a+'"');t.style.width="number"==typeof e.width?e.width+"px":e.width,t.style.padding=e.padding+"px",t.style.background=e.background;for(var s=t.querySelectorAll("[class^=swal2-success-circular-line], .swal2-success-fix"),u=0;u<s.length;u++)s[u].style.background=e.background;var p=f(),y=m(),k=g(),x=b(),S=w(),B=C();if(e.titleText?p.innerText=e.titleText:p.innerHTML=e.title.split("\n").join("<br />"),e.text||e.html){if("object"===I(e.html))if(y.innerHTML="",0 in e.html)for(var q=0;q in e.html;q++)y.appendChild(e.html[q].cloneNode(!0));else y.appendChild(e.html.cloneNode(!0));else e.html?y.innerHTML=e.html:e.text&&(y.textContent=e.text);P(y)}else L(y);e.showCloseButton?P(B):L(B),t.className=n.modal,e.customClass&&E(t,e.customClass);var V=h(),O=parseInt(null===e.currentProgressStep?$.getQueueStep():e.currentProgressStep,10);e.progressSteps.length?(P(V),T(V),O>=e.progressSteps.length&&console.warn("SweetAlert2: Invalid currentProgressStep parameter, it should be less than progressSteps.length (currentProgressStep like JS arrays starts from 0)"),e.progressSteps.forEach(function(t,o){var r=document.createElement("li");if(E(r,n.progresscircle),r.innerHTML=t,o===O&&E(r,n.activeprogressstep),V.appendChild(r),o!==e.progressSteps.length-1){var i=document.createElement("li");E(i,n.progressline),i.style.width=e.progressStepsDistance,V.appendChild(i)}})):L(V);for(var H=d(),N=0;N<H.length;N++)L(H[N]);if(e.type){var j=!1;for(var R in o)if(e.type===R){j=!0;break}if(!j)return console.error("SweetAlert2: Unknown alert type: "+e.type),!1;var K=t.querySelector("."+n.icon+"."+o[e.type]);if(P(K),e.animation)switch(e.type){case"success":E(K,"swal2-animate-success-icon"),E(K.querySelector(".swal2-success-line-tip"),"swal2-animate-success-line-tip"),E(K.querySelector(".swal2-success-line-long"),"swal2-animate-success-line-long");break;case"error":E(K,"swal2-animate-error-icon"),E(K.querySelector(".swal2-x-mark"),"swal2-animate-x-mark")}}var D=v();e.imageUrl?(D.setAttribute("src",e.imageUrl),P(D),e.imageWidth?D.setAttribute("width",e.imageWidth):D.removeAttribute("width"),e.imageHeight?D.setAttribute("height",e.imageHeight):D.removeAttribute("height"),D.className=n.image,e.imageClass&&E(D,e.imageClass)):L(D),e.showCancelButton?S.style.display="inline-block":L(S),e.showConfirmButton?M(x,"display"):L(x),e.showConfirmButton||e.showCancelButton?P(k):L(k),x.innerHTML=e.confirmButtonText,S.innerHTML=e.cancelButtonText,e.buttonsStyling&&(x.style.backgroundColor=e.confirmButtonColor,S.style.backgroundColor=e.cancelButtonColor),x.className=n.confirm,E(x,e.confirmButtonClass),S.className=n.cancel,E(S,e.cancelButtonClass),e.buttonsStyling?(E(x,n.styled),E(S,n.styled)):(A(x,n.styled),A(S,n.styled),x.style.backgroundColor=x.style.borderLeftColor=x.style.borderRightColor="",S.style.backgroundColor=S.style.borderLeftColor=S.style.borderRightColor=""),!0===e.animation?A(t,n.noanimation):E(t,n.noanimation),e.showLoaderOnConfirm&&!e.preConfirm&&console.warn("SweetAlert2: showLoaderOnConfirm is set to true, but preConfirm is not defined.\nshowLoaderOnConfirm should be used together with preConfirm, see usage example:\nhttps://limonte.github.io/sweetalert2/#ajax-request")},z=function(e,t){var o=u(),r=c();e?(E(r,n.show),E(o,n.fade),A(r,n.hide)):A(r,n.fade),P(r),o.style.overflowY="hidden",O&&!x(r,n.noanimation)?r.addEventListener(O,function e(){r.removeEventListener(O,e),o.style.overflowY="auto"}):o.style.overflowY="auto",E(document.documentElement,n.shown),E(document.body,n.shown),E(o,n.shown),Z(),Y(),a.previousActiveElement=document.activeElement,null!==t&&"function"==typeof t&&setTimeout(function(){t(r)})},Z=function(){null===a.previousBodyPadding&&document.body.scrollHeight>window.innerHeight&&(a.previousBodyPadding=document.body.style.paddingRight,document.body.style.paddingRight=N()+"px")},Q=function(){null!==a.previousBodyPadding&&(document.body.style.paddingRight=a.previousBodyPadding,a.previousBodyPadding=null)},Y=function(){if(/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream&&!x(document.body,n.iosfix)){var e=document.body.scrollTop;document.body.style.top=-1*e+"px",E(document.body,n.iosfix)}},_=function(){if(x(document.body,n.iosfix)){var e=parseInt(document.body.style.top,10);A(document.body,n.iosfix),document.body.style.top="",document.body.scrollTop=-1*e}},$=function e(){for(var t=arguments.length,o=Array(t),i=0;i<t;i++)o[i]=arguments[i];if(void 0===o[0])return console.error("SweetAlert2 expects at least 1 attribute!"),!1;var l=R({},K);switch(I(o[0])){case"string":l.title=o[0],l.html=o[1],l.type=o[2];break;case"object":R(l,o[0]),l.extraParams=o[0].extraParams,"email"===l.input&&null===l.inputValidator&&(l.inputValidator=function(e){return new Promise(function(t,n){/^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(e)?t():n("Invalid email address")})}),"url"===l.input&&null===l.inputValidator&&(l.inputValidator=function(e){return new Promise(function(t,n){/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(e)?t():n("Invalid URL")})});break;default:return console.error('SweetAlert2: Unexpected type of argument! Expected "string" or "object", got '+I(o[0])),!1}U(l);var s=u(),d=c();return new Promise(function(t,o){l.timer&&(d.timeout=setTimeout(function(){e.closeModal(l.onClose),l.useRejections?o("timer"):t({dismiss:"timer"})},l.timer));var i=function(e){if(!(e=e||l.input))return null;switch(e){case"select":case"textarea":case"file":return B(d,n[e]);case"checkbox":return d.querySelector("."+n.checkbox+" input");case"radio":return d.querySelector("."+n.radio+" input:checked")||d.querySelector("."+n.radio+" input:first-child");case"range":return d.querySelector("."+n.range+" input");default:return B(d,n.input)}},p=function(){var e=i();if(!e)return null;switch(l.input){case"checkbox":return e.checked?1:0;case"radio":return e.checked?e.value:null;case"file":return e.files.length?e.files[0]:null;default:return l.inputAutoTrim?e.value.trim():e.value}};l.input&&setTimeout(function(){var e=i();e&&S(e)},0);for(var x=function(n){l.showLoaderOnConfirm&&e.showLoading(),l.preConfirm?l.preConfirm(n,l.extraParams).then(function(o){e.closeModal(l.onClose),t(o||n)},function(t){e.hideLoading(),t&&e.showValidationError(t)}):(e.closeModal(l.onClose),t(l.useRejections?n:{value:n}))},T=function(n){var i=n||window.event,a=i.target||i.srcElement,s=b(),u=w(),c=s&&(s===a||s.contains(a)),d=u&&(u===a||u.contains(a));switch(i.type){case"mouseover":case"mouseup":l.buttonsStyling&&(c?s.style.backgroundColor=r(l.confirmButtonColor,-.1):d&&(u.style.backgroundColor=r(l.cancelButtonColor,-.1)));break;case"mouseout":l.buttonsStyling&&(c?s.style.backgroundColor=l.confirmButtonColor:d&&(u.style.backgroundColor=l.cancelButtonColor));break;case"mousedown":l.buttonsStyling&&(c?s.style.backgroundColor=r(l.confirmButtonColor,-.2):d&&(u.style.backgroundColor=r(l.cancelButtonColor,-.2)));break;case"click":if(c&&e.isVisible())if(e.disableButtons(),l.input){var f=p();l.inputValidator?(e.disableInput(),l.inputValidator(f,l.extraParams).then(function(){e.enableButtons(),e.enableInput(),x(f)},function(t){e.enableButtons(),e.enableInput(),t&&e.showValidationError(t)})):x(f)}else x(!0);else d&&e.isVisible()&&(e.disableButtons(),e.closeModal(l.onClose),l.useRejections?o("cancel"):t({dismiss:"cancel"}))}},M=d.querySelectorAll("button"),O=0;O<M.length;O++)M[O].onclick=T,M[O].onmouseover=T,M[O].onmouseout=T,M[O].onmousedown=T;C().onclick=function(){e.closeModal(l.onClose),l.useRejections?o("close"):t({dismiss:"close"})},s.onclick=function(n){n.target===s&&l.allowOutsideClick&&(e.closeModal(l.onClose),l.useRejections?o("overlay"):t({dismiss:"overlay"}))};var H=g(),N=b(),R=w();l.reverseButtons?N.parentNode.insertBefore(R,N):N.parentNode.insertBefore(N,R);var K=function(e,t){for(var n=k(l.focusCancel),o=0;o<n.length;o++){(e+=t)===n.length?e=0:-1===e&&(e=n.length-1);var r=n[e];if(q(r))return r.focus()}},D=function(n){var r=n||window.event,i=r.keyCode||r.which;if(-1!==[9,13,32,27,37,38,39,40].indexOf(i)){for(var a=r.target||r.srcElement,s=k(l.focusCancel),u=-1,c=0;c<s.length;c++)if(a===s[c]){u=c;break}9===i?(r.shiftKey?K(u,-1):K(u,1),r.stopPropagation(),r.preventDefault()):37===i||38===i||39===i||40===i?document.activeElement===N&&q(R)?R.focus():document.activeElement===R&&q(N)&&N.focus():13===i||32===i?-1===u&&l.allowEnterKey&&(V(l.focusCancel?R:N),r.stopPropagation(),r.preventDefault()):27===i&&!0===l.allowEscapeKey&&(e.closeModal(l.onClose),l.useRejections?o("esc"):t({dismiss:"esc"}))}};window.onkeydown&&window.onkeydown.toString()===D.toString()||(a.previousWindowKeyDown=window.onkeydown,window.onkeydown=D),l.buttonsStyling&&(N.style.borderLeftColor=l.confirmButtonColor,N.style.borderRightColor=l.confirmButtonColor),e.hideLoading=e.disableLoading=function(){l.showConfirmButton||(L(N),l.showCancelButton||L(g())),A(H,n.loading),A(d,n.loading),N.disabled=!1,R.disabled=!1},e.getTitle=function(){return f()},e.getContent=function(){return m()},e.getInput=function(){return i()},e.getImage=function(){return v()},e.getButtonsWrapper=function(){return g()},e.getConfirmButton=function(){return b()},e.getCancelButton=function(){return w()},e.enableButtons=function(){N.disabled=!1,R.disabled=!1},e.disableButtons=function(){N.disabled=!0,R.disabled=!0},e.enableConfirmButton=function(){N.disabled=!1},e.disableConfirmButton=function(){N.disabled=!0},e.enableInput=function(){var e=i();if(!e)return!1;if("radio"===e.type)for(var t=e.parentNode.parentNode.querySelectorAll("input"),n=0;n<t.length;n++)t[n].disabled=!1;else e.disabled=!1},e.disableInput=function(){var e=i();if(!e)return!1;if(e&&"radio"===e.type)for(var t=e.parentNode.parentNode.querySelectorAll("input"),n=0;n<t.length;n++)t[n].disabled=!0;else e.disabled=!0},e.recalculateHeight=j(function(){var e=c();if(e){var t=e.style.display;e.style.minHeight="",P(e),e.style.minHeight=e.scrollHeight+1+"px",e.style.display=t}},50),e.showValidationError=function(e){var t=y();t.innerHTML=e,P(t);var o=i();o&&(S(o),E(o,n.inputerror))},e.resetValidationError=function(){var t=y();L(t),e.recalculateHeight();var o=i();o&&A(o,n.inputerror)},e.getProgressSteps=function(){return l.progressSteps},e.setProgressSteps=function(e){l.progressSteps=e,U(l)},e.showProgressSteps=function(){P(h())},e.hideProgressSteps=function(){L(h())},e.enableButtons(),e.hideLoading(),e.resetValidationError();for(var Z=["input","file","range","select","radio","checkbox","textarea"],Q=void 0,Y=0;Y<Z.length;Y++){var _=n[Z[Y]],$=B(d,_);if(Q=i(Z[Y])){for(var J in Q.attributes)if(Q.attributes.hasOwnProperty(J)){var X=Q.attributes[J].name;"type"!==X&&"value"!==X&&Q.removeAttribute(X)}for(var F in l.inputAttributes)Q.setAttribute(F,l.inputAttributes[F])}$.className=_,l.inputClass&&E($,l.inputClass),L($)}var G=void 0;switch(l.input){case"text":case"email":case"password":case"number":case"tel":case"url":(Q=B(d,n.input)).value=l.inputValue,Q.placeholder=l.inputPlaceholder,Q.type=l.input,P(Q);break;case"file":(Q=B(d,n.file)).placeholder=l.inputPlaceholder,Q.type=l.input,P(Q);break;case"range":var ee=B(d,n.range),te=ee.querySelector("input"),ne=ee.querySelector("output");te.value=l.inputValue,te.type=l.input,ne.value=l.inputValue,P(ee);break;case"select":var oe=B(d,n.select);if(oe.innerHTML="",l.inputPlaceholder){var re=document.createElement("option");re.innerHTML=l.inputPlaceholder,re.value="",re.disabled=!0,re.selected=!0,oe.appendChild(re)}G=function(e){for(var t in e){var n=document.createElement("option");n.value=t,n.innerHTML=e[t],l.inputValue===t&&(n.selected=!0),oe.appendChild(n)}P(oe),oe.focus()};break;case"radio":var ie=B(d,n.radio);ie.innerHTML="",G=function(e){for(var t in e){var o=document.createElement("input"),r=document.createElement("label"),i=document.createElement("span");o.type="radio",o.name=n.radio,o.value=t,l.inputValue===t&&(o.checked=!0),i.innerHTML=e[t],r.appendChild(o),r.appendChild(i),r.for=o.id,ie.appendChild(r)}P(ie);var a=ie.querySelectorAll("input");a.length&&a[0].focus()};break;case"checkbox":var ae=B(d,n.checkbox),le=i("checkbox");le.type="checkbox",le.value=1,le.id=n.checkbox,le.checked=Boolean(l.inputValue);var se=ae.getElementsByTagName("span");se.length&&ae.removeChild(se[0]),(se=document.createElement("span")).innerHTML=l.inputPlaceholder,ae.appendChild(se),P(ae);break;case"textarea":var ue=B(d,n.textarea);ue.value=l.inputValue,ue.placeholder=l.inputPlaceholder,P(ue);break;case null:break;default:console.error('SweetAlert2: Unexpected type of input! Expected "text", "email", "password", "number", "tel", "select", "radio", "checkbox", "textarea", "file" or "url", got "'+l.input+'"')}"select"!==l.input&&"radio"!==l.input||(l.inputOptions instanceof Promise?(e.showLoading(),l.inputOptions.then(function(t){e.hideLoading(),G(t)})):"object"===I(l.inputOptions)?G(l.inputOptions):console.error("SweetAlert2: Unexpected type of inputOptions! Expected object or Promise, got "+I(l.inputOptions))),z(l.animation,l.onOpen),l.allowEnterKey?K(-1,1):document.activeElement&&document.activeElement.blur(),u().scrollTop=0,"undefined"==typeof MutationObserver||W||(W=new MutationObserver(e.recalculateHeight)).observe(d,{childList:!0,characterData:!0,subtree:!0})})};return $.isVisible=function(){return!!c()},$.queue=function(e){D=e;var t=function(){D=[],document.body.removeAttribute("data-swal2-queue-step")},n=[];return new Promise(function(e,o){!function r(i,a){i<D.length?(document.body.setAttribute("data-swal2-queue-step",i),$(D[i]).then(function(e){n.push(e),r(i+1,a)},function(e){t(),o(e)})):(t(),e(n))}(0)})},$.getQueueStep=function(){return document.body.getAttribute("data-swal2-queue-step")},$.insertQueueStep=function(e,t){return t&&t<D.length?D.splice(t,0,e):D.push(e)},$.deleteQueueStep=function(e){void 0!==D[e]&&D.splice(e,1)},$.close=$.closeModal=function(e){var t=u(),o=c();if(o){A(o,n.show),E(o,n.hide),clearTimeout(o.timeout),H();var r=function(){t.parentNode&&t.parentNode.removeChild(t),A(document.documentElement,n.shown),A(document.body,n.shown),Q(),_()};O&&!x(o,n.noanimation)?o.addEventListener(O,function e(){o.removeEventListener(O,e),x(o,n.hide)&&r()}):r(),null!==e&&"function"==typeof e&&setTimeout(function(){e(o)})}},$.clickConfirm=function(){return b().click()},$.clickCancel=function(){return w().click()},$.showLoading=$.enableLoading=function(){var e=c();e||$("");var t=g(),o=b(),r=w();P(t),P(o,"inline-block"),E(t,n.loading),E(e,n.loading),o.disabled=!0,r.disabled=!0},$.isValidParameter=function(t){return e.hasOwnProperty(t)||"extraParams"===t},$.setDefaults=function(e){if(!e||"object"!==(void 0===e?"undefined":I(e)))return console.error("SweetAlert2: the argument for setDefaults() is required and has to be a object");for(var t in e)$.isValidParameter(t)||(console.warn('SweetAlert2: Unknown parameter "'+t+'"'),delete e[t]);R(K,e)},$.resetDefaults=function(){K=R({},e)},$.noop=function(){},$.version="6.6.9",$.default=$,$}),window.Sweetalert2&&(window.sweetAlert=window.swal=window.Sweetalert2);
 
-window._ = __webpack_require__(9);
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+window._ = __webpack_require__(11);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12486,9 +10462,9 @@ window._ = __webpack_require__(9);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(1);
+  window.$ = window.jQuery = __webpack_require__(0);
 
-  __webpack_require__(8);
+  __webpack_require__(10);
 } catch (e) {
   console.log('deu ruim aqui');
 }
@@ -12533,7 +10509,2069 @@ try {
 // });
 
 /***/ }),
-/* 8 */
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {/*
+ *
+ * More info at [www.dropzonejs.com](http://www.dropzonejs.com)
+ *
+ * Copyright (c) 2012, Matias Meno
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
+
+(function () {
+  var Dropzone,
+      Emitter,
+      ExifRestore,
+      camelize,
+      contentLoaded,
+      detectVerticalSquash,
+      drawImageIOSFix,
+      noop,
+      without,
+      slice = [].slice,
+      extend1 = function extend1(child, parent) {
+    for (var key in parent) {
+      if (hasProp.call(parent, key)) child[key] = parent[key];
+    }function ctor() {
+      this.constructor = child;
+    }ctor.prototype = parent.prototype;child.prototype = new ctor();child.__super__ = parent.prototype;return child;
+  },
+      hasProp = {}.hasOwnProperty;
+
+  noop = function noop() {};
+
+  Emitter = function () {
+    function Emitter() {}
+
+    Emitter.prototype.addEventListener = Emitter.prototype.on;
+
+    Emitter.prototype.on = function (event, fn) {
+      this._callbacks = this._callbacks || {};
+      if (!this._callbacks[event]) {
+        this._callbacks[event] = [];
+      }
+      this._callbacks[event].push(fn);
+      return this;
+    };
+
+    Emitter.prototype.emit = function () {
+      var args, callback, callbacks, event, j, len;
+      event = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+      this._callbacks = this._callbacks || {};
+      callbacks = this._callbacks[event];
+      if (callbacks) {
+        for (j = 0, len = callbacks.length; j < len; j++) {
+          callback = callbacks[j];
+          callback.apply(this, args);
+        }
+      }
+      return this;
+    };
+
+    Emitter.prototype.removeListener = Emitter.prototype.off;
+
+    Emitter.prototype.removeAllListeners = Emitter.prototype.off;
+
+    Emitter.prototype.removeEventListener = Emitter.prototype.off;
+
+    Emitter.prototype.off = function (event, fn) {
+      var callback, callbacks, i, j, len;
+      if (!this._callbacks || arguments.length === 0) {
+        this._callbacks = {};
+        return this;
+      }
+      callbacks = this._callbacks[event];
+      if (!callbacks) {
+        return this;
+      }
+      if (arguments.length === 1) {
+        delete this._callbacks[event];
+        return this;
+      }
+      for (i = j = 0, len = callbacks.length; j < len; i = ++j) {
+        callback = callbacks[i];
+        if (callback === fn) {
+          callbacks.splice(i, 1);
+          break;
+        }
+      }
+      return this;
+    };
+
+    return Emitter;
+  }();
+
+  Dropzone = function (superClass) {
+    var extend, resolveOption;
+
+    extend1(Dropzone, superClass);
+
+    Dropzone.prototype.Emitter = Emitter;
+
+    /*
+    This is a list of all available events you can register on a dropzone object.
+    
+    You can register an event handler like this:
+    
+        dropzone.on("dragEnter", function() { });
+     */
+
+    Dropzone.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "addedfiles", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached", "queuecomplete"];
+
+    Dropzone.prototype.defaultOptions = {
+      url: null,
+      method: "post",
+      withCredentials: false,
+      timeout: 30000,
+      parallelUploads: 2,
+      uploadMultiple: false,
+      maxFilesize: 256,
+      paramName: "file",
+      createImageThumbnails: true,
+      maxThumbnailFilesize: 10,
+      thumbnailWidth: 120,
+      thumbnailHeight: 120,
+      thumbnailMethod: 'crop',
+      resizeWidth: null,
+      resizeHeight: null,
+      resizeMimeType: null,
+      resizeQuality: 0.8,
+      resizeMethod: 'contain',
+      filesizeBase: 1000,
+      maxFiles: null,
+      params: {},
+      headers: null,
+      clickable: true,
+      ignoreHiddenFiles: true,
+      acceptedFiles: null,
+      acceptedMimeTypes: null,
+      autoProcessQueue: true,
+      autoQueue: true,
+      addRemoveLinks: false,
+      previewsContainer: null,
+      hiddenInputContainer: "body",
+      capture: null,
+      renameFilename: null,
+      renameFile: null,
+      forceFallback: false,
+      dictDefaultMessage: "Drop files here to upload",
+      dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
+      dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+      dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
+      dictInvalidFileType: "You can't upload files of this type.",
+      dictResponseError: "Server responded with {{statusCode}} code.",
+      dictCancelUpload: "Cancel upload",
+      dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
+      dictRemoveFile: "Remove file",
+      dictRemoveFileConfirmation: null,
+      dictMaxFilesExceeded: "You can not upload any more files.",
+      dictFileSizeUnits: {
+        tb: "TB",
+        gb: "GB",
+        mb: "MB",
+        kb: "KB",
+        b: "b"
+      },
+      init: function init() {
+        return noop;
+      },
+      accept: function accept(file, done) {
+        return done();
+      },
+      fallback: function fallback() {
+        var child, j, len, messageElement, ref, span;
+        this.element.className = this.element.className + " dz-browser-not-supported";
+        ref = this.element.getElementsByTagName("div");
+        for (j = 0, len = ref.length; j < len; j++) {
+          child = ref[j];
+          if (/(^| )dz-message($| )/.test(child.className)) {
+            messageElement = child;
+            child.className = "dz-message";
+            continue;
+          }
+        }
+        if (!messageElement) {
+          messageElement = Dropzone.createElement("<div class=\"dz-message\"><span></span></div>");
+          this.element.appendChild(messageElement);
+        }
+        span = messageElement.getElementsByTagName("span")[0];
+        if (span) {
+          if (span.textContent != null) {
+            span.textContent = this.options.dictFallbackMessage;
+          } else if (span.innerText != null) {
+            span.innerText = this.options.dictFallbackMessage;
+          }
+        }
+        return this.element.appendChild(this.getFallbackForm());
+      },
+      resize: function resize(file, width, height, resizeMethod) {
+        var info, srcRatio, trgRatio;
+        info = {
+          srcX: 0,
+          srcY: 0,
+          srcWidth: file.width,
+          srcHeight: file.height
+        };
+        srcRatio = file.width / file.height;
+        if (width == null && height == null) {
+          width = info.srcWidth;
+          height = info.srcHeight;
+        } else if (width == null) {
+          width = height * srcRatio;
+        } else if (height == null) {
+          height = width / srcRatio;
+        }
+        width = Math.min(width, info.srcWidth);
+        height = Math.min(height, info.srcHeight);
+        trgRatio = width / height;
+        if (info.srcWidth > width || info.srcHeight > height) {
+          if (resizeMethod === 'crop') {
+            if (srcRatio > trgRatio) {
+              info.srcHeight = file.height;
+              info.srcWidth = info.srcHeight * trgRatio;
+            } else {
+              info.srcWidth = file.width;
+              info.srcHeight = info.srcWidth / trgRatio;
+            }
+          } else if (resizeMethod === 'contain') {
+            if (srcRatio > trgRatio) {
+              height = width / srcRatio;
+            } else {
+              width = height * srcRatio;
+            }
+          } else {
+            throw new Error("Unknown resizeMethod '" + resizeMethod + "'");
+          }
+        }
+        info.srcX = (file.width - info.srcWidth) / 2;
+        info.srcY = (file.height - info.srcHeight) / 2;
+        info.trgWidth = width;
+        info.trgHeight = height;
+        return info;
+      },
+      transformFile: function transformFile(file, done) {
+        if ((this.options.resizeWidth || this.options.resizeHeight) && file.type.match(/image.*/)) {
+          return this.resizeImage(file, this.options.resizeWidth, this.options.resizeHeight, this.options.resizeMethod, done);
+        } else {
+          return done(file);
+        }
+      },
+      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-image\"><img data-dz-thumbnail /></div>\n  <div class=\"dz-details\">\n    <div class=\"dz-size\"><span data-dz-size></span></div>\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n  <div class=\"dz-success-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n      <title>Check</title>\n      <defs></defs>\n      <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n        <path d=\"M23.5,31.8431458 L17.5852419,25.9283877 C16.0248253,24.3679711 13.4910294,24.366835 11.9289322,25.9289322 C10.3700136,27.4878508 10.3665912,30.0234455 11.9283877,31.5852419 L20.4147581,40.0716123 C20.5133999,40.1702541 20.6159315,40.2626649 20.7218615,40.3488435 C22.2835669,41.8725651 24.794234,41.8626202 26.3461564,40.3106978 L43.3106978,23.3461564 C44.8771021,21.7797521 44.8758057,19.2483887 43.3137085,17.6862915 C41.7547899,16.1273729 39.2176035,16.1255422 37.6538436,17.6893022 L23.5,31.8431458 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" id=\"Oval-2\" stroke-opacity=\"0.198794158\" stroke=\"#747474\" fill-opacity=\"0.816519475\" fill=\"#FFFFFF\" sketch:type=\"MSShapeGroup\"></path>\n      </g>\n    </svg>\n  </div>\n  <div class=\"dz-error-mark\">\n    <svg width=\"54px\" height=\"54px\" viewBox=\"0 0 54 54\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xmlns:sketch=\"http://www.bohemiancoding.com/sketch/ns\">\n      <title>Error</title>\n      <defs></defs>\n      <g id=\"Page-1\" stroke=\"none\" stroke-width=\"1\" fill=\"none\" fill-rule=\"evenodd\" sketch:type=\"MSPage\">\n        <g id=\"Check-+-Oval-2\" sketch:type=\"MSLayerGroup\" stroke=\"#747474\" stroke-opacity=\"0.198794158\" fill=\"#FFFFFF\" fill-opacity=\"0.816519475\">\n          <path d=\"M32.6568542,29 L38.3106978,23.3461564 C39.8771021,21.7797521 39.8758057,19.2483887 38.3137085,17.6862915 C36.7547899,16.1273729 34.2176035,16.1255422 32.6538436,17.6893022 L27,23.3431458 L21.3461564,17.6893022 C19.7823965,16.1255422 17.2452101,16.1273729 15.6862915,17.6862915 C14.1241943,19.2483887 14.1228979,21.7797521 15.6893022,23.3461564 L21.3431458,29 L15.6893022,34.6538436 C14.1228979,36.2202479 14.1241943,38.7516113 15.6862915,40.3137085 C17.2452101,41.8726271 19.7823965,41.8744578 21.3461564,40.3106978 L27,34.6568542 L32.6538436,40.3106978 C34.2176035,41.8744578 36.7547899,41.8726271 38.3137085,40.3137085 C39.8758057,38.7516113 39.8771021,36.2202479 38.3106978,34.6538436 L32.6568542,29 Z M27,53 C41.3594035,53 53,41.3594035 53,27 C53,12.6405965 41.3594035,1 27,1 C12.6405965,1 1,12.6405965 1,27 C1,41.3594035 12.6405965,53 27,53 Z\" id=\"Oval-2\" sketch:type=\"MSShapeGroup\"></path>\n        </g>\n      </g>\n    </svg>\n  </div>\n</div>",
+
+      /*
+      Those functions register themselves to the events on init and handle all
+      the user interface specific stuff. Overwriting them won't break the upload
+      but can break the way it's displayed.
+      You can overwrite them if you don't like the default behavior. If you just
+      want to add an additional event handler, register it on the dropzone object
+      and don't overwrite those options.
+       */
+      drop: function drop(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      dragstart: noop,
+      dragend: function dragend(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      dragenter: function dragenter(e) {
+        return this.element.classList.add("dz-drag-hover");
+      },
+      dragover: function dragover(e) {
+        return this.element.classList.add("dz-drag-hover");
+      },
+      dragleave: function dragleave(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      paste: noop,
+      reset: function reset() {
+        return this.element.classList.remove("dz-started");
+      },
+      addedfile: function addedfile(file) {
+        var j, k, l, len, len1, len2, node, ref, ref1, ref2, removeFileEvent, removeLink, results;
+        if (this.element === this.previewsContainer) {
+          this.element.classList.add("dz-started");
+        }
+        if (this.previewsContainer) {
+          file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
+          file.previewTemplate = file.previewElement;
+          this.previewsContainer.appendChild(file.previewElement);
+          ref = file.previewElement.querySelectorAll("[data-dz-name]");
+          for (j = 0, len = ref.length; j < len; j++) {
+            node = ref[j];
+            node.textContent = file.name;
+          }
+          ref1 = file.previewElement.querySelectorAll("[data-dz-size]");
+          for (k = 0, len1 = ref1.length; k < len1; k++) {
+            node = ref1[k];
+            node.innerHTML = this.filesize(file.size);
+          }
+          if (this.options.addRemoveLinks) {
+            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
+            file.previewElement.appendChild(file._removeLink);
+          }
+          removeFileEvent = function (_this) {
+            return function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (file.status === Dropzone.UPLOADING) {
+                return Dropzone.confirm(_this.options.dictCancelUploadConfirmation, function () {
+                  return _this.removeFile(file);
+                });
+              } else {
+                if (_this.options.dictRemoveFileConfirmation) {
+                  return Dropzone.confirm(_this.options.dictRemoveFileConfirmation, function () {
+                    return _this.removeFile(file);
+                  });
+                } else {
+                  return _this.removeFile(file);
+                }
+              }
+            };
+          }(this);
+          ref2 = file.previewElement.querySelectorAll("[data-dz-remove]");
+          results = [];
+          for (l = 0, len2 = ref2.length; l < len2; l++) {
+            removeLink = ref2[l];
+            results.push(removeLink.addEventListener("click", removeFileEvent));
+          }
+          return results;
+        }
+      },
+      removedfile: function removedfile(file) {
+        var ref;
+        if (file.previewElement) {
+          if ((ref = file.previewElement) != null) {
+            ref.parentNode.removeChild(file.previewElement);
+          }
+        }
+        return this._updateMaxFilesReachedClass();
+      },
+      thumbnail: function thumbnail(file, dataUrl) {
+        var j, len, ref, thumbnailElement;
+        if (file.previewElement) {
+          file.previewElement.classList.remove("dz-file-preview");
+          ref = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
+          for (j = 0, len = ref.length; j < len; j++) {
+            thumbnailElement = ref[j];
+            thumbnailElement.alt = file.name;
+            thumbnailElement.src = dataUrl;
+          }
+          return setTimeout(function (_this) {
+            return function () {
+              return file.previewElement.classList.add("dz-image-preview");
+            };
+          }(this), 1);
+        }
+      },
+      error: function error(file, message) {
+        var j, len, node, ref, results;
+        if (file.previewElement) {
+          file.previewElement.classList.add("dz-error");
+          if (typeof message !== "String" && message.error) {
+            message = message.error;
+          }
+          ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
+          results = [];
+          for (j = 0, len = ref.length; j < len; j++) {
+            node = ref[j];
+            results.push(node.textContent = message);
+          }
+          return results;
+        }
+      },
+      errormultiple: noop,
+      processing: function processing(file) {
+        if (file.previewElement) {
+          file.previewElement.classList.add("dz-processing");
+          if (file._removeLink) {
+            return file._removeLink.textContent = this.options.dictCancelUpload;
+          }
+        }
+      },
+      processingmultiple: noop,
+      uploadprogress: function uploadprogress(file, progress, bytesSent) {
+        var j, len, node, ref, results;
+        if (file.previewElement) {
+          ref = file.previewElement.querySelectorAll("[data-dz-uploadprogress]");
+          results = [];
+          for (j = 0, len = ref.length; j < len; j++) {
+            node = ref[j];
+            if (node.nodeName === 'PROGRESS') {
+              results.push(node.value = progress);
+            } else {
+              results.push(node.style.width = progress + "%");
+            }
+          }
+          return results;
+        }
+      },
+      totaluploadprogress: noop,
+      sending: noop,
+      sendingmultiple: noop,
+      success: function success(file) {
+        if (file.previewElement) {
+          return file.previewElement.classList.add("dz-success");
+        }
+      },
+      successmultiple: noop,
+      canceled: function canceled(file) {
+        return this.emit("error", file, "Upload canceled.");
+      },
+      canceledmultiple: noop,
+      complete: function complete(file) {
+        if (file._removeLink) {
+          file._removeLink.textContent = this.options.dictRemoveFile;
+        }
+        if (file.previewElement) {
+          return file.previewElement.classList.add("dz-complete");
+        }
+      },
+      completemultiple: noop,
+      maxfilesexceeded: noop,
+      maxfilesreached: noop,
+      queuecomplete: noop,
+      addedfiles: noop
+    };
+
+    extend = function extend() {
+      var j, key, len, object, objects, target, val;
+      target = arguments[0], objects = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+      for (j = 0, len = objects.length; j < len; j++) {
+        object = objects[j];
+        for (key in object) {
+          val = object[key];
+          target[key] = val;
+        }
+      }
+      return target;
+    };
+
+    function Dropzone(element1, options) {
+      var elementOptions, fallback, ref;
+      this.element = element1;
+      this.version = Dropzone.version;
+      this.defaultOptions.previewTemplate = this.defaultOptions.previewTemplate.replace(/\n*/g, "");
+      this.clickableElements = [];
+      this.listeners = [];
+      this.files = [];
+      if (typeof this.element === "string") {
+        this.element = document.querySelector(this.element);
+      }
+      if (!(this.element && this.element.nodeType != null)) {
+        throw new Error("Invalid dropzone element.");
+      }
+      if (this.element.dropzone) {
+        throw new Error("Dropzone already attached.");
+      }
+      Dropzone.instances.push(this);
+      this.element.dropzone = this;
+      elementOptions = (ref = Dropzone.optionsForElement(this.element)) != null ? ref : {};
+      this.options = extend({}, this.defaultOptions, elementOptions, options != null ? options : {});
+      if (this.options.forceFallback || !Dropzone.isBrowserSupported()) {
+        return this.options.fallback.call(this);
+      }
+      if (this.options.url == null) {
+        this.options.url = this.element.getAttribute("action");
+      }
+      if (!this.options.url) {
+        throw new Error("No URL provided.");
+      }
+      if (this.options.acceptedFiles && this.options.acceptedMimeTypes) {
+        throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
+      }
+      if (this.options.acceptedMimeTypes) {
+        this.options.acceptedFiles = this.options.acceptedMimeTypes;
+        delete this.options.acceptedMimeTypes;
+      }
+      if (this.options.renameFilename != null) {
+        this.options.renameFile = function (_this) {
+          return function (file) {
+            return _this.options.renameFilename.call(_this, file.name, file);
+          };
+        }(this);
+      }
+      this.options.method = this.options.method.toUpperCase();
+      if ((fallback = this.getExistingFallback()) && fallback.parentNode) {
+        fallback.parentNode.removeChild(fallback);
+      }
+      if (this.options.previewsContainer !== false) {
+        if (this.options.previewsContainer) {
+          this.previewsContainer = Dropzone.getElement(this.options.previewsContainer, "previewsContainer");
+        } else {
+          this.previewsContainer = this.element;
+        }
+      }
+      if (this.options.clickable) {
+        if (this.options.clickable === true) {
+          this.clickableElements = [this.element];
+        } else {
+          this.clickableElements = Dropzone.getElements(this.options.clickable, "clickable");
+        }
+      }
+      this.init();
+    }
+
+    Dropzone.prototype.getAcceptedFiles = function () {
+      var file, j, len, ref, results;
+      ref = this.files;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        file = ref[j];
+        if (file.accepted) {
+          results.push(file);
+        }
+      }
+      return results;
+    };
+
+    Dropzone.prototype.getRejectedFiles = function () {
+      var file, j, len, ref, results;
+      ref = this.files;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        file = ref[j];
+        if (!file.accepted) {
+          results.push(file);
+        }
+      }
+      return results;
+    };
+
+    Dropzone.prototype.getFilesWithStatus = function (status) {
+      var file, j, len, ref, results;
+      ref = this.files;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        file = ref[j];
+        if (file.status === status) {
+          results.push(file);
+        }
+      }
+      return results;
+    };
+
+    Dropzone.prototype.getQueuedFiles = function () {
+      return this.getFilesWithStatus(Dropzone.QUEUED);
+    };
+
+    Dropzone.prototype.getUploadingFiles = function () {
+      return this.getFilesWithStatus(Dropzone.UPLOADING);
+    };
+
+    Dropzone.prototype.getAddedFiles = function () {
+      return this.getFilesWithStatus(Dropzone.ADDED);
+    };
+
+    Dropzone.prototype.getActiveFiles = function () {
+      var file, j, len, ref, results;
+      ref = this.files;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        file = ref[j];
+        if (file.status === Dropzone.UPLOADING || file.status === Dropzone.QUEUED) {
+          results.push(file);
+        }
+      }
+      return results;
+    };
+
+    Dropzone.prototype.init = function () {
+      var eventName, j, len, noPropagation, ref, ref1, setupHiddenFileInput;
+      if (this.element.tagName === "form") {
+        this.element.setAttribute("enctype", "multipart/form-data");
+      }
+      if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
+        this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
+      }
+      if (this.clickableElements.length) {
+        setupHiddenFileInput = function (_this) {
+          return function () {
+            if (_this.hiddenFileInput) {
+              _this.hiddenFileInput.parentNode.removeChild(_this.hiddenFileInput);
+            }
+            _this.hiddenFileInput = document.createElement("input");
+            _this.hiddenFileInput.setAttribute("type", "file");
+            if (_this.options.maxFiles == null || _this.options.maxFiles > 1) {
+              _this.hiddenFileInput.setAttribute("multiple", "multiple");
+            }
+            _this.hiddenFileInput.className = "dz-hidden-input";
+            if (_this.options.acceptedFiles != null) {
+              _this.hiddenFileInput.setAttribute("accept", _this.options.acceptedFiles);
+            }
+            if (_this.options.capture != null) {
+              _this.hiddenFileInput.setAttribute("capture", _this.options.capture);
+            }
+            _this.hiddenFileInput.style.visibility = "hidden";
+            _this.hiddenFileInput.style.position = "absolute";
+            _this.hiddenFileInput.style.top = "0";
+            _this.hiddenFileInput.style.left = "0";
+            _this.hiddenFileInput.style.height = "0";
+            _this.hiddenFileInput.style.width = "0";
+            document.querySelector(_this.options.hiddenInputContainer).appendChild(_this.hiddenFileInput);
+            return _this.hiddenFileInput.addEventListener("change", function () {
+              var file, files, j, len;
+              files = _this.hiddenFileInput.files;
+              if (files.length) {
+                for (j = 0, len = files.length; j < len; j++) {
+                  file = files[j];
+                  _this.addFile(file);
+                }
+              }
+              _this.emit("addedfiles", files);
+              return setupHiddenFileInput();
+            });
+          };
+        }(this);
+        setupHiddenFileInput();
+      }
+      this.URL = (ref = window.URL) != null ? ref : window.webkitURL;
+      ref1 = this.events;
+      for (j = 0, len = ref1.length; j < len; j++) {
+        eventName = ref1[j];
+        this.on(eventName, this.options[eventName]);
+      }
+      this.on("uploadprogress", function (_this) {
+        return function () {
+          return _this.updateTotalUploadProgress();
+        };
+      }(this));
+      this.on("removedfile", function (_this) {
+        return function () {
+          return _this.updateTotalUploadProgress();
+        };
+      }(this));
+      this.on("canceled", function (_this) {
+        return function (file) {
+          return _this.emit("complete", file);
+        };
+      }(this));
+      this.on("complete", function (_this) {
+        return function (file) {
+          if (_this.getAddedFiles().length === 0 && _this.getUploadingFiles().length === 0 && _this.getQueuedFiles().length === 0) {
+            return setTimeout(function () {
+              return _this.emit("queuecomplete");
+            }, 0);
+          }
+        };
+      }(this));
+      noPropagation = function noPropagation(e) {
+        e.stopPropagation();
+        if (e.preventDefault) {
+          return e.preventDefault();
+        } else {
+          return e.returnValue = false;
+        }
+      };
+      this.listeners = [{
+        element: this.element,
+        events: {
+          "dragstart": function (_this) {
+            return function (e) {
+              return _this.emit("dragstart", e);
+            };
+          }(this),
+          "dragenter": function (_this) {
+            return function (e) {
+              noPropagation(e);
+              return _this.emit("dragenter", e);
+            };
+          }(this),
+          "dragover": function (_this) {
+            return function (e) {
+              var efct;
+              try {
+                efct = e.dataTransfer.effectAllowed;
+              } catch (undefined) {}
+              e.dataTransfer.dropEffect = 'move' === efct || 'linkMove' === efct ? 'move' : 'copy';
+              noPropagation(e);
+              return _this.emit("dragover", e);
+            };
+          }(this),
+          "dragleave": function (_this) {
+            return function (e) {
+              return _this.emit("dragleave", e);
+            };
+          }(this),
+          "drop": function (_this) {
+            return function (e) {
+              noPropagation(e);
+              return _this.drop(e);
+            };
+          }(this),
+          "dragend": function (_this) {
+            return function (e) {
+              return _this.emit("dragend", e);
+            };
+          }(this)
+        }
+      }];
+      this.clickableElements.forEach(function (_this) {
+        return function (clickableElement) {
+          return _this.listeners.push({
+            element: clickableElement,
+            events: {
+              "click": function click(evt) {
+                if (clickableElement !== _this.element || evt.target === _this.element || Dropzone.elementInside(evt.target, _this.element.querySelector(".dz-message"))) {
+                  _this.hiddenFileInput.click();
+                }
+                return true;
+              }
+            }
+          });
+        };
+      }(this));
+      this.enable();
+      return this.options.init.call(this);
+    };
+
+    Dropzone.prototype.destroy = function () {
+      var ref;
+      this.disable();
+      this.removeAllFiles(true);
+      if ((ref = this.hiddenFileInput) != null ? ref.parentNode : void 0) {
+        this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
+        this.hiddenFileInput = null;
+      }
+      delete this.element.dropzone;
+      return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
+    };
+
+    Dropzone.prototype.updateTotalUploadProgress = function () {
+      var activeFiles, file, j, len, ref, totalBytes, totalBytesSent, totalUploadProgress;
+      totalBytesSent = 0;
+      totalBytes = 0;
+      activeFiles = this.getActiveFiles();
+      if (activeFiles.length) {
+        ref = this.getActiveFiles();
+        for (j = 0, len = ref.length; j < len; j++) {
+          file = ref[j];
+          totalBytesSent += file.upload.bytesSent;
+          totalBytes += file.upload.total;
+        }
+        totalUploadProgress = 100 * totalBytesSent / totalBytes;
+      } else {
+        totalUploadProgress = 100;
+      }
+      return this.emit("totaluploadprogress", totalUploadProgress, totalBytes, totalBytesSent);
+    };
+
+    Dropzone.prototype._getParamName = function (n) {
+      if (typeof this.options.paramName === "function") {
+        return this.options.paramName(n);
+      } else {
+        return "" + this.options.paramName + (this.options.uploadMultiple ? "[" + n + "]" : "");
+      }
+    };
+
+    Dropzone.prototype._renameFile = function (file) {
+      if (typeof this.options.renameFile !== "function") {
+        return file.name;
+      }
+      return this.options.renameFile(file);
+    };
+
+    Dropzone.prototype.getFallbackForm = function () {
+      var existingFallback, fields, fieldsString, form;
+      if (existingFallback = this.getExistingFallback()) {
+        return existingFallback;
+      }
+      fieldsString = "<div class=\"dz-fallback\">";
+      if (this.options.dictFallbackText) {
+        fieldsString += "<p>" + this.options.dictFallbackText + "</p>";
+      }
+      fieldsString += "<input type=\"file\" name=\"" + this._getParamName(0) + "\" " + (this.options.uploadMultiple ? 'multiple="multiple"' : void 0) + " /><input type=\"submit\" value=\"Upload!\"></div>";
+      fields = Dropzone.createElement(fieldsString);
+      if (this.element.tagName !== "FORM") {
+        form = Dropzone.createElement("<form action=\"" + this.options.url + "\" enctype=\"multipart/form-data\" method=\"" + this.options.method + "\"></form>");
+        form.appendChild(fields);
+      } else {
+        this.element.setAttribute("enctype", "multipart/form-data");
+        this.element.setAttribute("method", this.options.method);
+      }
+      return form != null ? form : fields;
+    };
+
+    Dropzone.prototype.getExistingFallback = function () {
+      var fallback, getFallback, j, len, ref, tagName;
+      getFallback = function getFallback(elements) {
+        var el, j, len;
+        for (j = 0, len = elements.length; j < len; j++) {
+          el = elements[j];
+          if (/(^| )fallback($| )/.test(el.className)) {
+            return el;
+          }
+        }
+      };
+      ref = ["div", "form"];
+      for (j = 0, len = ref.length; j < len; j++) {
+        tagName = ref[j];
+        if (fallback = getFallback(this.element.getElementsByTagName(tagName))) {
+          return fallback;
+        }
+      }
+    };
+
+    Dropzone.prototype.setupEventListeners = function () {
+      var elementListeners, event, j, len, listener, ref, results;
+      ref = this.listeners;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        elementListeners = ref[j];
+        results.push(function () {
+          var ref1, results1;
+          ref1 = elementListeners.events;
+          results1 = [];
+          for (event in ref1) {
+            listener = ref1[event];
+            results1.push(elementListeners.element.addEventListener(event, listener, false));
+          }
+          return results1;
+        }());
+      }
+      return results;
+    };
+
+    Dropzone.prototype.removeEventListeners = function () {
+      var elementListeners, event, j, len, listener, ref, results;
+      ref = this.listeners;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        elementListeners = ref[j];
+        results.push(function () {
+          var ref1, results1;
+          ref1 = elementListeners.events;
+          results1 = [];
+          for (event in ref1) {
+            listener = ref1[event];
+            results1.push(elementListeners.element.removeEventListener(event, listener, false));
+          }
+          return results1;
+        }());
+      }
+      return results;
+    };
+
+    Dropzone.prototype.disable = function () {
+      var file, j, len, ref, results;
+      this.clickableElements.forEach(function (element) {
+        return element.classList.remove("dz-clickable");
+      });
+      this.removeEventListeners();
+      ref = this.files;
+      results = [];
+      for (j = 0, len = ref.length; j < len; j++) {
+        file = ref[j];
+        results.push(this.cancelUpload(file));
+      }
+      return results;
+    };
+
+    Dropzone.prototype.enable = function () {
+      this.clickableElements.forEach(function (element) {
+        return element.classList.add("dz-clickable");
+      });
+      return this.setupEventListeners();
+    };
+
+    Dropzone.prototype.filesize = function (size) {
+      var cutoff, i, j, len, selectedSize, selectedUnit, unit, units;
+      selectedSize = 0;
+      selectedUnit = "b";
+      if (size > 0) {
+        units = ['tb', 'gb', 'mb', 'kb', 'b'];
+        for (i = j = 0, len = units.length; j < len; i = ++j) {
+          unit = units[i];
+          cutoff = Math.pow(this.options.filesizeBase, 4 - i) / 10;
+          if (size >= cutoff) {
+            selectedSize = size / Math.pow(this.options.filesizeBase, 4 - i);
+            selectedUnit = unit;
+            break;
+          }
+        }
+        selectedSize = Math.round(10 * selectedSize) / 10;
+      }
+      return "<strong>" + selectedSize + "</strong> " + this.options.dictFileSizeUnits[selectedUnit];
+    };
+
+    Dropzone.prototype._updateMaxFilesReachedClass = function () {
+      if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
+        if (this.getAcceptedFiles().length === this.options.maxFiles) {
+          this.emit('maxfilesreached', this.files);
+        }
+        return this.element.classList.add("dz-max-files-reached");
+      } else {
+        return this.element.classList.remove("dz-max-files-reached");
+      }
+    };
+
+    Dropzone.prototype.drop = function (e) {
+      var files, items;
+      if (!e.dataTransfer) {
+        return;
+      }
+      this.emit("drop", e);
+      files = e.dataTransfer.files;
+      this.emit("addedfiles", files);
+      if (files.length) {
+        items = e.dataTransfer.items;
+        if (items && items.length && items[0].webkitGetAsEntry != null) {
+          this._addFilesFromItems(items);
+        } else {
+          this.handleFiles(files);
+        }
+      }
+    };
+
+    Dropzone.prototype.paste = function (e) {
+      var items, ref;
+      if ((e != null ? (ref = e.clipboardData) != null ? ref.items : void 0 : void 0) == null) {
+        return;
+      }
+      this.emit("paste", e);
+      items = e.clipboardData.items;
+      if (items.length) {
+        return this._addFilesFromItems(items);
+      }
+    };
+
+    Dropzone.prototype.handleFiles = function (files) {
+      var file, j, len, results;
+      results = [];
+      for (j = 0, len = files.length; j < len; j++) {
+        file = files[j];
+        results.push(this.addFile(file));
+      }
+      return results;
+    };
+
+    Dropzone.prototype._addFilesFromItems = function (items) {
+      var entry, item, j, len, results;
+      results = [];
+      for (j = 0, len = items.length; j < len; j++) {
+        item = items[j];
+        if (item.webkitGetAsEntry != null && (entry = item.webkitGetAsEntry())) {
+          if (entry.isFile) {
+            results.push(this.addFile(item.getAsFile()));
+          } else if (entry.isDirectory) {
+            results.push(this._addFilesFromDirectory(entry, entry.name));
+          } else {
+            results.push(void 0);
+          }
+        } else if (item.getAsFile != null) {
+          if (item.kind == null || item.kind === "file") {
+            results.push(this.addFile(item.getAsFile()));
+          } else {
+            results.push(void 0);
+          }
+        } else {
+          results.push(void 0);
+        }
+      }
+      return results;
+    };
+
+    Dropzone.prototype._addFilesFromDirectory = function (directory, path) {
+      var dirReader, errorHandler, readEntries;
+      dirReader = directory.createReader();
+      errorHandler = function errorHandler(error) {
+        return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log(error) : void 0 : void 0;
+      };
+      readEntries = function (_this) {
+        return function () {
+          return dirReader.readEntries(function (entries) {
+            var entry, j, len;
+            if (entries.length > 0) {
+              for (j = 0, len = entries.length; j < len; j++) {
+                entry = entries[j];
+                if (entry.isFile) {
+                  entry.file(function (file) {
+                    if (_this.options.ignoreHiddenFiles && file.name.substring(0, 1) === '.') {
+                      return;
+                    }
+                    file.fullPath = path + "/" + file.name;
+                    return _this.addFile(file);
+                  });
+                } else if (entry.isDirectory) {
+                  _this._addFilesFromDirectory(entry, path + "/" + entry.name);
+                }
+              }
+              readEntries();
+            }
+            return null;
+          }, errorHandler);
+        };
+      }(this);
+      return readEntries();
+    };
+
+    Dropzone.prototype.accept = function (file, done) {
+      if (file.size > this.options.maxFilesize * 1024 * 1024) {
+        return done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
+      } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+        return done(this.options.dictInvalidFileType);
+      } else if (this.options.maxFiles != null && this.getAcceptedFiles().length >= this.options.maxFiles) {
+        done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
+        return this.emit("maxfilesexceeded", file);
+      } else {
+        return this.options.accept.call(this, file, done);
+      }
+    };
+
+    Dropzone.prototype.addFile = function (file) {
+      file.upload = {
+        progress: 0,
+        total: file.size,
+        bytesSent: 0,
+        filename: this._renameFile(file)
+      };
+      this.files.push(file);
+      file.status = Dropzone.ADDED;
+      this.emit("addedfile", file);
+      this._enqueueThumbnail(file);
+      return this.accept(file, function (_this) {
+        return function (error) {
+          if (error) {
+            file.accepted = false;
+            _this._errorProcessing([file], error);
+          } else {
+            file.accepted = true;
+            if (_this.options.autoQueue) {
+              _this.enqueueFile(file);
+            }
+          }
+          return _this._updateMaxFilesReachedClass();
+        };
+      }(this));
+    };
+
+    Dropzone.prototype.enqueueFiles = function (files) {
+      var file, j, len;
+      for (j = 0, len = files.length; j < len; j++) {
+        file = files[j];
+        this.enqueueFile(file);
+      }
+      return null;
+    };
+
+    Dropzone.prototype.enqueueFile = function (file) {
+      if (file.status === Dropzone.ADDED && file.accepted === true) {
+        file.status = Dropzone.QUEUED;
+        if (this.options.autoProcessQueue) {
+          return setTimeout(function (_this) {
+            return function () {
+              return _this.processQueue();
+            };
+          }(this), 0);
+        }
+      } else {
+        throw new Error("This file can't be queued because it has already been processed or was rejected.");
+      }
+    };
+
+    Dropzone.prototype._thumbnailQueue = [];
+
+    Dropzone.prototype._processingThumbnail = false;
+
+    Dropzone.prototype._enqueueThumbnail = function (file) {
+      if (this.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.options.maxThumbnailFilesize * 1024 * 1024) {
+        this._thumbnailQueue.push(file);
+        return setTimeout(function (_this) {
+          return function () {
+            return _this._processThumbnailQueue();
+          };
+        }(this), 0);
+      }
+    };
+
+    Dropzone.prototype._processThumbnailQueue = function () {
+      var file;
+      if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
+        return;
+      }
+      this._processingThumbnail = true;
+      file = this._thumbnailQueue.shift();
+      return this.createThumbnail(file, this.options.thumbnailWidth, this.options.thumbnailHeight, this.options.thumbnailMethod, true, function (_this) {
+        return function (dataUrl) {
+          _this.emit("thumbnail", file, dataUrl);
+          _this._processingThumbnail = false;
+          return _this._processThumbnailQueue();
+        };
+      }(this));
+    };
+
+    Dropzone.prototype.removeFile = function (file) {
+      if (file.status === Dropzone.UPLOADING) {
+        this.cancelUpload(file);
+      }
+      this.files = without(this.files, file);
+      this.emit("removedfile", file);
+      if (this.files.length === 0) {
+        return this.emit("reset");
+      }
+    };
+
+    Dropzone.prototype.removeAllFiles = function (cancelIfNecessary) {
+      var file, j, len, ref;
+      if (cancelIfNecessary == null) {
+        cancelIfNecessary = false;
+      }
+      ref = this.files.slice();
+      for (j = 0, len = ref.length; j < len; j++) {
+        file = ref[j];
+        if (file.status !== Dropzone.UPLOADING || cancelIfNecessary) {
+          this.removeFile(file);
+        }
+      }
+      return null;
+    };
+
+    Dropzone.prototype.resizeImage = function (file, width, height, resizeMethod, callback) {
+      return this.createThumbnail(file, width, height, resizeMethod, false, function (_this) {
+        return function (dataUrl, canvas) {
+          var resizeMimeType, resizedDataURL;
+          if (canvas === null) {
+            return callback(file);
+          } else {
+            resizeMimeType = _this.options.resizeMimeType;
+            if (resizeMimeType == null) {
+              resizeMimeType = file.type;
+            }
+            resizedDataURL = canvas.toDataURL(resizeMimeType, _this.options.resizeQuality);
+            if (resizeMimeType === 'image/jpeg' || resizeMimeType === 'image/jpg') {
+              resizedDataURL = ExifRestore.restore(file.dataURL, resizedDataURL);
+            }
+            return callback(Dropzone.dataURItoBlob(resizedDataURL));
+          }
+        };
+      }(this));
+    };
+
+    Dropzone.prototype.createThumbnail = function (file, width, height, resizeMethod, fixOrientation, callback) {
+      var fileReader;
+      fileReader = new FileReader();
+      fileReader.onload = function (_this) {
+        return function () {
+          file.dataURL = fileReader.result;
+          if (file.type === "image/svg+xml") {
+            if (callback != null) {
+              callback(fileReader.result);
+            }
+            return;
+          }
+          return _this.createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback);
+        };
+      }(this);
+      return fileReader.readAsDataURL(file);
+    };
+
+    Dropzone.prototype.createThumbnailFromUrl = function (file, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
+      var img;
+      img = document.createElement("img");
+      if (crossOrigin) {
+        img.crossOrigin = crossOrigin;
+      }
+      img.onload = function (_this) {
+        return function () {
+          var loadExif;
+          loadExif = function loadExif(callback) {
+            return callback(1);
+          };
+          if (typeof EXIF !== "undefined" && EXIF !== null && fixOrientation) {
+            loadExif = function loadExif(callback) {
+              return EXIF.getData(img, function () {
+                return callback(EXIF.getTag(this, 'Orientation'));
+              });
+            };
+          }
+          return loadExif(function (orientation) {
+            var canvas, ctx, ref, ref1, ref2, ref3, resizeInfo, thumbnail;
+            file.width = img.width;
+            file.height = img.height;
+            resizeInfo = _this.options.resize.call(_this, file, width, height, resizeMethod);
+            canvas = document.createElement("canvas");
+            ctx = canvas.getContext("2d");
+            canvas.width = resizeInfo.trgWidth;
+            canvas.height = resizeInfo.trgHeight;
+            if (orientation > 4) {
+              canvas.width = resizeInfo.trgHeight;
+              canvas.height = resizeInfo.trgWidth;
+            }
+            switch (orientation) {
+              case 2:
+                ctx.translate(canvas.width, 0);
+                ctx.scale(-1, 1);
+                break;
+              case 3:
+                ctx.translate(canvas.width, canvas.height);
+                ctx.rotate(Math.PI);
+                break;
+              case 4:
+                ctx.translate(0, canvas.height);
+                ctx.scale(1, -1);
+                break;
+              case 5:
+                ctx.rotate(0.5 * Math.PI);
+                ctx.scale(1, -1);
+                break;
+              case 6:
+                ctx.rotate(0.5 * Math.PI);
+                ctx.translate(0, -canvas.height);
+                break;
+              case 7:
+                ctx.rotate(0.5 * Math.PI);
+                ctx.translate(canvas.width, -canvas.height);
+                ctx.scale(-1, 1);
+                break;
+              case 8:
+                ctx.rotate(-0.5 * Math.PI);
+                ctx.translate(-canvas.width, 0);
+            }
+            drawImageIOSFix(ctx, img, (ref = resizeInfo.srcX) != null ? ref : 0, (ref1 = resizeInfo.srcY) != null ? ref1 : 0, resizeInfo.srcWidth, resizeInfo.srcHeight, (ref2 = resizeInfo.trgX) != null ? ref2 : 0, (ref3 = resizeInfo.trgY) != null ? ref3 : 0, resizeInfo.trgWidth, resizeInfo.trgHeight);
+            thumbnail = canvas.toDataURL("image/png");
+            if (callback != null) {
+              return callback(thumbnail, canvas);
+            }
+          });
+        };
+      }(this);
+      if (callback != null) {
+        img.onerror = callback;
+      }
+      return img.src = file.dataURL;
+    };
+
+    Dropzone.prototype.processQueue = function () {
+      var i, parallelUploads, processingLength, queuedFiles;
+      parallelUploads = this.options.parallelUploads;
+      processingLength = this.getUploadingFiles().length;
+      i = processingLength;
+      if (processingLength >= parallelUploads) {
+        return;
+      }
+      queuedFiles = this.getQueuedFiles();
+      if (!(queuedFiles.length > 0)) {
+        return;
+      }
+      if (this.options.uploadMultiple) {
+        return this.processFiles(queuedFiles.slice(0, parallelUploads - processingLength));
+      } else {
+        while (i < parallelUploads) {
+          if (!queuedFiles.length) {
+            return;
+          }
+          this.processFile(queuedFiles.shift());
+          i++;
+        }
+      }
+    };
+
+    Dropzone.prototype.processFile = function (file) {
+      return this.processFiles([file]);
+    };
+
+    Dropzone.prototype.processFiles = function (files) {
+      var file, j, len;
+      for (j = 0, len = files.length; j < len; j++) {
+        file = files[j];
+        file.processing = true;
+        file.status = Dropzone.UPLOADING;
+        this.emit("processing", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("processingmultiple", files);
+      }
+      return this.uploadFiles(files);
+    };
+
+    Dropzone.prototype._getFilesWithXhr = function (xhr) {
+      var file, files;
+      return files = function () {
+        var j, len, ref, results;
+        ref = this.files;
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          file = ref[j];
+          if (file.xhr === xhr) {
+            results.push(file);
+          }
+        }
+        return results;
+      }.call(this);
+    };
+
+    Dropzone.prototype.cancelUpload = function (file) {
+      var groupedFile, groupedFiles, j, k, len, len1, ref;
+      if (file.status === Dropzone.UPLOADING) {
+        groupedFiles = this._getFilesWithXhr(file.xhr);
+        for (j = 0, len = groupedFiles.length; j < len; j++) {
+          groupedFile = groupedFiles[j];
+          groupedFile.status = Dropzone.CANCELED;
+        }
+        file.xhr.abort();
+        for (k = 0, len1 = groupedFiles.length; k < len1; k++) {
+          groupedFile = groupedFiles[k];
+          this.emit("canceled", groupedFile);
+        }
+        if (this.options.uploadMultiple) {
+          this.emit("canceledmultiple", groupedFiles);
+        }
+      } else if ((ref = file.status) === Dropzone.ADDED || ref === Dropzone.QUEUED) {
+        file.status = Dropzone.CANCELED;
+        this.emit("canceled", file);
+        if (this.options.uploadMultiple) {
+          this.emit("canceledmultiple", [file]);
+        }
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    resolveOption = function resolveOption() {
+      var args, option;
+      option = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+      if (typeof option === 'function') {
+        return option.apply(this, args);
+      }
+      return option;
+    };
+
+    Dropzone.prototype.uploadFile = function (file) {
+      return this.uploadFiles([file]);
+    };
+
+    Dropzone.prototype.uploadFiles = function (files) {
+      var doneCounter, doneFunction, file, formData, handleError, headerName, headerValue, headers, i, input, inputName, inputType, j, k, key, l, len, len1, len2, len3, m, method, o, option, progressObj, ref, ref1, ref2, ref3, ref4, ref5, response, results, updateProgress, url, value, xhr;
+      xhr = new XMLHttpRequest();
+      for (j = 0, len = files.length; j < len; j++) {
+        file = files[j];
+        file.xhr = xhr;
+      }
+      method = resolveOption(this.options.method, files);
+      url = resolveOption(this.options.url, files);
+      xhr.open(method, url, true);
+      xhr.timeout = resolveOption(this.options.timeout, files);
+      xhr.withCredentials = !!this.options.withCredentials;
+      response = null;
+      handleError = function (_this) {
+        return function () {
+          var k, len1, results;
+          results = [];
+          for (k = 0, len1 = files.length; k < len1; k++) {
+            file = files[k];
+            results.push(_this._errorProcessing(files, response || _this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr));
+          }
+          return results;
+        };
+      }(this);
+      updateProgress = function (_this) {
+        return function (e) {
+          var allFilesFinished, k, l, len1, len2, len3, m, progress, results;
+          if (e != null) {
+            progress = 100 * e.loaded / e.total;
+            for (k = 0, len1 = files.length; k < len1; k++) {
+              file = files[k];
+              file.upload.progress = progress;
+              file.upload.total = e.total;
+              file.upload.bytesSent = e.loaded;
+            }
+          } else {
+            allFilesFinished = true;
+            progress = 100;
+            for (l = 0, len2 = files.length; l < len2; l++) {
+              file = files[l];
+              if (!(file.upload.progress === 100 && file.upload.bytesSent === file.upload.total)) {
+                allFilesFinished = false;
+              }
+              file.upload.progress = progress;
+              file.upload.bytesSent = file.upload.total;
+            }
+            if (allFilesFinished) {
+              return;
+            }
+          }
+          results = [];
+          for (m = 0, len3 = files.length; m < len3; m++) {
+            file = files[m];
+            results.push(_this.emit("uploadprogress", file, progress, file.upload.bytesSent));
+          }
+          return results;
+        };
+      }(this);
+      xhr.onload = function (_this) {
+        return function (e) {
+          var error1, ref;
+          if (files[0].status === Dropzone.CANCELED) {
+            return;
+          }
+          if (xhr.readyState !== 4) {
+            return;
+          }
+          if (xhr.responseType !== 'arraybuffer' && xhr.responseType !== 'blob') {
+            response = xhr.responseText;
+            if (xhr.getResponseHeader("content-type") && ~xhr.getResponseHeader("content-type").indexOf("application/json")) {
+              try {
+                response = JSON.parse(response);
+              } catch (error1) {
+                e = error1;
+                response = "Invalid JSON response from server.";
+              }
+            }
+          }
+          updateProgress();
+          if (!(200 <= (ref = xhr.status) && ref < 300)) {
+            return handleError();
+          } else {
+            return _this._finished(files, response, e);
+          }
+        };
+      }(this);
+      xhr.onerror = function (_this) {
+        return function () {
+          if (files[0].status === Dropzone.CANCELED) {
+            return;
+          }
+          return handleError();
+        };
+      }(this);
+      progressObj = (ref = xhr.upload) != null ? ref : xhr;
+      progressObj.onprogress = updateProgress;
+      headers = {
+        "Accept": "application/json",
+        "Cache-Control": "no-cache",
+        "X-Requested-With": "XMLHttpRequest"
+      };
+      if (this.options.headers) {
+        extend(headers, this.options.headers);
+      }
+      for (headerName in headers) {
+        headerValue = headers[headerName];
+        if (headerValue) {
+          xhr.setRequestHeader(headerName, headerValue);
+        }
+      }
+      formData = new FormData();
+      if (this.options.params) {
+        ref1 = this.options.params;
+        for (key in ref1) {
+          value = ref1[key];
+          formData.append(key, value);
+        }
+      }
+      for (k = 0, len1 = files.length; k < len1; k++) {
+        file = files[k];
+        this.emit("sending", file, xhr, formData);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("sendingmultiple", files, xhr, formData);
+      }
+      if (this.element.tagName === "FORM") {
+        ref2 = this.element.querySelectorAll("input, textarea, select, button");
+        for (l = 0, len2 = ref2.length; l < len2; l++) {
+          input = ref2[l];
+          inputName = input.getAttribute("name");
+          inputType = input.getAttribute("type");
+          if (input.tagName === "SELECT" && input.hasAttribute("multiple")) {
+            ref3 = input.options;
+            for (m = 0, len3 = ref3.length; m < len3; m++) {
+              option = ref3[m];
+              if (option.selected) {
+                formData.append(inputName, option.value);
+              }
+            }
+          } else if (!inputType || (ref4 = inputType.toLowerCase()) !== "checkbox" && ref4 !== "radio" || input.checked) {
+            formData.append(inputName, input.value);
+          }
+        }
+      }
+      doneCounter = 0;
+      results = [];
+      for (i = o = 0, ref5 = files.length - 1; 0 <= ref5 ? o <= ref5 : o >= ref5; i = 0 <= ref5 ? ++o : --o) {
+        doneFunction = function (_this) {
+          return function (file, paramName, fileName) {
+            return function (transformedFile) {
+              formData.append(paramName, transformedFile, fileName);
+              if (++doneCounter === files.length) {
+                return _this.submitRequest(xhr, formData, files);
+              }
+            };
+          };
+        }(this);
+        results.push(this.options.transformFile.call(this, files[i], doneFunction(files[i], this._getParamName(i), files[i].upload.filename)));
+      }
+      return results;
+    };
+
+    Dropzone.prototype.submitRequest = function (xhr, formData, files) {
+      return xhr.send(formData);
+    };
+
+    Dropzone.prototype._finished = function (files, responseText, e) {
+      var file, j, len;
+      for (j = 0, len = files.length; j < len; j++) {
+        file = files[j];
+        file.status = Dropzone.SUCCESS;
+        this.emit("success", file, responseText, e);
+        this.emit("complete", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("successmultiple", files, responseText, e);
+        this.emit("completemultiple", files);
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    Dropzone.prototype._errorProcessing = function (files, message, xhr) {
+      var file, j, len;
+      for (j = 0, len = files.length; j < len; j++) {
+        file = files[j];
+        file.status = Dropzone.ERROR;
+        this.emit("error", file, message, xhr);
+        this.emit("complete", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("errormultiple", files, message, xhr);
+        this.emit("completemultiple", files);
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    return Dropzone;
+  }(Emitter);
+
+  Dropzone.version = "5.1.1";
+
+  Dropzone.options = {};
+
+  Dropzone.optionsForElement = function (element) {
+    if (element.getAttribute("id")) {
+      return Dropzone.options[camelize(element.getAttribute("id"))];
+    } else {
+      return void 0;
+    }
+  };
+
+  Dropzone.instances = [];
+
+  Dropzone.forElement = function (element) {
+    if (typeof element === "string") {
+      element = document.querySelector(element);
+    }
+    if ((element != null ? element.dropzone : void 0) == null) {
+      throw new Error("No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone.");
+    }
+    return element.dropzone;
+  };
+
+  Dropzone.autoDiscover = true;
+
+  Dropzone.discover = function () {
+    var checkElements, dropzone, dropzones, j, len, results;
+    if (document.querySelectorAll) {
+      dropzones = document.querySelectorAll(".dropzone");
+    } else {
+      dropzones = [];
+      checkElements = function checkElements(elements) {
+        var el, j, len, results;
+        results = [];
+        for (j = 0, len = elements.length; j < len; j++) {
+          el = elements[j];
+          if (/(^| )dropzone($| )/.test(el.className)) {
+            results.push(dropzones.push(el));
+          } else {
+            results.push(void 0);
+          }
+        }
+        return results;
+      };
+      checkElements(document.getElementsByTagName("div"));
+      checkElements(document.getElementsByTagName("form"));
+    }
+    results = [];
+    for (j = 0, len = dropzones.length; j < len; j++) {
+      dropzone = dropzones[j];
+      if (Dropzone.optionsForElement(dropzone) !== false) {
+        results.push(new Dropzone(dropzone));
+      } else {
+        results.push(void 0);
+      }
+    }
+    return results;
+  };
+
+  Dropzone.blacklistedBrowsers = [/opera.*Macintosh.*version\/12/i];
+
+  Dropzone.isBrowserSupported = function () {
+    var capableBrowser, j, len, ref, regex;
+    capableBrowser = true;
+    if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
+      if (!("classList" in document.createElement("a"))) {
+        capableBrowser = false;
+      } else {
+        ref = Dropzone.blacklistedBrowsers;
+        for (j = 0, len = ref.length; j < len; j++) {
+          regex = ref[j];
+          if (regex.test(navigator.userAgent)) {
+            capableBrowser = false;
+            continue;
+          }
+        }
+      }
+    } else {
+      capableBrowser = false;
+    }
+    return capableBrowser;
+  };
+
+  Dropzone.dataURItoBlob = function (dataURI) {
+    var ab, byteString, i, ia, j, mimeString, ref;
+    byteString = atob(dataURI.split(',')[1]);
+    mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    ab = new ArrayBuffer(byteString.length);
+    ia = new Uint8Array(ab);
+    for (i = j = 0, ref = byteString.length; 0 <= ref ? j <= ref : j >= ref; i = 0 <= ref ? ++j : --j) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], {
+      type: mimeString
+    });
+  };
+
+  without = function without(list, rejectedItem) {
+    var item, j, len, results;
+    results = [];
+    for (j = 0, len = list.length; j < len; j++) {
+      item = list[j];
+      if (item !== rejectedItem) {
+        results.push(item);
+      }
+    }
+    return results;
+  };
+
+  camelize = function camelize(str) {
+    return str.replace(/[\-_](\w)/g, function (match) {
+      return match.charAt(1).toUpperCase();
+    });
+  };
+
+  Dropzone.createElement = function (string) {
+    var div;
+    div = document.createElement("div");
+    div.innerHTML = string;
+    return div.childNodes[0];
+  };
+
+  Dropzone.elementInside = function (element, container) {
+    if (element === container) {
+      return true;
+    }
+    while (element = element.parentNode) {
+      if (element === container) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  Dropzone.getElement = function (el, name) {
+    var element;
+    if (typeof el === "string") {
+      element = document.querySelector(el);
+    } else if (el.nodeType != null) {
+      element = el;
+    }
+    if (element == null) {
+      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector or a plain HTML element.");
+    }
+    return element;
+  };
+
+  Dropzone.getElements = function (els, name) {
+    var e, el, elements, error1, j, k, len, len1, ref;
+    if (els instanceof Array) {
+      elements = [];
+      try {
+        for (j = 0, len = els.length; j < len; j++) {
+          el = els[j];
+          elements.push(this.getElement(el, name));
+        }
+      } catch (error1) {
+        e = error1;
+        elements = null;
+      }
+    } else if (typeof els === "string") {
+      elements = [];
+      ref = document.querySelectorAll(els);
+      for (k = 0, len1 = ref.length; k < len1; k++) {
+        el = ref[k];
+        elements.push(el);
+      }
+    } else if (els.nodeType != null) {
+      elements = [els];
+    }
+    if (!(elements != null && elements.length)) {
+      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector, a plain HTML element or a list of those.");
+    }
+    return elements;
+  };
+
+  Dropzone.confirm = function (question, accepted, rejected) {
+    if (window.confirm(question)) {
+      return accepted();
+    } else if (rejected != null) {
+      return rejected();
+    }
+  };
+
+  Dropzone.isValidFile = function (file, acceptedFiles) {
+    var baseMimeType, j, len, mimeType, validType;
+    if (!acceptedFiles) {
+      return true;
+    }
+    acceptedFiles = acceptedFiles.split(",");
+    mimeType = file.type;
+    baseMimeType = mimeType.replace(/\/.*$/, "");
+    for (j = 0, len = acceptedFiles.length; j < len; j++) {
+      validType = acceptedFiles[j];
+      validType = validType.trim();
+      if (validType.charAt(0) === ".") {
+        if (file.name.toLowerCase().indexOf(validType.toLowerCase(), file.name.length - validType.length) !== -1) {
+          return true;
+        }
+      } else if (/\/\*$/.test(validType)) {
+        if (baseMimeType === validType.replace(/\/.*$/, "")) {
+          return true;
+        }
+      } else {
+        if (mimeType === validType) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    jQuery.fn.dropzone = function (options) {
+      return this.each(function () {
+        return new Dropzone(this, options);
+      });
+    };
+  }
+
+  if (typeof module !== "undefined" && module !== null) {
+    module.exports = Dropzone;
+  } else {
+    window.Dropzone = Dropzone;
+  }
+
+  Dropzone.ADDED = "added";
+
+  Dropzone.QUEUED = "queued";
+
+  Dropzone.ACCEPTED = Dropzone.QUEUED;
+
+  Dropzone.UPLOADING = "uploading";
+
+  Dropzone.PROCESSING = Dropzone.UPLOADING;
+
+  Dropzone.CANCELED = "canceled";
+
+  Dropzone.ERROR = "error";
+
+  Dropzone.SUCCESS = "success";
+
+  /*
+  
+  Bugfix for iOS 6 and 7
+  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
+  based on the work of https://github.com/stomita/ios-imagefile-megapixel
+   */
+
+  detectVerticalSquash = function detectVerticalSquash(img) {
+    var alpha, canvas, ctx, data, ey, ih, iw, py, ratio, sy;
+    iw = img.naturalWidth;
+    ih = img.naturalHeight;
+    canvas = document.createElement("canvas");
+    canvas.width = 1;
+    canvas.height = ih;
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    data = ctx.getImageData(1, 0, 1, ih).data;
+    sy = 0;
+    ey = ih;
+    py = ih;
+    while (py > sy) {
+      alpha = data[(py - 1) * 4 + 3];
+      if (alpha === 0) {
+        ey = py;
+      } else {
+        sy = py;
+      }
+      py = ey + sy >> 1;
+    }
+    ratio = py / ih;
+    if (ratio === 0) {
+      return 1;
+    } else {
+      return ratio;
+    }
+  };
+
+  drawImageIOSFix = function drawImageIOSFix(ctx, img, sx, sy, sw, sh, dx, dy, dw, dh) {
+    var vertSquashRatio;
+    vertSquashRatio = detectVerticalSquash(img);
+    return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
+  };
+
+  ExifRestore = function () {
+    function ExifRestore() {}
+
+    ExifRestore.KEY_STR = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+    ExifRestore.encode64 = function (input) {
+      var chr1, chr2, chr3, enc1, enc2, enc3, enc4, i, output;
+      output = '';
+      chr1 = void 0;
+      chr2 = void 0;
+      chr3 = '';
+      enc1 = void 0;
+      enc2 = void 0;
+      enc3 = void 0;
+      enc4 = '';
+      i = 0;
+      while (true) {
+        chr1 = input[i++];
+        chr2 = input[i++];
+        chr3 = input[i++];
+        enc1 = chr1 >> 2;
+        enc2 = (chr1 & 3) << 4 | chr2 >> 4;
+        enc3 = (chr2 & 15) << 2 | chr3 >> 6;
+        enc4 = chr3 & 63;
+        if (isNaN(chr2)) {
+          enc3 = enc4 = 64;
+        } else if (isNaN(chr3)) {
+          enc4 = 64;
+        }
+        output = output + this.KEY_STR.charAt(enc1) + this.KEY_STR.charAt(enc2) + this.KEY_STR.charAt(enc3) + this.KEY_STR.charAt(enc4);
+        chr1 = chr2 = chr3 = '';
+        enc1 = enc2 = enc3 = enc4 = '';
+        if (!(i < input.length)) {
+          break;
+        }
+      }
+      return output;
+    };
+
+    ExifRestore.restore = function (origFileBase64, resizedFileBase64) {
+      var image, rawImage, segments;
+      if (!origFileBase64.match('data:image/jpeg;base64,')) {
+        return resizedFileBase64;
+      }
+      rawImage = this.decode64(origFileBase64.replace('data:image/jpeg;base64,', ''));
+      segments = this.slice2Segments(rawImage);
+      image = this.exifManipulation(resizedFileBase64, segments);
+      return 'data:image/jpeg;base64,' + this.encode64(image);
+    };
+
+    ExifRestore.exifManipulation = function (resizedFileBase64, segments) {
+      var aBuffer, exifArray, newImageArray;
+      exifArray = this.getExifArray(segments);
+      newImageArray = this.insertExif(resizedFileBase64, exifArray);
+      aBuffer = new Uint8Array(newImageArray);
+      return aBuffer;
+    };
+
+    ExifRestore.getExifArray = function (segments) {
+      var seg, x;
+      seg = void 0;
+      x = 0;
+      while (x < segments.length) {
+        seg = segments[x];
+        if (seg[0] === 255 & seg[1] === 225) {
+          return seg;
+        }
+        x++;
+      }
+      return [];
+    };
+
+    ExifRestore.insertExif = function (resizedFileBase64, exifArray) {
+      var array, ato, buf, imageData, mae, separatePoint;
+      imageData = resizedFileBase64.replace('data:image/jpeg;base64,', '');
+      buf = this.decode64(imageData);
+      separatePoint = buf.indexOf(255, 3);
+      mae = buf.slice(0, separatePoint);
+      ato = buf.slice(separatePoint);
+      array = mae;
+      array = array.concat(exifArray);
+      array = array.concat(ato);
+      return array;
+    };
+
+    ExifRestore.slice2Segments = function (rawImageArray) {
+      var endPoint, head, length, seg, segments;
+      head = 0;
+      segments = [];
+      while (true) {
+        if (rawImageArray[head] === 255 & rawImageArray[head + 1] === 218) {
+          break;
+        }
+        if (rawImageArray[head] === 255 & rawImageArray[head + 1] === 216) {
+          head += 2;
+        } else {
+          length = rawImageArray[head + 2] * 256 + rawImageArray[head + 3];
+          endPoint = head + length + 2;
+          seg = rawImageArray.slice(head, endPoint);
+          segments.push(seg);
+          head = endPoint;
+        }
+        if (head > rawImageArray.length) {
+          break;
+        }
+      }
+      return segments;
+    };
+
+    ExifRestore.decode64 = function (input) {
+      var base64test, buf, chr1, chr2, chr3, enc1, enc2, enc3, enc4, i, output;
+      output = '';
+      chr1 = void 0;
+      chr2 = void 0;
+      chr3 = '';
+      enc1 = void 0;
+      enc2 = void 0;
+      enc3 = void 0;
+      enc4 = '';
+      i = 0;
+      buf = [];
+      base64test = /[^A-Za-z0-9\+\/\=]/g;
+      if (base64test.exec(input)) {
+        console.warning('There were invalid base64 characters in the input text.\n' + 'Valid base64 characters are A-Z, a-z, 0-9, \'+\', \'/\',and \'=\'\n' + 'Expect errors in decoding.');
+      }
+      input = input.replace(/[^A-Za-z0-9\+\/\=]/g, '');
+      while (true) {
+        enc1 = this.KEY_STR.indexOf(input.charAt(i++));
+        enc2 = this.KEY_STR.indexOf(input.charAt(i++));
+        enc3 = this.KEY_STR.indexOf(input.charAt(i++));
+        enc4 = this.KEY_STR.indexOf(input.charAt(i++));
+        chr1 = enc1 << 2 | enc2 >> 4;
+        chr2 = (enc2 & 15) << 4 | enc3 >> 2;
+        chr3 = (enc3 & 3) << 6 | enc4;
+        buf.push(chr1);
+        if (enc3 !== 64) {
+          buf.push(chr2);
+        }
+        if (enc4 !== 64) {
+          buf.push(chr3);
+        }
+        chr1 = chr2 = chr3 = '';
+        enc1 = enc2 = enc3 = enc4 = '';
+        if (!(i < input.length)) {
+          break;
+        }
+      }
+      return buf;
+    };
+
+    return ExifRestore;
+  }();
+
+  /*
+   * contentloaded.js
+   *
+   * Author: Diego Perini (diego.perini at gmail.com)
+   * Summary: cross-browser wrapper for DOMContentLoaded
+   * Updated: 20101020
+   * License: MIT
+   * Version: 1.2
+   *
+   * URL:
+   * http://javascript.nwbox.com/ContentLoaded/
+   * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
+   */
+
+  contentLoaded = function contentLoaded(win, fn) {
+    var add, doc, done, _init, _poll, pre, rem, root, top;
+    done = false;
+    top = true;
+    doc = win.document;
+    root = doc.documentElement;
+    add = doc.addEventListener ? "addEventListener" : "attachEvent";
+    rem = doc.addEventListener ? "removeEventListener" : "detachEvent";
+    pre = doc.addEventListener ? "" : "on";
+    _init = function init(e) {
+      if (e.type === "readystatechange" && doc.readyState !== "complete") {
+        return;
+      }
+      (e.type === "load" ? win : doc)[rem](pre + e.type, _init, false);
+      if (!done && (done = true)) {
+        return fn.call(win, e.type || e);
+      }
+    };
+    _poll = function poll() {
+      var e, error1;
+      try {
+        root.doScroll("left");
+      } catch (error1) {
+        e = error1;
+        setTimeout(_poll, 50);
+        return;
+      }
+      return _init("poll");
+    };
+    if (doc.readyState !== "complete") {
+      if (doc.createEventObject && root.doScroll) {
+        try {
+          top = !win.frameElement;
+        } catch (undefined) {}
+        if (top) {
+          _poll();
+        }
+      }
+      doc[add](pre + "DOMContentLoaded", _init, false);
+      doc[add](pre + "readystatechange", _init, false);
+      return win[add](pre + "load", _init, false);
+    }
+  };
+
+  Dropzone._autoDiscoverFunction = function () {
+    if (Dropzone.autoDiscover) {
+      return Dropzone.discover();
+    }
+  };
+
+  contentLoaded(window, Dropzone._autoDiscoverFunction);
+}).call(this);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports) {
 
 /*!
@@ -14916,7 +14954,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -32005,10 +32043,1701 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(2)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13), __webpack_require__(1)(module)))
 
 /***/ }),
-/* 10 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * sweetalert2 v6.6.9
+ * Released under the MIT License.
+ */
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Sweetalert2 = factory());
+}(this, (function () { 'use strict';
+
+var defaultParams = {
+  title: '',
+  titleText: '',
+  text: '',
+  html: '',
+  type: null,
+  customClass: '',
+  target: 'body',
+  animation: true,
+  allowOutsideClick: true,
+  allowEscapeKey: true,
+  allowEnterKey: true,
+  showConfirmButton: true,
+  showCancelButton: false,
+  preConfirm: null,
+  confirmButtonText: 'OK',
+  confirmButtonColor: '#3085d6',
+  confirmButtonClass: null,
+  cancelButtonText: 'Cancel',
+  cancelButtonColor: '#aaa',
+  cancelButtonClass: null,
+  buttonsStyling: true,
+  reverseButtons: false,
+  focusCancel: false,
+  showCloseButton: false,
+  showLoaderOnConfirm: false,
+  imageUrl: null,
+  imageWidth: null,
+  imageHeight: null,
+  imageClass: null,
+  timer: null,
+  width: 500,
+  padding: 20,
+  background: '#fff',
+  input: null,
+  inputPlaceholder: '',
+  inputValue: '',
+  inputOptions: {},
+  inputAutoTrim: true,
+  inputClass: null,
+  inputAttributes: {},
+  inputValidator: null,
+  progressSteps: [],
+  currentProgressStep: null,
+  progressStepsDistance: '40px',
+  onOpen: null,
+  onClose: null,
+  useRejections: true
+};
+
+var swalPrefix = 'swal2-';
+
+var prefix = function prefix(items) {
+  var result = {};
+  for (var i in items) {
+    result[items[i]] = swalPrefix + items[i];
+  }
+  return result;
+};
+
+var swalClasses = prefix(['container', 'shown', 'iosfix', 'modal', 'overlay', 'fade', 'show', 'hide', 'noanimation', 'close', 'title', 'content', 'buttonswrapper', 'confirm', 'cancel', 'icon', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea', 'inputerror', 'validationerror', 'progresssteps', 'activeprogressstep', 'progresscircle', 'progressline', 'loading', 'styled']);
+
+var iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
+
+/*
+ * Set hover, active and focus-states for buttons (source: http://www.sitepoint.com/javascript-generate-lighter-darker-color)
+ */
+var colorLuminance = function colorLuminance(hex, lum) {
+  // Validate hex string
+  hex = String(hex).replace(/[^0-9a-f]/gi, '');
+  if (hex.length < 6) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  lum = lum || 0;
+
+  // Convert to decimal and change luminosity
+  var rgb = '#';
+  for (var i = 0; i < 3; i++) {
+    var c = parseInt(hex.substr(i * 2, 2), 16);
+    c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16);
+    rgb += ('00' + c).substr(c.length);
+  }
+
+  return rgb;
+};
+
+var uniqueArray = function uniqueArray(arr) {
+  var result = [];
+  for (var i in arr) {
+    if (result.indexOf(arr[i]) === -1) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
+};
+
+/* global MouseEvent */
+
+// Remember state in cases where opening and handling a modal will fiddle with it.
+var states = {
+  previousWindowKeyDown: null,
+  previousActiveElement: null,
+  previousBodyPadding: null
+
+  /*
+   * Add modal + overlay to DOM
+   */
+};var init = function init(params) {
+  // Clean up the old modal if it exists
+  var c = getContainer();
+  if (c) {
+    c.parentNode.removeChild(c);
+  }
+
+  if (typeof document === 'undefined') {
+    console.error('SweetAlert2 requires document to initialize');
+    return;
+  }
+
+  var container = document.createElement('div');
+  container.className = swalClasses.container;
+  container.innerHTML = sweetHTML;
+
+  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
+  targetElement.appendChild(container);
+
+  var modal = getModal();
+  var input = getChildByClass(modal, swalClasses.input);
+  var file = getChildByClass(modal, swalClasses.file);
+  var range = modal.querySelector('.' + swalClasses.range + ' input');
+  var rangeOutput = modal.querySelector('.' + swalClasses.range + ' output');
+  var select = getChildByClass(modal, swalClasses.select);
+  var checkbox = modal.querySelector('.' + swalClasses.checkbox + ' input');
+  var textarea = getChildByClass(modal, swalClasses.textarea);
+
+  input.oninput = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  input.onkeydown = function (event) {
+    setTimeout(function () {
+      if (event.keyCode === 13 && params.allowEnterKey) {
+        event.stopPropagation();
+        sweetAlert.clickConfirm();
+      }
+    }, 0);
+  };
+
+  file.onchange = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  range.oninput = function () {
+    sweetAlert.resetValidationError();
+    rangeOutput.value = range.value;
+  };
+
+  range.onchange = function () {
+    sweetAlert.resetValidationError();
+    range.previousSibling.value = range.value;
+  };
+
+  select.onchange = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  checkbox.onchange = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  textarea.oninput = function () {
+    sweetAlert.resetValidationError();
+  };
+
+  return modal;
+};
+
+/*
+ * Manipulate DOM
+ */
+
+var sweetHTML = ('\n <div role="dialog" aria-labelledby="' + swalClasses.title + '" aria-describedby="' + swalClasses.content + '" class="' + swalClasses.modal + '" tabindex="-1">\n   <ul class="' + swalClasses.progresssteps + '"></ul>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.error + '">\n     <span class="swal2-x-mark"><span class="swal2-x-mark-line-left"></span><span class="swal2-x-mark-line-right"></span></span>\n   </div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.question + '">?</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.warning + '">!</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.info + '">i</div>\n   <div class="' + swalClasses.icon + ' ' + iconTypes.success + '">\n     <div class="swal2-success-circular-line-left"></div>\n     <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>\n     <div class="swal2-success-ring"></div> <div class="swal2-success-fix"></div>\n     <div class="swal2-success-circular-line-right"></div>\n   </div>\n   <img class="' + swalClasses.image + '" />\n   <h2 class="' + swalClasses.title + '" id="' + swalClasses.title + '"></h2>\n   <div id="' + swalClasses.content + '" class="' + swalClasses.content + '"></div>\n   <input class="' + swalClasses.input + '" />\n   <input type="file" class="' + swalClasses.file + '" />\n   <div class="' + swalClasses.range + '">\n     <output></output>\n     <input type="range" />\n   </div>\n   <select class="' + swalClasses.select + '"></select>\n   <div class="' + swalClasses.radio + '"></div>\n   <label for="' + swalClasses.checkbox + '" class="' + swalClasses.checkbox + '">\n     <input type="checkbox" />\n   </label>\n   <textarea class="' + swalClasses.textarea + '"></textarea>\n   <div class="' + swalClasses.validationerror + '"></div>\n   <div class="' + swalClasses.buttonswrapper + '">\n     <button type="button" class="' + swalClasses.confirm + '">OK</button>\n     <button type="button" class="' + swalClasses.cancel + '">Cancel</button>\n   </div>\n   <button type="button" class="' + swalClasses.close + '" aria-label="Close this dialog">\xD7</button>\n </div>\n').replace(/(^|\n)\s*/g, '');
+
+var getContainer = function getContainer() {
+  return document.body.querySelector('.' + swalClasses.container);
+};
+
+var getModal = function getModal() {
+  return getContainer() ? getContainer().querySelector('.' + swalClasses.modal) : null;
+};
+
+var getIcons = function getIcons() {
+  var modal = getModal();
+  return modal.querySelectorAll('.' + swalClasses.icon);
+};
+
+var elementByClass = function elementByClass(className) {
+  return getContainer() ? getContainer().querySelector('.' + className) : null;
+};
+
+var getTitle = function getTitle() {
+  return elementByClass(swalClasses.title);
+};
+
+var getContent = function getContent() {
+  return elementByClass(swalClasses.content);
+};
+
+var getImage = function getImage() {
+  return elementByClass(swalClasses.image);
+};
+
+var getButtonsWrapper = function getButtonsWrapper() {
+  return elementByClass(swalClasses.buttonswrapper);
+};
+
+var getProgressSteps = function getProgressSteps() {
+  return elementByClass(swalClasses.progresssteps);
+};
+
+var getValidationError = function getValidationError() {
+  return elementByClass(swalClasses.validationerror);
+};
+
+var getConfirmButton = function getConfirmButton() {
+  return elementByClass(swalClasses.confirm);
+};
+
+var getCancelButton = function getCancelButton() {
+  return elementByClass(swalClasses.cancel);
+};
+
+var getCloseButton = function getCloseButton() {
+  return elementByClass(swalClasses.close);
+};
+
+var getFocusableElements = function getFocusableElements(focusCancel) {
+  var buttons = [getConfirmButton(), getCancelButton()];
+  if (focusCancel) {
+    buttons.reverse();
+  }
+
+  var focusableElementsWithTabindex = Array.from(getModal().querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])'))
+  // sort according to tabindex
+  .sort(function (a, b) {
+    a = parseInt(a.getAttribute('tabindex'));
+    b = parseInt(b.getAttribute('tabindex'));
+    if (a > b) {
+      return 1;
+    } else if (a < b) {
+      return -1;
+    }
+    return 0;
+  });
+
+  var otherFocusableElements = Array.prototype.slice.call(getModal().querySelectorAll('button, input:not([type=hidden]), textarea, select, a, [tabindex="0"]'));
+
+  return uniqueArray(buttons.concat(focusableElementsWithTabindex, otherFocusableElements));
+};
+
+var hasClass = function hasClass(elem, className) {
+  if (elem.classList) {
+    return elem.classList.contains(className);
+  }
+  return false;
+};
+
+var focusInput = function focusInput(input) {
+  input.focus();
+
+  // place cursor at end of text in text input
+  if (input.type !== 'file') {
+    // http://stackoverflow.com/a/2345915/1331425
+    var val = input.value;
+    input.value = '';
+    input.value = val;
+  }
+};
+
+var addClass = function addClass(elem, className) {
+  if (!elem || !className) {
+    return;
+  }
+  var classes = className.split(/\s+/).filter(Boolean);
+  classes.forEach(function (className) {
+    elem.classList.add(className);
+  });
+};
+
+var removeClass = function removeClass(elem, className) {
+  if (!elem || !className) {
+    return;
+  }
+  var classes = className.split(/\s+/).filter(Boolean);
+  classes.forEach(function (className) {
+    elem.classList.remove(className);
+  });
+};
+
+var getChildByClass = function getChildByClass(elem, className) {
+  for (var i = 0; i < elem.childNodes.length; i++) {
+    if (hasClass(elem.childNodes[i], className)) {
+      return elem.childNodes[i];
+    }
+  }
+};
+
+var show = function show(elem, display) {
+  if (!display) {
+    display = 'block';
+  }
+  elem.style.opacity = '';
+  elem.style.display = display;
+};
+
+var hide = function hide(elem) {
+  elem.style.opacity = '';
+  elem.style.display = 'none';
+};
+
+var empty = function empty(elem) {
+  while (elem.firstChild) {
+    elem.removeChild(elem.firstChild);
+  }
+};
+
+// borrowed from jqeury $(elem).is(':visible') implementation
+var isVisible = function isVisible(elem) {
+  return elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length;
+};
+
+var removeStyleProperty = function removeStyleProperty(elem, property) {
+  if (elem.style.removeProperty) {
+    elem.style.removeProperty(property);
+  } else {
+    elem.style.removeAttribute(property);
+  }
+};
+
+var fireClick = function fireClick(node) {
+  if (!isVisible(node)) {
+    return false;
+  }
+
+  // Taken from http://www.nonobtrusive.com/2011/11/29/programatically-fire-crossbrowser-click-event-with-javascript/
+  // Then fixed for today's Chrome browser.
+  if (typeof MouseEvent === 'function') {
+    // Up-to-date approach
+    var mevt = new MouseEvent('click', {
+      view: window,
+      bubbles: false,
+      cancelable: true
+    });
+    node.dispatchEvent(mevt);
+  } else if (document.createEvent) {
+    // Fallback
+    var evt = document.createEvent('MouseEvents');
+    evt.initEvent('click', false, false);
+    node.dispatchEvent(evt);
+  } else if (document.createEventObject) {
+    node.fireEvent('onclick');
+  } else if (typeof node.onclick === 'function') {
+    node.onclick();
+  }
+};
+
+var animationEndEvent = function () {
+  var testEl = document.createElement('div');
+  var transEndEventNames = {
+    'WebkitAnimation': 'webkitAnimationEnd',
+    'OAnimation': 'oAnimationEnd oanimationend',
+    'msAnimation': 'MSAnimationEnd',
+    'animation': 'animationend'
+  };
+  for (var i in transEndEventNames) {
+    if (transEndEventNames.hasOwnProperty(i) && testEl.style[i] !== undefined) {
+      return transEndEventNames[i];
+    }
+  }
+
+  return false;
+}();
+
+// Reset previous window keydown handler and focued element
+var resetPrevState = function resetPrevState() {
+  window.onkeydown = states.previousWindowKeyDown;
+  if (states.previousActiveElement && states.previousActiveElement.focus) {
+    var x = window.scrollX;
+    var y = window.scrollY;
+    states.previousActiveElement.focus();
+    if (x && y) {
+      // IE has no scrollX/scrollY support
+      window.scrollTo(x, y);
+    }
+  }
+};
+
+// Measure width of scrollbar
+// https://github.com/twbs/bootstrap/blob/master/js/modal.js#L279-L286
+var measureScrollbar = function measureScrollbar() {
+  var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+  if (supportsTouch) {
+    return 0;
+  }
+  var scrollDiv = document.createElement('div');
+  scrollDiv.style.width = '50px';
+  scrollDiv.style.height = '50px';
+  scrollDiv.style.overflow = 'scroll';
+  document.body.appendChild(scrollDiv);
+  var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+  document.body.removeChild(scrollDiv);
+  return scrollbarWidth;
+};
+
+// JavaScript Debounce Function
+// Simplivied version of https://davidwalsh.name/javascript-debounce-function
+var debounce = function debounce(func, wait) {
+  var timeout = void 0;
+  return function () {
+    var later = function later() {
+      timeout = null;
+      func();
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var modalParams = _extends({}, defaultParams);
+var queue = [];
+var swal2Observer = void 0;
+
+/*
+ * Set type, text and actions on modal
+ */
+var setParameters = function setParameters(params) {
+  // If a custom element is set, determine if it is valid
+  if (typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
+    console.warn('SweetAlert2: Target parameter is not valid, defaulting to "body"');
+    params.target = 'body';
+  }
+
+  var modal = void 0;
+  var oldModal = getModal();
+  var targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target;
+  // If the model target has changed, refresh the modal
+  if (oldModal && targetElement && oldModal.parentNode !== targetElement.parentNode) {
+    modal = init(params);
+  } else {
+    modal = oldModal || init(params);
+  }
+
+  for (var param in params) {
+    if (!sweetAlert.isValidParameter(param)) {
+      console.warn('SweetAlert2: Unknown parameter "' + param + '"');
+    }
+  }
+
+  // Set modal width
+  modal.style.width = typeof params.width === 'number' ? params.width + 'px' : params.width;
+
+  modal.style.padding = params.padding + 'px';
+  modal.style.background = params.background;
+  var successIconParts = modal.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
+  for (var i = 0; i < successIconParts.length; i++) {
+    successIconParts[i].style.background = params.background;
+  }
+
+  var title = getTitle();
+  var content = getContent();
+  var buttonsWrapper = getButtonsWrapper();
+  var confirmButton = getConfirmButton();
+  var cancelButton = getCancelButton();
+  var closeButton = getCloseButton();
+
+  // Title
+  if (params.titleText) {
+    title.innerText = params.titleText;
+  } else {
+    title.innerHTML = params.title.split('\n').join('<br />');
+  }
+
+  // Content
+  if (params.text || params.html) {
+    if (_typeof(params.html) === 'object') {
+      content.innerHTML = '';
+      if (0 in params.html) {
+        for (var _i = 0; _i in params.html; _i++) {
+          content.appendChild(params.html[_i].cloneNode(true));
+        }
+      } else {
+        content.appendChild(params.html.cloneNode(true));
+      }
+    } else if (params.html) {
+      content.innerHTML = params.html;
+    } else if (params.text) {
+      content.textContent = params.text;
+    }
+    show(content);
+  } else {
+    hide(content);
+  }
+
+  // Close button
+  if (params.showCloseButton) {
+    show(closeButton);
+  } else {
+    hide(closeButton);
+  }
+
+  // Custom Class
+  modal.className = swalClasses.modal;
+  if (params.customClass) {
+    addClass(modal, params.customClass);
+  }
+
+  // Progress steps
+  var progressStepsContainer = getProgressSteps();
+  var currentProgressStep = parseInt(params.currentProgressStep === null ? sweetAlert.getQueueStep() : params.currentProgressStep, 10);
+  if (params.progressSteps.length) {
+    show(progressStepsContainer);
+    empty(progressStepsContainer);
+    if (currentProgressStep >= params.progressSteps.length) {
+      console.warn('SweetAlert2: Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
+    }
+    params.progressSteps.forEach(function (step, index) {
+      var circle = document.createElement('li');
+      addClass(circle, swalClasses.progresscircle);
+      circle.innerHTML = step;
+      if (index === currentProgressStep) {
+        addClass(circle, swalClasses.activeprogressstep);
+      }
+      progressStepsContainer.appendChild(circle);
+      if (index !== params.progressSteps.length - 1) {
+        var line = document.createElement('li');
+        addClass(line, swalClasses.progressline);
+        line.style.width = params.progressStepsDistance;
+        progressStepsContainer.appendChild(line);
+      }
+    });
+  } else {
+    hide(progressStepsContainer);
+  }
+
+  // Icon
+  var icons = getIcons();
+  for (var _i2 = 0; _i2 < icons.length; _i2++) {
+    hide(icons[_i2]);
+  }
+  if (params.type) {
+    var validType = false;
+    for (var iconType in iconTypes) {
+      if (params.type === iconType) {
+        validType = true;
+        break;
+      }
+    }
+    if (!validType) {
+      console.error('SweetAlert2: Unknown alert type: ' + params.type);
+      return false;
+    }
+    var icon = modal.querySelector('.' + swalClasses.icon + '.' + iconTypes[params.type]);
+    show(icon);
+
+    // Animate icon
+    if (params.animation) {
+      switch (params.type) {
+        case 'success':
+          addClass(icon, 'swal2-animate-success-icon');
+          addClass(icon.querySelector('.swal2-success-line-tip'), 'swal2-animate-success-line-tip');
+          addClass(icon.querySelector('.swal2-success-line-long'), 'swal2-animate-success-line-long');
+          break;
+        case 'error':
+          addClass(icon, 'swal2-animate-error-icon');
+          addClass(icon.querySelector('.swal2-x-mark'), 'swal2-animate-x-mark');
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  // Custom image
+  var image = getImage();
+  if (params.imageUrl) {
+    image.setAttribute('src', params.imageUrl);
+    show(image);
+
+    if (params.imageWidth) {
+      image.setAttribute('width', params.imageWidth);
+    } else {
+      image.removeAttribute('width');
+    }
+
+    if (params.imageHeight) {
+      image.setAttribute('height', params.imageHeight);
+    } else {
+      image.removeAttribute('height');
+    }
+
+    image.className = swalClasses.image;
+    if (params.imageClass) {
+      addClass(image, params.imageClass);
+    }
+  } else {
+    hide(image);
+  }
+
+  // Cancel button
+  if (params.showCancelButton) {
+    cancelButton.style.display = 'inline-block';
+  } else {
+    hide(cancelButton);
+  }
+
+  // Confirm button
+  if (params.showConfirmButton) {
+    removeStyleProperty(confirmButton, 'display');
+  } else {
+    hide(confirmButton);
+  }
+
+  // Buttons wrapper
+  if (!params.showConfirmButton && !params.showCancelButton) {
+    hide(buttonsWrapper);
+  } else {
+    show(buttonsWrapper);
+  }
+
+  // Edit text on cancel and confirm buttons
+  confirmButton.innerHTML = params.confirmButtonText;
+  cancelButton.innerHTML = params.cancelButtonText;
+
+  // Set buttons to selected background colors
+  if (params.buttonsStyling) {
+    confirmButton.style.backgroundColor = params.confirmButtonColor;
+    cancelButton.style.backgroundColor = params.cancelButtonColor;
+  }
+
+  // Add buttons custom classes
+  confirmButton.className = swalClasses.confirm;
+  addClass(confirmButton, params.confirmButtonClass);
+  cancelButton.className = swalClasses.cancel;
+  addClass(cancelButton, params.cancelButtonClass);
+
+  // Buttons styling
+  if (params.buttonsStyling) {
+    addClass(confirmButton, swalClasses.styled);
+    addClass(cancelButton, swalClasses.styled);
+  } else {
+    removeClass(confirmButton, swalClasses.styled);
+    removeClass(cancelButton, swalClasses.styled);
+
+    confirmButton.style.backgroundColor = confirmButton.style.borderLeftColor = confirmButton.style.borderRightColor = '';
+    cancelButton.style.backgroundColor = cancelButton.style.borderLeftColor = cancelButton.style.borderRightColor = '';
+  }
+
+  // CSS animation
+  if (params.animation === true) {
+    removeClass(modal, swalClasses.noanimation);
+  } else {
+    addClass(modal, swalClasses.noanimation);
+  }
+
+  // showLoaderOnConfirm && preConfirm
+  if (params.showLoaderOnConfirm && !params.preConfirm) {
+    console.warn('SweetAlert2: showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://limonte.github.io/sweetalert2/#ajax-request');
+  }
+};
+
+/*
+ * Animations
+ */
+var openModal = function openModal(animation, onComplete) {
+  var container = getContainer();
+  var modal = getModal();
+
+  if (animation) {
+    addClass(modal, swalClasses.show);
+    addClass(container, swalClasses.fade);
+    removeClass(modal, swalClasses.hide);
+  } else {
+    removeClass(modal, swalClasses.fade);
+  }
+  show(modal);
+
+  // scrolling is 'hidden' until animation is done, after that 'auto'
+  container.style.overflowY = 'hidden';
+  if (animationEndEvent && !hasClass(modal, swalClasses.noanimation)) {
+    modal.addEventListener(animationEndEvent, function swalCloseEventFinished() {
+      modal.removeEventListener(animationEndEvent, swalCloseEventFinished);
+      container.style.overflowY = 'auto';
+    });
+  } else {
+    container.style.overflowY = 'auto';
+  }
+
+  addClass(document.documentElement, swalClasses.shown);
+  addClass(document.body, swalClasses.shown);
+  addClass(container, swalClasses.shown);
+  fixScrollbar();
+  iOSfix();
+  states.previousActiveElement = document.activeElement;
+  if (onComplete !== null && typeof onComplete === 'function') {
+    setTimeout(function () {
+      onComplete(modal);
+    });
+  }
+};
+
+var fixScrollbar = function fixScrollbar() {
+  // for queues, do not do this more than once
+  if (states.previousBodyPadding !== null) {
+    return;
+  }
+  // if the body has overflow
+  if (document.body.scrollHeight > window.innerHeight) {
+    // add padding so the content doesn't shift after removal of scrollbar
+    states.previousBodyPadding = document.body.style.paddingRight;
+    document.body.style.paddingRight = measureScrollbar() + 'px';
+  }
+};
+
+var undoScrollbar = function undoScrollbar() {
+  if (states.previousBodyPadding !== null) {
+    document.body.style.paddingRight = states.previousBodyPadding;
+    states.previousBodyPadding = null;
+  }
+};
+
+// Fix iOS scrolling http://stackoverflow.com/q/39626302/1331425
+var iOSfix = function iOSfix() {
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (iOS && !hasClass(document.body, swalClasses.iosfix)) {
+    var offset = document.body.scrollTop;
+    document.body.style.top = offset * -1 + 'px';
+    addClass(document.body, swalClasses.iosfix);
+  }
+};
+
+var undoIOSfix = function undoIOSfix() {
+  if (hasClass(document.body, swalClasses.iosfix)) {
+    var offset = parseInt(document.body.style.top, 10);
+    removeClass(document.body, swalClasses.iosfix);
+    document.body.style.top = '';
+    document.body.scrollTop = offset * -1;
+  }
+};
+
+// SweetAlert entry point
+var sweetAlert = function sweetAlert() {
+  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  if (args[0] === undefined) {
+    console.error('SweetAlert2 expects at least 1 attribute!');
+    return false;
+  }
+
+  var params = _extends({}, modalParams);
+
+  switch (_typeof(args[0])) {
+    case 'string':
+      params.title = args[0];
+      params.html = args[1];
+      params.type = args[2];
+
+      break;
+
+    case 'object':
+      _extends(params, args[0]);
+      params.extraParams = args[0].extraParams;
+
+      if (params.input === 'email' && params.inputValidator === null) {
+        params.inputValidator = function (email) {
+          return new Promise(function (resolve, reject) {
+            var emailRegex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (emailRegex.test(email)) {
+              resolve();
+            } else {
+              reject('Invalid email address');
+            }
+          });
+        };
+      }
+
+      if (params.input === 'url' && params.inputValidator === null) {
+        params.inputValidator = function (url) {
+          return new Promise(function (resolve, reject) {
+            // taken from https://stackoverflow.com/a/3809435/1331425
+            var urlRegex = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/;
+            if (urlRegex.test(url)) {
+              resolve();
+            } else {
+              reject('Invalid URL');
+            }
+          });
+        };
+      }
+      break;
+
+    default:
+      console.error('SweetAlert2: Unexpected type of argument! Expected "string" or "object", got ' + _typeof(args[0]));
+      return false;
+  }
+
+  setParameters(params);
+
+  var container = getContainer();
+  var modal = getModal();
+
+  return new Promise(function (resolve, reject) {
+    // Close on timer
+    if (params.timer) {
+      modal.timeout = setTimeout(function () {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          reject('timer');
+        } else {
+          resolve({ dismiss: 'timer' });
+        }
+      }, params.timer);
+    }
+
+    // Get input element by specified type or, if type isn't specified, by params.input
+    var getInput = function getInput(inputType) {
+      inputType = inputType || params.input;
+      if (!inputType) {
+        return null;
+      }
+      switch (inputType) {
+        case 'select':
+        case 'textarea':
+        case 'file':
+          return getChildByClass(modal, swalClasses[inputType]);
+        case 'checkbox':
+          return modal.querySelector('.' + swalClasses.checkbox + ' input');
+        case 'radio':
+          return modal.querySelector('.' + swalClasses.radio + ' input:checked') || modal.querySelector('.' + swalClasses.radio + ' input:first-child');
+        case 'range':
+          return modal.querySelector('.' + swalClasses.range + ' input');
+        default:
+          return getChildByClass(modal, swalClasses.input);
+      }
+    };
+
+    // Get the value of the modal input
+    var getInputValue = function getInputValue() {
+      var input = getInput();
+      if (!input) {
+        return null;
+      }
+      switch (params.input) {
+        case 'checkbox':
+          return input.checked ? 1 : 0;
+        case 'radio':
+          return input.checked ? input.value : null;
+        case 'file':
+          return input.files.length ? input.files[0] : null;
+        default:
+          return params.inputAutoTrim ? input.value.trim() : input.value;
+      }
+    };
+
+    // input autofocus
+    if (params.input) {
+      setTimeout(function () {
+        var input = getInput();
+        if (input) {
+          focusInput(input);
+        }
+      }, 0);
+    }
+
+    var confirm = function confirm(value) {
+      if (params.showLoaderOnConfirm) {
+        sweetAlert.showLoading();
+      }
+
+      if (params.preConfirm) {
+        params.preConfirm(value, params.extraParams).then(function (preConfirmValue) {
+          sweetAlert.closeModal(params.onClose);
+          resolve(preConfirmValue || value);
+        }, function (error) {
+          sweetAlert.hideLoading();
+          if (error) {
+            sweetAlert.showValidationError(error);
+          }
+        });
+      } else {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          resolve(value);
+        } else {
+          resolve({ value: value });
+        }
+      }
+    };
+
+    // Mouse interactions
+    var onButtonEvent = function onButtonEvent(event) {
+      var e = event || window.event;
+      var target = e.target || e.srcElement;
+      var confirmButton = getConfirmButton();
+      var cancelButton = getCancelButton();
+      var targetedConfirm = confirmButton && (confirmButton === target || confirmButton.contains(target));
+      var targetedCancel = cancelButton && (cancelButton === target || cancelButton.contains(target));
+
+      switch (e.type) {
+        case 'mouseover':
+        case 'mouseup':
+          if (params.buttonsStyling) {
+            if (targetedConfirm) {
+              confirmButton.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.1);
+            } else if (targetedCancel) {
+              cancelButton.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.1);
+            }
+          }
+          break;
+        case 'mouseout':
+          if (params.buttonsStyling) {
+            if (targetedConfirm) {
+              confirmButton.style.backgroundColor = params.confirmButtonColor;
+            } else if (targetedCancel) {
+              cancelButton.style.backgroundColor = params.cancelButtonColor;
+            }
+          }
+          break;
+        case 'mousedown':
+          if (params.buttonsStyling) {
+            if (targetedConfirm) {
+              confirmButton.style.backgroundColor = colorLuminance(params.confirmButtonColor, -0.2);
+            } else if (targetedCancel) {
+              cancelButton.style.backgroundColor = colorLuminance(params.cancelButtonColor, -0.2);
+            }
+          }
+          break;
+        case 'click':
+          // Clicked 'confirm'
+          if (targetedConfirm && sweetAlert.isVisible()) {
+            sweetAlert.disableButtons();
+            if (params.input) {
+              var inputValue = getInputValue();
+
+              if (params.inputValidator) {
+                sweetAlert.disableInput();
+                params.inputValidator(inputValue, params.extraParams).then(function () {
+                  sweetAlert.enableButtons();
+                  sweetAlert.enableInput();
+                  confirm(inputValue);
+                }, function (error) {
+                  sweetAlert.enableButtons();
+                  sweetAlert.enableInput();
+                  if (error) {
+                    sweetAlert.showValidationError(error);
+                  }
+                });
+              } else {
+                confirm(inputValue);
+              }
+            } else {
+              confirm(true);
+            }
+
+            // Clicked 'cancel'
+          } else if (targetedCancel && sweetAlert.isVisible()) {
+            sweetAlert.disableButtons();
+            sweetAlert.closeModal(params.onClose);
+            if (params.useRejections) {
+              reject('cancel');
+            } else {
+              resolve({ dismiss: 'cancel' });
+            }
+          }
+          break;
+        default:
+      }
+    };
+
+    var buttons = modal.querySelectorAll('button');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].onclick = onButtonEvent;
+      buttons[i].onmouseover = onButtonEvent;
+      buttons[i].onmouseout = onButtonEvent;
+      buttons[i].onmousedown = onButtonEvent;
+    }
+
+    // Closing modal by close button
+    getCloseButton().onclick = function () {
+      sweetAlert.closeModal(params.onClose);
+      if (params.useRejections) {
+        reject('close');
+      } else {
+        resolve({ dismiss: 'close' });
+      }
+    };
+
+    // Closing modal by overlay click
+    container.onclick = function (e) {
+      if (e.target !== container) {
+        return;
+      }
+      if (params.allowOutsideClick) {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          reject('overlay');
+        } else {
+          resolve({ dismiss: 'overlay' });
+        }
+      }
+    };
+
+    var buttonsWrapper = getButtonsWrapper();
+    var confirmButton = getConfirmButton();
+    var cancelButton = getCancelButton();
+
+    // Reverse buttons (Confirm on the right side)
+    if (params.reverseButtons) {
+      confirmButton.parentNode.insertBefore(cancelButton, confirmButton);
+    } else {
+      confirmButton.parentNode.insertBefore(confirmButton, cancelButton);
+    }
+
+    // Focus handling
+    var setFocus = function setFocus(index, increment) {
+      var focusableElements = getFocusableElements(params.focusCancel);
+      // search for visible elements and select the next possible match
+      for (var _i3 = 0; _i3 < focusableElements.length; _i3++) {
+        index = index + increment;
+
+        // rollover to first item
+        if (index === focusableElements.length) {
+          index = 0;
+
+          // go to last item
+        } else if (index === -1) {
+          index = focusableElements.length - 1;
+        }
+
+        // determine if element is visible
+        var el = focusableElements[index];
+        if (isVisible(el)) {
+          return el.focus();
+        }
+      }
+    };
+
+    var handleKeyDown = function handleKeyDown(event) {
+      var e = event || window.event;
+      var keyCode = e.keyCode || e.which;
+
+      if ([9, 13, 32, 27, 37, 38, 39, 40].indexOf(keyCode) === -1) {
+        // Don't do work on keys we don't care about.
+        return;
+      }
+
+      var targetElement = e.target || e.srcElement;
+
+      var focusableElements = getFocusableElements(params.focusCancel);
+      var btnIndex = -1; // Find the button - note, this is a nodelist, not an array.
+      for (var _i4 = 0; _i4 < focusableElements.length; _i4++) {
+        if (targetElement === focusableElements[_i4]) {
+          btnIndex = _i4;
+          break;
+        }
+      }
+
+      // TAB
+      if (keyCode === 9) {
+        if (!e.shiftKey) {
+          // Cycle to the next button
+          setFocus(btnIndex, 1);
+        } else {
+          // Cycle to the prev button
+          setFocus(btnIndex, -1);
+        }
+        e.stopPropagation();
+        e.preventDefault();
+
+        // ARROWS - switch focus between buttons
+      } else if (keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40) {
+        // focus Cancel button if Confirm button is currently focused
+        if (document.activeElement === confirmButton && isVisible(cancelButton)) {
+          cancelButton.focus();
+          // and vice versa
+        } else if (document.activeElement === cancelButton && isVisible(confirmButton)) {
+          confirmButton.focus();
+        }
+
+        // ENTER/SPACE
+      } else if (keyCode === 13 || keyCode === 32) {
+        if (btnIndex === -1 && params.allowEnterKey) {
+          // ENTER/SPACE clicked outside of a button.
+          if (params.focusCancel) {
+            fireClick(cancelButton, e);
+          } else {
+            fireClick(confirmButton, e);
+          }
+          e.stopPropagation();
+          e.preventDefault();
+        }
+
+        // ESC
+      } else if (keyCode === 27 && params.allowEscapeKey === true) {
+        sweetAlert.closeModal(params.onClose);
+        if (params.useRejections) {
+          reject('esc');
+        } else {
+          resolve({ dismiss: 'esc' });
+        }
+      }
+    };
+
+    if (!window.onkeydown || window.onkeydown.toString() !== handleKeyDown.toString()) {
+      states.previousWindowKeyDown = window.onkeydown;
+      window.onkeydown = handleKeyDown;
+    }
+
+    // Loading state
+    if (params.buttonsStyling) {
+      confirmButton.style.borderLeftColor = params.confirmButtonColor;
+      confirmButton.style.borderRightColor = params.confirmButtonColor;
+    }
+
+    /**
+     * Show spinner instead of Confirm button and disable Cancel button
+     */
+    sweetAlert.hideLoading = sweetAlert.disableLoading = function () {
+      if (!params.showConfirmButton) {
+        hide(confirmButton);
+        if (!params.showCancelButton) {
+          hide(getButtonsWrapper());
+        }
+      }
+      removeClass(buttonsWrapper, swalClasses.loading);
+      removeClass(modal, swalClasses.loading);
+      confirmButton.disabled = false;
+      cancelButton.disabled = false;
+    };
+
+    sweetAlert.getTitle = function () {
+      return getTitle();
+    };
+    sweetAlert.getContent = function () {
+      return getContent();
+    };
+    sweetAlert.getInput = function () {
+      return getInput();
+    };
+    sweetAlert.getImage = function () {
+      return getImage();
+    };
+    sweetAlert.getButtonsWrapper = function () {
+      return getButtonsWrapper();
+    };
+    sweetAlert.getConfirmButton = function () {
+      return getConfirmButton();
+    };
+    sweetAlert.getCancelButton = function () {
+      return getCancelButton();
+    };
+
+    sweetAlert.enableButtons = function () {
+      confirmButton.disabled = false;
+      cancelButton.disabled = false;
+    };
+
+    sweetAlert.disableButtons = function () {
+      confirmButton.disabled = true;
+      cancelButton.disabled = true;
+    };
+
+    sweetAlert.enableConfirmButton = function () {
+      confirmButton.disabled = false;
+    };
+
+    sweetAlert.disableConfirmButton = function () {
+      confirmButton.disabled = true;
+    };
+
+    sweetAlert.enableInput = function () {
+      var input = getInput();
+      if (!input) {
+        return false;
+      }
+      if (input.type === 'radio') {
+        var radiosContainer = input.parentNode.parentNode;
+        var radios = radiosContainer.querySelectorAll('input');
+        for (var _i5 = 0; _i5 < radios.length; _i5++) {
+          radios[_i5].disabled = false;
+        }
+      } else {
+        input.disabled = false;
+      }
+    };
+
+    sweetAlert.disableInput = function () {
+      var input = getInput();
+      if (!input) {
+        return false;
+      }
+      if (input && input.type === 'radio') {
+        var radiosContainer = input.parentNode.parentNode;
+        var radios = radiosContainer.querySelectorAll('input');
+        for (var _i6 = 0; _i6 < radios.length; _i6++) {
+          radios[_i6].disabled = true;
+        }
+      } else {
+        input.disabled = true;
+      }
+    };
+
+    // Set modal min-height to disable scrolling inside the modal
+    sweetAlert.recalculateHeight = debounce(function () {
+      var modal = getModal();
+      if (!modal) {
+        return;
+      }
+      var prevState = modal.style.display;
+      modal.style.minHeight = '';
+      show(modal);
+      modal.style.minHeight = modal.scrollHeight + 1 + 'px';
+      modal.style.display = prevState;
+    }, 50);
+
+    // Show block with validation error
+    sweetAlert.showValidationError = function (error) {
+      var validationError = getValidationError();
+      validationError.innerHTML = error;
+      show(validationError);
+
+      var input = getInput();
+      if (input) {
+        focusInput(input);
+        addClass(input, swalClasses.inputerror);
+      }
+    };
+
+    // Hide block with validation error
+    sweetAlert.resetValidationError = function () {
+      var validationError = getValidationError();
+      hide(validationError);
+      sweetAlert.recalculateHeight();
+
+      var input = getInput();
+      if (input) {
+        removeClass(input, swalClasses.inputerror);
+      }
+    };
+
+    sweetAlert.getProgressSteps = function () {
+      return params.progressSteps;
+    };
+
+    sweetAlert.setProgressSteps = function (progressSteps) {
+      params.progressSteps = progressSteps;
+      setParameters(params);
+    };
+
+    sweetAlert.showProgressSteps = function () {
+      show(getProgressSteps());
+    };
+
+    sweetAlert.hideProgressSteps = function () {
+      hide(getProgressSteps());
+    };
+
+    sweetAlert.enableButtons();
+    sweetAlert.hideLoading();
+    sweetAlert.resetValidationError();
+
+    // inputs
+    var inputTypes = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
+    var input = void 0;
+    for (var _i7 = 0; _i7 < inputTypes.length; _i7++) {
+      var inputClass = swalClasses[inputTypes[_i7]];
+      var inputContainer = getChildByClass(modal, inputClass);
+      input = getInput(inputTypes[_i7]);
+
+      // set attributes
+      if (input) {
+        for (var j in input.attributes) {
+          if (input.attributes.hasOwnProperty(j)) {
+            var attrName = input.attributes[j].name;
+            if (attrName !== 'type' && attrName !== 'value') {
+              input.removeAttribute(attrName);
+            }
+          }
+        }
+        for (var attr in params.inputAttributes) {
+          input.setAttribute(attr, params.inputAttributes[attr]);
+        }
+      }
+
+      // set class
+      inputContainer.className = inputClass;
+      if (params.inputClass) {
+        addClass(inputContainer, params.inputClass);
+      }
+
+      hide(inputContainer);
+    }
+
+    var populateInputOptions = void 0;
+    switch (params.input) {
+      case 'text':
+      case 'email':
+      case 'password':
+      case 'number':
+      case 'tel':
+      case 'url':
+        input = getChildByClass(modal, swalClasses.input);
+        input.value = params.inputValue;
+        input.placeholder = params.inputPlaceholder;
+        input.type = params.input;
+        show(input);
+        break;
+      case 'file':
+        input = getChildByClass(modal, swalClasses.file);
+        input.placeholder = params.inputPlaceholder;
+        input.type = params.input;
+        show(input);
+        break;
+      case 'range':
+        var range = getChildByClass(modal, swalClasses.range);
+        var rangeInput = range.querySelector('input');
+        var rangeOutput = range.querySelector('output');
+        rangeInput.value = params.inputValue;
+        rangeInput.type = params.input;
+        rangeOutput.value = params.inputValue;
+        show(range);
+        break;
+      case 'select':
+        var select = getChildByClass(modal, swalClasses.select);
+        select.innerHTML = '';
+        if (params.inputPlaceholder) {
+          var placeholder = document.createElement('option');
+          placeholder.innerHTML = params.inputPlaceholder;
+          placeholder.value = '';
+          placeholder.disabled = true;
+          placeholder.selected = true;
+          select.appendChild(placeholder);
+        }
+        populateInputOptions = function populateInputOptions(inputOptions) {
+          for (var optionValue in inputOptions) {
+            var option = document.createElement('option');
+            option.value = optionValue;
+            option.innerHTML = inputOptions[optionValue];
+            if (params.inputValue === optionValue) {
+              option.selected = true;
+            }
+            select.appendChild(option);
+          }
+          show(select);
+          select.focus();
+        };
+        break;
+      case 'radio':
+        var radio = getChildByClass(modal, swalClasses.radio);
+        radio.innerHTML = '';
+        populateInputOptions = function populateInputOptions(inputOptions) {
+          for (var radioValue in inputOptions) {
+            var radioInput = document.createElement('input');
+            var radioLabel = document.createElement('label');
+            var radioLabelSpan = document.createElement('span');
+            radioInput.type = 'radio';
+            radioInput.name = swalClasses.radio;
+            radioInput.value = radioValue;
+            if (params.inputValue === radioValue) {
+              radioInput.checked = true;
+            }
+            radioLabelSpan.innerHTML = inputOptions[radioValue];
+            radioLabel.appendChild(radioInput);
+            radioLabel.appendChild(radioLabelSpan);
+            radioLabel.for = radioInput.id;
+            radio.appendChild(radioLabel);
+          }
+          show(radio);
+          var radios = radio.querySelectorAll('input');
+          if (radios.length) {
+            radios[0].focus();
+          }
+        };
+        break;
+      case 'checkbox':
+        var checkbox = getChildByClass(modal, swalClasses.checkbox);
+        var checkboxInput = getInput('checkbox');
+        checkboxInput.type = 'checkbox';
+        checkboxInput.value = 1;
+        checkboxInput.id = swalClasses.checkbox;
+        checkboxInput.checked = Boolean(params.inputValue);
+        var label = checkbox.getElementsByTagName('span');
+        if (label.length) {
+          checkbox.removeChild(label[0]);
+        }
+        label = document.createElement('span');
+        label.innerHTML = params.inputPlaceholder;
+        checkbox.appendChild(label);
+        show(checkbox);
+        break;
+      case 'textarea':
+        var textarea = getChildByClass(modal, swalClasses.textarea);
+        textarea.value = params.inputValue;
+        textarea.placeholder = params.inputPlaceholder;
+        show(textarea);
+        break;
+      case null:
+        break;
+      default:
+        console.error('SweetAlert2: Unexpected type of input! Expected "text", "email", "password", "number", "tel", "select", "radio", "checkbox", "textarea", "file" or "url", got "' + params.input + '"');
+        break;
+    }
+
+    if (params.input === 'select' || params.input === 'radio') {
+      if (params.inputOptions instanceof Promise) {
+        sweetAlert.showLoading();
+        params.inputOptions.then(function (inputOptions) {
+          sweetAlert.hideLoading();
+          populateInputOptions(inputOptions);
+        });
+      } else if (_typeof(params.inputOptions) === 'object') {
+        populateInputOptions(params.inputOptions);
+      } else {
+        console.error('SweetAlert2: Unexpected type of inputOptions! Expected object or Promise, got ' + _typeof(params.inputOptions));
+      }
+    }
+
+    openModal(params.animation, params.onOpen);
+
+    // Focus the first focusable element
+    if (params.allowEnterKey) {
+      setFocus(-1, 1);
+    } else {
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    }
+
+    // fix scroll
+    getContainer().scrollTop = 0;
+
+    // Observe changes inside the modal and adjust height
+    if (typeof MutationObserver !== 'undefined' && !swal2Observer) {
+      swal2Observer = new MutationObserver(sweetAlert.recalculateHeight);
+      swal2Observer.observe(modal, { childList: true, characterData: true, subtree: true });
+    }
+  });
+};
+
+/*
+ * Global function to determine if swal2 modal is shown
+ */
+sweetAlert.isVisible = function () {
+  return !!getModal();
+};
+
+/*
+ * Global function for chaining sweetAlert modals
+ */
+sweetAlert.queue = function (steps) {
+  queue = steps;
+  var resetQueue = function resetQueue() {
+    queue = [];
+    document.body.removeAttribute('data-swal2-queue-step');
+  };
+  var queueResult = [];
+  return new Promise(function (resolve, reject) {
+    (function step(i, callback) {
+      if (i < queue.length) {
+        document.body.setAttribute('data-swal2-queue-step', i);
+
+        sweetAlert(queue[i]).then(function (result) {
+          queueResult.push(result);
+          step(i + 1, callback);
+        }, function (dismiss) {
+          resetQueue();
+          reject(dismiss);
+        });
+      } else {
+        resetQueue();
+        resolve(queueResult);
+      }
+    })(0);
+  });
+};
+
+/*
+ * Global function for getting the index of current modal in queue
+ */
+sweetAlert.getQueueStep = function () {
+  return document.body.getAttribute('data-swal2-queue-step');
+};
+
+/*
+ * Global function for inserting a modal to the queue
+ */
+sweetAlert.insertQueueStep = function (step, index) {
+  if (index && index < queue.length) {
+    return queue.splice(index, 0, step);
+  }
+  return queue.push(step);
+};
+
+/*
+ * Global function for deleting a modal from the queue
+ */
+sweetAlert.deleteQueueStep = function (index) {
+  if (typeof queue[index] !== 'undefined') {
+    queue.splice(index, 1);
+  }
+};
+
+/*
+ * Global function to close sweetAlert
+ */
+sweetAlert.close = sweetAlert.closeModal = function (onComplete) {
+  var container = getContainer();
+  var modal = getModal();
+  if (!modal) {
+    return;
+  }
+  removeClass(modal, swalClasses.show);
+  addClass(modal, swalClasses.hide);
+  clearTimeout(modal.timeout);
+
+  resetPrevState();
+
+  var removeModalAndResetState = function removeModalAndResetState() {
+    if (container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
+    removeClass(document.documentElement, swalClasses.shown);
+    removeClass(document.body, swalClasses.shown);
+    undoScrollbar();
+    undoIOSfix();
+  };
+
+  // If animation is supported, animate
+  if (animationEndEvent && !hasClass(modal, swalClasses.noanimation)) {
+    modal.addEventListener(animationEndEvent, function swalCloseEventFinished() {
+      modal.removeEventListener(animationEndEvent, swalCloseEventFinished);
+      if (hasClass(modal, swalClasses.hide)) {
+        removeModalAndResetState();
+      }
+    });
+  } else {
+    // Otherwise, remove immediately
+    removeModalAndResetState();
+  }
+  if (onComplete !== null && typeof onComplete === 'function') {
+    setTimeout(function () {
+      onComplete(modal);
+    });
+  }
+};
+
+/*
+ * Global function to click 'Confirm' button
+ */
+sweetAlert.clickConfirm = function () {
+  return getConfirmButton().click();
+};
+
+/*
+ * Global function to click 'Cancel' button
+ */
+sweetAlert.clickCancel = function () {
+  return getCancelButton().click();
+};
+
+/**
+ * Show spinner instead of Confirm button and disable Cancel button
+ */
+sweetAlert.showLoading = sweetAlert.enableLoading = function () {
+  var modal = getModal();
+  if (!modal) {
+    sweetAlert('');
+  }
+  var buttonsWrapper = getButtonsWrapper();
+  var confirmButton = getConfirmButton();
+  var cancelButton = getCancelButton();
+
+  show(buttonsWrapper);
+  show(confirmButton, 'inline-block');
+  addClass(buttonsWrapper, swalClasses.loading);
+  addClass(modal, swalClasses.loading);
+  confirmButton.disabled = true;
+  cancelButton.disabled = true;
+};
+
+/**
+ * Is valid parameter
+ * @param {String} paramName
+ */
+sweetAlert.isValidParameter = function (paramName) {
+  return defaultParams.hasOwnProperty(paramName) || paramName === 'extraParams';
+};
+
+/**
+* Set default params for each popup
+* @param {Object} userParams
+*/
+sweetAlert.setDefaults = function (userParams) {
+  if (!userParams || (typeof userParams === 'undefined' ? 'undefined' : _typeof(userParams)) !== 'object') {
+    return console.error('SweetAlert2: the argument for setDefaults() is required and has to be a object');
+  }
+
+  for (var param in userParams) {
+    if (!sweetAlert.isValidParameter(param)) {
+      console.warn('SweetAlert2: Unknown parameter "' + param + '"');
+      delete userParams[param];
+    }
+  }
+
+  _extends(modalParams, userParams);
+};
+
+/**
+ * Reset default params for each popup
+ */
+sweetAlert.resetDefaults = function () {
+  modalParams = _extends({}, defaultParams);
+};
+
+sweetAlert.noop = function () {};
+
+sweetAlert.version = '6.6.9';
+
+sweetAlert.default = sweetAlert;
+
+return sweetAlert;
+
+})));
+if (window.Sweetalert2) window.sweetAlert = window.swal = window.Sweetalert2;
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports) {
 
 var g;
@@ -32035,11 +33764,13 @@ module.exports = g;
 
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
+__webpack_require__(2);
 __webpack_require__(4);
+__webpack_require__(7);
+__webpack_require__(3);
 __webpack_require__(5);
 module.exports = __webpack_require__(6);
 

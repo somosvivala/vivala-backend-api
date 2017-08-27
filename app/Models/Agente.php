@@ -105,4 +105,14 @@ class Agente extends Model
     {
         return ucwords($this->cidade . ", " . $this->estado);
     }   
+
+    /**
+     * Acessor para pegar o o nome transformado sem espacos e com _
+     *
+     * @return string
+     */
+    public function getNomeCloudinaryAttribute()
+    {
+        return preg_replace("/ /", "_", strtolower($this->nome));
+    }   
 }

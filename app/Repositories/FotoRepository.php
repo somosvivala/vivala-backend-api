@@ -123,14 +123,19 @@ class FotoRepository extends BaseRepository
     public function sendToCloudinary($foto, $publicId)
     {
 
-        $retornoCloudinary = \Cloudder::upload($foto->fullPath, $publicId);
-        
-        $foto->update([
-            'cloudinary_id' => \Cloudder::get()
-        ]);
+        //Se existir o file
+        if ( \File::exists($foto->fullPath) ) {
 
-       return  ;
+            $retornoCloudinary = \Cloudder::upload($foto->fullPath, $publicId);
 
+            return  $foto->update([
+                'cloudinary_id' => \Cloudder::getPublicId()
+            ]);
+        }
+
+        else {
+            return false;
+        }
 
     }
 }

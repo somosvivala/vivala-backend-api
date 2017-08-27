@@ -7,5 +7,6 @@
   "/css/tesseract/tesseract.css": "/css/tesseract/tesseract.css",
   "/css/tesseract.css": "/css/tesseract.css",
   "/mix.js": "/mix.js",
-  "/css/cropper.css": "/css/cropper.css"
+  "/css/cropper.css": "/css/cropper.css",
+  "/css/sweetalert2.css": "/css/sweetalert2.css"
 }
