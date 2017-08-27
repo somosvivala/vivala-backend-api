@@ -51,5 +51,14 @@ ul#listagem-medias-slider-exp {
         }
     }
 }
-
+div#tab_fotoListagem {
+    img {
+        max-width:400px;
+        height:auto;
+        object-fit: contain;
+    }
+}
+div#tab_medias_slider {
+    min-height: 300px;
+}
 

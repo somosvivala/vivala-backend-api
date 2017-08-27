@@ -18,18 +18,18 @@
                         </a>
                     </li>
                     <li class="">
+                        <a href="#tab_fotoListagem" data-toggle="tab" aria-expanded="false">
+                            <strong>Foto da listagem</strong>
+                        </a>
+                    </li>
+                    <li class="">
                         <a href="#tab_blocosDescricao" data-toggle="tab" aria-expanded="false">
-                            <strong>Descrições</strong>
+                            <strong>Descrições Pág. interna</strong>
                         </a>
                     </li>
                     <li class="">
-                        <a href="#tab_fotos" data-toggle="tab" aria-expanded="false">
-                            <strong>Fotos</strong>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#tab_videos" data-toggle="tab" aria-expanded="false">
-                            <strong>Videos</strong>
+                        <a href="#tab_medias_slider" data-toggle="tab" aria-expanded="false">
+                            <strong>Fotos e Videos Pág. Interna </strong>
                         </a>
                     </li>
                     <li class="">
@@ -45,12 +45,6 @@
                         'method' => 'patch']) !!}
 
                         @include('expedicaos.fields')
-                        <!-- Submit Field -->
-                        <div class="form-group col-sm-12">
-                            {!! Form::submit('Atualizar', ['class' => 'btn btn-primary']) !!}
-                            <a href="{!! route('expedicaos.index') !!}" class="btn btn-default">Cancelar</a>
-                        </div>
-
 
                         {!! Form::close() !!}
 
@@ -69,6 +63,42 @@
                         ])
 
                         @include('bloco_descricaos.table', ['blocoDescricaos' => $expedicao->blocosDescricao])
+                    </div>
+                    <div class="tab-pane" id="tab_fotoListagem">
+                        <img src="//res.cloudinary.com/vivala/image/upload/{{ $expedicao->mediaListagem->cloudinary_id }}" alt="Foto da {{ $expedicao->titulo}}">
+                        <a class="btn btn-primary" href="/expedicaos/{{$expedicao->id}}/foto-listagem">Trocar Foto &nbsp; <i class="fa fa-pencil"></i></a>
+
+                    </div>
+                    <div class="tab-pane" id="tab_medias_slider">
+                        <div class="col-xs-12 text-center" style="margin-top:2rem">
+                            <div class="col-xs-6">
+                                <a class="btn btn-primary" href="#modal-video" data-toggle="modal" data-target="#modal-video">Adicionar Video &nbsp; <i class="fa fa-play"></i></a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a class="btn btn-primary" href="#modal-foto" data-toggle="modal" data-target="#modal-foto">Adicionar Foto &nbsp; <i class="fa fa-image"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 text-center mx-auto">
+                            @include('expedicaos.medias_slider', [
+                                'expedicao' => $expedicao
+                            ])
+                        </div>
+                        <div class="container-modal-videos ">
+                            @include('expedicaos.partials.modal_video_slider', [
+                                'modal_id' => 'modal-video',
+                                'owner_id' => $expedicao->id,
+                                'owner_type' => get_class($expedicao),
+                                'ordem' => count($expedicao->mediasSlider)
+                            ])
+                        </div>
+                        <div class="container-modal-fotos ">
+                            @include('expedicaos.partials.modal_foto_slider', [
+                                'modal_id' => 'modal-foto',
+                                'owner_id' => $expedicao->id,
+                                'owner_type' => get_class($expedicao),
+                                'ordem' => count($expedicao->mediasSlider)
+                            ])
+                        </div>
                     </div>
                     <div class="tab-pane" id="tab_inscricoes">
 
