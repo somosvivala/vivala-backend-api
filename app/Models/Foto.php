@@ -97,7 +97,6 @@ class Foto extends Model
     ];
 
     public $hidden = [
-        'id',
         'url',
         'created_at',
         'created_at',

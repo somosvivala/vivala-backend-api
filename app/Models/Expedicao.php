@@ -68,7 +68,10 @@ class Expedicao extends Model
      * @var array
      */
     public static $rules = [
-
+        'titulo' => 'required',
+        'descricao_listagem' => 'required',
+        'data_inicio' => 'required',
+        'data_fim' => 'required',
     ];
 
     /**
@@ -158,6 +161,7 @@ class Expedicao extends Model
         });
 
         $videos->each(function ($Media) use (&$medias) {
+            $Media->id = $Media->id;
             $Media->type = 'video';
             $Media->code = $Media->partial_url;
             unset($Media->partial_url);

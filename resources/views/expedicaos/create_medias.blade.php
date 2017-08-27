@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="content-header">
-        <h2>Passo 4 - Fotos e videos da pagina interna da expedição</h2>
+        <h1>Passo 4/4 - Fotos e videos da pagina interna da expedição</h1>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')

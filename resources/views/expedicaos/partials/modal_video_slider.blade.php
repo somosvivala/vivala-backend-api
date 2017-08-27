@@ -2,7 +2,9 @@
 
 @section('modal-id') id='modal-video' @overwrite
 
-@section('modal-title', 'Adicionando um video ao slider da expedicao')
+@section('modal-title')
+Adicionando um video ao slider da expedicao
+@overwrite
 
 @section('modal-body')
 

@@ -60,7 +60,7 @@ class FotoController extends AppBaseController
 
         Flash::success('Foto saved successfully.');
 
-        return redirect(route('fotos.index'));
+        return redirect()->back();
     }
 
     /**
@@ -77,7 +77,7 @@ class FotoController extends AppBaseController
         if (empty($foto)) {
             Flash::error('Foto not found');
 
-            return redirect(route('fotos.index'));
+            return redirect()->back();
         }
 
         return view('fotos.show')->with('foto', $foto);
@@ -97,7 +97,7 @@ class FotoController extends AppBaseController
         if (empty($foto)) {
             Flash::error('Foto not found');
 
-            return redirect(route('fotos.index'));
+            return redirect()->back();
         }
 
         return view('fotos.edit')->with('foto', $foto);
@@ -118,14 +118,14 @@ class FotoController extends AppBaseController
         if (empty($foto)) {
             Flash::error('Foto not found');
 
-            return redirect(route('fotos.index'));
+            return redirect()->back();
         }
 
         $foto = $this->fotoRepository->update($request->all(), $id);
 
         Flash::success('Foto updated successfully.');
 
-        return redirect(route('fotos.index'));
+        return redirect()->back();
     }
 
     /**
@@ -142,13 +142,13 @@ class FotoController extends AppBaseController
         if (empty($foto)) {
             Flash::error('Foto not found');
 
-            return redirect(route('fotos.index'));
+            return redirect()->back();
         }
 
         $this->fotoRepository->delete($id);
 
         Flash::success('Foto deleted successfully.');
 
-        return redirect(route('fotos.index'));
+        return redirect()->back();
     }
 }

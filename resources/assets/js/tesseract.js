@@ -8,8 +8,12 @@ $(function () {
         var myDropzone = new Dropzone("#dropzone-container", {
             addRemoveLinks: true,
             uploadMultiple: false,
+            dictCancelUpload: 'Processando.. - Cancelar',
             dictDefaultMessage: "<h2>Clique ou arraste arquivos</h2> <i class='fa fa-3x fa-hand-o-down'></i>",
             init: function () {
+                this.on('thumbnail', function (data, dataUrl) {
+                });
+                
 
                 //Função executada quando o upload der certo
                 this.on('success', function (data, response) {
@@ -40,6 +44,9 @@ $(function () {
 
                     myDropzone.removeFile(file);
 
+                });
+
+                this.on('complete', function() {
                 });
 
             }

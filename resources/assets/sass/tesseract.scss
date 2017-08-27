@@ -11,6 +11,20 @@
         border: 5px dashed rgba(255, 129, 0, 0.69);
         text-align: center;
         
+        .dz-image {
+            margin: auto;
+        }
+
+        .dz-preview.dz-image-preview {
+            background: none;
+        }
+
+        .dz-error {
+            .dz-progress,.dz-size,.dz-details,.dz-filename {
+                display:none;
+            }
+        }
+
         &.dz-started {
             h2, i {
                 display: none;

@@ -75,7 +75,7 @@ class VideoController extends AppBaseController
         if (empty($video)) {
             Flash::error('Video not found');
 
-            return redirect(route('videos.index'));
+            return redirect()->back();
         }
 
         return view('videos.show')->with('video', $video);
@@ -95,7 +95,7 @@ class VideoController extends AppBaseController
         if (empty($video)) {
             Flash::error('Video not found');
 
-            return redirect(route('videos.index'));
+            return redirect()->back();
         }
 
         return view('videos.edit')->with('video', $video);
@@ -116,14 +116,14 @@ class VideoController extends AppBaseController
         if (empty($video)) {
             Flash::error('Video not found');
 
-            return redirect(route('videos.index'));
+            return redirect()->back();
         }
 
         $video = $this->videoRepository->update($request->all(), $id);
 
         Flash::success('Video updated successfully.');
 
-        return redirect(route('videos.index'));
+        return redirect()->back();
     }
 
     /**
@@ -140,13 +140,13 @@ class VideoController extends AppBaseController
         if (empty($video)) {
             Flash::error('Video not found');
 
-            return redirect(route('videos.index'));
+            return redirect()->back();
         }
 
         $this->videoRepository->delete($id);
 
         Flash::success('Video deleted successfully.');
 
-        return redirect(route('videos.index'));
+        return redirect()->back();
     }
 }

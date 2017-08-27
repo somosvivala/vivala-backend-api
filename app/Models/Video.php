@@ -92,7 +92,6 @@ class Video extends Model
     ];
 
     public $hidden = [
-        'id',
         'url',
         'created_at',
         'created_at',

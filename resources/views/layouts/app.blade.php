@@ -17,6 +17,7 @@
     @yield('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 </head>
 
 <body class="skin-blue sidebar-mini">
