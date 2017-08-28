@@ -116,6 +116,7 @@ class BlocoDescricao extends Model
      */
     public function getTextoAttribute($value) 
     {
-        return $value ? htmlspecialchars($value, ENT_QUOTES) : '';
+        return $value;
+        //return $value ? htmlspecialchars($value, ENT_QUOTES) : '';
     }
 }
