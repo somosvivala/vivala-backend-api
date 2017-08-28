@@ -6,7 +6,7 @@
 
     <li class="col-xs-12 col-sm-6 col-md-3 media-item">
     @if ($Media && $Media['type'] == 'photo')
-        <img class="img-media-slider" src="//res.cloudinary.com/vivala/image/upload/{{ $Media['code'] }}" alt="Foto da {{ $expedicao->titulo}}">
+        <img class="img-media-slider" src="//res.cloudinary.com/vivala/image/upload/c_scale,h_120/{{ $Media['code'] }}" alt="Foto da {{ $expedicao->titulo}}">
         <p>
             {!! Form::open(['route' => ['fotos.destroy', $Media['id']], 'method' => 'delete']) !!}
             <div class='btn-group'>
