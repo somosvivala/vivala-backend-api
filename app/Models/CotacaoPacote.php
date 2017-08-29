@@ -504,24 +504,13 @@ class CotacaoPacote extends Model
     }
 
     /**
-     * Mutator para nomes_seguro_viagem, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setNomesSeguroViagemAttribute($value)
-    {
-        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
-        $this->attributes['nomes_seguro_viagem'] = $valorFinal;
-    }
-
-    /**
      * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
     public function setDatasNascimentoSeguroViagemAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
     }
 

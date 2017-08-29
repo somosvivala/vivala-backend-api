@@ -117,7 +117,7 @@ class CotacaoPacoteAPIController extends AppBaseController
         $this->arrumaCampoCategoriasCarro($request, $inputs);
         $this->arrumaCampoItensCarro($request, $inputs);
         $this->arrumaCampoSegurosViagem($request, $inputs);
-        $this->arrumaCampoPasseiosInteresses($request, $inputs);
+        //$this->arrumaCampoPasseiosInteresses($request, $inputs);
 
         $cotacaoPacotes = $this->cotacaoPacoteRepository->create($inputs);
 

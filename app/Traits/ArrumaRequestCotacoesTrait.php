@@ -159,9 +159,6 @@ trait ArrumaRequestCotacoesTrait
     public function arrumaCampoSegurosViagem($request, &$inputs)
     {
         //Seguros Viagem
-        if ($request->seguro_viagem_nome) {
-            $inputs = array_merge($inputs, ['nomes_seguro_viagem' => $request->seguro_viagem_nome]);
-        }
         if ($request->seguro_viagem_data_nascimento) {
             $inputs = array_merge($inputs, ['datas_nascimento_seguro_viagem' => $request->datas_nascimento_seguro_viagem]);
         }
