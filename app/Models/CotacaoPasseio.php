@@ -238,5 +238,14 @@ class CotacaoPasseio extends Model
         return $this->data_volta;
     }
 
+    /**
+     * getTemDatasFlexiveisAttribute.
+     *
+     * @return string
+     */
+    public function getTemDatasFlexiveisAttribute()
+    {
+        return $this->datas_flexiveis ? 'Sim' : 'Não';
+    }
 
 }

@@ -218,7 +218,7 @@ class CotacaoHospedagem extends Model
      */
     public function setHospedagemServicosAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_values($value)) : $value;
         $this->attributes['hospedagem_servicos'] = $valorFinal;
     }
 
