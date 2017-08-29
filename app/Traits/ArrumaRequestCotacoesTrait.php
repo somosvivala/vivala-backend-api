@@ -160,7 +160,7 @@ trait ArrumaRequestCotacoesTrait
     {
         //Seguros Viagem
         if ($request->seguro_viagem_data_nascimento) {
-            $inputs = array_merge($inputs, ['datas_nascimento_seguro_viagem' => $request->datas_nascimento_seguro_viagem]);
+            $inputs = array_merge($inputs, ['datas_nascimento_seguro_viagem' => $request->seguro_viagem_data_nascimento]);
         }
     }
 }

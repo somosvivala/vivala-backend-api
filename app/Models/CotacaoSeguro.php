@@ -184,21 +184,7 @@ class CotacaoSeguro extends Model
      */
     public function setDatasNascimentoSeguroViagemAttribute($value)
     {
-        $arrayNovo = null;
-        if (is_array($value)) {
-
-            //Formatando as datas do array antes de implodir em uma string
-            $arrayNovo = array_map(function ($item) {
-                return ( new \Carbon\Carbon($item) )->format('d/m/Y');
-            }, $value);
-        }
-
-        if ($arrayNovo) {
-            $valorFinal = is_array($arrayNovo) ? implode(', ', $arrayNovo) : $value;
-        } else {
-            $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        }
-
+        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
         $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
     }
 
