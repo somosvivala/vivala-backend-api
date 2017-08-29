@@ -214,7 +214,7 @@ class CotacaoCruzeiro extends Model
      */
     public function getDataIdaFormatadaAttribute()
     {
-        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+        return $this->data_ida;
     }
 
     /**
@@ -224,7 +224,7 @@ class CotacaoCruzeiro extends Model
      */
     public function getDataVoltaFormatadaAttribute()
     {
-        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+        return $this->data_volta;
     }
 
     /**

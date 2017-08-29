@@ -218,7 +218,7 @@ class CotacaoHospedagem extends Model
      */
     public function setHospedagemServicosAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['hospedagem_servicos'] = $valorFinal;
     }
 
@@ -244,17 +244,6 @@ class CotacaoHospedagem extends Model
         return  $dt->format('d/m/Y') ;
     }
 
-        /**
-     * getDataIdaAttribute.
-     *
-     * @return string
-     */
-    public function getCreatedAtAttribute($value)
-    {
-        $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
-    }
-
     /**
      * getDataIdaFormatadaAttribute.
      *
@@ -262,7 +251,7 @@ class CotacaoHospedagem extends Model
      */
     public function getDataIdaFormatadaAttribute()
     {
-        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+        return $this->data_ida;
     }
 
     /**
@@ -272,7 +261,7 @@ class CotacaoHospedagem extends Model
      */
     public function getDataVoltaFormatadaAttribute()
     {
-        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+        return $this->data_volta;
     }
 
     /**
