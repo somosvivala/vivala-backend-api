@@ -107,6 +107,8 @@ class CotacaoCarroAPIController extends AppBaseController
     {
         $input = $request->all();
 
+        \Log::info(json_encode($input));
+
         $cotacaoCarros = $this->cotacaoCarroRepository->create($input);
 
         return $this->sendResponse($cotacaoCarros->toArray(), 'Cotacao Carro saved successfully');

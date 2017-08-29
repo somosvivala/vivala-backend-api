@@ -421,4 +421,38 @@ class CotacaoAereo extends Model
     {
         return $this->datas_flexiveis ? 'Sim' : 'Não';
     }
+
+
+    /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getDataIdaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+    /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getDataVoltaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+        /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
 }

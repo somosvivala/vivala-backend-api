@@ -49,7 +49,6 @@
 }
 
 //MEDIAS SLIDER
-
 ul#listagem-medias-slider-exp {
     padding-top: 2rem;
     min-height: 120px;
@@ -77,3 +76,16 @@ div#tab_medias_slider {
     min-height: 490px;
 }
 
+//DATA TABLES
+div#datatable-tesseract {
+    overflow: auto;
+}
+
+
+//AGENTES
+.row-agentes {
+    img.foto-agente {
+        max-width: 800px;
+        height: auto;
+    }
+}

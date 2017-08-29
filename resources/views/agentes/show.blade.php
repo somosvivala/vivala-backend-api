@@ -9,9 +9,9 @@
     <div class="content">
         <div class="box box-primary">
             <div class="box-body">
-                <div class="row" style="padding-left: 20px">
+                <div class="row row-agentes" style="padding-left: 20px">
                     
-                    <img src="{{ $agente->foto ? $agente->foto->url : '' }}" alt="Foto {{ $agente->nome }}">
+                    <img class="foto-agente" src="{{ $agente->foto ? $agente->foto->url : '' }}" alt="Foto {{ $agente->nome }}">
                     <a href="{!! url('agentes/'.$agente->id.'/foto') !!}" class="btn btn-default">Trocar Foto</a>
 
                     @include('agentes.show_fields')

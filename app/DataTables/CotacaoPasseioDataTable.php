@@ -40,7 +40,7 @@ class CotacaoPasseioDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->addAction(['width' => '10%'])
-            ->ajax('')
+            ->ajax(['type' => 'POST', 'data' => '{"_method":"GET"}'])
             ->parameters([
                 'dom' => 'Bfrtip',
                 'scrollX' => false,

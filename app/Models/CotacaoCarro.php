@@ -174,7 +174,7 @@ class CotacaoCarro extends Model
      */
     public function getDataRetiradaFormatadaAttribute()
     {
-        return $this->data_devolucao ? $this->data_devolucao->format('d/m/Y') : '';
+        return $this->dataRetirada ;
     }
 
     /**
@@ -182,7 +182,7 @@ class CotacaoCarro extends Model
      */
     public function getDataDevolucaoFormatadaAttribute()
     {
-        return $this->data_devolucao ? $this->data_devolucao->format('d/m/Y') : '';
+        return $this->dataDevolucao ;
     }
 
     /**
@@ -214,7 +214,7 @@ class CotacaoCarro extends Model
      */
     public function setCategoriasCarroAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['categorias_carro'] = $valorFinal;
     }
 
@@ -225,7 +225,32 @@ class CotacaoCarro extends Model
      */
     public function setItensCarroAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['itens_carro'] = $valorFinal;
     }
+
+
+    /**
+     * getDataRetiradaAttribute.
+     *
+     * @return string
+     */
+    public function getDataRetiradaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+    /**
+     * getDataDevolucaoAttribute.
+     *
+     * @return string
+     */
+    public function getDataDevolucaoAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+
 }

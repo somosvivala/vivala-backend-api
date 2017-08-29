@@ -234,6 +234,41 @@ class CotacaoCruzeiro extends Model
      */
     public function getTemDatasFlexiveisAttribute()
     {
-        return $this->datas_flexiveis ? 'Sim' : 'Não';
+        return $this->datas_flexiveis;
     }
+
+    /**
+     * getTemDatasFlexiveisAttribute.
+     *
+     * @return string
+     */
+    public function getDatasFlexiveisAttribute($value)
+    {
+        return $value ? 'Sim' : 'Não';
+    }
+    
+
+    /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getDataIdaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+    /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getDataVoltaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+
 }

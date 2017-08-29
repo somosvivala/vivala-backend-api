@@ -102,7 +102,7 @@ class CotacaoHospedagem extends Model
 
     public $table = 'cotacao_hospedagems';
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'data_ida', 'data_volta'];
 
     public $fillable = [
         'hotel_ou_regiao',
@@ -121,30 +121,6 @@ class CotacaoHospedagem extends Model
         'nome_preferencia',
         'email',
         'telefone',
-    ];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'hotel_ou_regiao' => 'string',
-        'data_ida' => 'datetime',
-        'data_volta' => 'datetime',
-        'qnt_adultos' => 'integer',
-        'qnt_criancas' => 'integer',
-        'qnt_bebes' => 'integer',
-        'tipo_quarto' => 'string',
-        'qnt_quartos' => 'integer',
-        'hospedagem_servicos' => 'string',
-        'hospedagem_tipo' => 'string',
-        'hospedagem_solicitacoes' => 'string',
-        'hospedagem_preco_desejado' => 'float',
-        'nome_completo' => 'string',
-        'nome_preferencia' => 'string',
-        'email' => 'string',
-        'telefone' => 'string',
     ];
 
     /**
@@ -204,23 +180,13 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para numero_paradas, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setNumeroParadasAttribute($value)
-    {
-        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : '';
-    }
-
-    /**
      * Mutator para tipo_quarto, modificando antes de inserir no BD.
      *
      * @param mixed $value
      */
     public function setTipoQuartoAttribute($value)
     {
-        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : '';
+        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -230,18 +196,7 @@ class CotacaoHospedagem extends Model
      */
     public function setHospedagemTipoAttribute($value)
     {
-        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : '';
-    }
-
-    /**
-     * Mutator para aereo_preco_desejado, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setAereoPrecoDesejadoAttribute($value)
-    {
-        $valorLimpo = str_replace([' ', 'R$'], '', $value);
-        $this->attributes['aereo_preco_desejado'] = $valorLimpo;
+        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -255,27 +210,6 @@ class CotacaoHospedagem extends Model
         $this->attributes['hospedagem_preco_desejado'] = $valorLimpo;
     }
 
-    /**
-     * Mutator para transporte_interno_preco_desejado, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setTransporteInternoPrecoDesejadoAttribute($value)
-    {
-        $valorLimpo = str_replace([' ', 'R$'], '', $value);
-        $this->attributes['transporte_interno_preco_desejado'] = $valorLimpo;
-    }
-
-    /**
-     * Mutator para passeios_preco_desejado, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setPasseiosPrecoDesejadoAttribute($value)
-    {
-        $valorLimpo = str_replace([' ', 'R$'], '', $value);
-        $this->attributes['passeios_preco_desejado'] = $valorLimpo;
-    }
 
     /**
      * Mutator para hospedagem_servicos, modificando antes de inserir no BD.
@@ -289,80 +223,36 @@ class CotacaoHospedagem extends Model
     }
 
     /**
-     * Mutator para transporte_interno, modificando antes de inserir no BD.
+     * getDataIdaAttribute.
      *
-     * @param mixed $value
+     * @return string
      */
-    public function setTransporteInternoAttribute($value)
+    public function getDataIdaAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        $this->attributes['transporte_interno'] = $valorFinal;
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
     }
 
     /**
-     * Mutator para tipos_transfer, modificando antes de inserir no BD.
+     * getDataIdaAttribute.
      *
-     * @param mixed $value
+     * @return string
      */
-    public function setTiposTransferAttribute($value)
+    public function getDataVoltaAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        $this->attributes['tipos_transfer'] = $valorFinal;
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
     }
 
-    /**
-     * Mutator para categorias_carro, modificando antes de inserir no BD.
+        /**
+     * getDataIdaAttribute.
      *
-     * @param mixed $value
+     * @return string
      */
-    public function setCategoriasCarroAttribute($value)
+    public function getCreatedAtAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        $this->attributes['categorias_carro'] = $valorFinal;
-    }
-
-    /**
-     * Mutator para itens_carro, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setItensCarroAttribute($value)
-    {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        $this->attributes['itens_carro'] = $valorFinal;
-    }
-
-    /**
-     * Mutator para passeios_interesses, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setPasseiosInteressesAttribute($value)
-    {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        $this->attributes['passeios_interesses'] = $valorFinal;
-    }
-
-    /**
-     * Mutator para nomes_seguro_viagem, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setNomesSeguroViagemAttribute($value)
-    {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        $this->attributes['nomes_seguro_viagem'] = $valorFinal;
-    }
-
-    /**
-     * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setDatasSeguroViagemAttribute($value)
-    {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
-        $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
     }
 
     /**
