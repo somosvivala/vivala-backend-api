@@ -184,6 +184,29 @@ class CotacaoPasseio extends Model
         $this->attributes['data_volta'] = $cb->format('Y-m-d');
     }
 
+    
+    /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getDataIdaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+    /**
+     * getDataVoltaAttribute.
+     *
+     * @return string
+     */
+    public function getDataVoltaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
     /**
      * Mutator para passeios_interesses, modificando antes de inserir no BD.
      *
@@ -191,7 +214,7 @@ class CotacaoPasseio extends Model
      */
     public function setPasseiosInteressesAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['passeios_interesses'] = $valorFinal;
     }
 
@@ -202,7 +225,7 @@ class CotacaoPasseio extends Model
      */
     public function getDataIdaFormatadaAttribute()
     {
-        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+        return $this->data_ida;
     }
 
     /**
@@ -212,16 +235,8 @@ class CotacaoPasseio extends Model
      */
     public function getDataVoltaFormatadaAttribute()
     {
-        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+        return $this->data_volta;
     }
 
-    /**
-     * getTemDatasFlexiveisAttribute.
-     *
-     * @return string
-     */
-    public function getTemDatasFlexiveisAttribute()
-    {
-        return $this->datas_flexiveis ? 'Sim' : 'Não';
-    }
+
 }

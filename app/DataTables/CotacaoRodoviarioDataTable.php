@@ -74,7 +74,7 @@ class CotacaoRodoviarioDataTable extends DataTable
             'destino' => ['name' => 'destino', 'data' => 'destino'],
             'data_ida' => ['name' => 'data_ida', 'data' => 'data_ida'],
             'data_volta' => ['name' => 'data_volta', 'data' => 'data_volta'],
-            'sem_volta' => ['name' => 'sem_volta', 'data' => 'sem_volta'],
+            'sem_volta' => ['name' => 'sem_volta', 'data' => 'sem_volta', 'title' => 'Somente Ida?'],
             'datas_flexiveis' => ['name' => 'datas_flexiveis', 'data' => 'datas_flexiveis', 'title' => 'Datas Flexíveis'],
             'qnt_passageiros' => ['name' => 'qnt_passageiros', 'data' => 'qnt_passageiros'],
             'hora_ida' => ['name' => 'hora_ida', 'data' => 'hora_ida'],

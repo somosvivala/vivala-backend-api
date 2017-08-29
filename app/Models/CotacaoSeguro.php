@@ -155,6 +155,28 @@ class CotacaoSeguro extends Model
         $this->attributes['data_volta'] = $cb->format('Y-m-d');
     }
 
+    
+    /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getDataIdaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+    /**
+     * getDataVoltaAttribute.
+     *
+     * @return string
+     */
+    public function getDataVoltaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
     /**
      * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
      *
@@ -187,7 +209,7 @@ class CotacaoSeguro extends Model
      */
     public function getDataIdaFormatadaAttribute()
     {
-        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+        return $this->data_ida;
     }
 
     /**
@@ -197,7 +219,7 @@ class CotacaoSeguro extends Model
      */
     public function getDataVoltaFormatadaAttribute()
     {
-        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+        return $this->data_volta;
     }
 
     /**
@@ -207,6 +229,16 @@ class CotacaoSeguro extends Model
      */
     public function getEnvolveEsportesRadicaisAttribute()
     {
-        return $this->esportes_radicais ? 'Sim' : 'Não';
+        return $this->esportes_radicais;
+    }
+
+    /**
+     * getEnvolveEsportesRadicaisAttribute.
+     *
+     * @return string
+     */
+    public function getEsportesRadicaisAttribute($value)
+    {
+        return $value ? 'Sim' : 'Não';
     }
 }

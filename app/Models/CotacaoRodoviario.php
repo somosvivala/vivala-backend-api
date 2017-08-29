@@ -189,9 +189,31 @@ class CotacaoRodoviario extends Model
      */
     public function getDataIdaFormatadaAttribute()
     {
-        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+        return $this->data_ida;
     }
 
+    
+    /**
+     * getDataIdaAttribute.
+     *
+     * @return string
+     */
+    public function getDataIdaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
+
+    /**
+     * getDataVoltaAttribute.
+     *
+     * @return string
+     */
+    public function getDataVoltaAttribute($value)
+    {
+        $dt = new \Carbon\Carbon($value);
+        return  $dt->format('d/m/Y') ;
+    }
     /**
      * getDataVoltaFormatadaAttribute.
      *
@@ -199,7 +221,7 @@ class CotacaoRodoviario extends Model
      */
     public function getDataVoltaFormatadaAttribute()
     {
-        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+        return $this->data_volta;
     }
 
     /**
@@ -209,8 +231,20 @@ class CotacaoRodoviario extends Model
      */
     public function getTemDatasFlexiveisAttribute()
     {
-        return $this->datas_flexiveis ? 'Sim' : 'Não';
+        return $this->datas_flexiveis;
     }
+
+    /**
+     * getTemDatasFlexiveisAttribute.
+     *
+     * @return string
+     */
+    public function getDatasFlexiveisAttribute($value)
+    {
+        return $value ? 'Sim' : 'Não';
+    }
+
+
 
     /**
      * getTemDatasFlexiveisAttribute.
@@ -219,6 +253,16 @@ class CotacaoRodoviario extends Model
      */
     public function getSomenteIdaAttribute()
     {
-        return $this->sem_volta ? 'Sim' : 'Não';
+        return $this->sem_volta;
+    }
+
+        /**
+     * getTemDatasFlexiveisAttribute.
+     *
+     * @return string
+     */
+    public function getSemVoltaAttribute($value)
+    {
+        return $value ? 'Sim' : 'Não';
     }
 }

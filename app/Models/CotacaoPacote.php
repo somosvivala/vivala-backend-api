@@ -350,7 +350,7 @@ class CotacaoPacote extends Model
      */
     public function setPeriodoVooIdaAttribute($value)
     {
-        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : '';
+        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -360,7 +360,7 @@ class CotacaoPacote extends Model
      */
     public function setPeriodoVooVoltaAttribute($value)
     {
-        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : '';
+        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -370,7 +370,7 @@ class CotacaoPacote extends Model
      */
     public function setNumeroParadasAttribute($value)
     {
-        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : '';
+        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : $value;
     }
 
     /**
@@ -380,7 +380,7 @@ class CotacaoPacote extends Model
      */
     public function setTipoQuartoAttribute($value)
     {
-        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : '';
+        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -390,7 +390,7 @@ class CotacaoPacote extends Model
      */
     public function setHospedagemTipoAttribute($value)
     {
-        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : '';
+        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -444,7 +444,7 @@ class CotacaoPacote extends Model
      */
     public function setHospedagemServicosAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['hospedagem_servicos'] = $valorFinal;
     }
 
@@ -455,7 +455,7 @@ class CotacaoPacote extends Model
      */
     public function setTransporteInternoAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['transporte_interno'] = $valorFinal;
     }
 
@@ -466,7 +466,7 @@ class CotacaoPacote extends Model
      */
     public function setTiposTransferAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['tipos_transfer'] = $valorFinal;
     }
 
@@ -477,7 +477,7 @@ class CotacaoPacote extends Model
      */
     public function setCategoriasCarroAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['categorias_carro'] = $valorFinal;
     }
 
@@ -488,7 +488,7 @@ class CotacaoPacote extends Model
      */
     public function setItensCarroAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['itens_carro'] = $valorFinal;
     }
 
@@ -499,7 +499,7 @@ class CotacaoPacote extends Model
      */
     public function setPasseiosInteressesAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['passeios_interesses'] = $valorFinal;
     }
 
@@ -510,7 +510,7 @@ class CotacaoPacote extends Model
      */
     public function setNomesSeguroViagemAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['nomes_seguro_viagem'] = $valorFinal;
     }
 
@@ -521,7 +521,7 @@ class CotacaoPacote extends Model
      */
     public function setDatasNascimentoSeguroViagemAttribute($value)
     {
-        $valorFinal = is_array($value) ? implode(', ', $value) : $value;
+        $valorFinal = is_array($value) ? implode(', ', array_keys($value)) : $value;
         $this->attributes['datas_nascimento_seguro_viagem'] = $valorFinal;
     }
 
@@ -532,7 +532,7 @@ class CotacaoPacote extends Model
      */
     public function getDataIdaFormatadaAttribute()
     {
-        return $this->data_ida ? $this->data_ida->format('d/m/Y') : '';
+        return $this->data_ida;
     }
 
     /**
@@ -542,7 +542,7 @@ class CotacaoPacote extends Model
      */
     public function getDataVoltaFormatadaAttribute()
     {
-        return $this->data_volta ? $this->data_volta->format('d/m/Y') : '';
+        return $this->data_volta;
     }
 
     /**
