@@ -93,14 +93,6 @@
                 'info2'=>$cotacao->periodo_voo_volta
             ])
             @include('emails.layouts.td', [
-                'info1'=>'Aeroporto de origem',
-                'info2'=>$cotacao->aeroporto_origem
-            ])
-            @include('emails.layouts.td', [
-                'info1'=>'Aeroporto de retorno',
-                'info2'=>$cotacao->aeroporto_retorno
-            ])
-            @include('emails.layouts.td', [
                 'info1'=>'Companhias aéreas de preferência',
                 'info2'=>$cotacao->companias_aereas_preferenciais
             ])
