@@ -75,6 +75,7 @@ class InscricaoExpedicaoDataTable extends DataTable
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
             'created_at' => ['name' => 'created_at', 'title' => 'Data inscrição', 'data' => 'created_at'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio'],
         ];
     }
 

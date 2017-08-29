@@ -73,6 +73,7 @@ class InscricaoNewsletterDataTable extends DataTable
             'nome' => ['name' => 'nome', 'data' => 'nome'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'created_at' => ['name' => 'created_at', 'title' => 'Data Inscrição', 'data' => 'created_at'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data Envio'],
         ];
     }
 

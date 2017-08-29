@@ -75,7 +75,8 @@ class AgenteDataTable extends DataTable
             'nome' => ['name' => 'nome', 'data' => 'nome'],
             'cidade' => ['name' => 'cidade', 'data' => 'cidade'],
             'estado' => ['name' => 'estado', 'data' => 'estado'],
-            'destaque' => ['name' => 'destaque', 'data' => 'destaque']
+            'destaque' => ['name' => 'destaque', 'data' => 'destaque'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data Envio'],
         ];
     }
 

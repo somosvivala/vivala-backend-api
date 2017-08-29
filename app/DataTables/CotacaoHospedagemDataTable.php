@@ -70,7 +70,7 @@ class CotacaoHospedagemDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'hotel_ou_regiao' => ['name' => 'hotel_ou_regiao', 'data' => 'hotel_ou_regiao'],
+            'hotel_ou_regiao' => ['name' => 'hotel_ou_regiao', 'data' => 'hotel_ou_regiao', 'title' => 'Hotel ou Região'],
             'data_ida' => ['name' => 'data_ida', 'data' => 'data_ida'],
             'data_volta' => ['name' => 'data_volta', 'data' => 'data_volta'],
             'qnt_quartos' => ['name' => 'qnt_quartos', 'data' => 'qnt_quartos'],
@@ -78,7 +78,7 @@ class CotacaoHospedagemDataTable extends DataTable
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo', 'title' => 'Nome'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data Envio'],
         ];
     }
 
