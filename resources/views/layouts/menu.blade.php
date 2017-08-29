@@ -1,3 +1,7 @@
+<li class="{{ Request::is('agentes*') ? 'active' : '' }}">
+    <a href="{!! route('agentes.index') !!}"><i class="fa fa-users" aria-hidden="true"></i><span>Agentes</span></a>
+</li>
+
 <!-- Dropdown Menu Contatos -->
 <li class="treeview" id="scrollspy-components">
   <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i>Contatos</a>
@@ -18,6 +22,7 @@
 
 
 <!-- Dropdown Menu Cotações -->
+
 <li class="treeview" id="scrollspy-components">
   <a href="javascript:void(0)"><i class="fa fa-circle-o"></i>Cotações</a>
   <ul class="nav treeview-menu">
@@ -70,13 +75,11 @@
 </li>
 
 
-
+{{-- Remoção dos Vídeos
 <li class="{{ Request::is('videos*') ? 'active' : '' }}">
     <a href="{!! route('videos.index') !!}"><i class="fa fa-edit"></i><span>Videos</span></a>
 </li>
+--}}
 
 
-<li class="{{ Request::is('agentes*') ? 'active' : '' }}">
-    <a href="{!! route('agentes.index') !!}"><i class="fa fa-edit"></i><span>Agentes</span></a>
-</li>
 

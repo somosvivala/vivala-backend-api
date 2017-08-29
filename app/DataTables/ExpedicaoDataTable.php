@@ -70,10 +70,11 @@ class ExpedicaoDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'titulo' => ['name' => 'titulo', 'data' => 'titulo'],
-            'descricao_listagem' => ['name' => 'descricao_listagem', 'data' => 'descricao_listagem'],
-            'data_inicio' => ['name' => 'data_inicio', 'data' => 'data_inicio'],
+            'titulo' => ['name' => 'titulo', 'data' => 'titulo', 'title' => 'Título'],
+            'descricao_listagem' => ['name' => 'descricao_listagem', 'data' => 'descricao_listagem', 'title' => 'Descrição Listagem'],
+            'data_inicio' => ['name' => 'data_inicio', 'data' => 'data_inicio', 'title' => 'Data Início'],
             'data_fim' => ['name' => 'data_fim', 'data' => 'data_fim'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data Envio'],
         ];
     }
 

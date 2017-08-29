@@ -74,15 +74,16 @@ class CotacaoPasseioDataTable extends DataTable
             'data_ida' => ['name' => 'data_ida', 'data' => 'data_ida'],
             'data_volta' => ['name' => 'data_volta', 'data' => 'data_volta'],
             'qnt_adultos' => ['name' => 'qnt_adultos', 'data' => 'qnt_adultos'],
-            'qnt_criancas' => ['name' => 'qnt_criancas', 'data' => 'qnt_criancas'],
-            'qnt_bebes' => ['name' => 'qnt_bebes', 'data' => 'qnt_bebes'],
+            'qnt_criancas' => ['name' => 'qnt_criancas', 'data' => 'qnt_criancas', 'title' => 'Qnt Crianças'],
+            'qnt_bebes' => ['name' => 'qnt_bebes', 'data' => 'qnt_bebes', 'title' => 'Qnt Bebês'],
             'passeios_interesses' => ['name' => 'passeios_interesses', 'data' => 'passeios_interesses'],
-            'solicitacoes' => ['name' => 'solicitacoes', 'data' => 'solicitacoes'],
-            'preco_desejado' => ['name' => 'preco_desejado', 'data' => 'preco_desejado'],
+            'solicitacoes' => ['name' => 'solicitacoes', 'data' => 'solicitacoes', 'title' => 'Solicitações'],
+            'preco_desejado' => ['name' => 'preco_desejado', 'data' => 'preco_desejado', 'title' => 'Preço Desejado'],
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
-            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
+            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia', 'title' => 'Nome Preferência'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data Envio'],
         ];
     }
 

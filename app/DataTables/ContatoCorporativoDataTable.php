@@ -73,9 +73,9 @@ class ContatoCorporativoDataTable extends DataTable
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
-            'nome_empresa' => ['name' => 'nome_empresa', 'data' => 'nome_empresa'],
-            'numero_funcionarios' => ['name' => 'numero_funcionarios', 'data' => 'numero_funcionarios'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de envio'],
+            'nome_empresa' => ['name' => 'nome_empresa', 'data' => 'nome_empresa', 'title' => 'Nome Empresa'],
+            'numero_funcionarios' => ['name' => 'numero_funcionarios', 'data' => 'numero_funcionarios', 'title' => 'Número Funcionários'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio'],
         ];
     }
 

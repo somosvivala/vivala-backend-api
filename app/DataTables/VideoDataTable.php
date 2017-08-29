@@ -75,6 +75,7 @@ class VideoDataTable extends DataTable
             'partial_url' => ['name' => 'partial_url', 'data' => 'partial_url'],
             'owner_id' => ['name' => 'owner_id', 'data' => 'owner_id'],
             'owner_type' => ['name' => 'owner_type', 'data' => 'owner_type'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data de Envio'],
         ];
     }
 

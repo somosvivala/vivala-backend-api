@@ -71,19 +71,20 @@ class CotacaoCarroDataTable extends DataTable
     {
         return [
             'cidade_retirada' => ['name' => 'cidade_retirada', 'data' => 'cidade_retirada'],
-            'cidade_devolucao' => ['name' => 'cidade_devolucao', 'data' => 'cidade_devolucao'],
+            'cidade_devolucao' => ['name' => 'cidade_devolucao', 'data' => 'cidade_devolucao', 'title' => 'Cidade Devolução'],
             'data_retirada' => ['name' => 'data_retirada', 'data' => 'data_retirada'],
-            'data_devolucao' => ['name' => 'data_devolucao', 'data' => 'data_devolucao'],
+            'data_devolucao' => ['name' => 'data_devolucao', 'data' => 'data_devolucao', 'title' => 'Data Devolução'],
             'hora_retirada' => ['name' => 'hora_retirada', 'data' => 'hora_retirada'],
-            'hora_devolucao' => ['name' => 'hora_devolucao', 'data' => 'hora_devolucao'],
+            'hora_devolucao' => ['name' => 'hora_devolucao', 'data' => 'hora_devolucao', 'title' => 'Hora Devolução'],
             'categorias_carro' => ['name' => 'categorias_carro', 'data' => 'categorias_carro'],
             'itens_carro' => ['name' => 'itens_carro', 'data' => 'itens_carro'],
-            'solicitacoes_carro' => ['name' => 'solicitacoes_carro', 'data' => 'solicitacoes_carro'],
+            'solicitacoes_carro' => ['name' => 'solicitacoes_carro', 'data' => 'solicitacoes_carro', 'title' => 'Solicitações Carro'],
             'preco_desejado_carro' => ['name' => 'preco_desejado_carro', 'data' => 'preco_desejado_carro'],
             'nome_completo' => ['name' => 'nome_completo', 'data' => 'nome_completo'],
-            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia'],
+            'nome_preferencia' => ['name' => 'nome_preferencia', 'data' => 'nome_preferencia', 'title' => 'Nome Preferência'],
             'email' => ['name' => 'email', 'data' => 'email'],
             'telefone' => ['name' => 'telefone', 'data' => 'telefone'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data Envio'],
         ];
     }
 
