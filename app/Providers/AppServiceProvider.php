@@ -15,6 +15,7 @@ use App\Models\CotacaoPasseio;
 use App\Models\CotacaoRodoviario;
 use App\Models\CotacaoSeguro;
 use App\Models\Expedicao;
+use App\Models\Experiencia;
 use App\Models\InscricaoExpedicao;
 use App\Models\InscricaoExperiencia;
 use App\Observers\AgenteObserver;
@@ -30,6 +31,7 @@ use App\Observers\CotacaoPasseioObserver;
 use App\Observers\CotacaoRodoviarioObserver;
 use App\Observers\CotacaoSeguroObserver;
 use App\Observers\ExpedicaoObserver;
+use App\Observers\ExperienciaObserver;
 use App\Observers\InscricaoExpedicaoObserver;
 use App\Observers\InscricaoExperienciaObserver;
 use Illuminate\Support\ServiceProvider;
@@ -46,6 +48,7 @@ class AppServiceProvider extends ServiceProvider
         //Observando DELETE para remover as nested relations
         Agente::observe(AgenteObserver::class);
         Expedicao::observe(ExpedicaoObserver::class);
+        Experiencia::observe(ExperienciaObserver::class);
 
         //Disparando emails das tentativas de Contato
         ContatoGeral::observe(ContatoGeralObserver::class);
