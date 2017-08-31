@@ -167,16 +167,21 @@ class ExpedicaoController extends AppBaseController
     }
 
 
+    /**
+     * Metodo que recebe o POST da foto da listagem de uma experiencia
+     *
+     * @param CreateFotoListagemExpRequest $request
+     * @param mixed $id
+     */
     public function postFotoListagem(CreateFotoListagemExpRequest $request, $id)
     {
         $expedicao = $this->expedicaoRepository->findWithoutFail($id);
 
         if ( $expedicao->mediaListagem ) {
-            $expedicao->mediaListagem->delete();
+            $this->fotoRepository->delete($expedicao->mediaListagem->id);
         }
 
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
-
         $expedicao->mediaListagem()->associate($novaFoto)->push();
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
@@ -199,6 +204,12 @@ class ExpedicaoController extends AppBaseController
     }
 
 
+    /**
+     * Metodo que recebe o POST de criacao das Fotos do slider interno das expedicoes
+     * 
+     * @param CreateFotoInternaExpRequest $request
+     * @param mixed $id
+     */
     public function postCreateMediasInterna(CreateFotoInternaExpRequest $request, $id)
     {
         $expedicao = $this->expedicaoRepository->findWithoutFail($id);
@@ -222,8 +233,6 @@ class ExpedicaoController extends AppBaseController
             return redirect("expedicaos/$id")->with('expedicao', $expedicao);
         }
     }
-    
-
 
     /**
      * Metodo para retornar a view para criar as descricoes de uma expedicao
