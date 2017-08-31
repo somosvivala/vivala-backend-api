@@ -74,7 +74,7 @@ class ExpedicaoDataTable extends DataTable
             'descricao_listagem' => ['name' => 'descricao_listagem', 'data' => 'descricao_listagem', 'title' => 'Descrição Listagem'],
             'data_inicio' => ['name' => 'data_inicio', 'data' => 'data_inicio', 'title' => 'Data Início'],
             'data_fim' => ['name' => 'data_fim', 'data' => 'data_fim'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Data Envio'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Criada em'],
         ];
     }
 

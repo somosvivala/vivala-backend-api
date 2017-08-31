@@ -4,9 +4,12 @@ namespace App\Repositories;
 
 use App\Models\Expedicao;
 use InfyOm\Generator\Common\BaseRepository;
+use App\Traits\ExpedicaoExperienciaRepositoryTrait;
 
 class ExpedicaoRepository extends BaseRepository
 {
+    use ExpedicaoExperienciaRepositoryTrait;
+
     /**
      * @var array
      */
@@ -22,23 +25,4 @@ class ExpedicaoRepository extends BaseRepository
         return Expedicao::class;
     }
 
-    /**
-     * Metodo para retornar as edicoes futuras das expedicoes.
-     *
-     * @return App\Models\Expedicao
-     */
-    public function getEdicoesFuturas()
-    {
-        return $this->model->futuras()->get();
-    }
-
-    /**
-     * Metodo para retornar as edicoes passadas das expedicoes.
-     *
-     * @return App\Models\Expedicao
-     */
-    public function getEdicoesPassadas()
-    {
-        return $this->model->passadas()->get();
-    }
 }

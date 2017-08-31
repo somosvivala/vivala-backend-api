@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\ExpedicaoExperienciaModelTrait;
 
 /**
  * @SWG\Definition(
@@ -65,6 +66,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Experiencia extends Model
 {
     use SoftDeletes;
+    use ExpedicaoExperienciaModelTrait;
 
     public $table = 'experiencias';
 
@@ -97,8 +99,20 @@ class Experiencia extends Model
      * @var array
      */
     public static $rules = [
-
+        'titulo' => 'required',
+        'descricao_listagem' => 'required',
+        'data_inicio' => 'required',
+        'data_fim' => 'required',
     ];
 
+    /**
+     * Relacao de hasMany de Inscricoes.
+     */
+    public function inscricoes()
+    {
+        return $this->hasMany(\App\Models\InscricaoExperiencia::class);
+    }
+
     
+
 }

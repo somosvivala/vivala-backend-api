@@ -2,21 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ExperienciaDataTable;
+use App\Http\Requests\CreateExperienciaRequest;
+use App\Http\Requests\CreateFotoInternaExpRequest;
+use App\Http\Requests\CreateFotoListagemExpRequest;
+use App\Http\Requests\UpdateExperienciaRequest;
+use App\Repositories\ExperienciaRepository;
+use App\Repositories\FotoRepository;
 use Flash;
 use Response;
-use App\DataTables\ExperienciaDataTable;
-use App\Repositories\ExperienciaRepository;
-use App\Http\Requests\CreateExperienciaRequest;
-use App\Http\Requests\UpdateExperienciaRequest;
 
 class ExperienciaController extends AppBaseController
 {
     /** @var ExperienciaRepository */
     private $experienciaRepository;
 
-    public function __construct(ExperienciaRepository $experienciaRepo)
+    /** @var  FotoRepository */
+    private $fotoRepository;
+
+    public function __construct(FotoRepository $fotoRepo, ExperienciaRepository $experienciaRepo)
     {
         $this->experienciaRepository = $experienciaRepo;
+        $this->fotoRepository = $fotoRepo;
     }
 
     /**
@@ -55,7 +62,7 @@ class ExperienciaController extends AppBaseController
 
         Flash::success('Experiencia saved successfully.');
 
-        return redirect(route('experiencias.index'));
+        return redirect('experiencias/'.$experiencia->id.'/foto-listagem');
     }
 
     /**
@@ -145,5 +152,107 @@ class ExperienciaController extends AppBaseController
         Flash::success('Experiencia deleted successfully.');
 
         return redirect(route('experiencias.index'));
+    }
+
+
+    /**
+     * Metodo para retornar a view para settar a foto da listagem da Experiencia
+     * 
+     * @param mixed $id
+     */
+    public function getFotoListagem($id)
+    {
+        $experiencia = $this->experienciaRepository->findWithoutFail($id);
+        return view('experiencias.create_foto_listagem')->with('experiencia', $experiencia);
+    }
+
+
+    /**
+     * Metodo que recebe o POST da foto da listagem de uma experiencia
+     *
+     * @param CreateFotoListagemExpRequest $request
+     * @param mixed $id
+     */
+    public function postFotoListagem(CreateFotoListagemExpRequest $request, $id)
+    {
+        $experiencia = $this->experienciaRepository->findWithoutFail($id);
+
+        if ( $experiencia->mediaListagem ) {
+            $this->fotoRepository->delete($experiencia->mediaListagem->id);
+        }
+
+        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+        $experiencia->mediaListagem()->associate($novaFoto)->push();
+
+        //Monta o public ID a partir do nome do experiencia e da timestamp da foto
+        $publicId = $experiencia->tituloCloudinary ."_". $novaFoto->image_name;
+        $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
+
+        //Se tiver enviado pro Cloudinary com sucesso
+        if ($retorno) {
+            return [
+                'success' => true,
+                'redirectURL' => "/experiencias/$id/create-descricoes",
+                'message' => 'Foto da listagem atualizada! Recarregando...'
+            ];
+        }
+
+        else {
+            Flash::error('Erro no upload da foto!');
+            return redirect("agentes/$id")->with('agente', $agente);
+        }
+    }
+
+
+    /**
+     * Metodo que recebe o POST de criacao das Fotos do slider interno das experiencia
+     * 
+     * @param CreateFotoInternaExpRequest $request
+     * @param mixed $id
+     */
+    public function postCreateMediasInterna(CreateFotoInternaExpRequest $request, $id)
+    {
+        $experiencia = $this->experienciaRepository->findWithoutFail($id);
+        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+
+        //Monta o public ID a partir do nome do experiencia e da timestamp da foto
+        $publicId = $experiencia->tituloCloudinary ."_". $novaFoto->image_name;
+        $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
+
+        //Se tiver enviado pro Cloudinary com sucesso
+        if ($retorno) {
+            return [
+                'success' => true,
+                'redirectURL' => "/experiencias/$id/create-medias-interna",
+                'message' => 'Foto inserida! Recarregando...'
+            ];
+        }
+
+        else {
+            Flash::error('Erro no upload da foto!');
+            return redirect("experiencias/$id")->with('experiencia', $experiencia);
+        }
+    }
+
+    /**
+     * Metodo para retornar a view para criar as descricoes de uma experiencia
+     * 
+     * @param mixed $id
+     */
+    public function getCreateDescricoes($id)
+    {
+        $experiencia = $this->experienciaRepository->findWithoutFail($id);
+        return view('experiencias.create_descricoes')->with('experiencia', $experiencia);
+    }
+
+    /**
+     * Metodo para retornar a view para criar as fotos / videos da interna de uma experiencia
+     * 
+     * @param mixed $id
+     */
+    public function getCreateMediasInterna($id)
+    {
+        $experiencia = $this->experienciaRepository->findWithoutFail($id);
+        return view('experiencias.create_medias')->with('experiencia', $experiencia);
     }
 }
