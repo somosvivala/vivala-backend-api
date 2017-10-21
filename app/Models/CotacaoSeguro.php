@@ -124,7 +124,6 @@ class CotacaoSeguro extends Model
      * @var array
      */
     public static $rules = [
-        'origem' => 'required',
         'destino' => 'required',
         'data_ida' => 'required',
         'data_volta' => 'required',
