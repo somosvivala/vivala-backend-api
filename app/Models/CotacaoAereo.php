@@ -217,7 +217,7 @@ class CotacaoAereo extends Model
      */
     public function setPeriodoVooIdaAttribute($value)
     {
-        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : '';
+        $this->attributes['periodo_voo_ida'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -227,7 +227,7 @@ class CotacaoAereo extends Model
      */
     public function setPeriodoVooVoltaAttribute($value)
     {
-        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : '';
+        $this->attributes['periodo_voo_volta'] = is_array($value) ? $value['label'] : $value;
     }
 
     /**
@@ -237,28 +237,9 @@ class CotacaoAereo extends Model
      */
     public function setNumeroParadasAttribute($value)
     {
-        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : '';
+        $this->attributes['numero_paradas'] = is_array($value) ? $value['value'] : $value;
     }
 
-    /**
-     * Mutator para tipo_quarto, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setTipoQuartoAttribute($value)
-    {
-        $this->attributes['tipo_quarto'] = is_array($value) ? $value['label'] : '';
-    }
-
-    /**
-     * Mutator para hospedagem_tipo, modificando antes de inserir no BD.
-     *
-     * @param mixed $value
-     */
-    public function setHospedagemTipoAttribute($value)
-    {
-        $this->attributes['hospedagem_tipo'] = is_array($value) ? $value['label'] : '';
-    }
 
     /**
      * Mutator para aereo_preco_desejado, modificando antes de inserir no BD.
