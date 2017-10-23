@@ -192,7 +192,6 @@ class CotacaoRodoviario extends Model
         return $this->data_ida;
     }
 
-    
     /**
      * getDataIdaAttribute.
      *
@@ -201,7 +200,8 @@ class CotacaoRodoviario extends Model
     public function getDataIdaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -212,8 +212,10 @@ class CotacaoRodoviario extends Model
     public function getDataVoltaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
+
     /**
      * getDataVoltaFormatadaAttribute.
      *
@@ -244,8 +246,6 @@ class CotacaoRodoviario extends Model
         return $value ? 'Sim' : 'Não';
     }
 
-
-
     /**
      * getTemDatasFlexiveisAttribute.
      *
@@ -256,7 +256,7 @@ class CotacaoRodoviario extends Model
         return $this->sem_volta;
     }
 
-        /**
+    /**
      * getTemDatasFlexiveisAttribute.
      *
      * @return string

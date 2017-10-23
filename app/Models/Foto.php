@@ -168,7 +168,6 @@ class Foto extends Model
     {
         return $this->image_path.$this->image_name.'.'.$this->image_extension;
     }
-    
 
     public function destaque()
     {

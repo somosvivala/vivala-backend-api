@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\AppBaseController;
-use App\Http\Controllers\Controller;
-use App\Models\Agente;
 use App\Repositories\AgenteRepository;
 use App\Transformers\AgenteTransformer;
-use Illuminate\Http\Request;
+use App\Http\Controllers\AppBaseController;
 
 class AgentesAPIController extends AppBaseController
 {
     /**
-     * Instancia do repositorio de agentes, contendo as operacoes com o BD 
+     * Instancia do repositorio de agentes, contendo as operacoes com o BD.
      *
-     * @var AgenteRepository 
+     * @var AgenteRepository
      */
     private $agenteRepository;
 
     /**
-     * Construtor recebendo instancia do repositorio
+     * Construtor recebendo instancia do repositorio.
      *
      * @param AgenteRepository $agenteRepo
      */
@@ -27,13 +24,13 @@ class AgentesAPIController extends AppBaseController
     {
         $this->agenteRepository = $agenteRepo;
     }
-    
+
     /**
-     * Metodo para retornar o JSON da listagem de agentes, separando-as em edicoes agentes/passadas
+     * Metodo para retornar o JSON da listagem de agentes, separando-as em edicoes agentes/passadas.
      *
      * @return JSON
      */
-    public function getListagem() 
+    public function getListagem()
     {
         $agentes = $this->agenteRepository->getAgentesEmDestaque();
         $agentesTransformados = [];
@@ -49,5 +46,4 @@ class AgentesAPIController extends AppBaseController
             'agentes' => $agentesTransformados,
         ];
     }
-
 }

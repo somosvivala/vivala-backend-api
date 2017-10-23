@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\AgenteDataTable;
-use App\Http\Controllers\AppBaseController;
-use App\Http\Requests;
-use App\Http\Requests\CreateAgenteRequest;
-use App\Http\Requests\CreateFotoAgenteRequest;
-use App\Http\Requests\UpdateAgenteRequest;
-use App\Repositories\AgenteRepository;
-use App\Repositories\FotoRepository;
 use Flash;
 use Response;
+use App\DataTables\AgenteDataTable;
+use App\Repositories\FotoRepository;
+use App\Repositories\AgenteRepository;
+use App\Http\Requests\CreateAgenteRequest;
+use App\Http\Requests\UpdateAgenteRequest;
+use App\Http\Requests\CreateFotoAgenteRequest;
 
 class AgenteController extends AppBaseController
 {
-    /** @var  AgenteRepository */
+    /** @var AgenteRepository */
     private $agenteRepository;
 
-    /** @var  FotoRepository */
+    /** @var FotoRepository */
     private $fotoRepository;
 
     public function __construct(FotoRepository $fotoRepo, AgenteRepository $agenteRepo)
@@ -61,7 +59,7 @@ class AgenteController extends AppBaseController
 
         $agente = $this->agenteRepository->create($input);
 
-        return redirect("agentes/".$agente->id."/foto");
+        return redirect('agentes/'.$agente->id.'/foto');
     }
 
     /**
@@ -153,20 +151,20 @@ class AgenteController extends AppBaseController
         return redirect(route('agentes.index'));
     }
 
-    
     /**
-     * Serve a view de upload de foto de agente
+     * Serve a view de upload de foto de agente.
      *
      * @param mixed $id
      */
     public function getFotoAgente($id)
     {
         $agente = $this->agenteRepository->findWithoutFail($id);
+
         return view('agentes.uploadfoto')->with('Agente', $agente);
     }
 
     /**
-     * postFotoAgente - Recebe o POST da foto de Agente, deleta a ultima foto caso exista e faz o upload da nova
+     * postFotoAgente - Recebe o POST da foto de Agente, deleta a ultima foto caso exista e faz o upload da nova.
      *
      * @param CreateFotoAgenteRequest $request
      * @param mixed $id
@@ -175,14 +173,14 @@ class AgenteController extends AppBaseController
     {
         $agente = $this->agenteRepository->findWithoutFail($id);
 
-        if ( $agente->foto ) {
+        if ($agente->foto) {
             $this->fotoRepository->delete($agente->foto->id);
         }
 
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
 
         //Monta o public ID a partir do nome do agente e da timestamp da foto
-        $publicId = $agente->nomeCloudinary ."_". $novaFoto->image_name;
+        $publicId = $agente->nomeCloudinary.'_'.$novaFoto->image_name;
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
 
         //Se tiver enviado pro Cloudinary com sucesso
@@ -190,12 +188,11 @@ class AgenteController extends AppBaseController
             return [
                 'success' => true,
                 'redirectURL' => "/agentes/$id",
-                'message' => 'Foto de Agente atualizada! Recarregando...'
+                'message' => 'Foto de Agente atualizada! Recarregando...',
             ];
-        }
-
-        else {
+        } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect("agentes/$id")->with('agente', $agente);
         }
     }

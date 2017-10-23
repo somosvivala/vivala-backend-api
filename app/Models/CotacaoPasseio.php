@@ -184,7 +184,6 @@ class CotacaoPasseio extends Model
         $this->attributes['data_volta'] = $cb->format('Y-m-d');
     }
 
-    
     /**
      * getDataIdaAttribute.
      *
@@ -193,7 +192,8 @@ class CotacaoPasseio extends Model
     public function getDataIdaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -204,7 +204,8 @@ class CotacaoPasseio extends Model
     public function getDataVoltaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -247,5 +248,4 @@ class CotacaoPasseio extends Model
     {
         return $this->datas_flexiveis ? 'Sim' : 'Não';
     }
-
 }
