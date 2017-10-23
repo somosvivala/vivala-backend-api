@@ -54,16 +54,14 @@ class Agente extends Model
     use SoftDeletes;
 
     public $table = 'agentes';
-    
 
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'nome',
         'cidade',
         'estado',
-        'destaque'
+        'destaque',
     ];
 
     /**
@@ -75,19 +73,18 @@ class Agente extends Model
         'nome' => 'string',
         'cidade' => 'string',
         'estado' => 'string',
-        'destaque' => 'boolean'
+        'destaque' => 'boolean',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
     /**
      * Um Agente possui uma foto.
      */
@@ -97,34 +94,34 @@ class Agente extends Model
     }
 
     /**
-     * Acessor para pegar o local do agente já formatado
+     * Acessor para pegar o local do agente já formatado.
      *
      * @return string
      */
     public function getLocalAttribute()
     {
-        return ucwords($this->cidade . ", " . $this->estado);
-    }   
-
+        return ucwords($this->cidade.', '.$this->estado);
+    }
 
     /**
-     * Acessor para pegar o o nome transformado sem espacos e com _
+     * Acessor para pegar o o nome transformado sem espacos e com _.
      *
      * @return string
      */
     public function getNomeCloudinaryAttribute()
     {
         $semAcentos = $this->tiraAcentos($this->nome);
-        return preg_replace("/ /", "_", strtolower($semAcentos));
-    }   
+
+        return preg_replace('/ /', '_', strtolower($semAcentos));
+    }
 
     /**
-     * tiraAcentos
+     * tiraAcentos.
      *
      * @param mixed $string
      */
-    public function tiraAcentos($string) 
-    { 
-        return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$string);
+    public function tiraAcentos($string)
+    {
+        return preg_replace(['/(á|à|ã|â|ä)/', '/(Á|À|Ã|Â|Ä)/', '/(é|è|ê|ë)/', '/(É|È|Ê|Ë)/', '/(í|ì|î|ï)/', '/(Í|Ì|Î|Ï)/', '/(ó|ò|õ|ô|ö)/', '/(Ó|Ò|Õ|Ô|Ö)/', '/(ú|ù|û|ü)/', '/(Ú|Ù|Û|Ü)/', '/(ñ)/', '/(Ñ)/'], explode(' ', 'a A e E i I o O u U n N'), $string);
     }
 }

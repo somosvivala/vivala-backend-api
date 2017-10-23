@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\Agente;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class AgenteDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -59,8 +57,8 @@ class AgenteDataTable extends DataTable
                              'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    'colvis',
+                ],
             ]);
     }
 

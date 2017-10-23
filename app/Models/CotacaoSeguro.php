@@ -155,7 +155,6 @@ class CotacaoSeguro extends Model
         $this->attributes['data_volta'] = $cb->format('Y-m-d');
     }
 
-    
     /**
      * getDataIdaAttribute.
      *
@@ -164,7 +163,8 @@ class CotacaoSeguro extends Model
     public function getDataIdaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -175,8 +175,10 @@ class CotacaoSeguro extends Model
     public function getDataVoltaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
+
     /**
      * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
      *

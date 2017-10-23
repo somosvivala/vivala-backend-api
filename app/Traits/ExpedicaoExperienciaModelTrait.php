@@ -3,13 +3,13 @@
 namespace App\Traits;
 
 /**
- * Trait: Trait contendo as relacoes, scopes e outros metodos que são compartilhados entre as resources
+ * Trait: Trait contendo as relacoes, scopes e outros metodos que são compartilhados entre as resources.
  *
  * @see App\Models\Experiencia;
  * @see App\Models\Expedicao;
  */
-trait ExpedicaoExperienciaModelTrait {
-
+trait ExpedicaoExperienciaModelTrait
+{
     /**
      * Uma Experiencia/Expedicao possi N blocos de descricao.
      */
@@ -99,27 +99,25 @@ trait ExpedicaoExperienciaModelTrait {
         return collect($medias)->sortBy('ordem')->values()->toArray();
     }
 
-
-
     /**
-     * Acessor para pegar o titulo transformado sem espacos e com _
+     * Acessor para pegar o titulo transformado sem espacos e com _.
      *
      * @return string
      */
     public function getTituloCloudinaryAttribute()
     {
         $semAcentos = $this->tiraAcentos($this->titulo);
-        return preg_replace("/[ ,#]/", "_", strtolower($semAcentos));
-    }   
+
+        return preg_replace('/[ ,#]/', '_', strtolower($semAcentos));
+    }
 
     /**
-     * tiraAcentos
+     * tiraAcentos.
      *
      * @param mixed $string
      */
-    public function tiraAcentos($string) 
-    { 
-        return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$string);
+    public function tiraAcentos($string)
+    {
+        return preg_replace(['/(á|à|ã|â|ä)/', '/(Á|À|Ã|Â|Ä)/', '/(é|è|ê|ë)/', '/(É|È|Ê|Ë)/', '/(í|ì|î|ï)/', '/(Í|Ì|Î|Ï)/', '/(ó|ò|õ|ô|ö)/', '/(Ó|Ò|Õ|Ô|Ö)/', '/(ú|ù|û|ü)/', '/(Ú|Ù|Û|Ü)/', '/(ñ)/', '/(Ñ)/'], explode(' ', 'a A e E i I o O u U n N'), $string);
     }
-
 }

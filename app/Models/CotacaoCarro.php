@@ -174,7 +174,7 @@ class CotacaoCarro extends Model
      */
     public function getDataRetiradaFormatadaAttribute()
     {
-        return $this->dataRetirada ;
+        return $this->dataRetirada;
     }
 
     /**
@@ -182,7 +182,7 @@ class CotacaoCarro extends Model
      */
     public function getDataDevolucaoFormatadaAttribute()
     {
-        return $this->dataDevolucao ;
+        return $this->dataDevolucao;
     }
 
     /**
@@ -229,7 +229,6 @@ class CotacaoCarro extends Model
         $this->attributes['itens_carro'] = $valorFinal;
     }
 
-
     /**
      * getDataRetiradaAttribute.
      *
@@ -238,7 +237,8 @@ class CotacaoCarro extends Model
     public function getDataRetiradaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -249,8 +249,7 @@ class CotacaoCarro extends Model
     public function getDataDevolucaoAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
-
-
 }
