@@ -11,7 +11,7 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($contatoCorporativo, ['route' => ['contatoCorporativos.update', $contatoCorporativo->id], 'method' => 'patch']) !!}
+                   {!! Form::model($contatoCorporativo, ['route' => ['contatoCorporativo.update', $contatoCorporativo->id], 'method' => 'patch']) !!}
 
                         @include('contato_corporativos.fields')
 
