@@ -553,8 +553,7 @@ class CotacaoPacote extends Model
     {
         return $value ? 'Sim' : 'Não';
     }
-    
-    
+
     /**
      * getDataIdaAttribute.
      *
@@ -563,7 +562,8 @@ class CotacaoPacote extends Model
     public function getDataIdaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -574,8 +574,7 @@ class CotacaoPacote extends Model
     public function getDataVoltaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
-
-
 }

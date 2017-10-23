@@ -11,21 +11,19 @@ class AgenteRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        
+
     ];
 
     /**
-     * Configure the Model
+     * Configure the Model.
      **/
     public function model()
     {
         return Agente::class;
     }
 
-    public function getAgentesEmDestaque() 
+    public function getAgentesEmDestaque()
     {
         return $this->model->where('destaque', true)->get();
     }
-
-
 }

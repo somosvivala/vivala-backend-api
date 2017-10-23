@@ -98,7 +98,6 @@ Route::resource('cotacaoSeguros', 'CotacaoSeguroController', ['middleware' => 'a
 Route::resource('videos', 'VideoController', ['middleware' => 'auth']);
 Route::resource('agentes', 'AgenteController', ['middleware' => 'auth']);
 
-
 Route::get('agentes/{id}/foto', 'AgenteController@getFotoAgente')->middleware('auth');
 Route::post('agentes/{id}/foto', 'AgenteController@postFotoAgente')->middleware('auth');
 
@@ -115,4 +114,3 @@ Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoLi
 Route::get('experiencias/{id}/create-descricoes', 'ExperienciaController@getCreateDescricoes')->middleware('auth');
 Route::get('experiencias/{id}/create-medias-interna', 'ExperienciaController@getCreateMediasInterna')->middleware('auth');
 Route::post('experiencias/{id}/create-medias-interna', 'ExperienciaController@postCreateMediasInterna')->middleware('auth');
-

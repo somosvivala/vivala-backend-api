@@ -112,7 +112,4 @@ class Experiencia extends Model
     {
         return $this->hasMany(\App\Models\InscricaoExperiencia::class);
     }
-
-    
-
 }

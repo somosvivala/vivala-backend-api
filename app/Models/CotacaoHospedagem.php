@@ -210,7 +210,6 @@ class CotacaoHospedagem extends Model
         $this->attributes['hospedagem_preco_desejado'] = $valorLimpo;
     }
 
-
     /**
      * Mutator para hospedagem_servicos, modificando antes de inserir no BD.
      *
@@ -230,7 +229,8 @@ class CotacaoHospedagem extends Model
     public function getDataIdaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -241,7 +241,8 @@ class CotacaoHospedagem extends Model
     public function getDataVoltaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**

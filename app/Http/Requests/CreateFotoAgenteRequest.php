@@ -24,7 +24,7 @@ class CreateFotoAgenteRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'dimensions:min_width=180,min_height=120'
+            'file' => 'dimensions:min_width=180,min_height=120',
         ];
     }
 }

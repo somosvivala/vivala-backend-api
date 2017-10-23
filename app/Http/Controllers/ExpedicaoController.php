@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\ExpedicaoDataTable;
-use App\Http\Requests\CreateExpedicaoRequest;
-use App\Http\Requests\CreateFotoInternaExpRequest;
-use App\Http\Requests\CreateFotoListagemExpRequest;
-use App\Http\Requests\UpdateExpedicaoRequest;
-use App\Repositories\ExpedicaoRepository;
-use App\Repositories\FotoRepository;
 use Flash;
 use Response;
+use App\Repositories\FotoRepository;
+use App\DataTables\ExpedicaoDataTable;
+use App\Repositories\ExpedicaoRepository;
+use App\Http\Requests\CreateExpedicaoRequest;
+use App\Http\Requests\UpdateExpedicaoRequest;
+use App\Http\Requests\CreateFotoInternaExpRequest;
+use App\Http\Requests\CreateFotoListagemExpRequest;
 
 class ExpedicaoController extends AppBaseController
 {
     /** @var ExpedicaoRepository */
     private $expedicaoRepository;
 
-    /** @var  FotoRepository */
+    /** @var FotoRepository */
     private $fotoRepository;
 
     public function __construct(FotoRepository $fotoRepo, ExpedicaoRepository $expedicaoRepo)
@@ -154,21 +154,20 @@ class ExpedicaoController extends AppBaseController
         return redirect(route('expedicaos.index'));
     }
 
-
     /**
-     * Metodo para retornar a view para settar a foto da listagem da Expedicao
-     * 
+     * Metodo para retornar a view para settar a foto da listagem da Expedicao.
+     *
      * @param mixed $id
      */
     public function getFotoListagem($id)
     {
         $expedicao = $this->expedicaoRepository->findWithoutFail($id);
+
         return view('expedicaos.create_foto_listagem')->with('expedicao', $expedicao);
     }
 
-
     /**
-     * Metodo que recebe o POST da foto da listagem de uma experiencia
+     * Metodo que recebe o POST da foto da listagem de uma experiencia.
      *
      * @param CreateFotoListagemExpRequest $request
      * @param mixed $id
@@ -177,7 +176,7 @@ class ExpedicaoController extends AppBaseController
     {
         $expedicao = $this->expedicaoRepository->findWithoutFail($id);
 
-        if ( $expedicao->mediaListagem ) {
+        if ($expedicao->mediaListagem) {
             $this->fotoRepository->delete($expedicao->mediaListagem->id);
         }
 
@@ -185,7 +184,7 @@ class ExpedicaoController extends AppBaseController
         $expedicao->mediaListagem()->associate($novaFoto)->push();
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
-        $publicId = $expedicao->tituloCloudinary ."_". $novaFoto->image_name;
+        $publicId = $expedicao->tituloCloudinary.'_'.$novaFoto->image_name;
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
 
         //Se tiver enviado pro Cloudinary com sucesso
@@ -193,20 +192,18 @@ class ExpedicaoController extends AppBaseController
             return [
                 'success' => true,
                 'redirectURL' => "/expedicaos/$id/create-descricoes",
-                'message' => 'Foto da listagem atualizada! Recarregando...'
+                'message' => 'Foto da listagem atualizada! Recarregando...',
             ];
-        }
-
-        else {
+        } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect("agentes/$id")->with('agente', $agente);
         }
     }
 
-
     /**
-     * Metodo que recebe o POST de criacao das Fotos do slider interno das expedicoes
-     * 
+     * Metodo que recebe o POST de criacao das Fotos do slider interno das expedicoes.
+     *
      * @param CreateFotoInternaExpRequest $request
      * @param mixed $id
      */
@@ -216,7 +213,7 @@ class ExpedicaoController extends AppBaseController
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
-        $publicId = $expedicao->tituloCloudinary ."_". $novaFoto->image_name;
+        $publicId = $expedicao->tituloCloudinary.'_'.$novaFoto->image_name;
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
 
         //Se tiver enviado pro Cloudinary com sucesso
@@ -224,35 +221,36 @@ class ExpedicaoController extends AppBaseController
             return [
                 'success' => true,
                 'redirectURL' => "/expedicaos/$id/create-medias-interna",
-                'message' => 'Foto inserida! Recarregando...'
+                'message' => 'Foto inserida! Recarregando...',
             ];
-        }
-
-        else {
+        } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect("expedicaos/$id")->with('expedicao', $expedicao);
         }
     }
 
     /**
-     * Metodo para retornar a view para criar as descricoes de uma expedicao
-     * 
+     * Metodo para retornar a view para criar as descricoes de uma expedicao.
+     *
      * @param mixed $id
      */
     public function getCreateDescricoes($id)
     {
         $expedicao = $this->expedicaoRepository->findWithoutFail($id);
+
         return view('expedicaos.create_descricoes')->with('expedicao', $expedicao);
     }
 
     /**
-     * Metodo para retornar a view para criar as fotos / videos da interna de uma expedicao
-     * 
+     * Metodo para retornar a view para criar as fotos / videos da interna de uma expedicao.
+     *
      * @param mixed $id
      */
     public function getCreateMediasInterna($id)
     {
         $expedicao = $this->expedicaoRepository->findWithoutFail($id);
+
         return view('expedicaos.create_medias')->with('expedicao', $expedicao);
     }
 }

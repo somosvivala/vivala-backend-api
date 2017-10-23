@@ -2,18 +2,16 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use App\Models\Agente;
+use League\Fractal\TransformerAbstract;
 
 /**
- * Class AgenteTransformer - Transformador de Expedicoes para a tela interna
- * @package namespace App\Transformers;
+ * Class AgenteTransformer - Transformador de Expedicoes para a tela interna.
  */
 class AgenteTransformer extends TransformerAbstract
 {
-
     /**
-     * Transform the \Agente entity
+     * Transform the \Agente entity.
      * @param \Agente $model
      *
      * @return array
@@ -21,9 +19,9 @@ class AgenteTransformer extends TransformerAbstract
     public function transform(Agente $model)
     {
         return [
-            "nome" => $model->nome,
-            "local" => $model->local,
-            "foto" => $model->foto ? $model->foto->cloudinary_id : null
+            'nome' => $model->nome,
+            'local' => $model->local,
+            'foto' => $model->foto ? $model->foto->cloudinary_id : null,
         ];
     }
 }

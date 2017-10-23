@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
-trait ExpedicaoExperienciaRepositoryTrait {
-
+trait ExpedicaoExperienciaRepositoryTrait
+{
     /**
      * Metodo para retornar as edicoes futuras das expedicoes.
      *
@@ -23,5 +23,4 @@ trait ExpedicaoExperienciaRepositoryTrait {
     {
         return $this->model->passadas()->get();
     }
-
 }

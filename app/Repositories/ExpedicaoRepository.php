@@ -24,5 +24,4 @@ class ExpedicaoRepository extends BaseRepository
     {
         return Expedicao::class;
     }
-
 }

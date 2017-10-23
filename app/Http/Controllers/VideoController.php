@@ -49,7 +49,7 @@ class VideoController extends AppBaseController
      */
     public function store(CreateVideoRequest $request)
     {
-        $ytURL = 'https://youtu.be/'.$request->partial_url; 
+        $ytURL = 'https://youtu.be/'.$request->partial_url;
         $request->request->add(['url' => $ytURL]);
 
         $input = $request->all();
