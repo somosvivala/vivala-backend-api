@@ -251,7 +251,6 @@ class CotacaoAereo extends Model
         $this->attributes['aereo_preco_desejado'] = $valorLimpo;
     }
 
-
     /**
      * getDataIdaFormatadaAttribute.
      *
