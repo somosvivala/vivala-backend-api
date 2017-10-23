@@ -55,7 +55,7 @@ class ContatoCorporativoController extends AppBaseController
 
         Flash::success('Contato Corporativo saved successfully.');
 
-        return redirect(route('contatoCorporativos.index'));
+        return redirect();
     }
 
     /**
@@ -72,7 +72,7 @@ class ContatoCorporativoController extends AppBaseController
         if (empty($contatoCorporativo)) {
             Flash::error('Contato Corporativo not found');
 
-            return redirect(route('contatoCorporativos.index'));
+            return redirect()->back();
         }
 
         return view('contato_corporativos.show')->with('contatoCorporativo', $contatoCorporativo);
@@ -92,7 +92,7 @@ class ContatoCorporativoController extends AppBaseController
         if (empty($contatoCorporativo)) {
             Flash::error('Contato Corporativo not found');
 
-            return redirect(route('contatoCorporativos.index'));
+            return redirect()->back();
         }
 
         return view('contato_corporativos.edit')->with('contatoCorporativo', $contatoCorporativo);
@@ -113,7 +113,7 @@ class ContatoCorporativoController extends AppBaseController
         if (empty($contatoCorporativo)) {
             Flash::error('Contato Corporativo not found');
 
-            return redirect(route('contatoCorporativos.index'));
+            return redirect()->back();
         }
 
         $contatoCorporativo = $this->contatoCorporativoRepository->update($request->all(), $id);
@@ -137,13 +137,13 @@ class ContatoCorporativoController extends AppBaseController
         if (empty($contatoCorporativo)) {
             Flash::error('Contato Corporativo not found');
 
-            return redirect(route('contatoCorporativos.index'));
+            return redirect()->back();
         }
 
         $this->contatoCorporativoRepository->delete($id);
 
         Flash::success('Contato Corporativo deleted successfully.');
 
-        return redirect(route('contatoCorporativos.index'));
+        return redirect()->back();
     }
 }
