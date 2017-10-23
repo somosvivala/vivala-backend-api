@@ -246,7 +246,6 @@ class CotacaoCruzeiro extends Model
     {
         return $value ? 'Sim' : 'Não';
     }
-    
 
     /**
      * getDataIdaAttribute.
@@ -256,7 +255,8 @@ class CotacaoCruzeiro extends Model
     public function getDataIdaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -267,8 +267,7 @@ class CotacaoCruzeiro extends Model
     public function getDataVoltaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
-
-
 }

@@ -422,7 +422,6 @@ class CotacaoAereo extends Model
         return $this->datas_flexiveis ? 'Sim' : 'Não';
     }
 
-
     /**
      * getDataIdaAttribute.
      *
@@ -431,7 +430,8 @@ class CotacaoAereo extends Model
     public function getDataIdaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
 
     /**
@@ -442,8 +442,7 @@ class CotacaoAereo extends Model
     public function getDataVoltaAttribute($value)
     {
         $dt = new \Carbon\Carbon($value);
-        return  $dt->format('d/m/Y') ;
+
+        return  $dt->format('d/m/Y');
     }
-
-
 }

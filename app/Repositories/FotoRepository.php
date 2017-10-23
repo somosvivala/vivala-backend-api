@@ -23,7 +23,7 @@ class FotoRepository extends BaseRepository
     }
 
     /**
-     * uploadAndCreate - Guarda o arquivo no /uploads/ e cria a Foto
+     * uploadAndCreate - Guarda o arquivo no /uploads/ e cria a Foto.
      *
      * @param mixed $request
      */
@@ -36,7 +36,7 @@ class FotoRepository extends BaseRepository
             //Criando path inicial para direcionar o arquivo
             $destinationPath = public_path().'/uploads/';
             //Pega o formato da imagem
-            $extension =  $request->file('file')->getClientOriginalExtension();
+            $extension = $request->file('file')->getClientOriginalExtension();
 
             //usando o intervention para criar a imagem
             $filename = time();
@@ -50,11 +50,12 @@ class FotoRepository extends BaseRepository
                 $request->request->add([
                     'image_name' => $filename,
                     'image_path' => $destinationPath,
-                    'image_extension' => $extension
+                    'image_extension' => $extension,
                 ]);
 
                 //Criando e persistindo no BD uma nova foto já associada ao user
                 $novaFoto = $this->model->create($request->all());
+
                 return $novaFoto;
 
                 // Se nao tiver funcionado, retornar false no success para o js se manisfestar
@@ -67,7 +68,7 @@ class FotoRepository extends BaseRepository
     }
 
     /**
-     * sendToCloudinary
+     * sendToCloudinary.
      *
      * @param mixed $fullPath
      * @param mixed $publicId
@@ -76,23 +77,19 @@ class FotoRepository extends BaseRepository
     {
 
         //Se existir o file
-        if ( \File::exists($foto->fullPath) ) {
-
+        if (\File::exists($foto->fullPath)) {
             $retornoCloudinary = \Cloudder::upload($foto->fullPath, $publicId);
 
             return  $foto->update([
-                'cloudinary_id' => \Cloudder::getPublicId()
+                'cloudinary_id' => \Cloudder::getPublicId(),
             ]);
-        }
-
-        else {
+        } else {
             return false;
         }
-
     }
 
     /**
-     * removeFromCloudinary
+     * removeFromCloudinary.
      *
      * @param mixed $fullPath
      * @param mixed $publicId
@@ -101,12 +98,13 @@ class FotoRepository extends BaseRepository
     {
         $foto = $this->find($fotoID);
         $retornoCloudinary = \Cloudder::destroyImage($foto->cloudinary_id);
+
         return  empty($retornoCloudinary->deleted) ? false : true;
     }
 
     /**
      * Override BaseRepository@delete
-     * Delete a entity in repository by id
+     * Delete a entity in repository by id.
      *
      * @param $id
      *
@@ -115,7 +113,7 @@ class FotoRepository extends BaseRepository
     public function delete($id)
     {
         $this->removeFromCloudinary($id);
+
         return parent::delete($id);
     }
-
 }

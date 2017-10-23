@@ -83,5 +83,4 @@ class Expedicao extends Model
     {
         return $this->hasMany(\App\Models\InscricaoExpedicao::class);
     }
-
 }
