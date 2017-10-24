@@ -33,9 +33,14 @@
                 'info2'=>$cotacao->created_at->format('d/m/Y - H:i')
             ])
 
-            <!-- 2 - Quando o cliente quer ir. -->
+            <!-- 2 - Para Onde / Quando o cliente quer ir. -->
+                
             @include('emails.layouts.th', [
-                'info1'=>'2 - Quando o cliente quer ir.'
+                'info1'=>'2 - Destino e Datas desejadas:'
+            ])
+            @include('emails.layouts.td', [
+                'info1'=>'Hotel ou Região',
+                'info2'=>$cotacao->hotel_ou_regiao
             ])
             @include('emails.layouts.td', [
                 'info1'=>'Data de ida',
