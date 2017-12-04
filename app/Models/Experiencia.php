@@ -117,12 +117,12 @@ class Experiencia extends Model
     }
 
     /**
-     * Acessor para tratar o link de pagamento
+     * Acessor para tratar o link de pagamento.
      */
-    public function getUrlPagamentoAttribute() 
+    public function getUrlPagamentoAttribute()
     {
-        return $this->attributes['url_pagamento'] 
-            ? $this->attributes['url_pagamento'] 
+        return $this->attributes['url_pagamento']
+            ? $this->attributes['url_pagamento']
             : false;
     }
 }
