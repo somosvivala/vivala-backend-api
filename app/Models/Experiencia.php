@@ -77,6 +77,7 @@ class Experiencia extends Model
         'descricao_listagem',
         'data_inicio',
         'data_fim',
+        'url_pagamento',
     ];
 
     /**
@@ -91,6 +92,7 @@ class Experiencia extends Model
         'data_fim' => 'date',
         'media_listagem_id' => 'integer',
         'media_listagem_type' => 'string',
+        'url_pagamento' => 'string',
     ];
 
     /**
@@ -111,5 +113,15 @@ class Experiencia extends Model
     public function inscricoes()
     {
         return $this->hasMany(\App\Models\InscricaoExperiencia::class);
+    }
+
+    /**
+     * Acessor para tratar o link de pagamento
+     */
+    public function getUrlPagamentoAttribute() 
+    {
+        return $this->attributes['url_pagamento'] 
+            ? $this->attributes['url_pagamento'] 
+            : false;
     }
 }
