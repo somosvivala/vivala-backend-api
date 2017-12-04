@@ -22,10 +22,17 @@
     {!! Form::date('data_fim', isset($experiencia) ? $experiencia->data_fim : '' , ['class' => 'form-control']) !!}
 </div>
 
+<!-- Link pagamento Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('url_pagamento', 'Link do Pagseguro:') !!}
+    {!! Form::text('url_pagamento', isset($experiencia) ? $experiencia->url_pagamento : '' , ['class' => 'form-control']) !!}
+</div>
+
+
 <!-- Submit Field -->
-<div class="form-group col-sm-12">
+<div class="form-group col-sm-12 ">
     {!! Form::submit('Proximo', ['class' => 'btn btn-primary']) !!}
-    <a href="/experiencias" class="btn btn-default">Cancel</a>
+    <a href="/experiencias" class="btn btn-default">Cancelar</a>
 </div>
 
 
