@@ -105,6 +105,7 @@ class Experiencia extends Model
         'descricao_listagem' => 'required',
         'data_inicio' => 'required',
         'data_fim' => 'required',
+        'url_pagamento' => 'sometimes|nullable|url',
     ];
 
     /**
