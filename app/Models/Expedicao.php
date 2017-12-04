@@ -48,6 +48,7 @@ class Expedicao extends Model
         'descricao_listagem',
         'data_inicio',
         'data_fim',
+        'url_pagamento'
     ];
 
     /**
@@ -83,4 +84,15 @@ class Expedicao extends Model
     {
         return $this->hasMany(\App\Models\InscricaoExpedicao::class);
     }
+
+    /**
+     * Acessor para tratar o link de pagamento
+     */
+    public function getUrlPagamentoAttribute() 
+    {
+        return $this->attributes['url_pagamento'] 
+            ? $this->attributes['url_pagamento'] 
+            : false;
+    }
+    
 }

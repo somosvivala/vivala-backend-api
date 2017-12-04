@@ -21,6 +21,7 @@ class ExpedicaoTransformer extends TransformerAbstract
         return [
             'titulo' => $model->titulo,
             'inscricoes_abertas' => $model->inscricoesAbertas,
+            'url_pagseguro' => $model->urlPagamento,
             'itens_slider' => $model->mediasSlider,
             'descricoes' => $model->blocosDescricao->all(),
         ];
