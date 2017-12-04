@@ -89,3 +89,11 @@ div#datatable-tesseract {
         height: auto;
     }
 }
+
+
+
+/** ADMINLTE OVERRIDE **/
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+    height: 190px;
+}
+
