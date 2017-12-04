@@ -13,7 +13,7 @@ class AdicionaLinkPagamentoExpedicoes extends Migration
      */
     public function up()
     {
-        Schema::table('expedicoes', function (Blueprint $table) {
+        Schema::table('expedicaos', function (Blueprint $table) {
             $table->string('url_pagamento')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AdicionaLinkPagamentoExpedicoes extends Migration
      */
     public function down()
     {
-        Schema::table('expedicoes', function (Blueprint $table) {
+        Schema::table('expedicaos', function (Blueprint $table) {
             $table->dropColumn('url_pagamento');
         });
     }
