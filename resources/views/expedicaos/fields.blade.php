@@ -25,7 +25,7 @@
 <!-- Link pagamento Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('url_pagamento', 'Link do Pagseguro:') !!}
-    {!! Form::text('url_pagamento', isset($experiencia) ? $experiencia->url_pagamento : '' , ['class' => 'form-control']) !!}
+    {!! Form::text('url_pagamento', isset($expedicao) ? $expedicao->url_pagamento : '' , ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
