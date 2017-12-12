@@ -57,24 +57,19 @@
                                      class="img-circle" alt="User Image"/>
                                 <p>
                                     {!! Auth::user()->name !!}
-                                    <small>Membro desde {!! Auth::user()->created_at->format('M. Y') !!}</small>
                                 </p>
-                            </li>
-                            <!-- Menu Footer-->
-                            <li class="user-footer">
-                                <!--div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                                </div-->
-                                <div class="pull-right">
+
+                                <div class="text-center" style="margin-bottom:2rem">
                                     <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Sign out
+                                         Sair &nbsp; <i class="fa fa-sign-out"></i>
                                     </a>
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                           style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </div>
+                                
                             </li>
                         </ul>
                     </li>

@@ -6,11 +6,11 @@
         Editando a Experiência
     </h1>
 </section>
-<div class="content">
+<div class="content" style="min-height:500px">
     @include('adminlte-templates::common.errors')
 
             <!-- Custom Tabs -->
-            <div class="nav-tabs-custom">
+            <div class="nav-tabs-custom" style="min-height:500px">
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a href="#tab_infoGeral" data-toggle="tab" aria-expanded="true">
