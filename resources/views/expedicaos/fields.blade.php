@@ -4,9 +4,17 @@
     {!! Form::text('titulo', null, ['class' => 'form-control']) !!}
 </div>
 
+
+<!-- Link destino Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('link_destino', 'Link de destino:') !!}
+    {!! Form::text('link_destino', isset($expedicao) ? $expedicao->link_destino : '' , ['class' => 'form-control']) !!}
+</div>
+
+{{-- Escondendo para v3
 <!-- Descricao Listagem Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('descricao_listagem', 'Descricao Listagem:') !!}
+    {!! Form::label('descricao_listagem', 'Subtitulo:') !!}
     {!! Form::text('descricao_listagem', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -27,6 +35,8 @@
     {!! Form::label('url_pagamento', 'Link do Pagseguro:') !!}
     {!! Form::text('url_pagamento', isset($expedicao) ? $expedicao->url_pagamento : '' , ['class' => 'form-control']) !!}
 </div>
+--}}
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
