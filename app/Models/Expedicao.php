@@ -46,9 +46,11 @@ class Expedicao extends Model
     public $fillable = [
         'titulo',
         'descricao_listagem',
+        'ativo_listagem',
         'data_inicio',
         'data_fim',
         'url_pagamento',
+        'link_destino',
     ];
 
     /**
@@ -72,12 +74,14 @@ class Expedicao extends Model
      */
     public static $rules = [
         'titulo' => 'required',
-        'descricao_listagem' => 'required',
-        'data_inicio' => 'required',
-        'data_fim' => 'required',
-        'url_pagamento' => 'sometimes|nullable|url',
-
+        'link_destino' => 'required|url',
     ];
+
+
+    public $appends = [
+        'stringAtivoListagem'
+    ];
+
 
     /**
      * Relacao de hasMany de Inscricoes.
@@ -88,6 +92,16 @@ class Expedicao extends Model
     }
 
     /**
+     * Scope para aplicar na query filtrando por 
+     */
+     public function scopeAtivas($query)
+     {
+        return $query->where('ativo_listagem', true);
+     }
+
+
+
+    /**
      * Acessor para tratar o link de pagamento.
      */
     public function getUrlPagamentoAttribute()
@@ -96,4 +110,22 @@ class Expedicao extends Model
             ? $this->attributes['url_pagamento']
             : false;
     }
+
+    /**
+     * Acessor para o texto de 'Sim' ou 'Não' dependendo da propriedade $ativo_listagem
+     */
+     public function getstringAtivoListagemAttribute()
+     {
+        return $this->ativo_listagem ? 'Sim' : 'Não';
+     }
+
+    /**
+     * Acessor para o link da foto de listagem no cloudinary
+     */
+     public function getFotoLinkAttribute()
+     {
+         $cloudName = env("CLOUDINARY_CLOUD_NAME");
+         $id = $this->mediaListagem->cloudinary_id;
+         return "https://res.cloudinary.com/$cloudName/image/upload/$id";
+     }
 }

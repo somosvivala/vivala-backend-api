@@ -22,7 +22,8 @@ class ExpedicaoListagemTransformer extends TransformerAbstract
             'id' => $model->id,
             'titulo' => $model->titulo,
             'foto' => $model->mediaListagem ? $model->mediaListagem->cloudinary_id : null,
-            'descricao' => $model->descricao_listagem,
+            'foto_link' => $model->mediaListagem ? $model->fotoLink : null,
+            'link_destino' => $model->link_destino,
         ];
     }
 }
