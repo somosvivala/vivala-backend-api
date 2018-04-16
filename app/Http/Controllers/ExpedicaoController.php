@@ -190,9 +190,10 @@ class ExpedicaoController extends AppBaseController
         //Se tiver enviado pro Cloudinary com sucesso
         if ($retorno) {
             Flash::success('Expedição criada com sucesso!');
+
             return [
                 'success' => true,
-                'redirectURL' => "/expedicaos",
+                'redirectURL' => '/expedicaos',
                 'message' => 'Foto da listagem atualizada! Recarregando...',
             ];
         } else {
@@ -203,7 +204,7 @@ class ExpedicaoController extends AppBaseController
     }
 
     /**
-     * Metodo que recebe o POST de ativar a exibição dessa expedicao em /volunturismo
+     * Metodo que recebe o POST de ativar a exibição dessa expedicao em /volunturismo.
      *
      * @param mixed $id
      */
@@ -213,6 +214,7 @@ class ExpedicaoController extends AppBaseController
 
         if (empty($expedicao)) {
             Flash::error('Expedicao não encontrada');
+
             return redirect(route('expedicaos.index'));
         }
 
@@ -221,9 +223,9 @@ class ExpedicaoController extends AppBaseController
 
         return redirect()->back();
     }
-    
+
     /**
-     * Metodo que recebe o POST de desativar a exibição dessa expedicao em /volunturismo
+     * Metodo que recebe o POST de desativar a exibição dessa expedicao em /volunturismo.
      *
      * @param mixed $id
      */
@@ -233,6 +235,7 @@ class ExpedicaoController extends AppBaseController
 
         if (empty($expedicao)) {
             Flash::error('Expedicao não encontrada');
+
             return redirect(route('expedicaos.index'));
         }
 
