@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Expedicao;
 use App\Repositories\ExpedicaoRepository;
 use App\Http\Controllers\AppBaseController;
 
@@ -25,9 +24,8 @@ class VolunturismoAPIController extends AppBaseController
         $this->expedicaoRepository = $expedicaoRepo;
     }
 
-
     /**
-     * Metodo para retornar o JSON da listagem de expedições de volunturismo
+     * Metodo para retornar o JSON da listagem de expedições de volunturismo.
      *
      * @return JSON
      */

@@ -77,11 +77,9 @@ class Expedicao extends Model
         'link_destino' => 'required|url',
     ];
 
-
     public $appends = [
-        'stringAtivoListagem'
+        'stringAtivoListagem',
     ];
-
 
     /**
      * Relacao de hasMany de Inscricoes.
@@ -92,14 +90,12 @@ class Expedicao extends Model
     }
 
     /**
-     * Scope para aplicar na query filtrando por 
+     * Scope para aplicar na query filtrando por.
      */
-     public function scopeAtivas($query)
-     {
+    public function scopeAtivas($query)
+    {
         return $query->where('ativo_listagem', true);
-     }
-
-
+    }
 
     /**
      * Acessor para tratar o link de pagamento.
@@ -112,20 +108,21 @@ class Expedicao extends Model
     }
 
     /**
-     * Acessor para o texto de 'Sim' ou 'Não' dependendo da propriedade $ativo_listagem
+     * Acessor para o texto de 'Sim' ou 'Não' dependendo da propriedade $ativo_listagem.
      */
-     public function getstringAtivoListagemAttribute()
-     {
+    public function getstringAtivoListagemAttribute()
+    {
         return $this->ativo_listagem ? 'Sim' : 'Não';
-     }
+    }
 
     /**
-     * Acessor para o link da foto de listagem no cloudinary
+     * Acessor para o link da foto de listagem no cloudinary.
      */
-     public function getFotoLinkAttribute()
-     {
-         $cloudName = env("CLOUDINARY_CLOUD_NAME");
-         $id = $this->mediaListagem->cloudinary_id;
-         return "https://res.cloudinary.com/$cloudName/image/upload/$id";
-     }
+    public function getFotoLinkAttribute()
+    {
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $id = $this->mediaListagem->cloudinary_id;
+
+        return "https://res.cloudinary.com/$cloudName/image/upload/$id";
+    }
 }
