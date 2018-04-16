@@ -37,7 +37,6 @@ class AlteraTableExpedicaos extends Migration
 
             $table->dropColumn('link_destino');
             $table->dropColumn('ativo_listagem');
-            
         });
     }
 }

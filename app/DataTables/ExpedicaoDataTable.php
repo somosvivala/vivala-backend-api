@@ -14,7 +14,7 @@ class ExpedicaoDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', function($model) {
+            ->addColumn('action', function ($model) {
                 return view('expedicaos.datatables_actions')->with(['expedicao' => $model, 'id' => $model->id]);
             })
             ->make(true);
