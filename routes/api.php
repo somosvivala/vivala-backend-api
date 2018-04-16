@@ -93,3 +93,6 @@ Route::get('conteudo/expedicoes/{id}', 'ExpedicoesAPIController@getInterna');
 //experiencias
 Route::get('conteudo/experiencias', 'ExperienciasAPIController@getListagem');
 Route::get('conteudo/experiencias/{id}', 'ExperienciasAPIController@getInterna');
+
+Route::get('conteudo/volunturismo', 'VolunturismoAPIController@getListagem');
+
