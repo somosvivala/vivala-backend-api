@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="content-header">
-        <h2>Passo 2 - Insira a foto que vai aparecer na listagem de expedições</h2>
+        <h2>Passo 2/2 - Foto que vai aparecer na listagem de expedições de volunturismo </h2>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')

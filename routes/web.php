@@ -103,6 +103,8 @@ Route::post('agentes/{id}/foto', 'AgenteController@postFotoAgente')->middleware(
 
 Route::get('expedicaos/{id}/foto-listagem', 'ExpedicaoController@getFotoListagem')->middleware('auth');
 Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListagem')->middleware('auth');
+Route::post('expedicaos/{id}/ativa-listagem', 'ExpedicaoController@postAtivaListagem')->middleware('auth');
+Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveListagem')->middleware('auth');
 
 Route::get('expedicaos/{id}/create-descricoes', 'ExpedicaoController@getCreateDescricoes')->middleware('auth');
 Route::get('expedicaos/{id}/create-medias-interna', 'ExpedicaoController@getCreateMediasInterna')->middleware('auth');

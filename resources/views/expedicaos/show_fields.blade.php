@@ -1,9 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $expedicao->id !!}</p>
-</div>
-
 <!-- Titulo Field -->
 <div class="form-group">
     {!! Form::label('titulo', 'Titulo:') !!}
@@ -12,43 +6,45 @@
 
 <!-- Descricao Listagem Field -->
 <div class="form-group">
-    {!! Form::label('descricao_listagem', 'Descricao Listagem:') !!}
+    {!! Form::label('descricao_listagem', 'Subtitulo') !!}
     <p>{!! $expedicao->descricao_listagem !!}</p>
 </div>
 
-<!-- Data Inicio Field -->
+<!-- Link de destino Field -->
 <div class="form-group">
-    {!! Form::label('data_inicio', 'Data Inicio:') !!}
-    <p>{!! $expedicao->data_inicio !!}</p>
+    {!! Form::label('link_destino', 'Link de destino') !!}
+<p> <a href="{!! $expedicao->link_destino !!}">{!! $expedicao->link_destino !!}</a> </p>
 </div>
 
-<!-- Data Fim Field -->
+<!-- Ativo na listagem -->
 <div class="form-group">
-    {!! Form::label('data_fim', 'Data Fim:') !!}
-    <p>{!! $expedicao->data_fim !!}</p>
+    {!! Form::label('ativo_listagem', 'Aparece na listagem: ') !!}
+    <span> {{ $expedicao->ativo_listagem ? 'Sim' : 'Não' }} </span>
+    @if ( !$expedicao->ativo_listagem )
+    {!! Form::open(['url' => '/expedicaos/'.$expedicao->id.'/ativa-listagem']) !!}
+        {!! Form::button('<i class="fa fa-arrow-up"></i> Mostrar na listagem', [
+            'type' => 'submit',
+            'class' => 'btn btn-info btn-xs',
+            'onclick' => "return confirm('Ativar a exibição dessa expedicao?')"
+        ]) !!}
+    {!! Form::close() !!}
+    @else
+    {!! Form::open(['url' => '/expedicaos/'.$expedicao->id.'/remove-listagem']) !!}
+        {!! Form::button('<i class="fa fa-arrow-down"></i> Remover da listagem', [
+            'type' => 'submit',
+            'class' => 'btn btn-warning btn-xs',
+            'onclick' => "return confirm('Parar a exibição dessa expedicao?')"
+        ]) !!}
+    {!! Form::close() !!}
+    @endif
+
 </div>
 
-<!-- Media Listagem Id Field -->
 <div class="form-group">
-    {!! Form::label('media_listagem_id', 'Media Listagem Id:') !!}
-    <p>{!! $expedicao->media_listagem_id !!}</p>
+    {!! Form::label('foto_listagem', 'Foto da listagem') !!}
+    <p> <img src="//res.cloudinary.com/{{ env('CLOUDINARY_CLOUD_NAME') }}/image/upload/{{ $expedicao->mediaListagem ? $expedicao->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $expedicao->titulo }}" width="500px"> </p>
+
 </div>
 
-<!-- Media Listagem Type Field -->
-<div class="form-group">
-    {!! Form::label('media_listagem_type', 'Media Listagem Type:') !!}
-    <p>{!! $expedicao->media_listagem_type !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $expedicao->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $expedicao->updated_at !!}</p>
-</div>
+<hr>
 
