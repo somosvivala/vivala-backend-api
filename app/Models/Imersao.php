@@ -48,15 +48,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Imersao extends Model
 {
     use SoftDeletes;
+    use ExpedicaoExperienciaModelTrait;
 
     public $table = 'imersaos';
-    
 
     protected $dates = ['deleted_at'];
 
-
     public $fillable = [
-        'titulo'
+        'titulo',
+        'ativo_listagem',
+        'link_destino',
     ];
 
     /**
@@ -76,8 +77,41 @@ class Imersao extends Model
      * @var array
      */
     public static $rules = [
-        
+        'titulo' => 'required',
+        'link_destino' => 'required|url',
     ];
 
+    /** Atributos que devem ser inclusos nas respostas da API **/
+    public $appends = [
+        'stringAtivoListagem',
+    ];
+
+
+    /**
+     * Scope para aplicar na query filtrando por.
+     */
+    public function scopeAtivas($query)
+    {
+        return $query->where('ativo_listagem', true);
+    }
+
+    /**
+     * Acessor para o texto de 'Sim' ou 'Não' dependendo da propriedade $ativo_listagem.
+     */
+    public function getStringAtivoListagemAttribute()
+    {
+        return $this->ativo_listagem ? 'Sim' : 'Não';
+    }
+
+    /**
+     * Acessor para o link da foto de listagem no cloudinary.
+     */
+    public function getFotoLinkAttribute()
+    {
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $id = $this->mediaListagem->cloudinary_id;
+
+        return "https://res.cloudinary.com/$cloudName/image/upload/$id";
+    }
     
 }

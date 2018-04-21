@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ImersaoDataTable;
+use App\Http\Requests;
 use App\Http\Requests\CreateImersaoRequest;
 use App\Http\Requests\UpdateImersaoRequest;
 use App\Repositories\ImersaoRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Http\Controllers\AppBaseController;
 use Response;
 
 class ImersaoController extends AppBaseController
@@ -24,16 +24,12 @@ class ImersaoController extends AppBaseController
     /**
      * Display a listing of the Imersao.
      *
-     * @param Request $request
+     * @param ImersaoDataTable $imersaoDataTable
      * @return Response
      */
-    public function index(Request $request)
+    public function index(ImersaoDataTable $imersaoDataTable)
     {
-        $this->imersaoRepository->pushCriteria(new RequestCriteria($request));
-        $imersaos = $this->imersaoRepository->all();
-
-        return view('imersaos.index')
-            ->with('imersaos', $imersaos);
+        return $imersaoDataTable->render('imersaos.index');
     }
 
     /**

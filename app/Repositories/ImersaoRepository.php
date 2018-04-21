@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class ImersaoRepository
  * @package App\Repositories
- * @version April 20, 2018, 11:39 pm BRT
+ * @version April 20, 2018, 11:48 pm BRT
  *
  * @method Imersao findWithoutFail($id, $columns = ['*'])
  * @method Imersao find($id, $columns = ['*'])
