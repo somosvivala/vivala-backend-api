@@ -15,49 +15,12 @@ Route::get('/', function () {
     return redirect('home');
 });
 
-Auth::routes();
+// Rotas de login / logout
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index');
-
-/*
- * ROTAS PARA TESTE DAS BLADES DE EMAILS
- */
-Route::get('/exemplo-email-contato-geral', function () {
-    return view('emails.contato-geral')->with('contatoGeral', App\Models\ContatoGeral::first());
-});
-Route::get('/exemplo-email-contato-agentes', function () {
-    return view('emails.contato-agente')->with('contatoAgente', App\Models\ContatoAgente::first());
-});
-Route::get('/exemplo-email-contato-corporativo', function () {
-    return view('emails.contato-corporativo')->with('contatoCorporativo', App\Models\ContatoCorporativo::first());
-});
-Route::get('/exemplo-email-inscricao-expedicao', function () {
-    return view('emails.inscricao-expedicao')->with('inscricao', App\Models\InscricaoExpedicao::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-pacote', function () {
-    return view('emails.cotacao-pacote')->with('cotacao', App\Models\CotacaoPacote::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-hospedagem', function () {
-    return view('emails.cotacao-hospedagem')->with('cotacao', App\Models\CotacaoHospedagem::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-aereo', function () {
-    return view('emails.cotacao-aereo')->with('cotacao', App\Models\CotacaoAereo::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-rodoviario', function () {
-    return view('emails.cotacao-rodoviario')->with('cotacao', App\Models\CotacaoRodoviario::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-cruzeiro', function () {
-    return view('emails.cotacao-cruzeiro')->with('cotacao', App\Models\CotacaoCruzeiro::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-carro', function () {
-    return view('emails.cotacao-carro')->with('cotacao', App\Models\CotacaoCarro::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-passeio', function () {
-    return view('emails.cotacao-passeio')->with('cotacao', App\Models\CotacaoPasseio::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-seguro', function () {
-    return view('emails.cotacao-seguro')->with('cotacao', App\Models\CotacaoSeguro::latest()->first());
-});
 
 //Newsletter
 Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth']);
@@ -106,18 +69,22 @@ Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListag
 Route::post('expedicaos/{id}/ativa-listagem', 'ExpedicaoController@postAtivaListagem')->middleware('auth');
 Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveListagem')->middleware('auth');
 Route::get('/volunturismo/foto-home', 'HomeController@index');
+Route::get('/volunturismo/video', 'HomeController@index');
 
 Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
 Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');
 Route::post('experiencias/{id}/ativa-listagem', 'ExperienciaController@postAtivaListagem')->middleware('auth');
 Route::post('experiencias/{id}/remove-listagem', 'ExperienciaController@postRemoveListagem')->middleware('auth');
+Route::get('/ecoturismo/foto-home', 'HomeController@index');
+Route::get('/ecoturismo/video', 'HomeController@index');
 
 Route::resource('imersaos', 'ImersaoController');
 Route::get('imersaos/{id}/foto-listagem', 'ImersaoController@getFotoListagem')->middleware('auth');
 Route::post('imersaos/{id}/foto-listagem', 'ImersaoController@postFotoListagem')->middleware('auth');
 Route::post('imersaos/{id}/ativa-listagem', 'ImersaoController@postAtivaListagem')->middleware('auth');
 Route::post('imersaos/{id}/remove-listagem', 'ImersaoController@postRemoveListagem')->middleware('auth');
-
+Route::get('/imersoes/foto-home', 'HomeController@index');
+Route::get('/imersoes/video', 'HomeController@index');
 
 /*
  * Removendo para V3

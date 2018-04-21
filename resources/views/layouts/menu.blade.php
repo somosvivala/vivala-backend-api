@@ -1,6 +1,9 @@
-<li class="treeview {{ Request::is('expedicaos*') ? 'active' : '' }}" id="scrollspy-components">
+<li class="treeview {{ (Request::is('expedicaos*') || Request::is('volunturismo*')) ? 'active' : '' }}" id="scrollspy-components">
   <a href="javascript:void(0)"><i class="fa fa-heart"></i>Volunturismo</a>
   <ul class="nav treeview-menu">
+    <li class="{{ Request::is('volunturismo/video') ? 'active' : '' }}">
+        <a href="/volunturismo/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
+    </li>
     <li class="{{ Request::is('volunturismo/foto-home') ? 'active' : '' }}">
         <a href="/volunturismo/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
     </li>
@@ -10,18 +13,30 @@
   </ul>
 </li>
 
-<li class="treeview {{ Request::is('experiencias*') ? 'active' : '' }}" id="scrollspy-components">
+<li class="treeview {{ (Request::is('experiencias*') || Request::is('ecoturismo*')) ? 'active' : '' }}" id="scrollspy-components">
   <a href="javascript:void(0)"><i class="fa fa-leaf"></i>Ecoturismo</a>
   <ul class="nav treeview-menu">
+    <li class="{{ Request::is('ecoturismo/video') ? 'active' : '' }}">
+        <a href="/ecoturismo/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
+    </li>
+    <li class="{{ Request::is('ecoturismo/foto-home') ? 'active' : '' }}">
+        <a href="/ecoturismo/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
+    </li>
     <li class="{{ Request::is('experiencias*') ? 'active' : '' }}">
         <a href="{!! route('experiencias.index') !!}"><i class="fa fa-tree" aria-hidden="true"></i><span>Experiências</span></a>
     </li>
   </ul>
 </li>
 
-<li class="treeview" id="scrollspy-components">
+<li class="treeview {{ (Request::is('imersaos*') || Request::is('imersoes*')) ? 'active' : '' }}" id="scrollspy-components">
   <a href="javascript:void(0)"><i class="fa fa-globe"></i>Imersões</a>
   <ul class="nav treeview-menu">
+    <li class="{{ Request::is('imersoes/video') ? 'active' : '' }}">
+        <a href="/imersoes/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
+    </li>
+    <li class="{{ Request::is('imersoes/foto-home') ? 'active' : '' }}">
+        <a href="/imersoes/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
+    </li>
     <li class="{{ Request::is('imersaos*') ? 'active' : '' }}">
         <a href="{!! route('imersaos.index') !!}"><i class="fa fa-globe"></i><span>Imersões</span></a>
     </li>
