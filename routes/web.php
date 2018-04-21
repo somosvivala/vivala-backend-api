@@ -105,6 +105,7 @@ Route::get('expedicaos/{id}/foto-listagem', 'ExpedicaoController@getFotoListagem
 Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListagem')->middleware('auth');
 Route::post('expedicaos/{id}/ativa-listagem', 'ExpedicaoController@postAtivaListagem')->middleware('auth');
 Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveListagem')->middleware('auth');
+Route::get('/volunturismo/foto-home', 'HomeController@index');
 
 Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
 Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');
@@ -132,4 +133,3 @@ Route::post('experiencias/{id}/create-medias-interna', 'ExperienciaController@po
 **/
 
 
-Route::resource('imersaos', 'ImersaoController');
