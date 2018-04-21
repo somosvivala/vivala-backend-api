@@ -2,21 +2,18 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Inscrições na Newsletters</h1>
-        <h1 class="pull-right">
+        <h1>
+            Imersao
         </h1>
     </section>
     <div class="content">
-        <div class="clearfix"></div>
-
-        @include('flash::message')
-
-        <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('inscricao_newsletters.table')
+                <div class="row" style="padding-left: 20px">
+                    @include('imersaos.show_fields')
+                    <a href="{!! route('imersaos.index') !!}" class="btn btn-default">Back</a>
+                </div>
             </div>
         </div>
     </div>
 @endsection
-

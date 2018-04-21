@@ -8,7 +8,7 @@ use App\Traits\ExpedicaoExperienciaModelTrait;
 
 /**
  * @SWG\Definition(
- *      definition="Experiencia",
+ *      definition="Imersao",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -20,23 +20,6 @@ use App\Traits\ExpedicaoExperienciaModelTrait;
  *          property="titulo",
  *          description="titulo",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="descricao_listagem",
- *          description="descricao_listagem",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="data_inicio",
- *          description="data_inicio",
- *          type="string",
- *          format="date"
- *      ),
- *      @SWG\Property(
- *          property="data_fim",
- *          description="data_fim",
- *          type="string",
- *          format="date"
  *      ),
  *      @SWG\Property(
  *          property="media_listagem_id",
@@ -63,22 +46,18 @@ use App\Traits\ExpedicaoExperienciaModelTrait;
  *      )
  * )
  */
-class Experiencia extends Model
+class Imersao extends Model
 {
     use SoftDeletes;
     use ExpedicaoExperienciaModelTrait;
 
-    public $table = 'experiencias';
+    public $table = 'imersaos';
 
     protected $dates = ['deleted_at'];
 
     public $fillable = [
         'titulo',
-        'descricao_listagem',
         'ativo_listagem',
-        'data_inicio',
-        'data_fim',
-        'url_pagamento',
         'link_destino',
     ];
 
@@ -89,12 +68,8 @@ class Experiencia extends Model
      */
     protected $casts = [
         'titulo' => 'string',
-        'descricao_listagem' => 'string',
-        'data_inicio' => 'date',
-        'data_fim' => 'date',
         'media_listagem_id' => 'integer',
         'media_listagem_type' => 'string',
-        'url_pagamento' => 'string',
     ];
 
     /**
@@ -113,29 +88,11 @@ class Experiencia extends Model
     ];
 
     /**
-     * Relacao de hasMany de Inscricoes.
-     */
-    public function inscricoes()
-    {
-        return $this->hasMany(\App\Models\InscricaoExperiencia::class);
-    }
-
-    /**
      * Scope para aplicar na query filtrando por.
      */
     public function scopeAtivas($query)
     {
         return $query->where('ativo_listagem', true);
-    }
-
-    /**
-     * Acessor para tratar o link de pagamento.
-     */
-    public function getUrlPagamentoAttribute()
-    {
-        return $this->attributes['url_pagamento']
-            ? $this->attributes['url_pagamento']
-            : false;
     }
 
     /**

@@ -60,7 +60,7 @@ class ExperienciaController extends AppBaseController
 
         $experiencia = $this->experienciaRepository->create($input);
 
-        Flash::success('Experiencia saved successfully.');
+        Flash::success('Experiencia criada com sucesso.');
 
         return redirect('experiencias/'.$experiencia->id.'/foto-listagem');
     }
