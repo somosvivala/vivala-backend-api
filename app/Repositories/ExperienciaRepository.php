@@ -25,7 +25,7 @@ class ExperienciaRepository extends BaseRepository
     {
         return Experiencia::class;
     }
-    
+
     /**
      * Retorna as Experiencias ativas.
      *

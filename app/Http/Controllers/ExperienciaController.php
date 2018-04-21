@@ -190,6 +190,7 @@ class ExperienciaController extends AppBaseController
         //Se tiver enviado pro Cloudinary com sucesso
         if ($retorno) {
             Flash::success('Experiencia criada com sucesso!');
+
             return [
                 'success' => true,
                 'redirectURL' => '/experiencias',
@@ -243,7 +244,6 @@ class ExperienciaController extends AppBaseController
 
         return redirect()->back();
     }
-
 
     /**
      * Metodo que recebe o POST de criacao das Fotos do slider interno das experiencia.

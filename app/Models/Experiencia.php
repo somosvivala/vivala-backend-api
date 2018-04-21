@@ -111,7 +111,7 @@ class Experiencia extends Model
     public $appends = [
         'stringAtivoListagem',
     ];
-    
+
     /**
      * Relacao de hasMany de Inscricoes.
      */
@@ -122,7 +122,6 @@ class Experiencia extends Model
 
     /**
      * Scope para aplicar na query filtrando por.
-     *
      */
     public function scopeAtivas($query)
     {
@@ -157,5 +156,4 @@ class Experiencia extends Model
 
         return "https://res.cloudinary.com/$cloudName/image/upload/$id";
     }
-    
 }
