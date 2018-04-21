@@ -156,7 +156,7 @@ class ImersaoController extends AppBaseController
 
         $this->imersaoRepository->delete($id);
 
-        Flash::success('Imersao deleted successfully.');
+        Flash::success('Imersao removida com sucesso.');
 
         return redirect(route('imersaos.index'));
     }

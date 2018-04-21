@@ -30,4 +30,38 @@ class ImersaoRepository extends BaseRepository
     {
         return Imersao::class;
     }
+
+    /**
+     * Retorna as Expedicoes ativas.
+     *
+     * @return void
+     */
+    public function getAtivas()
+    {
+        return Imersao::ativas()->get();
+    }
+
+    /**
+     * Ativa a imersao para que passe a ser retornada via API.
+     *
+     * @return void
+     */
+    public function ativaImersao(Imersao $imersao)
+    {
+        return $imersao->update([
+            'ativo_listagem' => true,
+        ]);
+    }
+
+    /**
+     * Desativa a imersao para que passe a ser retornada via API.
+     *
+     * @return void
+     */
+    public function desativaImersao(Imersao $imersao)
+    {
+        return $imersao->update([
+            'ativo_listagem' => false,
+        ]);
+    }
 }
