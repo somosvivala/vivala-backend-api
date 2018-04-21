@@ -6,11 +6,12 @@
         Editando a Experiência
     </h1>
 </section>
-<div class="content" style="min-height:500px">
+<div class="content" style="min-height:300px">
     @include('adminlte-templates::common.errors')
 
             <!-- Custom Tabs -->
-            <div class="nav-tabs-custom" style="min-height:500px">
+            <div class="nav-tabs-custom" style="min-height:300px">
+
                 <ul class="nav nav-tabs">
                     <li class="active">
                         <a href="#tab_infoGeral" data-toggle="tab" aria-expanded="true">
@@ -22,6 +23,7 @@
                             <strong>Foto da listagem</strong>
                         </a>
                     </li>
+{{-- Escondido em v3
                     <li class="">
                         <a href="#tab_blocosDescricao" data-toggle="tab" aria-expanded="false">
                             <strong>Descrições Pág. interna</strong>
@@ -37,6 +39,7 @@
                             <strong>Inscrições</strong>
                         </a>
                     </li>
+--}}
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_infoGeral" style="min-height:220px;">
@@ -49,6 +52,12 @@
                         {!! Form::close() !!}
 
                     </div>
+                    <div class="tab-pane" id="tab_fotoListagem">
+                        <img src="//res.cloudinary.com/{{ env('CLOUDINARY_CLOUD_NAME') }}/image/upload/{{ $experiencia->mediaListagem ? $experiencia->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $experiencia->titulo}}">
+                        <a class="btn btn-primary" href="/experiencias/{{$experiencia->id}}/foto-listagem">Trocar Foto &nbsp; <i class="fa fa-pencil"></i></a>
+                    </div>
+
+{{-- Escondido em v3
                     <div class="tab-pane" id="tab_blocosDescricao">
 
                                 <a class="btn btn-primary" href="#modal-foto" data-toggle="modal" data-target="#modal-blocosDescricao">Adicionar bloco de descricao &nbsp; <i class="fa fa-file-text"></i></a>
@@ -61,11 +70,6 @@
                         ])
 
                         @include('bloco_descricaos.table', ['blocoDescricaos' => $experiencia->blocosDescricao])
-                    </div>
-                    <div class="tab-pane" id="tab_fotoListagem">
-                        <img src="//res.cloudinary.com/vivala/image/upload/{{ $experiencia->mediaListagem ? $experiencia->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $experiencia->titulo}}">
-                        <a class="btn btn-primary" href="/experiencias/{{$experiencia->id}}/foto-listagem">Trocar Foto &nbsp; <i class="fa fa-pencil"></i></a>
-
                     </div>
                     <div class="tab-pane" id="tab_medias_slider">
                         <div class="col-xs-12 text-center" style="margin-top:2rem">
@@ -104,6 +108,7 @@
                         <a class="btn btn-primary" href="/experiencias/{{$experiencia->id}}/inscricoes">Ver tabela de Inscritos &nbsp; <i class="fa fa-eye"></i></a>
                     </div>
 
+--}}
 
 
 

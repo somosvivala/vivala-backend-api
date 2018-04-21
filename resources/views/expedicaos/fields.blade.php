@@ -40,8 +40,8 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Proximo', ['class' => 'btn btn-primary']) !!}
-    <a href="/expedicaos" class="btn btn-default">Cancel</a>
+    {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
+    <a href="/expedicaos" class="btn btn-default">Cancelar</a>
 </div>
 
 

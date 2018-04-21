@@ -8,6 +8,7 @@ use App\Traits\ExpedicaoExperienciaRepositoryTrait;
 
 class ExperienciaRepository extends BaseRepository
 {
+    //Utilizando de um Trait para herdar comportamento em comum de + de 1 Repositorio
     use ExpedicaoExperienciaRepositoryTrait;
 
     /**
@@ -23,5 +24,39 @@ class ExperienciaRepository extends BaseRepository
     public function model()
     {
         return Experiencia::class;
+    }
+
+    /**
+     * Retorna as Experiencias ativas.
+     *
+     * @return void
+     */
+    public function getAtivas()
+    {
+        return Experiencia::ativas()->get();
+    }
+
+    /**
+     * Ativa a experiencia para que passe a ser retornada via API.
+     *
+     * @return void
+     */
+    public function ativaExperiencia(Experiencia $experiencia)
+    {
+        return $experiencia->update([
+            'ativo_listagem' => true,
+        ]);
+    }
+
+    /**
+     * Desativa a experiencia para que passe a ser retornada via API.
+     *
+     * @return void
+     */
+    public function desativaExperiencia(Experiencia $experiencia)
+    {
+        return $experiencia->update([
+            'ativo_listagem' => false,
+        ]);
     }
 }
