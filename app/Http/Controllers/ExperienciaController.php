@@ -204,7 +204,7 @@ class ExperienciaController extends AppBaseController
     }
 
     /**
-     * Metodo que recebe o POST de ativar a exibição dessa experiencia em /volunturismo.
+     * Metodo que recebe o POST de ativar a exibição dessa experiencia em /ecoturismo.
      *
      * @param mixed $id
      */
@@ -218,7 +218,7 @@ class ExperienciaController extends AppBaseController
             return redirect(route('experiencias.index'));
         }
 
-        $retorno = $this->experienciaRepository->ativaexperiencia($experiencia);
+        $retorno = $this->experienciaRepository->ativaExperiencia($experiencia);
         Flash::success('Experiencia ativada com sucesso.');
 
         return redirect()->back();
@@ -239,7 +239,7 @@ class ExperienciaController extends AppBaseController
             return redirect(route('experiencias.index'));
         }
 
-        $retorno = $this->experienciaRepository->desativaexperiencia($experiencia);
+        $retorno = $this->experienciaRepository->desativaExperiencia($experiencia);
         Flash::success('Experiencia desativada com sucesso.');
 
         return redirect()->back();
