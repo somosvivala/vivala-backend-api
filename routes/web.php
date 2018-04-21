@@ -116,3 +116,6 @@ Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoLi
 Route::get('experiencias/{id}/create-descricoes', 'ExperienciaController@getCreateDescricoes')->middleware('auth');
 Route::get('experiencias/{id}/create-medias-interna', 'ExperienciaController@getCreateMediasInterna')->middleware('auth');
 Route::post('experiencias/{id}/create-medias-interna', 'ExperienciaController@postCreateMediasInterna')->middleware('auth');
+
+
+Route::resource('imersaos', 'ImersaoController');
