@@ -111,7 +111,7 @@ Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoLi
 Route::post('experiencias/{id}/ativa-listagem', 'ExperienciaController@postAtivaListagem')->middleware('auth');
 Route::post('experiencias/{id}/remove-listagem', 'ExperienciaController@postRemoveListagem')->middleware('auth');
 
-/**
+/*
  * Removendo para V3
 
 Route::get('expedicaos/{id}/create-descricoes', 'ExpedicaoController@getCreateDescricoes')->middleware('auth');
