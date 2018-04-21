@@ -77,6 +77,7 @@ class Expedicao extends Model
         'link_destino' => 'required|url',
     ];
 
+    /** Atributos que devem ser inclusos nas respostas da API **/
     public $appends = [
         'stringAtivoListagem',
     ];
