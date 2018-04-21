@@ -69,11 +69,11 @@ class Imersao extends Model
     protected $casts = [
         'titulo' => 'string',
         'media_listagem_id' => 'integer',
-        'media_listagem_type' => 'string'
+        'media_listagem_type' => 'string',
     ];
 
     /**
-     * Validation rules
+     * Validation rules.
      *
      * @var array
      */
@@ -86,7 +86,6 @@ class Imersao extends Model
     public $appends = [
         'stringAtivoListagem',
     ];
-
 
     /**
      * Scope para aplicar na query filtrando por.
@@ -114,5 +113,4 @@ class Imersao extends Model
 
         return "https://res.cloudinary.com/$cloudName/image/upload/$id";
     }
-    
 }
