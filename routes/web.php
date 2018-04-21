@@ -106,16 +106,23 @@ Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListag
 Route::post('expedicaos/{id}/ativa-listagem', 'ExpedicaoController@postAtivaListagem')->middleware('auth');
 Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveListagem')->middleware('auth');
 
+Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
+Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');
+Route::post('experiencias/{id}/ativa-listagem', 'ExperienciaController@postAtivaListagem')->middleware('auth');
+Route::post('experiencias/{id}/remove-listagem', 'ExperienciaController@postRemoveListagem')->middleware('auth');
+
+Route::resource('imersaos', 'ImersaoController');
+
+
+/*
+ * Removendo para V3
+
 Route::get('expedicaos/{id}/create-descricoes', 'ExpedicaoController@getCreateDescricoes')->middleware('auth');
 Route::get('expedicaos/{id}/create-medias-interna', 'ExpedicaoController@getCreateMediasInterna')->middleware('auth');
 Route::post('expedicaos/{id}/create-medias-interna', 'ExpedicaoController@postCreateMediasInterna')->middleware('auth');
-
-Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
-Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');
 
 Route::get('experiencias/{id}/create-descricoes', 'ExperienciaController@getCreateDescricoes')->middleware('auth');
 Route::get('experiencias/{id}/create-medias-interna', 'ExperienciaController@getCreateMediasInterna')->middleware('auth');
 Route::post('experiencias/{id}/create-medias-interna', 'ExperienciaController@postCreateMediasInterna')->middleware('auth');
 
-
-Route::resource('imersaos', 'ImersaoController');
+**/
