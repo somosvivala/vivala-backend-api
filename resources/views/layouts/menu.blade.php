@@ -81,13 +81,6 @@
 </li>
 --}}
 
-
-
 <li class="{{ Request::is('imersaos*') ? 'active' : '' }}">
-    <a href="{!! route('imersaos.index') !!}"><i class="fa fa-edit"></i><span>Imersaos</span></a>
+    <a href="{!! route('imersaos.index') !!}"><i class="fa fa-globe"></i><span>Imersões</span></a>
 </li>
-
-<li class="{{ Request::is('imersaos*') ? 'active' : '' }}">
-    <a href="{!! route('imersaos.index') !!}"><i class="fa fa-edit"></i><span>Imersaos</span></a>
-</li>
-

@@ -141,7 +141,7 @@ class Experiencia extends Model
     /**
      * Acessor para o texto de 'Sim' ou 'Não' dependendo da propriedade $ativo_listagem.
      */
-    public function getstringAtivoListagemAttribute()
+    public function getStringAtivoListagemAttribute()
     {
         return $this->ativo_listagem ? 'Sim' : 'Não';
     }

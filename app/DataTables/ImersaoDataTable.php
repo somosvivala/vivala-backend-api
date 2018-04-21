@@ -3,12 +3,10 @@
 namespace App\DataTables;
 
 use App\Models\Imersao;
-use Form;
 use Yajra\Datatables\Services\DataTable;
 
 class ImersaoDataTable extends DataTable
 {
-
     /**
      * @return \Illuminate\Http\JsonResponse
      */
@@ -16,7 +14,9 @@ class ImersaoDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'imersaos.datatables_actions')
+            ->addColumn('action', function ($model) {
+                return view('imersaos.datatables_actions')->with(['imersao' => $model, 'id' => $model->id]);
+            })
             ->make(true);
     }
 
@@ -41,26 +41,35 @@ class ImersaoDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '10%'])
+            ->addAction(['width' => '15%'])
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
                 'scrollX' => false,
                 'buttons' => [
-                    'print',
-                    'reset',
-                    'reload',
+                    [
+                        'extend' => 'print',
+                        'text'    => '<i class="fa fa-print"></i> Imprimir',
+                    ],
+
+                    [
+                        'extend' => 'reload',
+                        'text'    => '<i class="fa fa-refresh"></i> Atualizar',
+                    ],
                     [
                          'extend'  => 'collection',
-                         'text'    => '<i class="fa fa-download"></i> Export',
+                         'text'    => '<i class="fa fa-download"></i> Exportar',
                          'buttons' => [
                              'csv',
                              'excel',
-                             'pdf',
                          ],
                     ],
-                    'colvis'
-                ]
+                    [
+                        'extend' => 'colvis',
+                        'text'    => 'Filtrar Colunas',
+                    ],
+                ],
+                'language' => ['url' => '//cdn.datatables.net/plug-ins/1.10.15/i18n/Portuguese-Brasil.json'],
             ]);
     }
 
@@ -72,7 +81,10 @@ class ImersaoDataTable extends DataTable
     private function getColumns()
     {
         return [
-            'titulo' => ['name' => 'titulo', 'data' => 'titulo']
+            'titulo' => ['name' => 'titulo', 'data' => 'titulo', 'title' => 'Título'],
+            'link_destino' => ['name' => 'link_destino', 'data' => 'link_destino', 'title' => 'Link de destino'],
+            'ativo_listagem' =>  ['name' => 'ativo_listagem', 'data' => 'stringAtivoListagem', 'title' => 'Aparece na listagem'],
+            'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Criada em'],
         ];
     }
 

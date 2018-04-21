@@ -2,23 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\ImersaoDataTable;
+use Flash;
+use Response;
 use App\Http\Requests;
+use App\DataTables\ImersaoDataTable;
+use App\Repositories\FotoRepository;
+use App\Repositories\ImersaoRepository;
 use App\Http\Requests\CreateImersaoRequest;
 use App\Http\Requests\UpdateImersaoRequest;
-use App\Repositories\ImersaoRepository;
-use Flash;
 use App\Http\Controllers\AppBaseController;
-use Response;
+use App\Http\Requests\CreateFotoListagemExpRequest;
 
 class ImersaoController extends AppBaseController
 {
     /** @var  ImersaoRepository */
     private $imersaoRepository;
 
-    public function __construct(ImersaoRepository $imersaoRepo)
+    /** @var FotoRepository */
+    private $fotoRepository;
+
+    /**
+     * Construtor recebendo infos necessarias
+     *
+     * @param FotoRepository $fotoRepo
+     * @param ImersaoRepository $imersaoRepo
+     */
+    public function __construct(FotoRepository $fotoRepo, ImersaoRepository $imersaoRepo)
     {
         $this->imersaoRepository = $imersaoRepo;
+        $this->fotoRepository = $fotoRepo;
     }
 
     /**
@@ -55,9 +67,9 @@ class ImersaoController extends AppBaseController
 
         $imersao = $this->imersaoRepository->create($input);
 
-        Flash::success('Imersao saved successfully.');
+        Flash::success('Imersao criada com sucesso.');
 
-        return redirect(route('imersaos.index'));
+        return redirect('imersaos/'.$imersao->id.'/foto-listagem');
     }
 
     /**
@@ -72,7 +84,7 @@ class ImersaoController extends AppBaseController
         $imersao = $this->imersaoRepository->findWithoutFail($id);
 
         if (empty($imersao)) {
-            Flash::error('Imersao not found');
+            Flash::error('Imersao não encontrada');
 
             return redirect(route('imersaos.index'));
         }
@@ -92,7 +104,7 @@ class ImersaoController extends AppBaseController
         $imersao = $this->imersaoRepository->findWithoutFail($id);
 
         if (empty($imersao)) {
-            Flash::error('Imersao not found');
+            Flash::error('Imersao não encontrada');
 
             return redirect(route('imersaos.index'));
         }
@@ -113,7 +125,7 @@ class ImersaoController extends AppBaseController
         $imersao = $this->imersaoRepository->findWithoutFail($id);
 
         if (empty($imersao)) {
-            Flash::error('Imersao not found');
+            Flash::error('Imersao não encontrada');
 
             return redirect(route('imersaos.index'));
         }
@@ -137,7 +149,7 @@ class ImersaoController extends AppBaseController
         $imersao = $this->imersaoRepository->findWithoutFail($id);
 
         if (empty($imersao)) {
-            Flash::error('Imersao not found');
+            Flash::error('Imersao não encontrada');
 
             return redirect(route('imersaos.index'));
         }
@@ -148,4 +160,99 @@ class ImersaoController extends AppBaseController
 
         return redirect(route('imersaos.index'));
     }
+
+
+
+
+    /**
+     * Metodo para retornar a view para settar a foto da listagem da Imersao.
+     *
+     * @param mixed $id
+     */
+    public function getFotoListagem($id)
+    {
+        $imersao = $this->imersaoRepository->findWithoutFail($id);
+
+        return view('imersaos.create_foto_listagem')->with('imersao', $imersao);
+    }
+
+    /**
+     * Metodo que recebe o POST da foto da listagem de uma imersao.
+     *
+     * @param CreateFotoListagemExpRequest $request
+     * @param mixed $id
+     */
+    public function postFotoListagem(CreateFotoListagemExpRequest $request, $id)
+    {
+        $imersao = $this->imersaoRepository->findWithoutFail($id);
+
+        if ($imersao->mediaListagem) {
+            $this->fotoRepository->delete($imersao->mediaListagem->id);
+        }
+
+        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+        $imersao->mediaListagem()->associate($novaFoto)->push();
+
+        //Monta o public ID a partir do nome do imersao e da timestamp da foto
+        $publicId = $imersao->tituloCloudinary.'_'.$novaFoto->image_name;
+        $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
+
+        //Se tiver enviado pro Cloudinary com sucesso
+        if ($retorno) {
+            Flash::success('Imersao criada com sucesso!');
+
+            return [
+                'success' => true,
+                'redirectURL' => '/imersaos',
+                'message' => 'Foto da listagem atualizada! Recarregando...',
+            ];
+        } else {
+            Flash::error('Erro no upload da foto!');
+
+            return redirect("agentes/$id")->with('agente', $agente);
+        }
+    }
+
+    /**
+     * Metodo que recebe o POST de ativar a exibição dessa imersao em /imersoes.
+     *
+     * @param mixed $id
+     */
+    public function postAtivaListagem($id)
+    {
+        $imersao = $this->imersaoRepository->findWithoutFail($id);
+
+        if (empty($imersao)) {
+            Flash::error('Imersao não encontrada');
+
+            return redirect(route('imersaos.index'));
+        }
+
+        $retorno = $this->imersaoRepository->ativaImersao($imersao);
+        Flash::success('Imersao ativada com sucesso.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Metodo que recebe o POST de desativar a exibição dessa imersao em /imersoes.
+     *
+     * @param mixed $id
+     */
+    public function postRemoveListagem($id)
+    {
+        $imersao = $this->imersaoRepository->findWithoutFail($id);
+
+        if (empty($imersao)) {
+            Flash::error('Imersao não encontrada');
+
+            return redirect(route('imersaos.index'));
+        }
+
+        $retorno = $this->imersaoRepository->desativaImersao($imersao);
+        Flash::success('Imersao desativada com sucesso.');
+
+        return redirect()->back();
+    }
+
 }

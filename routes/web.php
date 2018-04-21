@@ -112,6 +112,10 @@ Route::post('experiencias/{id}/ativa-listagem', 'ExperienciaController@postAtiva
 Route::post('experiencias/{id}/remove-listagem', 'ExperienciaController@postRemoveListagem')->middleware('auth');
 
 Route::resource('imersaos', 'ImersaoController');
+Route::get('imersaos/{id}/foto-listagem', 'ImersaoController@getFotoListagem')->middleware('auth');
+Route::post('imersaos/{id}/foto-listagem', 'ImersaoController@postFotoListagem')->middleware('auth');
+Route::post('imersaos/{id}/ativa-listagem', 'ImersaoController@postAtivaListagem')->middleware('auth');
+Route::post('imersaos/{id}/remove-listagem', 'ImersaoController@postRemoveListagem')->middleware('auth');
 
 
 /*

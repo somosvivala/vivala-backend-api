@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\ExpedicaoExperienciaModelTrait;
 
 /**
  * @SWG\Definition(
