@@ -4,25 +4,23 @@ namespace App\Http\Controllers;
 
 use Flash;
 use Response;
-use App\Http\Requests;
 use App\DataTables\ImersaoDataTable;
 use App\Repositories\FotoRepository;
 use App\Repositories\ImersaoRepository;
 use App\Http\Requests\CreateImersaoRequest;
 use App\Http\Requests\UpdateImersaoRequest;
-use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateFotoListagemExpRequest;
 
 class ImersaoController extends AppBaseController
 {
-    /** @var  ImersaoRepository */
+    /** @var ImersaoRepository */
     private $imersaoRepository;
 
     /** @var FotoRepository */
     private $fotoRepository;
 
     /**
-     * Construtor recebendo infos necessarias
+     * Construtor recebendo infos necessarias.
      *
      * @param FotoRepository $fotoRepo
      * @param ImersaoRepository $imersaoRepo
@@ -161,9 +159,6 @@ class ImersaoController extends AppBaseController
         return redirect(route('imersaos.index'));
     }
 
-
-
-
     /**
      * Metodo para retornar a view para settar a foto da listagem da Imersao.
      *
@@ -254,5 +249,4 @@ class ImersaoController extends AppBaseController
 
         return redirect()->back();
     }
-
 }

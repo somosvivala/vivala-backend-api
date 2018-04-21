@@ -98,5 +98,3 @@ Route::get('experiencias/{id}/create-medias-interna', 'ExperienciaController@get
 Route::post('experiencias/{id}/create-medias-interna', 'ExperienciaController@postCreateMediasInterna')->middleware('auth');
 
 **/
-
-
