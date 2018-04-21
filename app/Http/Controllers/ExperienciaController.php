@@ -189,9 +189,10 @@ class ExperienciaController extends AppBaseController
 
         //Se tiver enviado pro Cloudinary com sucesso
         if ($retorno) {
+            Flash::success('Experiencia criada com sucesso!');
             return [
                 'success' => true,
-                'redirectURL' => "/experiencias/$id/create-descricoes",
+                'redirectURL' => '/experiencias',
                 'message' => 'Foto da listagem atualizada! Recarregando...',
             ];
         } else {
@@ -200,6 +201,49 @@ class ExperienciaController extends AppBaseController
             return redirect("agentes/$id")->with('agente', $agente);
         }
     }
+
+    /**
+     * Metodo que recebe o POST de ativar a exibição dessa experiencia em /volunturismo.
+     *
+     * @param mixed $id
+     */
+    public function postAtivaListagem($id)
+    {
+        $experiencia = $this->experienciaRepository->findWithoutFail($id);
+
+        if (empty($experiencia)) {
+            Flash::error('Experiencia não encontrada');
+
+            return redirect(route('experiencias.index'));
+        }
+
+        $retorno = $this->experienciaRepository->ativaexperiencia($experiencia);
+        Flash::success('Experiencia ativada com sucesso.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Metodo que recebe o POST de desativar a exibição dessa experiencia em /volunturismo.
+     *
+     * @param mixed $id
+     */
+    public function postRemoveListagem($id)
+    {
+        $experiencia = $this->experienciaRepository->findWithoutFail($id);
+
+        if (empty($experiencia)) {
+            Flash::error('Experiencia não encontrada');
+
+            return redirect(route('experiencias.index'));
+        }
+
+        $retorno = $this->experienciaRepository->desativaexperiencia($experiencia);
+        Flash::success('Experiencia desativada com sucesso.');
+
+        return redirect()->back();
+    }
+
 
     /**
      * Metodo que recebe o POST de criacao das Fotos do slider interno das experiencia.
