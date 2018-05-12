@@ -33,7 +33,7 @@ class ExperienciaRepository extends BaseRepository
      */
     public function getAtivas()
     {
-        return Experiencia::ativas()->get();
+        return Experiencia::ativas()->orderBy('ordem')->get();
     }
 
     /**

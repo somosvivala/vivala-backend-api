@@ -1,7 +1,7 @@
 <!-- Ordem Field -->
 <div class="form-group col-sm-1">
     {!! Form::label('ordem', 'Ordem') !!}
-    {!! Form::number('ordem', isset($expedicao) ? $expedicao->ordem : '' , ['class' => 'form-control']) !!}
+    {!! Form::number('ordem', isset($expedicao) ? $expedicao->ordem : 0 , ['class' => 'form-control']) !!}
 </div>
 
 
