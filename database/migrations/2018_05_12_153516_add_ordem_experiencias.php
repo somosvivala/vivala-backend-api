@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddOrdemExperiencias extends Migration
 {
-
     /**
      * Run the migrations.
      *
