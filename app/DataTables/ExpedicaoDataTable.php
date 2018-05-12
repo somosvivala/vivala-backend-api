@@ -81,6 +81,7 @@ class ExpedicaoDataTable extends DataTable
     private function getColumns()
     {
         return [
+            'ordem' => ['name' => 'ordem', 'data' => 'ordem', 'title' => 'Ordem'],
             'titulo' => ['name' => 'titulo', 'data' => 'titulo', 'title' => 'Título'],
             'link_destino' => ['name' => 'link_destino', 'data' => 'link_destino', 'title' => 'Link de destino'],
             'ativo_listagem' =>  ['name' => 'ativo_listagem', 'data' => 'stringAtivoListagem', 'title' => 'Aparece na listagem'],

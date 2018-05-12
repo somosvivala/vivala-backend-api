@@ -1,5 +1,12 @@
+<!-- Ordem Field -->
+<div class="form-group col-sm-1">
+    {!! Form::label('ordem', 'Ordem') !!}
+    {!! Form::number('ordem', isset($expedicao) ? $expedicao->ordem : '' , ['class' => 'form-control']) !!}
+</div>
+
+
 <!-- Titulo Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-5">
     {!! Form::label('titulo', 'Titulo:') !!}
     {!! Form::text('titulo', null, ['class' => 'form-control']) !!}
 </div>

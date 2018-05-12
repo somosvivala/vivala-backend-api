@@ -32,7 +32,7 @@ class ExpedicaoRepository extends BaseRepository
      */
     public function getAtivas()
     {
-        return Expedicao::ativas()->get();
+        return Expedicao::ativas()->orderBy('ordem')->get();
     }
 
     /**
