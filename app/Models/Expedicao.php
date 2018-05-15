@@ -44,6 +44,7 @@ class Expedicao extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
+        'ordem',
         'titulo',
         'descricao_listagem',
         'ativo_listagem',

@@ -56,6 +56,7 @@ class Imersao extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
+        'ordem',
         'titulo',
         'ativo_listagem',
         'link_destino',

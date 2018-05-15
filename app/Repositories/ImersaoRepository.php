@@ -37,7 +37,7 @@ class ImersaoRepository extends BaseRepository
      */
     public function getAtivas()
     {
-        return Imersao::ativas()->get();
+        return Imersao::ativas()->orderBy('ordem')->get();
     }
 
     /**
