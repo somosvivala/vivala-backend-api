@@ -23,10 +23,12 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index');
 
 //Newsletter
-Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth']);
+Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
 
 //Blocos de descricao de experiencia / expedicao
-Route::resource('blocoDescricaos', 'BlocoDescricaoController', ['middleware' => 'auth']);
+//Route::resource('blocoDescricaos', 'BlocoDescricaoController', ['middleware' => 'auth']);
 
 //Fotos de experiencias / expedicoes / agentes
 Route::resource('fotos', 'FotoController', ['middleware' => 'auth']);
@@ -40,23 +42,62 @@ Route::get('expedicaos/{id}/inscricoes', 'InscricaoExpedicaoController@getInscri
 Route::get('experiencias/{id}/inscricoes', 'InscricaoExperienciaController@getInscricoes')->middleware('auth');
 
 //Inscricoes das Experiencias/Expedicoes
-Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController', ['middleware' => 'auth']);
-Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController', ['middleware' => 'auth']);
+Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
 
 //Contatos
-Route::resource('contatoAgentes', 'ContatoAgenteController', ['middleware' => 'auth']);
-Route::resource('contatoCorporativo', 'ContatoCorporativoController', ['middleware' => 'auth']);
-Route::resource('contatoGeral', 'ContatoGeralController', ['middleware' => 'auth']);
+Route::resource('contatoAgentes', 'ContatoAgenteController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('contatoCorporativo', 'ContatoCorporativoController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('contatoGeral', 'ContatoGeralController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
 
 //Cotacoes
-Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middleware' => 'auth']);
-Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth']);
-Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth']);
-Route::resource('cotacaoCarros', 'CotacaoCarroController', ['middleware' => 'auth']);
-Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController', ['middleware' => 'auth']);
-Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController', ['middleware' => 'auth']);
-Route::resource('cotacaoPasseios', 'CotacaoPasseioController', ['middleware' => 'auth']);
-Route::resource('cotacaoSeguros', 'CotacaoSeguroController', ['middleware' => 'auth']);
+Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('cotacaoCarros', 'CotacaoCarroController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('cotacaoPasseios', 'CotacaoPasseioController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
+Route::resource('cotacaoSeguros', 'CotacaoSeguroController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy'
+]]);
+
 
 Route::resource('videos', 'VideoController', ['middleware' => 'auth']);
 Route::resource('agentes', 'AgenteController', ['middleware' => 'auth']);
@@ -68,6 +109,7 @@ Route::get('expedicaos/{id}/foto-listagem', 'ExpedicaoController@getFotoListagem
 Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListagem')->middleware('auth');
 Route::post('expedicaos/{id}/ativa-listagem', 'ExpedicaoController@postAtivaListagem')->middleware('auth');
 Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveListagem')->middleware('auth');
+
 Route::get('/volunturismo/foto-home', 'HomeController@index');
 Route::get('/volunturismo/video', 'HomeController@index');
 
