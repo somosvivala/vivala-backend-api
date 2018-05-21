@@ -83,6 +83,9 @@ Route::resource('experiencias.inscricoes', 'InscricaoExperienciaAPIController', 
  * Rotas para conteudo dinamico
  */
 
+//home
+Route::get('conteudo/home', 'HomeAPIController@getHome');
+
 //agentes
 Route::get('conteudo/agentes', 'AgentesAPIController@getListagem');
 

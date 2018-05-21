@@ -11,3 +11,7 @@ window.Dropzone = require('./dropzone');
 
 Dropzone.autoDiscover = false;
 
+window.Cropper = require('cropperjs')
+
+console.log('pos load');
+

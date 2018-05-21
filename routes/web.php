@@ -110,14 +110,16 @@ Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListag
 Route::post('expedicaos/{id}/ativa-listagem', 'ExpedicaoController@postAtivaListagem')->middleware('auth');
 Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveListagem')->middleware('auth');
 
-Route::get('/volunturismo/foto-home', 'HomeController@index');
+Route::get('/volunturismo/foto-home', 'HomeController@getFotoVolunturismo');
+Route::post('/volunturismo/foto-home', 'HomeController@postFotoVolunturismo');
 Route::get('/volunturismo/video', 'HomeController@index');
 
 Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
 Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');
 Route::post('experiencias/{id}/ativa-listagem', 'ExperienciaController@postAtivaListagem')->middleware('auth');
 Route::post('experiencias/{id}/remove-listagem', 'ExperienciaController@postRemoveListagem')->middleware('auth');
-Route::get('/ecoturismo/foto-home', 'HomeController@index');
+Route::get('/ecoturismo/foto-home', 'HomeController@getFotoEcoturismo');
+Route::post('/ecoturismo/foto-home', 'HomeController@postFotoEcoturismo');
 Route::get('/ecoturismo/video', 'HomeController@index');
 
 Route::resource('imersaos', 'ImersaoController');
@@ -125,7 +127,8 @@ Route::get('imersaos/{id}/foto-listagem', 'ImersaoController@getFotoListagem')->
 Route::post('imersaos/{id}/foto-listagem', 'ImersaoController@postFotoListagem')->middleware('auth');
 Route::post('imersaos/{id}/ativa-listagem', 'ImersaoController@postAtivaListagem')->middleware('auth');
 Route::post('imersaos/{id}/remove-listagem', 'ImersaoController@postRemoveListagem')->middleware('auth');
-Route::get('/imersoes/foto-home', 'HomeController@index');
+Route::get('/imersoes/foto-home', 'HomeController@getFotoImersoes');
+Route::post('/imersoes/foto-home', 'HomeController@postFotoImersoes');
 Route::get('/imersoes/video', 'HomeController@index');
 
 /*
