@@ -15,6 +15,13 @@ class EcoturismoAPIController extends AppBaseController
     private $experienciaRepository;
 
     /**
+     * videosServico.
+     *
+     * @var  \App\Models\VideosServicos
+     */
+    private $videosServico;
+
+    /**
      * Construtor recebendo instancia do repositorio.
      *
      * @param ExperienciaRepository $experienciaRepo
@@ -22,6 +29,7 @@ class EcoturismoAPIController extends AppBaseController
     public function __construct(ExperienciaRepository $experienciaRepo)
     {
         $this->experienciaRepository = $experienciaRepo;
+        $this->videosServico = \App\Models\VideosServico::first();
     }
 
     /**
@@ -41,7 +49,13 @@ class EcoturismoAPIController extends AppBaseController
             $experiencias[] = $transformer->transform($Experiencia);
         });
 
+        //inserindo video de Ecoturismo na resposta da API
+        $video = $this->videosServico->videoEcoturismo
+           ? $this->videosServico->videoEcoturismo->partial_url
+           : '';
+
         return [
+            'video' => $video,
             'items' => $experiencias,
         ];
     }

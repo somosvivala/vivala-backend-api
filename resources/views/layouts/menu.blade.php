@@ -1,5 +1,5 @@
 <li class="treeview {{ (Request::is('expedicaos*') || Request::is('volunturismo*')) ? 'active' : '' }}" id="scrollspy-components">
-  <a href="javascript:void(0)"><i class="fa fa-heart"></i>Volunturismo</a>
+  <a href="javascript:void(0)"><i class="fa fa-handshake-o"></i>&nbsp;Volunturismo</a>
   <ul class="nav treeview-menu">
     <li class="{{ Request::is('volunturismo/video') ? 'active' : '' }}">
         <a href="/volunturismo/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
@@ -42,6 +42,18 @@
     </li>
   </ul>
 </li>
+
+<li class="treeview {{ (Request::is('instituto*') || Request::is('instituto*')) ? 'active' : '' }}" id="scrollspy-components">
+  <a href="javascript:void(0)"><i class="fa fa-heart"></i>Instituto</a>
+  <ul class="nav treeview-menu">
+    <li class="{{ Request::is('instituto/foto-home') ? 'active' : '' }}">
+        <a href="/instituto/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
+    </li>
+  </ul>
+</li>
+
+
+
 
 <li class="{{ Request::is('agentes*') ? 'active' : '' }}">
     <a href="{!! route('agentes.index') !!}"><i class="fa fa-users" aria-hidden="true"></i><span>Agentes</span></a>
