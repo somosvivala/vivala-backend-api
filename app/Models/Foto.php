@@ -170,7 +170,7 @@ class Foto extends Model
     }
 
     /**
-     * Relacao polimorfica para a foto de destaque (deprecated)
+     * Relacao polimorfica para a foto de destaque (deprecated).
      */
     public function destaque()
     {
@@ -178,13 +178,13 @@ class Foto extends Model
     }
 
     /**
-     * Acessor para a URL do Cloudinary
+     * Acessor para a URL do Cloudinary.
      */
-     public function getUrlCloudinaryAttribute()
-     {
+    public function getUrlCloudinaryAttribute()
+    {
         $cloudName = env('CLOUDINARY_CLOUD_NAME');
         $id = $this->cloudinary_id;
-        return "https://res.cloudinary.com/$cloudName/image/upload/$id";
-     }
 
+        return "https://res.cloudinary.com/$cloudName/image/upload/$id";
+    }
 }

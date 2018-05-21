@@ -15,12 +15,11 @@ class ImersoesAPIController extends AppBaseController
     private $imersaoRepository;
 
     /**
-     * videosServico 
+     * videosServico.
      *
      * @var  \App\Models\VideosServicos
      */
     private $videosServico;
-
 
     /**
      * Construtor recebendo instancia do repositorio.
@@ -53,7 +52,7 @@ class ImersoesAPIController extends AppBaseController
         //inserindo video de Imersoes na resposta da API
         $video = $this->videosServico->videoImersoes
            ? $this->videosServico->videoImersoes->partial_url
-           : ''; 
+           : '';
 
         return [
             'video' => $video,

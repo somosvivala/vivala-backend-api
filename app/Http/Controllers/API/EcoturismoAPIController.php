@@ -15,7 +15,7 @@ class EcoturismoAPIController extends AppBaseController
     private $experienciaRepository;
 
     /**
-     * videosServico 
+     * videosServico.
      *
      * @var  \App\Models\VideosServicos
      */
@@ -52,7 +52,7 @@ class EcoturismoAPIController extends AppBaseController
         //inserindo video de Ecoturismo na resposta da API
         $video = $this->videosServico->videoEcoturismo
            ? $this->videosServico->videoEcoturismo->partial_url
-           : ''; 
+           : '';
 
         return [
             'video' => $video,
