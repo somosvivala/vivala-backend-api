@@ -110,5 +110,46 @@ class VideosServicosController extends Controller
         }
     }
     
+    /**
+     * Metodo para servrir a view de alterar a video de Imersoes
+     */
+    public function getVideoImersoes()
+    {
+        $VideosServico = \App\Models\VideosServico::first();
+        return view('videos.video_imersoes')
+            ->with("VideosServico", $VideosServico);
+    }
+
+    /**
+     * Metodo para fazer o upload de um video de Imersoes
+     * @param Request $request
+     */
+    public function postVideoImersoes(Request $request)
+    {
+        $videosServico = \App\Models\VideosServico::first();
+
+        if ($videosServico->videoImersoes) {
+            $videosServico->videoImersoes->delete();
+        }
+
+        $novoVideo = $this->videoRepository->create($request->all());
+
+        //Se tiver salvo com sucesso
+        if ($novoVideo) {
+            $videosServico->video_imersoes_id = $novoVideo->id;
+            $videosServico->save();
+            Flash::success('Video de Imersoes alterado com sucesso!');
+
+            return [
+                'success' => true,
+                'redirectURL' => '/imersoes/video',
+                'message' => 'Video atualizado! Recarregando...',
+            ];
+        } else {
+            Flash::error('Erro no upload da video!');
+            return redirect()->back();
+        }
+    }
+    
 
 }

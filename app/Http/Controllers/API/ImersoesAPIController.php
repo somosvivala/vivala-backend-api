@@ -15,6 +15,14 @@ class ImersoesAPIController extends AppBaseController
     private $imersaoRepository;
 
     /**
+     * videosServico 
+     *
+     * @var  \App\Models\VideosServicos
+     */
+    private $videosServico;
+
+
+    /**
      * Construtor recebendo instancia do repositorio.
      *
      * @param ImersaoRepository $imersaoRepo
@@ -22,6 +30,7 @@ class ImersoesAPIController extends AppBaseController
     public function __construct(ImersaoRepository $imersaoRepo)
     {
         $this->imersaoRepository = $imersaoRepo;
+        $this->videosServico = \App\Models\VideosServico::first();
     }
 
     /**
@@ -41,7 +50,13 @@ class ImersoesAPIController extends AppBaseController
             $imersoes[] = $transformer->transform($Imersao);
         });
 
+        //inserindo video de Imersoes na resposta da API
+        $video = $this->videosServico->videoImersoes
+           ? $this->videosServico->videoImersoes->partial_url
+           : ''; 
+
         return [
+            'video' => $video,
             'items' => $imersoes,
         ];
     }

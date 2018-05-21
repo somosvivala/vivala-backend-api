@@ -131,7 +131,8 @@ Route::post('imersaos/{id}/ativa-listagem', 'ImersaoController@postAtivaListagem
 Route::post('imersaos/{id}/remove-listagem', 'ImersaoController@postRemoveListagem')->middleware('auth');
 Route::get('/imersoes/foto-home', 'HomeController@getFotoImersoes');
 Route::post('/imersoes/foto-home', 'HomeController@postFotoImersoes');
-Route::get('/imersoes/video', 'HomeController@index');
+Route::get('/imersoes/video', 'VideosServicosController@getVideoImersoes');
+Route::post('/imersoes/video', 'VideosServicosController@postVideoImersoes')->name('video-imersoes');
 
 
 //Foto da home do instituto
