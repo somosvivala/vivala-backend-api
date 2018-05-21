@@ -121,7 +121,8 @@ Route::post('experiencias/{id}/ativa-listagem', 'ExperienciaController@postAtiva
 Route::post('experiencias/{id}/remove-listagem', 'ExperienciaController@postRemoveListagem')->middleware('auth');
 Route::get('/ecoturismo/foto-home', 'HomeController@getFotoEcoturismo');
 Route::post('/ecoturismo/foto-home', 'HomeController@postFotoEcoturismo');
-Route::get('/ecoturismo/video', 'HomeController@index');
+Route::get('/ecoturismo/video', 'VideosServicosController@getVideoEcoturismo');
+Route::post('/ecoturismo/video', 'VideosServicosController@postVideoEcoturismo')->name('video-ecoturismo');
 
 Route::resource('imersaos', 'ImersaoController');
 Route::get('imersaos/{id}/foto-listagem', 'ImersaoController@getFotoListagem')->middleware('auth');
