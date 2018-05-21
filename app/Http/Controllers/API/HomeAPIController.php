@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Repositories\ExpedicaoRepository;
 use App\Http\Controllers\AppBaseController;
 
 class HomeAPIController extends AppBaseController
 {
     /**
-     * Instancia do Model FotosHome 
+     * Instancia do Model FotosHome.
      */
     private $fotosHome;
 
     /**
      * Construtor pegando primeira instancia do model.
-     *
      */
     public function __construct()
     {
@@ -22,7 +20,7 @@ class HomeAPIController extends AppBaseController
     }
 
     /**
-     * Metodo para servir as Fotos da Home via API
+     * Metodo para servir as Fotos da Home via API.
      */
     public function getHome()
     {
@@ -35,7 +33,7 @@ class HomeAPIController extends AppBaseController
             'fotoVolunturismo' => $fotoVolunturismo,
             'fotoEcoturismo' => $fotoEcoturismo,
             'fotoImersoes' => $fotoImersoes,
-            'fotoInstituto' => $fotoInstituto
+            'fotoInstituto' => $fotoInstituto,
         ];
     }
 }

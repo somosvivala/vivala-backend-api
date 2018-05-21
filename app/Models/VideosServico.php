@@ -13,7 +13,7 @@ class VideosServico extends Model
     ];
 
     /**
-     * Relacao com o Model video, representando a video de destaque de Volunturismo
+     * Relacao com o Model video, representando a video de destaque de Volunturismo.
      */
     public function videoVolunturismo()
     {
@@ -21,7 +21,7 @@ class VideosServico extends Model
     }
 
     /**
-     * Relacao com o Model video, representando a video de destaque de Ecoturismo
+     * Relacao com o Model video, representando a video de destaque de Ecoturismo.
      */
     public function videoEcoturismo()
     {
@@ -29,12 +29,10 @@ class VideosServico extends Model
     }
 
     /**
-     * Relacao com o Model video, representando a video de destaque de Imersoes
+     * Relacao com o Model video, representando a video de destaque de Imersoes.
      */
     public function videoImersoes()
     {
         return $this->hasOne(\App\Models\Video::class, 'id', 'video_imersoes_id');
     }
-
 }
-

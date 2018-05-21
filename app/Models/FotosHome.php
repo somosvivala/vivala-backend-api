@@ -14,7 +14,7 @@ class FotosHome extends Model
     ];
 
     /**
-     * Relacao com o Model Foto, representando a foto de destaque de Volunturismo
+     * Relacao com o Model Foto, representando a foto de destaque de Volunturismo.
      */
     public function fotoVolunturismo()
     {
@@ -22,7 +22,7 @@ class FotosHome extends Model
     }
 
     /**
-     * Relacao com o Model Foto, representando a foto de destaque de Ecoturismo
+     * Relacao com o Model Foto, representando a foto de destaque de Ecoturismo.
      */
     public function fotoEcoturismo()
     {
@@ -30,7 +30,7 @@ class FotosHome extends Model
     }
 
     /**
-     * Relacao com o Model Foto, representando a foto de destaque de Imersoes
+     * Relacao com o Model Foto, representando a foto de destaque de Imersoes.
      */
     public function fotoImersoes()
     {
@@ -38,13 +38,10 @@ class FotosHome extends Model
     }
 
     /**
-     * Relacao com o Model Foto, representando a foto de destaque do Instituto
+     * Relacao com o Model Foto, representando a foto de destaque do Instituto.
      */
     public function fotoInstituto()
     {
         return $this->hasOne(\App\Models\Foto::class, 'id', 'foto_instituto_id');
     }
-    
-
 }
-

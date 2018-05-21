@@ -8,7 +8,6 @@ use App\Repositories\VideoRepository;
 
 class VideosServicosController extends Controller
 {
-
     /** @var VideoRepository */
     private $videoRepository;
 
@@ -28,17 +27,18 @@ class VideosServicosController extends Controller
     }
 
     /**
-     * Metodo para servrir a view de alterar a video de Volunturismo
+     * Metodo para servrir a view de alterar a video de Volunturismo.
      */
     public function getVideoVolunturismo()
     {
         $VideosServico = \App\Models\VideosServico::first();
+
         return view('videos.video_volunturismo')
-            ->with("VideosServico", $VideosServico);
+            ->with('VideosServico', $VideosServico);
     }
 
     /**
-     * Metodo para fazer o upload de um video de Volunturismo
+     * Metodo para fazer o upload de um video de Volunturismo.
      * @param Request $request
      */
     public function postVideoVolunturismo(Request $request)
@@ -64,23 +64,24 @@ class VideosServicosController extends Controller
             ];
         } else {
             Flash::error('Erro no upload da video!');
+
             return redirect()->back();
         }
     }
 
-
     /**
-     * Metodo para servrir a view de alterar a video de Ecoturismo
+     * Metodo para servrir a view de alterar a video de Ecoturismo.
      */
     public function getVideoEcoturismo()
     {
         $VideosServico = \App\Models\VideosServico::first();
+
         return view('videos.video_ecoturismo')
-            ->with("VideosServico", $VideosServico);
+            ->with('VideosServico', $VideosServico);
     }
 
     /**
-     * Metodo para fazer o upload de um video de Ecoturismo
+     * Metodo para fazer o upload de um video de Ecoturismo.
      * @param Request $request
      */
     public function postVideoEcoturismo(Request $request)
@@ -106,22 +107,24 @@ class VideosServicosController extends Controller
             ];
         } else {
             Flash::error('Erro no upload da video!');
+
             return redirect()->back();
         }
     }
-    
+
     /**
-     * Metodo para servrir a view de alterar a video de Imersoes
+     * Metodo para servrir a view de alterar a video de Imersoes.
      */
     public function getVideoImersoes()
     {
         $VideosServico = \App\Models\VideosServico::first();
+
         return view('videos.video_imersoes')
-            ->with("VideosServico", $VideosServico);
+            ->with('VideosServico', $VideosServico);
     }
 
     /**
-     * Metodo para fazer o upload de um video de Imersoes
+     * Metodo para fazer o upload de um video de Imersoes.
      * @param Request $request
      */
     public function postVideoImersoes(Request $request)
@@ -147,9 +150,8 @@ class VideosServicosController extends Controller
             ];
         } else {
             Flash::error('Erro no upload da video!');
+
             return redirect()->back();
         }
     }
-    
-
 }

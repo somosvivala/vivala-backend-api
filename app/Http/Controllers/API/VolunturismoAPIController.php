@@ -15,7 +15,7 @@ class VolunturismoAPIController extends AppBaseController
     private $expedicaoRepository;
 
     /**
-     * videosServico 
+     * videosServico.
      *
      * @var  \App\Models\VideosServicos
      */
@@ -52,7 +52,7 @@ class VolunturismoAPIController extends AppBaseController
         //inserindo video de Volunturismo na resposta da API
         $video = $this->videosServico->videoVolunturismo
            ? $this->videosServico->videoVolunturismo->partial_url
-           : ''; 
+           : '';
 
         return [
             'video' => $video,

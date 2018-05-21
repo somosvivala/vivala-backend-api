@@ -8,7 +8,6 @@ use App\Repositories\FotoRepository;
 
 class HomeController extends Controller
 {
-
     /** @var FotoRepository */
     private $fotoRepository;
 
@@ -28,18 +27,18 @@ class HomeController extends Controller
     }
 
     /**
-     * Metodo para servrir a view de alterar a foto de Volunturismo da Home
+     * Metodo para servrir a view de alterar a foto de Volunturismo da Home.
      */
     public function getFotoVolunturismo()
     {
         $FotosHome = \App\Models\FotosHome::first();
+
         return view('home.foto_volunturismo')
-            ->with("FotosHome", $FotosHome);
+            ->with('FotosHome', $FotosHome);
     }
-    
 
     /**
-     * Metodo para fazer o upload de uma nova foto de Volunturismo
+     * Metodo para fazer o upload de uma nova foto de Volunturismo.
      * @param Request $request
      */
     public function postFotoVolunturismo(Request $request)
@@ -54,7 +53,7 @@ class HomeController extends Controller
         $fotosHome->foto_volunturismo_id = $novaFoto->id;
         $fotosHome->save();
 
-        $publicId = "home_volunturismo_".time();
+        $publicId = 'home_volunturismo_'.time();
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
@@ -70,23 +69,24 @@ class HomeController extends Controller
             ];
         } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect()->back();
         }
     }
 
     /**
-     * Metodo para servrir a view de alterar a foto de Ecoturismo da Home
+     * Metodo para servrir a view de alterar a foto de Ecoturismo da Home.
      */
     public function getFotoEcoturismo()
     {
         $FotosHome = \App\Models\FotosHome::first();
+
         return view('home.foto_ecoturismo')
-            ->with("FotosHome", $FotosHome);
+            ->with('FotosHome', $FotosHome);
     }
-    
 
     /**
-     * Metodo para fazer o upload de uma nova foto de Ecoturismo
+     * Metodo para fazer o upload de uma nova foto de Ecoturismo.
      * @param Request $request
      */
     public function postFotoEcoturismo(Request $request)
@@ -101,7 +101,7 @@ class HomeController extends Controller
         $fotosHome->foto_ecoturismo_id = $novaFoto->id;
         $fotosHome->save();
 
-        $publicId = "home_ecoturismo_".time();
+        $publicId = 'home_ecoturismo_'.time();
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
@@ -117,24 +117,24 @@ class HomeController extends Controller
             ];
         } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect()->back();
         }
     }
 
-
     /**
-     * Metodo para servrir a view de alterar a foto de Imersoes da Home
+     * Metodo para servrir a view de alterar a foto de Imersoes da Home.
      */
     public function getFotoImersoes()
     {
         $FotosHome = \App\Models\FotosHome::first();
+
         return view('home.foto_imersoes')
-            ->with("FotosHome", $FotosHome);
+            ->with('FotosHome', $FotosHome);
     }
-    
 
     /**
-     * Metodo para fazer o upload de uma nova foto de Imersoes
+     * Metodo para fazer o upload de uma nova foto de Imersoes.
      * @param Request $request
      */
     public function postFotoImersoes(Request $request)
@@ -149,7 +149,7 @@ class HomeController extends Controller
         $fotosHome->foto_imersoes_id = $novaFoto->id;
         $fotosHome->save();
 
-        $publicId = "home_imersoes_".time();
+        $publicId = 'home_imersoes_'.time();
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
@@ -165,23 +165,24 @@ class HomeController extends Controller
             ];
         } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect()->back();
         }
     }
 
     /**
-     * Metodo para servrir a view de alterar a foto de Instituto da Home
+     * Metodo para servrir a view de alterar a foto de Instituto da Home.
      */
     public function getFotoInstituto()
     {
         $FotosHome = \App\Models\FotosHome::first();
+
         return view('home.foto_instituto')
-            ->with("FotosHome", $FotosHome);
+            ->with('FotosHome', $FotosHome);
     }
-    
 
     /**
-     * Metodo para fazer o upload de uma nova foto de Instituto
+     * Metodo para fazer o upload de uma nova foto de Instituto.
      * @param Request $request
      */
     public function postFotoInstituto(Request $request)
@@ -196,7 +197,7 @@ class HomeController extends Controller
         $fotosHome->foto_instituto_id = $novaFoto->id;
         $fotosHome->save();
 
-        $publicId = "home_instituto_".time();
+        $publicId = 'home_instituto_'.time();
 
         //Monta o public ID a partir do nome do expedicao e da timestamp da foto
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
@@ -212,8 +213,8 @@ class HomeController extends Controller
             ];
         } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect()->back();
         }
     }
-    
 }
