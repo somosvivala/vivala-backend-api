@@ -64,7 +64,10 @@ class Video extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'ordem', 'nome', 'url', 'partial_url',
+        'ordem', 
+        'nome', 
+        'url', 
+        'partial_url',
         'owner_id',
         'owner_type',
     ];
@@ -122,4 +125,12 @@ class Video extends Model
     {
         return $this->morphTo();
     }
+
+    /**
+     * Acessor para 
+     */
+     public function getUrlYoutubeAttribute()
+     {
+        return "https://youtube.com/embed/".$this->partial_url;
+     }
 }

@@ -112,7 +112,8 @@ Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveLi
 
 Route::get('/volunturismo/foto-home', 'HomeController@getFotoVolunturismo');
 Route::post('/volunturismo/foto-home', 'HomeController@postFotoVolunturismo');
-Route::get('/volunturismo/video', 'HomeController@index');
+Route::get('/volunturismo/video', 'VideosServicosController@getVideoVolunturismo');
+Route::post('/volunturismo/video', 'VideosServicosController@postVideoVolunturismo')->name('video-volunturismo');
 
 Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
 Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');

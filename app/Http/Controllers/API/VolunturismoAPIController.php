@@ -15,6 +15,13 @@ class VolunturismoAPIController extends AppBaseController
     private $expedicaoRepository;
 
     /**
+     * videosServico 
+     *
+     * @var  \App\Models\VideosServicos
+     */
+    private $videosServico;
+
+    /**
      * Construtor recebendo instancia do repositorio.
      *
      * @param ExpedicaoRepository $expedicaoRepo
@@ -22,6 +29,7 @@ class VolunturismoAPIController extends AppBaseController
     public function __construct(ExpedicaoRepository $expedicaoRepo)
     {
         $this->expedicaoRepository = $expedicaoRepo;
+        $this->videosServico = \App\Models\VideosServico::first();
     }
 
     /**
@@ -41,7 +49,13 @@ class VolunturismoAPIController extends AppBaseController
             $expedicoes[] = $transformer->transform($Expedicao);
         });
 
+        //inserindo video de Volunturismo na resposta da API
+        $video = $this->videosServico->videoVolunturismo
+           ? $this->videosServico->videoVolunturismo->partial_url
+           : ''; 
+
         return [
+            'video' => $video,
             'items' => $expedicoes,
         ];
     }
