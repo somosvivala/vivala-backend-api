@@ -169,4 +169,51 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * Metodo para servrir a view de alterar a foto de Instituto da Home
+     */
+    public function getFotoInstituto()
+    {
+        $FotosHome = \App\Models\FotosHome::first();
+        return view('home.foto_instituto')
+            ->with("FotosHome", $FotosHome);
+    }
+    
+
+    /**
+     * Metodo para fazer o upload de uma nova foto de Instituto
+     * @param Request $request
+     */
+    public function postFotoInstituto(Request $request)
+    {
+        $fotosHome = \App\Models\FotosHome::first();
+
+        if ($fotosHome->fotoInstituto) {
+            $this->fotoRepository->delete($fotosHome->fotoInstituto->id);
+        }
+
+        $novaFoto = $this->fotoRepository->uploadAndCreate($request);
+        $fotosHome->foto_instituto_id = $novaFoto->id;
+        $fotosHome->save();
+
+        $publicId = "home_instituto_".time();
+
+        //Monta o public ID a partir do nome do expedicao e da timestamp da foto
+        $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
+
+        //Se tiver enviado pro Cloudinary com sucesso
+        if ($retorno) {
+            Flash::success('Foto do Instituto na home foi alterada com sucesso!');
+
+            return [
+                'success' => true,
+                'redirectURL' => '/instituto/foto-home',
+                'message' => 'Foto atualizada! Recarregando...',
+            ];
+        } else {
+            Flash::error('Erro no upload da foto!');
+            return redirect()->back();
+        }
+    }
+    
 }

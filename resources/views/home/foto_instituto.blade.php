@@ -8,7 +8,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Home - Foto da Seção de Ecoturismo</h1>
+        <h1>Home - Foto da Seção do Instituto</h1>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')
@@ -19,14 +19,14 @@
 
                    <div class="col-xs-12">
                     <h4>Foto atual:</h4>
-                    @if (isset($FotosHome->fotoEcoturismo)) 
+                    @if (isset($FotosHome->fotoInstituto)) 
                     <div class="col-xs-12">
                         <button id="controle_crop" onclick="ativaCropper()" class="btn btn-default">Cortar Foto</button>
                         <button id="confirma_crop" class="btn btn-success hide">Confirmar</button>
                     </div>
                     <div class="col-xs-12"><hr></div>
                     <div class="col-xs-12">
-                        <img id="foto_servico" class="foto_servico" src="{{$FotosHome->fotoEcoturismo->urlCloudinary}}" alt="Foto atual de Ecoturismo">
+                        <img id="foto_servico" class="foto_servico" src="{{$FotosHome->fotoInstituto->urlCloudinary}}" alt="Foto atual de Instituto">
                     </div>
 
 
@@ -38,7 +38,7 @@
                     <div class="col-xs-12 mx-auto">
                     <h4>Para trocar:</h4>
                         @include('dropzone.upload', [
-                            'formUrl' => '/ecoturismo/foto-home'
+                            'formUrl' => '/instituto/foto-home'
                         ])
 
                     </div>
@@ -71,7 +71,7 @@ function ativaCropper() {
     btnControle.attr('onclick', 'cancelaCropper()').html('Cancelar');
 
     cropper = new Cropper(image, {
-        aspectRatio: 1.0076,
+        aspectRatio: 1.7028
     });
 }
 
@@ -91,7 +91,7 @@ function bindBtnConfirmar(event) {
         btnConfirmar.html('<i class="fa fa-spinner fa-spin"></i>');
 
         // Use `jQuery.ajax` method
-        $.ajax('/ecoturismo/foto-home', {
+        $.ajax('/instituto/foto-home', {
             method: "POST",
             data: formData,
             processData: false,

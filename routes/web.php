@@ -131,6 +131,12 @@ Route::get('/imersoes/foto-home', 'HomeController@getFotoImersoes');
 Route::post('/imersoes/foto-home', 'HomeController@postFotoImersoes');
 Route::get('/imersoes/video', 'HomeController@index');
 
+
+//Foto da home do instituto
+Route::get('/instituto/foto-home', 'HomeController@getFotoInstituto');
+Route::post('/instituto/foto-home', 'HomeController@postFotoInstituto');
+
+
 /*
  * Removendo para V3
 

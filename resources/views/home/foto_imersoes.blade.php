@@ -8,7 +8,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Home seção Imersoes</h1>
+        <h1>Home - Foto da Seção de Imersões</h1>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')
