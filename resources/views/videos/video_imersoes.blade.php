@@ -48,48 +48,4 @@
 
 @section('scripts')
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-
-<script>
-
-$('form#video_servico').on('submit', function(ev) {
-    ev.preventDefault();
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });      
-
-    // Use `jQuery.ajax` method
-    $.ajax('/imersoes/video', {
-        method: "POST",
-        data: $('form#video_servico').serialize(),
-        success: function (data, textStatus, jqXHR) {
-            console.log('success');
-            console.log(data);
-            swal({
-                type: 'success',
-                title: 'Sucesso',
-                text: data.message,
-
-                timer: 2000
-            });
-            //Redirect apos algum tempo
-            setTimeout( function() {
-                window.location = data.redirectURL;
-            }, 1800);
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            swal({
-                type: 'error',
-                title: 'Erro',
-                text: errorThrown
-            });
-        },
-        complete: function() {
-        }
-    });
-});
-</script>
 @endsection
