@@ -71,7 +71,7 @@ function ativaCropper() {
     btnControle.attr('onclick', 'cancelaCropper()').html('Cancelar');
 
     cropper = new Cropper(image, {
-        aspectRatio: 1.7028
+        aspectRatio: 2.0571,
     });
 }
 
@@ -90,20 +90,19 @@ function bindBtnConfirmar(event) {
         var bkpBtnConfirmar = btnConfirmar.html();
         btnConfirmar.html('<i class="fa fa-spinner fa-spin"></i>');
 
+        var formUrl = $('#dropzone-container').attr("action");
+
         // Use `jQuery.ajax` method
-        $.ajax('/instituto/foto-home', {
+        $.ajax(formUrl, {
             method: "POST",
             data: formData,
             processData: false,
             contentType: false,
             success: function (data, textStatus, jqXHR) {
-                console.log('success');
-                console.log(data);
                 swal({
                     type: 'success',
                     title: 'Sucesso',
                     text: data.message,
-
                     timer: 2000
                 });
                 //Redirect apos algum tempo
@@ -126,9 +125,10 @@ function bindBtnConfirmar(event) {
     });
 };
 
-btnConfirmar.on('click', bindBtnConfirmar);
-
-
+$(function () {
+    btnConfirmar.on('click', bindBtnConfirmar);
+    btnControle.attr('onclick', 'ativaCropper()').html('Cortar Foto');
+});
 </script>
 
 

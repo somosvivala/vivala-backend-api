@@ -21,7 +21,7 @@
                     <h4>Foto atual:</h4>
                     @if (isset($FotosHome->fotoVolunturismo)) 
                     <div class="col-xs-12">
-                        <button id="controle_crop" onclick="ativaCropper()" class="btn btn-default">Cortar Foto</button>
+                        <button id="controle_crop" class="btn btn-default">Cortar Foto</button>
                         <button id="confirma_crop" class="btn btn-success hide">Confirmar</button>
                     </div>
                     <div class="col-xs-12"><hr></div>
@@ -52,7 +52,6 @@
 @section('scripts')
 <script src="{{ asset('js/cropper.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-
 <script>
 
 var btnControle = $('#controle_crop');
@@ -90,20 +89,19 @@ function bindBtnConfirmar(event) {
         var bkpBtnConfirmar = btnConfirmar.html();
         btnConfirmar.html('<i class="fa fa-spinner fa-spin"></i>');
 
+        var formUrl = $('#dropzone-container').attr("action");
+
         // Use `jQuery.ajax` method
-        $.ajax('/volunturismo/foto-home', {
+        $.ajax(formUrl, {
             method: "POST",
             data: formData,
             processData: false,
             contentType: false,
             success: function (data, textStatus, jqXHR) {
-                console.log('success');
-                console.log(data);
                 swal({
                     type: 'success',
                     title: 'Sucesso',
                     text: data.message,
-
                     timer: 2000
                 });
                 //Redirect apos algum tempo
@@ -126,10 +124,9 @@ function bindBtnConfirmar(event) {
     });
 };
 
-btnConfirmar.on('click', bindBtnConfirmar);
-
-
+$(function () {
+    btnConfirmar.on('click', bindBtnConfirmar);
+    btnControle.attr('onclick', 'ativaCropper()').html('Cortar Foto');
+});
 </script>
-
-
 @endsection

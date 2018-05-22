@@ -2,8 +2,8 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/tesseract.css": "/css/tesseract.css",
-    "/js/cropper.min.js": "/js/cropper.min.js",
     "/css/dropzone.css": "/css/dropzone.css",
     "/css/sweetalert2.css": "/css/sweetalert2.css",
-    "/css/cropper.css": "/css/cropper.css"
+    "/css/cropper.min.css": "/css/cropper.min.css",
+    "/js/cropper.min.js": "/js/cropper.min.js"
 }

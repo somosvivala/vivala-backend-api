@@ -18,8 +18,11 @@ mix.js([
 
    .styles('resources/assets/css/dropzone.css', 'public/css/dropzone.css')
    .styles('node_modules/sweetalert2/dist/sweetalert2.css', 'public/css/sweetalert2.css')
-   .styles('node_modules/cropperjs/dist/cropper.css', 'public/css/cropper.css')
-   .js('node_modules/cropperjs/dist/cropper.min.js', 'public/js/cropper.min.js')
+
+   .copy('node_modules/cropperjs/dist/cropper.min.css', 'public/css/cropper.min.css')
+   .copy('node_modules/cropperjs/dist/cropper.min.js', 'public/js/cropper.min.js')
 
    .sass( 'resources/assets/sass/app.scss', 'public/css/')
    .sass( 'resources/assets/sass/tesseract.scss', 'public/css/');
+
+
