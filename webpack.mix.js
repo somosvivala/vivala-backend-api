@@ -19,6 +19,7 @@ mix.js([
    .styles('resources/assets/css/dropzone.css', 'public/css/dropzone.css')
    .styles('node_modules/sweetalert2/dist/sweetalert2.css', 'public/css/sweetalert2.css')
 
+   .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert2.min.js')
    .copy('node_modules/cropperjs/dist/cropper.min.css', 'public/css/cropper.min.css')
    .copy('node_modules/cropperjs/dist/cropper.min.js', 'public/js/cropper.min.js')
 
