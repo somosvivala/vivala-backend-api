@@ -1,13 +1,9 @@
 {
-  "/js/app.js": "/js/app.js",
-  "/css/app.css": "/css/app.css",
-  "/js/vendor.js": "/js/vendor.js",
-  "/js/manifest.js": "/js/manifest.js",
-  "/css/dropzone.css": "/css/dropzone.css",
-  "/css/tesseract/tesseract.css": "/css/tesseract/tesseract.css",
-  "/css/tesseract.css": "/css/tesseract.css",
-  "/mix.js": "/mix.js",
-  "/css/cropper.css": "/css/cropper.css",
-  "/css/sweetalert2.css": "/css/sweetalert2.css",
-  "/js/sweetalert2.min.js": "/js/sweetalert2.min.js"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/tesseract.css": "/css/tesseract.css",
+    "/js/cropper.min.js": "/js/cropper.min.js",
+    "/css/dropzone.css": "/css/dropzone.css",
+    "/css/sweetalert2.css": "/css/sweetalert2.css",
+    "/css/cropper.css": "/css/cropper.css"
 }
