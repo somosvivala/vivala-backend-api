@@ -4,12 +4,6 @@
     <p>{!! $expedicao->titulo !!}</p>
 </div>
 
-<!-- Descricao Listagem Field -->
-<div class="form-group">
-    {!! Form::label('descricao_listagem', 'Subtitulo') !!}
-    <p>{!! $expedicao->descricao_listagem !!}</p>
-</div>
-
 <!-- Link de destino Field -->
 <div class="form-group">
     {!! Form::label('link_destino', 'Link de destino') !!}
@@ -43,8 +37,6 @@
 <div class="form-group">
     {!! Form::label('foto_listagem', 'Foto da listagem') !!}
     <p> <img src="//res.cloudinary.com/{{ env('CLOUDINARY_CLOUD_NAME') }}/image/upload/{{ $expedicao->mediaListagem ? $expedicao->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $expedicao->titulo }}" width="500px"> </p>
-
 </div>
-
 <hr>
 

@@ -193,7 +193,7 @@ class ExpedicaoController extends AppBaseController
 
             return [
                 'success' => true,
-                'redirectURL' => '/expedicaos',
+                'redirectURL' => '/expedicaos/'.$id,
                 'message' => 'Foto da listagem atualizada! Recarregando...',
             ];
         } else {

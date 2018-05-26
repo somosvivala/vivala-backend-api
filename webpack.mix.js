@@ -22,6 +22,7 @@ mix.js([
    .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert2.min.js')
    .copy('node_modules/cropperjs/dist/cropper.min.css', 'public/css/cropper.min.css')
    .copy('node_modules/cropperjs/dist/cropper.min.js', 'public/js/cropper.min.js')
+   .copy('resources/assets/js/cropper-util.js', 'public/js/cropper-util.js')
 
    .sass( 'resources/assets/sass/app.scss', 'public/css/')
    .sass( 'resources/assets/sass/tesseract.scss', 'public/css/');
