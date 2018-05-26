@@ -60,7 +60,7 @@ class ExpedicaoController extends AppBaseController
 
         $expedicao = $this->expedicaoRepository->create($input);
 
-        Flash::success('Expedicao saved successfully.');
+        Flash::success('Expedicao criada com sucesso.');
 
         return redirect('expedicaos/'.$expedicao->id.'/foto-listagem');
     }
@@ -125,7 +125,7 @@ class ExpedicaoController extends AppBaseController
 
         $expedicao = $this->expedicaoRepository->update($request->all(), $id);
 
-        Flash::success('Expedicao updated successfully.');
+        Flash::success('Expedicao atualizada com sucesso.');
 
         return redirect(route('expedicaos.index'));
     }
@@ -189,17 +189,16 @@ class ExpedicaoController extends AppBaseController
 
         //Se tiver enviado pro Cloudinary com sucesso
         if ($retorno) {
-            Flash::success('Expedição criada com sucesso!');
+            Flash::success('Foto atualizada com sucesso!');
 
             return [
                 'success' => true,
-                'redirectURL' => '/expedicaos/'.$id,
+                'redirectURL' => '/expedicaos/',
                 'message' => 'Foto da listagem atualizada! Recarregando...',
             ];
         } else {
             Flash::error('Erro no upload da foto!');
-
-            return redirect("agentes/$id")->with('agente', $agente);
+            return redirect()->back();
         }
     }
 
