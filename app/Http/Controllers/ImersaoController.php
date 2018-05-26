@@ -194,7 +194,7 @@ class ImersaoController extends AppBaseController
 
         //Se tiver enviado pro Cloudinary com sucesso
         if ($retorno) {
-            Flash::success('Imersao criada com sucesso!');
+            Flash::success('Foto atualizada com sucesso!');
 
             return [
                 'success' => true,
@@ -203,8 +203,7 @@ class ImersaoController extends AppBaseController
             ];
         } else {
             Flash::error('Erro no upload da foto!');
-
-            return redirect("agentes/$id")->with('agente', $agente);
+            return redirect()->back();
         }
     }
 

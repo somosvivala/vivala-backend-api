@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/cropper.min.css') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection 
+
 @section('content')
 <section class="content-header">
     <h1>
-        Imersao
+        Editando Imersão
     </h1>
 </section>
 <div class="content" style="min-height:300px">
@@ -53,8 +59,9 @@
 
                 </div>
                 <div class="tab-pane" id="tab_fotoListagem">
-                    <img src="//res.cloudinary.com/{{ env('CLOUDINARY_CLOUD_NAME') }}/image/upload/{{ $imersao->mediaListagem ? $imersao->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $imersao->titulo}}">
-                    <a class="btn btn-primary" href="/imersaos/{{$imersao->id}}/foto-listagem">Trocar Foto &nbsp; <i class="fa fa-pencil"></i></a>
+                    @include('imersaos.foto_imersao', [
+                        'formUrl' => '/imersaos/'.$imersao->id.'/foto-listagem'
+                    ])
                 </div>
 
 {{-- Escondido em v3
@@ -110,9 +117,6 @@
 
 --}}
 
-
-
-
                 <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -121,3 +125,11 @@
 
 </div>
 @endsection
+
+
+@section('scripts')
+<script src="{{ asset('js/cropper.min.js') }}"></script>
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('js/cropper-util.js') }}"></script>
+@endsection
+
