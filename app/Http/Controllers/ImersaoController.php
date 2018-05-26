@@ -203,6 +203,7 @@ class ImersaoController extends AppBaseController
             ];
         } else {
             Flash::error('Erro no upload da foto!');
+
             return redirect()->back();
         }
     }

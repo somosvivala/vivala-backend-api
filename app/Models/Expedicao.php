@@ -125,6 +125,7 @@ class Expedicao extends Model
         if ($this->mediaListagem) {
             $cloudName = env('CLOUDINARY_CLOUD_NAME');
             $id = $this->mediaListagem->cloudinary_id;
+
             return "https://res.cloudinary.com/$cloudName/image/upload/$id";
         }
 
