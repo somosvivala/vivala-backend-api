@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/cropper.min.css') }}">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+@endsection 
+
 @section('content')
 <section class="content-header">
     <h1>
@@ -53,8 +59,9 @@
 
                     </div>
                     <div class="tab-pane" id="tab_fotoListagem">
-                        <img src="//res.cloudinary.com/{{ env('CLOUDINARY_CLOUD_NAME') }}/image/upload/{{ $expedicao->mediaListagem ? $expedicao->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $expedicao->titulo}}">
-                        <a class="btn btn-primary" href="/expedicaos/{{$expedicao->id}}/foto-listagem">Trocar Foto &nbsp; <i class="fa fa-pencil"></i></a>
+                        @include('expedicaos.foto_expedicao', [
+                            'formUrl' => '/expedicaos/'.$expedicao->id.'/foto-listagem'
+                        ])
                     </div>
 
 {{-- Escondido em v3
@@ -107,11 +114,7 @@
                         <hr>
                         <a class="btn btn-primary" href="/expedicaos/{{$expedicao->id}}/inscricoes">Ver tabela de Inscritos &nbsp; <i class="fa fa-eye"></i></a>
                     </div>
-
 --}}
-
-
-
 
                     <!-- /.tab-pane -->
                 </div>
@@ -121,3 +124,10 @@
 
 </div>
 @endsection
+
+@section('scripts')
+<script src="{{ asset('js/cropper.min.js') }}"></script>
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('js/cropper-util.js') }}"></script>
+@endsection
+

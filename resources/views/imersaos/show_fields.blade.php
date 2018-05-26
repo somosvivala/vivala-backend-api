@@ -1,36 +1,42 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $imersao->id !!}</p>
-</div>
-
 <!-- Titulo Field -->
 <div class="form-group">
     {!! Form::label('titulo', 'Titulo:') !!}
     <p>{!! $imersao->titulo !!}</p>
 </div>
 
-<!-- Media Listagem Id Field -->
+<!-- Link de destino Field -->
 <div class="form-group">
-    {!! Form::label('media_listagem_id', 'Media Listagem Id:') !!}
-    <p>{!! $imersao->media_listagem_id !!}</p>
+    {!! Form::label('link_destino', 'Link de destino') !!}
+<p> <a href="{!! $imersao->link_destino !!}">{!! $imersao->link_destino !!}</a> </p>
 </div>
 
-<!-- Media Listagem Type Field -->
+<!-- Ativo na listagem -->
 <div class="form-group">
-    {!! Form::label('media_listagem_type', 'Media Listagem Type:') !!}
-    <p>{!! $imersao->media_listagem_type !!}</p>
+    {!! Form::label('ativo_listagem', 'Aparece na listagem: ') !!}
+    <span> {{ $imersao->ativo_listagem ? 'Sim' : 'Não' }} </span>
+    @if ( !$imersao->ativo_listagem )
+    {!! Form::open(['url' => '/imersaos/'.$imersao->id.'/ativa-listagem']) !!}
+        {!! Form::button('<i class="fa fa-arrow-up"></i> Mostrar na listagem', [
+            'type' => 'submit',
+            'class' => 'btn btn-info btn-xs',
+            'onclick' => "return confirm('Ativar a exibição dessa imersao?')"
+        ]) !!}
+    {!! Form::close() !!}
+    @else
+    {!! Form::open(['url' => '/imersaos/'.$imersao->id.'/remove-listagem']) !!}
+        {!! Form::button('<i class="fa fa-arrow-down"></i> Remover da listagem', [
+            'type' => 'submit',
+            'class' => 'btn btn-warning btn-xs',
+            'onclick' => "return confirm('Parar a exibição dessa imersao?')"
+        ]) !!}
+    {!! Form::close() !!}
+    @endif
+
 </div>
 
-<!-- Created At Field -->
 <div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $imersao->created_at !!}</p>
+    {!! Form::label('foto_listagem', 'Foto da listagem') !!}
+    <p> <img src="//res.cloudinary.com/{{ env('CLOUDINARY_CLOUD_NAME') }}/image/upload/{{ $imersao->mediaListagem ? $imersao->mediaListagem->cloudinary_id : '' }}" alt="Foto da {{ $imersao->titulo }}" width="500px"> </p>
 </div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $imersao->updated_at !!}</p>
-</div>
+<hr>
 

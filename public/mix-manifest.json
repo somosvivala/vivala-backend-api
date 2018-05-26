@@ -6,5 +6,6 @@
     "/css/sweetalert2.css": "/css/sweetalert2.css",
     "/js/sweetalert2.min.js": "/js/sweetalert2.min.js",
     "/css/cropper.min.css": "/css/cropper.min.css",
-    "/js/cropper.min.js": "/js/cropper.min.js"
+    "/js/cropper.min.js": "/js/cropper.min.js",
+    "/js/cropper-util.js": "/js/cropper-util.js"
 }

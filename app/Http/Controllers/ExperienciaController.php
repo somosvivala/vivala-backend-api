@@ -77,7 +77,7 @@ class ExperienciaController extends AppBaseController
         $experiencia = $this->experienciaRepository->findWithoutFail($id);
 
         if (empty($experiencia)) {
-            Flash::error('Experiencia not found');
+            Flash::error('Experiencia não encontrada');
 
             return redirect(route('experiencias.index'));
         }
@@ -97,7 +97,7 @@ class ExperienciaController extends AppBaseController
         $experiencia = $this->experienciaRepository->findWithoutFail($id);
 
         if (empty($experiencia)) {
-            Flash::error('Experiencia not found');
+            Flash::error('Experiencia não encontrada');
 
             return redirect(route('experiencias.index'));
         }
@@ -118,14 +118,14 @@ class ExperienciaController extends AppBaseController
         $experiencia = $this->experienciaRepository->findWithoutFail($id);
 
         if (empty($experiencia)) {
-            Flash::error('Experiencia not found');
+            Flash::error('Experiencia não encontrada');
 
             return redirect(route('experiencias.index'));
         }
 
         $experiencia = $this->experienciaRepository->update($request->all(), $id);
 
-        Flash::success('Experiencia updated successfully.');
+        Flash::success('Experiencia atualizada com sucesso.');
 
         return redirect(route('experiencias.index'));
     }
@@ -142,14 +142,14 @@ class ExperienciaController extends AppBaseController
         $experiencia = $this->experienciaRepository->findWithoutFail($id);
 
         if (empty($experiencia)) {
-            Flash::error('Experiencia not found');
+            Flash::error('Experiencia não encontrada');
 
             return redirect(route('experiencias.index'));
         }
 
         $this->experienciaRepository->delete($id);
 
-        Flash::success('Experiencia deleted successfully.');
+        Flash::success('Experiencia removida com sucesso');
 
         return redirect(route('experiencias.index'));
     }
@@ -189,17 +189,17 @@ class ExperienciaController extends AppBaseController
 
         //Se tiver enviado pro Cloudinary com sucesso
         if ($retorno) {
-            Flash::success('Experiencia criada com sucesso!');
+            Flash::success('Foto atualizada com sucesso!');
 
             return [
                 'success' => true,
-                'redirectURL' => '/experiencias',
+                'redirectURL' => '/experiencias/',
                 'message' => 'Foto da listagem atualizada! Recarregando...',
             ];
         } else {
             Flash::error('Erro no upload da foto!');
 
-            return redirect("agentes/$id")->with('agente', $agente);
+            return redirect()->back();
         }
     }
 
