@@ -85,26 +85,13 @@
         @yield('content')
     </div>
 
+
+
     <!-- Main Footer -->
     <footer class="main-footer" style="max-height: 100px;text-align: center">
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <h4>Grupo Tesseract</h4></a>
-
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <img src="{{ asset('icones/logo-tesseract-preto-simples.svg') }}"></a>
-
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <i class="fa fa-home" aria-hidden="true"></i></a>
-
-          <a href="//www.facebook.com/grupotesseract" target="_blank">
-            <i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-
-          <a href="//github.com/grupotesseract" target="_blank">
-            <i class="fa fa-github" aria-hidden="true"></i></a>
-
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-          </a>
+            Desenvolvido pelo &nbsp;<strong><a href="//grupotesseract.com.br/" target="_blank">
+ Grupo Tesseract &nbsp;<img src="{{ asset('icones/logo-tesseract-preto-simples.svg') }}"></a></strong>
+                      
     </footer>
 
 </div>

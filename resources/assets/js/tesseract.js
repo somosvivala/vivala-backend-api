@@ -70,6 +70,10 @@ function bindaAjaxFormVideoServicos() {
             }
         });      
 
+        var btnConfirmar = $('.btn-confirmar');
+        var bkpBtnConfirmar = btnConfirmar.html();
+        btnConfirmar.html('<i class="fa fa-spinner fa-spin"></i>');
+
         var formAction = $(this).attr('action');
 
         // Use `jQuery.ajax` method
@@ -100,6 +104,7 @@ function bindaAjaxFormVideoServicos() {
                 });
             },
             complete: function() {
+                btnConfirmar.html(bkpBtnConfirmar);
             }
         });
     });

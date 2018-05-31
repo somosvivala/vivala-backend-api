@@ -1,7 +1,7 @@
 <!-- Partial Url Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('partial_url', 'Código do video no youtube:') !!}
-    {!! Form::text('partial_url', null, ['class' => 'form-control']) !!}
+    {!! Form::text('partial_url', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <!-- Campos hidden identificando a relação -->
@@ -12,6 +12,6 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <button class="btn btn-primary btn-confirmar">Confirmar</button>
     <a href="{!! route('videos.index') !!}" class="btn btn-default">Cancel</a>
 </div>
