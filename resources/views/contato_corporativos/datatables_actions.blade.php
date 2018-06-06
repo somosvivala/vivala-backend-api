@@ -1,6 +1,6 @@
-{!! Form::open(['route' => ['contatoCorporativos.destroy', $id], 'method' => 'delete']) !!}
+{!! Form::open(['route' => ['contatoCorporativo.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
-    <a href="{{ route('contatoCorporativos.show', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('contatoCorporativo.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', [
