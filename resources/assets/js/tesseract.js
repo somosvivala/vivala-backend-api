@@ -53,5 +53,60 @@ $(function () {
         });
 
     }
+
+    bindaAjaxFormVideoServicos();
+
 });
 
+
+function bindaAjaxFormVideoServicos() {
+
+    $('form#video_servico').on('submit', function(ev) {
+        ev.preventDefault();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });      
+
+        var btnConfirmar = $('.btn-confirmar');
+        var bkpBtnConfirmar = btnConfirmar.html();
+        btnConfirmar.html('<i class="fa fa-spinner fa-spin"></i>');
+
+        var formAction = $(this).attr('action');
+
+        // Use `jQuery.ajax` method
+        $.ajax(formAction, {
+            method: "POST",
+            data: $('form#video_servico').serialize(),
+            success: function (data, textStatus, jqXHR) {
+                console.log('success');
+                console.log(data);
+                swal({
+                    type: 'success',
+                    title: 'Sucesso',
+                    text: data.message,
+
+                    timer: 2000
+                });
+                //Redirect apos algum tempo
+                setTimeout( function() {
+                    window.location = data.redirectURL;
+                }, 1800);
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                swal({
+                    type: 'error',
+                    title: 'Erro',
+                    text: errorThrown
+                });
+            },
+            complete: function() {
+                btnConfirmar.html(bkpBtnConfirmar);
+            }
+        });
+    });
+
+}

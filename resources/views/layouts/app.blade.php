@@ -6,7 +6,7 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/_all-skins.min.css">
@@ -85,26 +85,13 @@
         @yield('content')
     </div>
 
+
+
     <!-- Main Footer -->
     <footer class="main-footer" style="max-height: 100px;text-align: center">
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <h4>Grupo Tesseract</h4></a>
-
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <img src="{{ asset('icones/logo-tesseract-preto-simples.svg') }}"></a>
-
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <i class="fa fa-home" aria-hidden="true"></i></a>
-
-          <a href="//www.facebook.com/grupotesseract" target="_blank">
-            <i class="fa fa-facebook-official" aria-hidden="true"></i></a>
-
-          <a href="//github.com/grupotesseract" target="_blank">
-            <i class="fa fa-github" aria-hidden="true"></i></a>
-
-          <a href="//grupotesseract.com.br/" target="_blank">
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-          </a>
+            Desenvolvido pelo &nbsp;<strong><a href="//grupotesseract.com.br/" target="_blank">
+ Grupo Tesseract &nbsp;<img src="{{ asset('icones/logo-tesseract-preto-simples.svg') }}"></a></strong>
+                      
     </footer>
 
 </div>

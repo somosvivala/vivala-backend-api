@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1>Passo 2/4 - Insira a foto que vai aparecer na listagem de expedições</h1>
+        <h1>Passo 2/2 - Insira a foto que vai aparecer na listagem</h1>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')

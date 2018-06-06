@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Dropzone = require('./dropzone');
-
 Dropzone.autoDiscover = false;
 
+const Swal = require('sweetalert2');
+const swal = Swal;

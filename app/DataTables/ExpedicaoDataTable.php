@@ -14,7 +14,9 @@ class ExpedicaoDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->addColumn('action', 'expedicaos.datatables_actions')
+            ->addColumn('action', function ($model) {
+                return view('expedicaos.datatables_actions')->with(['expedicao' => $model, 'id' => $model->id]);
+            })
             ->make(true);
     }
 
@@ -39,7 +41,7 @@ class ExpedicaoDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addAction(['width' => '10%'])
+            ->addAction(['width' => '15%'])
             ->ajax('')
             ->parameters([
                 'dom' => 'Bfrtip',
@@ -79,10 +81,10 @@ class ExpedicaoDataTable extends DataTable
     private function getColumns()
     {
         return [
+            'ordem' => ['name' => 'ordem', 'data' => 'ordem', 'title' => 'Ordem'],
             'titulo' => ['name' => 'titulo', 'data' => 'titulo', 'title' => 'Título'],
-            'descricao_listagem' => ['name' => 'descricao_listagem', 'data' => 'descricao_listagem', 'title' => 'Descrição Listagem'],
-            'data_inicio' => ['name' => 'data_inicio', 'data' => 'data_inicio', 'title' => 'Data Início'],
-            'data_fim' => ['name' => 'data_fim', 'data' => 'data_fim'],
+            'link_destino' => ['name' => 'link_destino', 'data' => 'link_destino', 'title' => 'Link de destino'],
+            'ativo_listagem' =>  ['name' => 'ativo_listagem', 'data' => 'stringAtivoListagem', 'title' => 'Aparece na listagem'],
             'created_at' => ['name' => 'created_at', 'data' => 'created_at', 'title' => 'Criada em'],
         ];
     }

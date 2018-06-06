@@ -15,55 +15,20 @@ Route::get('/', function () {
     return redirect('home');
 });
 
-Auth::routes();
+// Rotas de login / logout
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index');
 
-/*
- * ROTAS PARA TESTE DAS BLADES DE EMAILS
- */
-Route::get('/exemplo-email-contato-geral', function () {
-    return view('emails.contato-geral')->with('contatoGeral', App\Models\ContatoGeral::first());
-});
-Route::get('/exemplo-email-contato-agentes', function () {
-    return view('emails.contato-agente')->with('contatoAgente', App\Models\ContatoAgente::first());
-});
-Route::get('/exemplo-email-contato-corporativo', function () {
-    return view('emails.contato-corporativo')->with('contatoCorporativo', App\Models\ContatoCorporativo::first());
-});
-Route::get('/exemplo-email-inscricao-expedicao', function () {
-    return view('emails.inscricao-expedicao')->with('inscricao', App\Models\InscricaoExpedicao::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-pacote', function () {
-    return view('emails.cotacao-pacote')->with('cotacao', App\Models\CotacaoPacote::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-hospedagem', function () {
-    return view('emails.cotacao-hospedagem')->with('cotacao', App\Models\CotacaoHospedagem::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-aereo', function () {
-    return view('emails.cotacao-aereo')->with('cotacao', App\Models\CotacaoAereo::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-rodoviario', function () {
-    return view('emails.cotacao-rodoviario')->with('cotacao', App\Models\CotacaoRodoviario::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-cruzeiro', function () {
-    return view('emails.cotacao-cruzeiro')->with('cotacao', App\Models\CotacaoCruzeiro::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-carro', function () {
-    return view('emails.cotacao-carro')->with('cotacao', App\Models\CotacaoCarro::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-passeio', function () {
-    return view('emails.cotacao-passeio')->with('cotacao', App\Models\CotacaoPasseio::latest()->first());
-});
-Route::get('/exemplo-email-cotacao-seguro', function () {
-    return view('emails.cotacao-seguro')->with('cotacao', App\Models\CotacaoSeguro::latest()->first());
-});
-
 //Newsletter
-Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth']);
+Route::resource('inscricaoNewsletters', 'InscricaoNewsletterController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
 
 //Blocos de descricao de experiencia / expedicao
-Route::resource('blocoDescricaos', 'BlocoDescricaoController', ['middleware' => 'auth']);
+//Route::resource('blocoDescricaos', 'BlocoDescricaoController', ['middleware' => 'auth']);
 
 //Fotos de experiencias / expedicoes / agentes
 Route::resource('fotos', 'FotoController', ['middleware' => 'auth']);
@@ -73,27 +38,65 @@ Route::resource('experiencias', 'ExperienciaController', ['middleware' => 'auth'
 Route::resource('expedicaos', 'ExpedicaoController', ['middleware' => 'auth']);
 
 //Datatables de Inscricoes de Experiencia/Expedicao pela Rota
-Route::get('expedicaos/{id}/inscricoes', 'InscricaoExpedicaoController@getInscricoes')->middleware('auth');
-Route::get('experiencias/{id}/inscricoes', 'InscricaoExperienciaController@getInscricoes')->middleware('auth');
+//Route::get('expedicaos/{id}/inscricoes', 'InscricaoExpedicaoController@getInscricoes')->middleware('auth');
+//Route::get('experiencias/{id}/inscricoes', 'InscricaoExperienciaController@getInscricoes')->middleware('auth');
 
 //Inscricoes das Experiencias/Expedicoes
-Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController', ['middleware' => 'auth']);
-Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController', ['middleware' => 'auth']);
+/* Desativado vivalá v3
+Route::resource('inscricaoExpedicaos', 'InscricaoExpedicaoController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy',
+]]);
+
+Route::resource('inscricaoExperiencias', 'InscricaoExperienciaController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit', 'destroy',
+]]);
+**/
 
 //Contatos
-Route::resource('contatoAgentes', 'ContatoAgenteController', ['middleware' => 'auth']);
-Route::resource('contatoCorporativo', 'ContatoCorporativoController', ['middleware' => 'auth']);
-Route::resource('contatoGeral', 'ContatoGeralController', ['middleware' => 'auth']);
+Route::resource('contatoAgentes', 'ContatoAgenteController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('contatoCorporativo', 'ContatoCorporativoController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('contatoGeral', 'ContatoGeralController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
 
 //Cotacoes
-Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middleware' => 'auth']);
-Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth']);
-Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth']);
-Route::resource('cotacaoCarros', 'CotacaoCarroController', ['middleware' => 'auth']);
-Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController', ['middleware' => 'auth']);
-Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController', ['middleware' => 'auth']);
-Route::resource('cotacaoPasseios', 'CotacaoPasseioController', ['middleware' => 'auth']);
-Route::resource('cotacaoSeguros', 'CotacaoSeguroController', ['middleware' => 'auth']);
+Route::resource('cotacaoHospedagems', 'CotacaoHospedagemController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('cotacaoPacotes', 'CotacaoPacoteController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('cotacaoAereos', 'CotacaoAereoController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('cotacaoCarros', 'CotacaoCarroController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('cotacaoRodoviarios', 'CotacaoRodoviarioController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('cotacaoCruzeiros', 'CotacaoCruzeiroController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('cotacaoPasseios', 'CotacaoPasseioController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
+
+Route::resource('cotacaoSeguros', 'CotacaoSeguroController', ['middleware' => 'auth', 'except' => [
+    'create', 'store', 'update', 'edit',
+]]);
 
 Route::resource('videos', 'VideoController', ['middleware' => 'auth']);
 Route::resource('agentes', 'AgenteController', ['middleware' => 'auth']);
@@ -103,14 +106,46 @@ Route::post('agentes/{id}/foto', 'AgenteController@postFotoAgente')->middleware(
 
 Route::get('expedicaos/{id}/foto-listagem', 'ExpedicaoController@getFotoListagem')->middleware('auth');
 Route::post('expedicaos/{id}/foto-listagem', 'ExpedicaoController@postFotoListagem')->middleware('auth');
+Route::post('expedicaos/{id}/ativa-listagem', 'ExpedicaoController@postAtivaListagem')->middleware('auth');
+Route::post('expedicaos/{id}/remove-listagem', 'ExpedicaoController@postRemoveListagem')->middleware('auth');
+
+Route::get('/volunturismo/foto-home', 'HomeController@getFotoVolunturismo');
+Route::post('/volunturismo/foto-home', 'HomeController@postFotoVolunturismo');
+Route::get('/volunturismo/video', 'VideosServicosController@getVideoVolunturismo');
+Route::post('/volunturismo/video', 'VideosServicosController@postVideoVolunturismo')->name('video-volunturismo');
+
+Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
+Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');
+Route::post('experiencias/{id}/ativa-listagem', 'ExperienciaController@postAtivaListagem')->middleware('auth');
+Route::post('experiencias/{id}/remove-listagem', 'ExperienciaController@postRemoveListagem')->middleware('auth');
+Route::get('/ecoturismo/foto-home', 'HomeController@getFotoEcoturismo');
+Route::post('/ecoturismo/foto-home', 'HomeController@postFotoEcoturismo');
+Route::get('/ecoturismo/video', 'VideosServicosController@getVideoEcoturismo');
+Route::post('/ecoturismo/video', 'VideosServicosController@postVideoEcoturismo')->name('video-ecoturismo');
+
+Route::resource('imersaos', 'ImersaoController');
+Route::get('imersaos/{id}/foto-listagem', 'ImersaoController@getFotoListagem')->middleware('auth');
+Route::post('imersaos/{id}/foto-listagem', 'ImersaoController@postFotoListagem')->middleware('auth');
+Route::post('imersaos/{id}/ativa-listagem', 'ImersaoController@postAtivaListagem')->middleware('auth');
+Route::post('imersaos/{id}/remove-listagem', 'ImersaoController@postRemoveListagem')->middleware('auth');
+Route::get('/imersoes/foto-home', 'HomeController@getFotoImersoes');
+Route::post('/imersoes/foto-home', 'HomeController@postFotoImersoes');
+Route::get('/imersoes/video', 'VideosServicosController@getVideoImersoes');
+Route::post('/imersoes/video', 'VideosServicosController@postVideoImersoes')->name('video-imersoes');
+
+//Foto da home do instituto
+Route::get('/instituto/foto-home', 'HomeController@getFotoInstituto');
+Route::post('/instituto/foto-home', 'HomeController@postFotoInstituto');
+
+/*
+ * Removendo para V3
 
 Route::get('expedicaos/{id}/create-descricoes', 'ExpedicaoController@getCreateDescricoes')->middleware('auth');
 Route::get('expedicaos/{id}/create-medias-interna', 'ExpedicaoController@getCreateMediasInterna')->middleware('auth');
 Route::post('expedicaos/{id}/create-medias-interna', 'ExpedicaoController@postCreateMediasInterna')->middleware('auth');
 
-Route::get('experiencias/{id}/foto-listagem', 'ExperienciaController@getFotoListagem')->middleware('auth');
-Route::post('experiencias/{id}/foto-listagem', 'ExperienciaController@postFotoListagem')->middleware('auth');
-
 Route::get('experiencias/{id}/create-descricoes', 'ExperienciaController@getCreateDescricoes')->middleware('auth');
 Route::get('experiencias/{id}/create-medias-interna', 'ExperienciaController@getCreateMediasInterna')->middleware('auth');
 Route::post('experiencias/{id}/create-medias-interna', 'ExperienciaController@postCreateMediasInterna')->middleware('auth');
+
+**/

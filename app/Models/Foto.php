@@ -169,8 +169,22 @@ class Foto extends Model
         return $this->image_path.$this->image_name.'.'.$this->image_extension;
     }
 
+    /**
+     * Relacao polimorfica para a foto de destaque (deprecated).
+     */
     public function destaque()
     {
         return $this->morphOne(App\Models\Expedicao::class, 'media_listagem');
+    }
+
+    /**
+     * Acessor para a URL do Cloudinary.
+     */
+    public function getUrlCloudinaryAttribute()
+    {
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $id = $this->cloudinary_id;
+
+        return "https://res.cloudinary.com/$cloudName/image/upload/$id";
     }
 }

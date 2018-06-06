@@ -73,11 +73,14 @@ class Experiencia extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
+        'ordem',
         'titulo',
         'descricao_listagem',
+        'ativo_listagem',
         'data_inicio',
         'data_fim',
         'url_pagamento',
+        'link_destino',
     ];
 
     /**
@@ -102,10 +105,12 @@ class Experiencia extends Model
      */
     public static $rules = [
         'titulo' => 'required',
-        'descricao_listagem' => 'required',
-        'data_inicio' => 'required',
-        'data_fim' => 'required',
-        'url_pagamento' => 'sometimes|nullable|url',
+        'link_destino' => 'required|url',
+    ];
+
+    /** Atributos que devem ser inclusos nas respostas da API **/
+    public $appends = [
+        'stringAtivoListagem',
     ];
 
     /**
@@ -117,6 +122,14 @@ class Experiencia extends Model
     }
 
     /**
+     * Scope para aplicar na query filtrando por.
+     */
+    public function scopeAtivas($query)
+    {
+        return $query->where('ativo_listagem', true);
+    }
+
+    /**
      * Acessor para tratar o link de pagamento.
      */
     public function getUrlPagamentoAttribute()
@@ -124,5 +137,24 @@ class Experiencia extends Model
         return $this->attributes['url_pagamento']
             ? $this->attributes['url_pagamento']
             : false;
+    }
+
+    /**
+     * Acessor para o texto de 'Sim' ou 'Não' dependendo da propriedade $ativo_listagem.
+     */
+    public function getStringAtivoListagemAttribute()
+    {
+        return $this->ativo_listagem ? 'Sim' : 'Não';
+    }
+
+    /**
+     * Acessor para o link da foto de listagem no cloudinary.
+     */
+    public function getFotoLinkAttribute()
+    {
+        $cloudName = env('CLOUDINARY_CLOUD_NAME');
+        $id = $this->mediaListagem->cloudinary_id;
+
+        return "https://res.cloudinary.com/$cloudName/image/upload/$id";
     }
 }

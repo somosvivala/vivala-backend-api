@@ -58,7 +58,7 @@ class FotoRepository extends BaseRepository
 
                 return $novaFoto;
 
-                // Se nao tiver funcionado, retornar false no success para o js se manisfestar
+            // Se nao tiver funcionado, retornar false no success para o js se manisfestar
             } else {
                 return [
                     'success' => false,
