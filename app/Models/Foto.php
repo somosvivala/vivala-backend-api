@@ -185,6 +185,6 @@ class Foto extends Model
         $cloudName = env('CLOUDINARY_CLOUD_NAME');
         $id = $this->cloudinary_id;
 
-        return "https://res.cloudinary.com/$cloudName/image/upload/$id";
+        return "https://res.cloudinary.com/$cloudName/image/upload/f_webp/$id";
     }
 }
