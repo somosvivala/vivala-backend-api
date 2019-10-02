@@ -106,7 +106,7 @@ trait ExpedicaoExperienciaModelTrait
      */
     public function getTituloCloudinaryAttribute()
     {
-        $semAcentos = $this->tiraAcentos($this->titulo);
+        $semAcentos = str_slug($this->titulo);
 
         return preg_replace('/[ ,#]/', '_', strtolower($semAcentos));
     }

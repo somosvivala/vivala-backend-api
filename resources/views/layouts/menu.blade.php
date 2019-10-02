@@ -1,120 +1,69 @@
 <li class="treeview {{ (Request::is('expedicaos*') || Request::is('volunturismo*')) ? 'active' : '' }}" id="scrollspy-components">
-  <a href="javascript:void(0)"><i class="fa fa-handshake-o"></i>&nbsp;Volunturismo</a>
-  <ul class="nav treeview-menu">
-    <li class="{{ Request::is('volunturismo/video') ? 'active' : '' }}">
-        <a href="/volunturismo/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
-    </li>
-    <li class="{{ Request::is('volunturismo/foto-home') ? 'active' : '' }}">
-        <a href="/volunturismo/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
-    </li>
-    <li class="{{ Request::is('expedicaos') ? 'active' : '' }}">
-        <a href="{!! route('expedicaos.index') !!}"><i class="fa fa-heartbeat" aria-hidden="true"></i><span>Expedições</span></a>
-    </li>
-  </ul>
+    <a href="javascript:void(0)"><i class="fa fa-handshake-o"></i>&nbsp;Volunturismo</a>
+    <ul class="nav treeview-menu">
+        <li class="{{ Request::is('volunturismo/video') ? 'active' : '' }}">
+            <a href="/volunturismo/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
+        </li>
+        <li class="{{ Request::is('volunturismo/foto-home') ? 'active' : '' }}">
+            <a href="/volunturismo/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
+        </li>
+        <li class="{{ Request::is('expedicaos') ? 'active' : '' }}">
+            <a href="{!! route('expedicaos.index') !!}"><i class="fa fa-heartbeat" aria-hidden="true"></i><span>Expedições</span></a>
+        </li>
+    </ul>
 </li>
 
 <li class="treeview {{ (Request::is('experiencias*') || Request::is('ecoturismo*')) ? 'active' : '' }}" id="scrollspy-components">
-  <a href="javascript:void(0)"><i class="fa fa-leaf"></i>Ecoturismo</a>
-  <ul class="nav treeview-menu">
-    <li class="{{ Request::is('ecoturismo/video') ? 'active' : '' }}">
-        <a href="/ecoturismo/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
-    </li>
-    <li class="{{ Request::is('ecoturismo/foto-home') ? 'active' : '' }}">
-        <a href="/ecoturismo/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
-    </li>
-    <li class="{{ Request::is('experiencias*') ? 'active' : '' }}">
-        <a href="{!! route('experiencias.index') !!}"><i class="fa fa-tree" aria-hidden="true"></i><span>Experiências</span></a>
-    </li>
-  </ul>
+    <a href="javascript:void(0)"><i class="fa fa-leaf"></i>Ecoturismo</a>
+    <ul class="nav treeview-menu">
+        <li class="{{ Request::is('ecoturismo/video') ? 'active' : '' }}">
+            <a href="/ecoturismo/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
+        </li>
+        <li class="{{ Request::is('ecoturismo/foto-home') ? 'active' : '' }}">
+            <a href="/ecoturismo/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
+        </li>
+        <li class="{{ Request::is('experiencias*') ? 'active' : '' }}">
+            <a href="{!! route('experiencias.index') !!}"><i class="fa fa-tree" aria-hidden="true"></i><span>Experiências</span></a>
+        </li>
+    </ul>
 </li>
 
 <li class="treeview {{ (Request::is('imersaos*') || Request::is('imersoes*')) ? 'active' : '' }}" id="scrollspy-components">
-  <a href="javascript:void(0)"><i class="fa fa-globe"></i>Imersões</a>
-  <ul class="nav treeview-menu">
-    <li class="{{ Request::is('imersoes/video') ? 'active' : '' }}">
-        <a href="/imersoes/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
-    </li>
-    <li class="{{ Request::is('imersoes/foto-home') ? 'active' : '' }}">
-        <a href="/imersoes/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
-    </li>
-    <li class="{{ Request::is('imersaos*') ? 'active' : '' }}">
-        <a href="{!! route('imersaos.index') !!}"><i class="fa fa-globe"></i><span>Imersões</span></a>
-    </li>
-  </ul>
+    <a href="javascript:void(0)"><i class="fa fa-globe"></i>Imersões</a>
+    <ul class="nav treeview-menu">
+        <li class="{{ Request::is('imersoes/video') ? 'active' : '' }}">
+            <a href="/imersoes/video"><i class="fa fa-play" aria-hidden="true"></i><span>Video</span></a>
+        </li>
+        <li class="{{ Request::is('imersoes/foto-home') ? 'active' : '' }}">
+            <a href="/imersoes/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
+        </li>
+        <li class="{{ Request::is('imersaos*') ? 'active' : '' }}">
+            <a href="{!! route('imersaos.index') !!}"><i class="fa fa-globe"></i><span>Imersões</span></a>
+        </li>
+    </ul>
 </li>
 
 <li class="treeview {{ (Request::is('instituto*') || Request::is('instituto*')) ? 'active' : '' }}" id="scrollspy-components">
-  <a href="javascript:void(0)"><i class="fa fa-heart"></i>Instituto</a>
-  <ul class="nav treeview-menu">
-    <li class="{{ Request::is('instituto/foto-home') ? 'active' : '' }}">
-        <a href="/instituto/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
-    </li>
-  </ul>
-</li>
-
-
-
-
-<li class="{{ Request::is('agentes*') ? 'active' : '' }}">
-    <a href="{!! route('agentes.index') !!}"><i class="fa fa-users" aria-hidden="true"></i><span>Agentes</span></a>
-</li>
-
-<!-- Dropdown Menu Cotações -->
-<li class="treeview" id="scrollspy-components">
-  <a href="javascript:void(0)"><i class="fa fa-circle-o"></i>Cotações</a>
-  <ul class="nav treeview-menu">
-
-    <li class="{{ Request::is('cotacaoAereos*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoAereos.index') !!}"><i class="fa fa-plane" aria-hidden="true"></i><span>Aéreos</span></a>
-    </li>
-
-    <li class="{{ Request::is('cotacaoCarros*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoCarros.index') !!}"><i class="fa fa-car " aria-hidden="true"></i><span>Carros</span></a>
-    </li>
-
-    <li class="{{ Request::is('cotacaoCruzeiros*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoCruzeiros.index') !!}"><i class="fa fa-ship " aria-hidden="true"></i><span>Cruzeiros</span></a>
-    </li>
-
-    <li class="{{ Request::is('cotacaoHospedagems*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoHospedagems.index') !!}"><i class="fa fa-bed" aria-hidden="true"></i><span>Hospedagens</span></a>
-    </li>
-
-    <li class="{{ Request::is('cotacaoPacotes*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoPacotes.index') !!}"><i class="fa fa-cubes" aria-hidden="true"></i><span>Pacotes</span></a>
-    </li>
-
-    <li class="{{ Request::is('cotacaoPasseios*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoPasseios.index') !!}"><i class="fa fa-flag " aria-hidden="true"></i><span>Passeios</span></a>
-    </li>
-
-    <li class="{{ Request::is('cotacaoRodoviarios*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoRodoviarios.index') !!}"><i class="fa fa-bus " aria-hidden="true"></i><span>Rodoviário</span></a>
-    </li>
-
-    <li class="{{ Request::is('cotacaoSeguros*') ? 'active' : '' }}">
-        <a href="{!! route('cotacaoSeguros.index') !!}"><i class="fa fa-dollar " aria-hidden="true"></i><span>Seguros</span></a>
-    </li>
-
-  </ul>
+    <a href="javascript:void(0)"><i class="fa fa-heart"></i>Instituto</a>
+    <ul class="nav treeview-menu">
+        <li class="{{ Request::is('instituto/foto-home') ? 'active' : '' }}">
+            <a href="/instituto/foto-home"><i class="fa fa-image" aria-hidden="true"></i><span>Foto da Home</span></a>
+        </li>
+    </ul>
 </li>
 
 <!-- Dropdown Menu Contatos -->
 <li class="treeview" id="scrollspy-components">
-  <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i>Contatos</a>
-  <ul class="nav treeview-menu">
-    <li class="{{ Request::is('contatoAgentes*') ? 'active' : '' }}">
-        <a href="{!! route('contatoAgentes.index') !!}"><i class="fa fa-group" aria-hidden="true"></i><span>Agentes</span></a>
-    </li>
+    <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i>Contatos</a>
+    <ul class="nav treeview-menu">
+        <li class="{{ Request::is('contatoCorporativo*') ? 'active' : '' }}">
+            <a href="{!! route('contatoCorporativo.index') !!}"><i class="fa fa-suitcase" aria-hidden="true"></i></i><span>Corporativo</span></a>
+        </li>
 
-    <li class="{{ Request::is('contatoCorporativo*') ? 'active' : '' }}">
-        <a href="{!! route('contatoCorporativo.index') !!}"><i class="fa fa-suitcase" aria-hidden="true"></i></i><span>Corporativo</span></a>
-    </li>
-
-    <li class="{{ Request::is('contatoGeral*') ? 'active' : '' }}">
-        <a href="{!! route('contatoGeral.index') !!}"><i class="fa fa-envelope-o" aria-hidden="true"></i></i><span>Geral</span></a>
-    </li>
-  </ul>
+        <li class="{{ Request::is('contatoGeral*') ? 'active' : '' }}">
+            <a href="{!! route('contatoGeral.index') !!}"><i class="fa fa-envelope-o" aria-hidden="true"></i></i><span>Geral</span></a>
+        </li>
+    </ul>
 </li>
 
 <li class="{{ Request::is('inscricaoNewsletters*') ? 'active' : '' }}">
