@@ -183,8 +183,8 @@ class ExperienciaController extends AppBaseController
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
         $experiencia->mediaListagem()->associate($novaFoto)->push();
 
-        //Monta o public ID a partir do nome do experiencia e da timestamp da foto
-        $publicId = $experiencia->tituloCloudinary.'_'.$novaFoto->image_name;
+        //Monta o public ID a partir do nome do experiencia e um timestamp
+        $publicId = $experiencia->tituloCloudinary.'_'.time();
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
 
         //Se tiver enviado pro Cloudinary com sucesso
