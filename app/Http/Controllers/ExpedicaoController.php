@@ -183,8 +183,8 @@ class ExpedicaoController extends AppBaseController
         $novaFoto = $this->fotoRepository->uploadAndCreate($request);
         $expedicao->mediaListagem()->associate($novaFoto)->push();
 
-        //Monta o public ID a partir do nome do expedicao e da timestamp da foto
-        $publicId = $expedicao->tituloCloudinary.'_'.$novaFoto->image_name;
+        //Monta o public ID a partir do nome do expedicao e um timestamp
+        $publicId = $expedicao->tituloCloudinary.'_'.time();
         $retorno = $this->fotoRepository->sendToCloudinary($novaFoto, $publicId);
 
         //Se tiver enviado pro Cloudinary com sucesso
