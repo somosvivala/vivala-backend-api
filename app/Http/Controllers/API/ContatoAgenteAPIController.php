@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\ContatoAgente;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\ContatoAgenteRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateContatoAgenteAPIRequest;
+use App\Models\ContatoAgente;
+use App\Repositories\ContatoAgenteRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class ContatoAgenteController.

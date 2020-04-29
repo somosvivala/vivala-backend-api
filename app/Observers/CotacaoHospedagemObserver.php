@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use Mail;
-use App\Models\CotacaoHospedagem;
 use App\Mail\PedidoCotacaoHospedagem;
+use App\Models\CotacaoHospedagem;
+use Mail;
 
 class CotacaoHospedagemObserver
 {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoHospedagemDataTable;
-use App\Repositories\CotacaoHospedagemRepository;
 use App\Http\Requests\CreateCotacaoHospedagemRequest;
 use App\Http\Requests\UpdateCotacaoHospedagemRequest;
+use App\Repositories\CotacaoHospedagemRepository;
+use Flash;
+use Response;
 
 class CotacaoHospedagemController extends AppBaseController
 {

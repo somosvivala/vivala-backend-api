@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\InscricaoExpedicao;
 use App\Repositories\InscricaoExpedicaoRepository;
+use Faker\Factory as Faker;
 
 trait MakeInscricaoExpedicaoTrait
 {

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use App\Repositories\ExperienciaRepository;
 use App\DataTables\InscricaoExperienciaDataTable;
 use App\DataTables\Scopes\InscricaoPorExperienciaId;
-use App\Repositories\InscricaoExperienciaRepository;
 use App\Http\Requests\CreateInscricaoExperienciaRequest;
 use App\Http\Requests\UpdateInscricaoExperienciaRequest;
+use App\Repositories\ExperienciaRepository;
+use App\Repositories\InscricaoExperienciaRepository;
+use Flash;
+use Response;
 
 class InscricaoExperienciaController extends AppBaseController
 {

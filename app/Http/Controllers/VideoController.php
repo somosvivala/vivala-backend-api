@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\VideoDataTable;
-use App\Repositories\VideoRepository;
 use App\Http\Requests\CreateVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
+use App\Repositories\VideoRepository;
+use Flash;
+use Response;
 
 class VideoController extends AppBaseController
 {

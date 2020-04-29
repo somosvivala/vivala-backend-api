@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoCruzeiroDataTable;
-use App\Repositories\CotacaoCruzeiroRepository;
 use App\Http\Requests\CreateCotacaoCruzeiroRequest;
 use App\Http\Requests\UpdateCotacaoCruzeiroRequest;
+use App\Repositories\CotacaoCruzeiroRepository;
+use Flash;
+use Response;
 
 class CotacaoCruzeiroController extends AppBaseController
 {

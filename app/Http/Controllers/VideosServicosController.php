@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\VideoRepository;
 use Flash;
 use Illuminate\Http\Request;
-use App\Repositories\VideoRepository;
 
 class VideosServicosController extends Controller
 {
