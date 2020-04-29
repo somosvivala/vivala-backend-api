@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\InscricaoNewsletterDataTable;
-use App\Repositories\InscricaoNewsletterRepository;
 use App\Http\Requests\CreateInscricaoNewsletterRequest;
 use App\Http\Requests\UpdateInscricaoNewsletterRequest;
+use App\Repositories\InscricaoNewsletterRepository;
+use Flash;
+use Response;
 
 class InscricaoNewsletterController extends AppBaseController
 {

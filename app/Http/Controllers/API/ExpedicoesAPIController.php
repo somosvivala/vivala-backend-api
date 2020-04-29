@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Models\Expedicao;
 use App\Repositories\ExpedicaoRepository;
-use App\Http\Controllers\AppBaseController;
 
 class ExpedicoesAPIController extends AppBaseController
 {

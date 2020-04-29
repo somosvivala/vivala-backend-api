@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoSeguroDataTable;
-use App\Repositories\CotacaoSeguroRepository;
 use App\Http\Requests\CreateCotacaoSeguroRequest;
 use App\Http\Requests\UpdateCotacaoSeguroRequest;
+use App\Repositories\CotacaoSeguroRepository;
+use Flash;
+use Response;
 
 class CotacaoSeguroController extends AppBaseController
 {
