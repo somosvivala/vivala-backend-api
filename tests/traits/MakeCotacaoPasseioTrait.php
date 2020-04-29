@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoPasseio;
 use App\Repositories\CotacaoPasseioRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoPasseioTrait
 {

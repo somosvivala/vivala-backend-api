@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ImersaoDataTable;
-use App\Repositories\FotoRepository;
-use App\Repositories\ImersaoRepository;
+use App\Http\Requests\CreateFotoListagemExpRequest;
 use App\Http\Requests\CreateImersaoRequest;
 use App\Http\Requests\UpdateImersaoRequest;
-use App\Http\Requests\CreateFotoListagemExpRequest;
+use App\Repositories\FotoRepository;
+use App\Repositories\ImersaoRepository;
+use Flash;
+use Response;
 
 class ImersaoController extends AppBaseController
 {

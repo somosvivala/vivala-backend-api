@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use App\Models\CotacaoAereo;
-use Illuminate\Http\Request;
-use App\Traits\ArrumaRequestCotacoesTrait;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\CotacaoAereoRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateCotacaoAereoAPIRequest;
+use App\Models\CotacaoAereo;
+use App\Repositories\CotacaoAereoRepository;
+use App\Traits\ArrumaRequestCotacoesTrait;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class CotacaoAereoController.

@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\API;
 
-use Response;
 use InfyOm\Generator\Request\APIRequest;
 use InfyOm\Generator\Utils\ResponseUtil;
+use Response;
 
 class BaseAPIRequest extends APIRequest
 {

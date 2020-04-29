@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ContatoGeralDataTable;
-use App\Repositories\ContatoGeralRepository;
 use App\Http\Requests\CreateContatoGeralRequest;
 use App\Http\Requests\UpdateContatoGeralRequest;
+use App\Repositories\ContatoGeralRepository;
+use Flash;
+use Response;
 
 class ContatoGeralController extends AppBaseController
 {

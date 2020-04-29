@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoCruzeiro;
 use App\Repositories\CotacaoCruzeiroRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoCruzeiroTrait
 {

@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use Mail;
-use App\Models\ContatoAgente;
 use App\Mail\NovoContatoAgente;
+use App\Models\ContatoAgente;
+use Mail;
 
 class ContatoAgenteObserver
 {

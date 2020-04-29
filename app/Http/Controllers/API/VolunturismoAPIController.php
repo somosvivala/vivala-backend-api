@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Repositories\ExpedicaoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\ExpedicaoRepository;
 
 class VolunturismoAPIController extends AppBaseController
 {
