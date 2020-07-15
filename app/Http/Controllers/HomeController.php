@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\FotoRepository;
 use Flash;
 use Illuminate\Http\Request;
-use App\Repositories\FotoRepository;
 
 class HomeController extends Controller
 {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ContatoCorporativoDataTable;
-use App\Repositories\ContatoCorporativoRepository;
 use App\Http\Requests\CreateContatoCorporativoRequest;
 use App\Http\Requests\UpdateContatoCorporativoRequest;
+use App\Repositories\ContatoCorporativoRepository;
+use Flash;
+use Response;
 
 class ContatoCorporativoController extends AppBaseController
 {

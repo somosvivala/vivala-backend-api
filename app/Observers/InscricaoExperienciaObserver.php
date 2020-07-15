@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use Mail;
-use App\Models\InscricaoExperiencia;
 use App\Mail\NovaInscricaoExperiencia;
+use App\Models\InscricaoExperiencia;
+use Mail;
 
 class InscricaoExperienciaObserver
 {

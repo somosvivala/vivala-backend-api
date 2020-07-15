@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use Illuminate\Http\Request;
-use App\Repositories\BlocoDescricaoRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use App\Http\Requests\CreateBlocoDescricaoRequest;
 use App\Http\Requests\UpdateBlocoDescricaoRequest;
+use App\Repositories\BlocoDescricaoRepository;
+use Flash;
+use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 class BlocoDescricaoController extends AppBaseController
 {

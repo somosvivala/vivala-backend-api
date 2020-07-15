@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoAereo;
 use App\Repositories\CotacaoAereoRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoAereoTrait
 {

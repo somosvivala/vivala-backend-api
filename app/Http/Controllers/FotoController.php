@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use Illuminate\Http\Request;
-use App\Repositories\FotoRepository;
 use App\Http\Requests\CreateFotoRequest;
 use App\Http\Requests\UpdateFotoRequest;
+use App\Repositories\FotoRepository;
+use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 class FotoController extends AppBaseController
 {

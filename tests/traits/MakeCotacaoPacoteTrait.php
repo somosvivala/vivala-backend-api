@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoPacote;
 use App\Repositories\CotacaoPacoteRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoPacoteTrait
 {

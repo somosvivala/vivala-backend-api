@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Repositories\AgenteRepository;
 use App\Transformers\AgenteTransformer;
-use App\Http\Controllers\AppBaseController;
 
 class AgentesAPIController extends AppBaseController
 {

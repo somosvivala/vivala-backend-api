@@ -2,9 +2,9 @@
 
 namespace App\Mail;
 
+use App\Models\CotacaoCruzeiro;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use App\Models\CotacaoCruzeiro;
 use Illuminate\Queue\SerializesModels;
 
 class PedidoCotacaoCruzeiro extends Mailable

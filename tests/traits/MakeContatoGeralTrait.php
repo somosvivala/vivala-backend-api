@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\ContatoGeral;
 use App\Repositories\ContatoGeralRepository;
+use Faker\Factory as Faker;
 
 trait MakeContatoGeralTrait
 {

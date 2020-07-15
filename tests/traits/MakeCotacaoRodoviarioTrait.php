@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoRodoviario;
 use App\Repositories\CotacaoRodoviarioRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoRodoviarioTrait
 {

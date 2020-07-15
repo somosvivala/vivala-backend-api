@@ -3,38 +3,38 @@
 namespace App\Providers;
 
 use App\Models\Agente;
-use App\Models\Expedicao;
-use App\Models\Experiencia;
+use App\Models\ContatoAgente;
+use App\Models\ContatoCorporativo;
 use App\Models\ContatoGeral;
 use App\Models\CotacaoAereo;
 use App\Models\CotacaoCarro;
-use App\Models\ContatoAgente;
-use App\Models\CotacaoPacote;
-use App\Models\CotacaoSeguro;
-use App\Models\CotacaoPasseio;
 use App\Models\CotacaoCruzeiro;
 use App\Models\CotacaoHospedagem;
+use App\Models\CotacaoPacote;
+use App\Models\CotacaoPasseio;
 use App\Models\CotacaoRodoviario;
-use App\Observers\AgenteObserver;
-use App\Models\ContatoCorporativo;
+use App\Models\CotacaoSeguro;
+use App\Models\Expedicao;
+use App\Models\Experiencia;
 use App\Models\InscricaoExpedicao;
 use App\Models\InscricaoExperiencia;
-use App\Observers\ExpedicaoObserver;
-use App\Observers\ExperienciaObserver;
+use App\Observers\AgenteObserver;
+use App\Observers\ContatoAgenteObserver;
+use App\Observers\ContatoCorporativoObserver;
 use App\Observers\ContatoGeralObserver;
 use App\Observers\CotacaoAereoObserver;
 use App\Observers\CotacaoCarroObserver;
-use Illuminate\Support\ServiceProvider;
-use App\Observers\ContatoAgenteObserver;
-use App\Observers\CotacaoPacoteObserver;
-use App\Observers\CotacaoSeguroObserver;
-use App\Observers\CotacaoPasseioObserver;
 use App\Observers\CotacaoCruzeiroObserver;
 use App\Observers\CotacaoHospedagemObserver;
+use App\Observers\CotacaoPacoteObserver;
+use App\Observers\CotacaoPasseioObserver;
 use App\Observers\CotacaoRodoviarioObserver;
-use App\Observers\ContatoCorporativoObserver;
+use App\Observers\CotacaoSeguroObserver;
+use App\Observers\ExpedicaoObserver;
+use App\Observers\ExperienciaObserver;
 use App\Observers\InscricaoExpedicaoObserver;
 use App\Observers\InscricaoExperienciaObserver;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
