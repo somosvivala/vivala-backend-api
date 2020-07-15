@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ContatoAgenteDataTable;
-use App\Repositories\ContatoAgenteRepository;
 use App\Http\Requests\CreateContatoAgenteRequest;
 use App\Http\Requests\UpdateContatoAgenteRequest;
+use App\Repositories\ContatoAgenteRepository;
+use Flash;
+use Response;
 
 class ContatoAgenteController extends AppBaseController
 {

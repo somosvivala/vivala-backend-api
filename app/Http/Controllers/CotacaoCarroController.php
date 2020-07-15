@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoCarroDataTable;
-use App\Repositories\CotacaoCarroRepository;
 use App\Http\Requests\CreateCotacaoCarroRequest;
 use App\Http\Requests\UpdateCotacaoCarroRequest;
+use App\Repositories\CotacaoCarroRepository;
+use Flash;
+use Response;
 
 class CotacaoCarroController extends AppBaseController
 {

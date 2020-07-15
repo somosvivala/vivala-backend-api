@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\InscricaoNewsletter;
 use App\Repositories\InscricaoNewsletterRepository;
+use Faker\Factory as Faker;
 
 trait MakeInscricaoNewsletterTrait
 {

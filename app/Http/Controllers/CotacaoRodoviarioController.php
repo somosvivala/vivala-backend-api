@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoRodoviarioDataTable;
-use App\Repositories\CotacaoRodoviarioRepository;
 use App\Http\Requests\CreateCotacaoRodoviarioRequest;
 use App\Http\Requests\UpdateCotacaoRodoviarioRequest;
+use App\Repositories\CotacaoRodoviarioRepository;
+use Flash;
+use Response;
 
 class CotacaoRodoviarioController extends AppBaseController
 {

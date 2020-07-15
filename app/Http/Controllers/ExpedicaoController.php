@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use App\Repositories\FotoRepository;
 use App\DataTables\ExpedicaoDataTable;
-use App\Repositories\ExpedicaoRepository;
 use App\Http\Requests\CreateExpedicaoRequest;
-use App\Http\Requests\UpdateExpedicaoRequest;
 use App\Http\Requests\CreateFotoInternaExpRequest;
 use App\Http\Requests\CreateFotoListagemExpRequest;
+use App\Http\Requests\UpdateExpedicaoRequest;
+use App\Repositories\ExpedicaoRepository;
+use App\Repositories\FotoRepository;
+use Flash;
+use Response;
 
 class ExpedicaoController extends AppBaseController
 {

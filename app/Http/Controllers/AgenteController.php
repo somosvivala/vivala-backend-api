@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\AgenteDataTable;
+use App\Http\Requests\CreateAgenteRequest;
+use App\Http\Requests\CreateFotoAgenteRequest;
+use App\Http\Requests\UpdateAgenteRequest;
+use App\Repositories\AgenteRepository;
+use App\Repositories\FotoRepository;
 use Flash;
 use Response;
-use App\DataTables\AgenteDataTable;
-use App\Repositories\FotoRepository;
-use App\Repositories\AgenteRepository;
-use App\Http\Requests\CreateAgenteRequest;
-use App\Http\Requests\UpdateAgenteRequest;
-use App\Http\Requests\CreateFotoAgenteRequest;
 
 class AgenteController extends AppBaseController
 {

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoAereoDataTable;
-use App\Repositories\CotacaoAereoRepository;
 use App\Http\Requests\CreateCotacaoAereoRequest;
 use App\Http\Requests\UpdateCotacaoAereoRequest;
+use App\Repositories\CotacaoAereoRepository;
+use Flash;
+use Response;
 
 class CotacaoAereoController extends AppBaseController
 {
