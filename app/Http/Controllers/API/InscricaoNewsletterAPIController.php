@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\InscricaoNewsletter;
 use App\Http\Controllers\AppBaseController;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use App\Repositories\InscricaoNewsletterRepository;
 use App\Http\Requests\API\CreateInscricaoNewsletterAPIRequest;
+use App\Models\InscricaoNewsletter;
+use App\Repositories\InscricaoNewsletterRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class InscricaoNewsletterController.

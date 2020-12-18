@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use App\Repositories\ExpedicaoRepository;
 use App\DataTables\InscricaoExpedicaoDataTable;
 use App\DataTables\Scopes\InscricaoPorExpedicaoId;
-use App\Repositories\InscricaoExpedicaoRepository;
 use App\Http\Requests\CreateInscricaoExpedicaoRequest;
 use App\Http\Requests\UpdateInscricaoExpedicaoRequest;
+use App\Repositories\ExpedicaoRepository;
+use App\Repositories\InscricaoExpedicaoRepository;
+use Flash;
+use Response;
 
 class InscricaoExpedicaoController extends AppBaseController
 {

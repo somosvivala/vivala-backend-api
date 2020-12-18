@@ -1,8 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoHospedagem;
 use App\Repositories\CotacaoHospedagemRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoHospedagemTrait
 {

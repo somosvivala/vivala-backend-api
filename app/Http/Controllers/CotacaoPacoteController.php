@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoPacoteDataTable;
-use App\Repositories\CotacaoPacoteRepository;
 use App\Http\Requests\CreateCotacaoPacoteRequest;
 use App\Http\Requests\UpdateCotacaoPacoteRequest;
+use App\Repositories\CotacaoPacoteRepository;
+use Flash;
+use Response;
 
 class CotacaoPacoteController extends AppBaseController
 {

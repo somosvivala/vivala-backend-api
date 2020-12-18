@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\InscricaoExperiencia;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\ExperienciaRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use App\Repositories\InscricaoExperienciaRepository;
 use App\Http\Requests\API\CreateInscricaoExperienciaAPIRequest;
+use App\Models\InscricaoExperiencia;
+use App\Repositories\ExperienciaRepository;
+use App\Repositories\InscricaoExperienciaRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class InscricaoExperienciaController.

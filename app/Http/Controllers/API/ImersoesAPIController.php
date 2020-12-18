@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Repositories\ImersaoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\ImersaoRepository;
 
 class ImersoesAPIController extends AppBaseController
 {

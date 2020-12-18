@@ -57,12 +57,12 @@ class ImersaoDataTable extends DataTable
                         'text'    => '<i class="fa fa-refresh"></i> Atualizar',
                     ],
                     [
-                         'extend'  => 'collection',
-                         'text'    => '<i class="fa fa-download"></i> Exportar',
-                         'buttons' => [
-                             'csv',
-                             'excel',
-                         ],
+                        'extend'  => 'collection',
+                        'text'    => '<i class="fa fa-download"></i> Exportar',
+                        'buttons' => [
+                            'csv',
+                            'excel',
+                        ],
                     ],
                     [
                         'extend' => 'colvis',
