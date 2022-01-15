@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use Illuminate\Http\Request;
-use App\Repositories\FotoRepository;
 use App\Http\Requests\CreateFotoRequest;
 use App\Http\Requests\UpdateFotoRequest;
+use App\Repositories\FotoRepository;
+use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 class FotoController extends AppBaseController
 {
@@ -23,7 +23,7 @@ class FotoController extends AppBaseController
     /**
      * Display a listing of the Foto.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function index(Request $request)
@@ -48,8 +48,7 @@ class FotoController extends AppBaseController
     /**
      * Store a newly created Foto in storage.
      *
-     * @param CreateFotoRequest $request
-     *
+     * @param  CreateFotoRequest  $request
      * @return Response
      */
     public function store(CreateFotoRequest $request)
@@ -66,8 +65,7 @@ class FotoController extends AppBaseController
     /**
      * Display the specified Foto.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +84,7 @@ class FotoController extends AppBaseController
     /**
      * Show the form for editing the specified Foto.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +103,8 @@ class FotoController extends AppBaseController
     /**
      * Update the specified Foto in storage.
      *
-     * @param  int              $id
-     * @param UpdateFotoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateFotoRequest  $request
      * @return Response
      */
     public function update($id, UpdateFotoRequest $request)
@@ -131,8 +127,7 @@ class FotoController extends AppBaseController
     /**
      * Remove the specified Foto from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

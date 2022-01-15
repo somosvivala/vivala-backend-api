@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use Mail;
-use App\Models\ContatoGeral;
 use App\Mail\NovoContatoGeral;
+use App\Models\ContatoGeral;
+use Mail;
 
 class ContatoGeralObserver
 {

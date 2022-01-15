@@ -177,7 +177,7 @@ class CotacaoCruzeiro extends Model
     /**
      * Mutator para data_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataIdaAttribute($value)
     {
@@ -188,7 +188,7 @@ class CotacaoCruzeiro extends Model
     /**
      * Mutator para data_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataVoltaAttribute($value)
     {
@@ -199,7 +199,7 @@ class CotacaoCruzeiro extends Model
     /**
      * Mutator para preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPrecoDesejadoAttribute($value)
     {

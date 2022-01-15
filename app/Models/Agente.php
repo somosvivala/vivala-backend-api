@@ -118,7 +118,7 @@ class Agente extends Model
     /**
      * tiraAcentos.
      *
-     * @param mixed $string
+     * @param  mixed  $string
      */
     public function tiraAcentos($string)
     {
