@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\VideoDataTable;
-use App\Repositories\VideoRepository;
 use App\Http\Requests\CreateVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
+use App\Repositories\VideoRepository;
+use Flash;
+use Response;
 
 class VideoController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class VideoController extends AppBaseController
     /**
      * Display a listing of the Video.
      *
-     * @param VideoDataTable $videoDataTable
+     * @param  VideoDataTable  $videoDataTable
      * @return Response
      */
     public function index(VideoDataTable $videoDataTable)
@@ -43,8 +43,7 @@ class VideoController extends AppBaseController
     /**
      * Store a newly created Video in storage.
      *
-     * @param CreateVideoRequest $request
-     *
+     * @param  CreateVideoRequest  $request
      * @return Response
      */
     public function store(CreateVideoRequest $request)
@@ -64,8 +63,7 @@ class VideoController extends AppBaseController
     /**
      * Display the specified Video.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -84,8 +82,7 @@ class VideoController extends AppBaseController
     /**
      * Show the form for editing the specified Video.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -104,9 +101,8 @@ class VideoController extends AppBaseController
     /**
      * Update the specified Video in storage.
      *
-     * @param  int              $id
-     * @param UpdateVideoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateVideoRequest  $request
      * @return Response
      */
     public function update($id, UpdateVideoRequest $request)
@@ -129,8 +125,7 @@ class VideoController extends AppBaseController
     /**
      * Remove the specified Video from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

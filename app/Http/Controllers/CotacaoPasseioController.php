@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoPasseioDataTable;
-use App\Repositories\CotacaoPasseioRepository;
 use App\Http\Requests\CreateCotacaoPasseioRequest;
 use App\Http\Requests\UpdateCotacaoPasseioRequest;
+use App\Repositories\CotacaoPasseioRepository;
+use Flash;
+use Response;
 
 class CotacaoPasseioController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoPasseioController extends AppBaseController
     /**
      * Display a listing of the CotacaoPasseio.
      *
-     * @param CotacaoPasseioDataTable $cotacaoPasseioDataTable
+     * @param  CotacaoPasseioDataTable  $cotacaoPasseioDataTable
      * @return Response
      */
     public function index(CotacaoPasseioDataTable $cotacaoPasseioDataTable)
@@ -43,8 +43,7 @@ class CotacaoPasseioController extends AppBaseController
     /**
      * Store a newly created CotacaoPasseio in storage.
      *
-     * @param CreateCotacaoPasseioRequest $request
-     *
+     * @param  CreateCotacaoPasseioRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoPasseioRequest $request)
@@ -61,8 +60,7 @@ class CotacaoPasseioController extends AppBaseController
     /**
      * Display the specified CotacaoPasseio.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoPasseioController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoPasseio.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoPasseioController extends AppBaseController
     /**
      * Update the specified CotacaoPasseio in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoPasseioRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoPasseioRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoPasseioRequest $request)
@@ -126,8 +122,7 @@ class CotacaoPasseioController extends AppBaseController
     /**
      * Remove the specified CotacaoPasseio from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

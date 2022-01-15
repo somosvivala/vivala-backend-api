@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\CotacaoPasseio;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\CotacaoPasseioRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateCotacaoPasseioAPIRequest;
+use App\Models\CotacaoPasseio;
+use App\Repositories\CotacaoPasseioRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class CotacaoPasseioController.
@@ -25,7 +25,7 @@ class CotacaoPasseioAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -66,7 +66,7 @@ class CotacaoPasseioAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateCotacaoPasseioAPIRequest $request
+     * @param  CreateCotacaoPasseioAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

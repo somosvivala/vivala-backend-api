@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use Mail;
-use App\Models\ContatoCorporativo;
 use App\Mail\NovoContatoCorporativo;
+use App\Models\ContatoCorporativo;
+use Mail;
 
 class ContatoCorporativoObserver
 {

@@ -110,7 +110,7 @@ class BlocoDescricao extends Model
     /**
      * Acessor para fazer o htmlspecialchars do editor de texto.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function getTextoAttribute($value)
     {

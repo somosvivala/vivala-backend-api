@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoHospedagemDataTable;
-use App\Repositories\CotacaoHospedagemRepository;
 use App\Http\Requests\CreateCotacaoHospedagemRequest;
 use App\Http\Requests\UpdateCotacaoHospedagemRequest;
+use App\Repositories\CotacaoHospedagemRepository;
+use Flash;
+use Response;
 
 class CotacaoHospedagemController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoHospedagemController extends AppBaseController
     /**
      * Display a listing of the CotacaoHospedagem.
      *
-     * @param CotacaoHospedagemDataTable $cotacaoHospedagemDataTable
+     * @param  CotacaoHospedagemDataTable  $cotacaoHospedagemDataTable
      * @return Response
      */
     public function index(CotacaoHospedagemDataTable $cotacaoHospedagemDataTable)
@@ -43,8 +43,7 @@ class CotacaoHospedagemController extends AppBaseController
     /**
      * Store a newly created CotacaoHospedagem in storage.
      *
-     * @param CreateCotacaoHospedagemRequest $request
-     *
+     * @param  CreateCotacaoHospedagemRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoHospedagemRequest $request)
@@ -61,8 +60,7 @@ class CotacaoHospedagemController extends AppBaseController
     /**
      * Display the specified CotacaoHospedagem.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoHospedagemController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoHospedagem.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoHospedagemController extends AppBaseController
     /**
      * Update the specified CotacaoHospedagem in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoHospedagemRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoHospedagemRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoHospedagemRequest $request)
@@ -126,8 +122,7 @@ class CotacaoHospedagemController extends AppBaseController
     /**
      * Remove the specified CotacaoHospedagem from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

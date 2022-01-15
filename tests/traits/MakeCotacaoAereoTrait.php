@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoAereo;
 use App\Repositories\CotacaoAereoRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoAereoTrait
 {
     /**
      * Create fake instance of CotacaoAereo and save it in database.
      *
-     * @param array $cotacaoAereoFields
+     * @param  array  $cotacaoAereoFields
      * @return CotacaoAereo
      */
     public function makeCotacaoAereo($cotacaoAereoFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoAereoTrait
     /**
      * Get fake instance of CotacaoAereo.
      *
-     * @param array $cotacaoAereoFields
+     * @param  array  $cotacaoAereoFields
      * @return CotacaoAereo
      */
     public function fakeCotacaoAereo($cotacaoAereoFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoAereoTrait
     /**
      * Get fake data of CotacaoAereo.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoAereoData($cotacaoAereoFields = [])

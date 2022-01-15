@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoPacoteDataTable;
-use App\Repositories\CotacaoPacoteRepository;
 use App\Http\Requests\CreateCotacaoPacoteRequest;
 use App\Http\Requests\UpdateCotacaoPacoteRequest;
+use App\Repositories\CotacaoPacoteRepository;
+use Flash;
+use Response;
 
 class CotacaoPacoteController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoPacoteController extends AppBaseController
     /**
      * Display a listing of the CotacaoPacote.
      *
-     * @param CotacaoPacoteDataTable $cotacaoPacoteDataTable
+     * @param  CotacaoPacoteDataTable  $cotacaoPacoteDataTable
      * @return Response
      */
     public function index(CotacaoPacoteDataTable $cotacaoPacoteDataTable)
@@ -43,8 +43,7 @@ class CotacaoPacoteController extends AppBaseController
     /**
      * Store a newly created CotacaoPacote in storage.
      *
-     * @param CreateCotacaoPacoteRequest $request
-     *
+     * @param  CreateCotacaoPacoteRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoPacoteRequest $request)
@@ -61,8 +60,7 @@ class CotacaoPacoteController extends AppBaseController
     /**
      * Display the specified CotacaoPacote.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoPacoteController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoPacote.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoPacoteController extends AppBaseController
     /**
      * Update the specified CotacaoPacote in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoPacoteRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoPacoteRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoPacoteRequest $request)
@@ -126,8 +122,7 @@ class CotacaoPacoteController extends AppBaseController
     /**
      * Remove the specified CotacaoPacote from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
