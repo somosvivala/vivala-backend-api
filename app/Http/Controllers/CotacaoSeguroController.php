@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoSeguroDataTable;
-use App\Repositories\CotacaoSeguroRepository;
 use App\Http\Requests\CreateCotacaoSeguroRequest;
 use App\Http\Requests\UpdateCotacaoSeguroRequest;
+use App\Repositories\CotacaoSeguroRepository;
+use Flash;
+use Response;
 
 class CotacaoSeguroController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoSeguroController extends AppBaseController
     /**
      * Display a listing of the CotacaoSeguro.
      *
-     * @param CotacaoSeguroDataTable $cotacaoSeguroDataTable
+     * @param  CotacaoSeguroDataTable  $cotacaoSeguroDataTable
      * @return Response
      */
     public function index(CotacaoSeguroDataTable $cotacaoSeguroDataTable)
@@ -43,8 +43,7 @@ class CotacaoSeguroController extends AppBaseController
     /**
      * Store a newly created CotacaoSeguro in storage.
      *
-     * @param CreateCotacaoSeguroRequest $request
-     *
+     * @param  CreateCotacaoSeguroRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoSeguroRequest $request)
@@ -61,8 +60,7 @@ class CotacaoSeguroController extends AppBaseController
     /**
      * Display the specified CotacaoSeguro.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoSeguroController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoSeguro.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoSeguroController extends AppBaseController
     /**
      * Update the specified CotacaoSeguro in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoSeguroRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoSeguroRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoSeguroRequest $request)
@@ -126,8 +122,7 @@ class CotacaoSeguroController extends AppBaseController
     /**
      * Remove the specified CotacaoSeguro from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

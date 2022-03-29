@@ -33,7 +33,7 @@ class ExpedicaoObserver
 
         //Removendo as fotos dessa Expedicao
         if ($exp->fotos) {
-            $exp->fotos->each(function ($foto) use ($fotoRepository) {
+            $exp->fotos->each(function ($foto) {
                 $this->fotoRepository->delete($foto->id);
             });
         }

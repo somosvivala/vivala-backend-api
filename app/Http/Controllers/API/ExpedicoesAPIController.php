@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Models\Expedicao;
 use App\Repositories\ExpedicaoRepository;
-use App\Http\Controllers\AppBaseController;
 
 class ExpedicoesAPIController extends AppBaseController
 {
@@ -18,7 +18,7 @@ class ExpedicoesAPIController extends AppBaseController
     /**
      * Construtor recebendo instancia do repositorio.
      *
-     * @param ExpedicaoRepository $expedicaoRepo
+     * @param  ExpedicaoRepository  $expedicaoRepo
      */
     public function __construct(ExpedicaoRepository $expedicaoRepo)
     {

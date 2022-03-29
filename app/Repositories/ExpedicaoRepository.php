@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Expedicao;
-use InfyOm\Generator\Common\BaseRepository;
 use App\Traits\ExpedicaoExperienciaRepositoryTrait;
+use InfyOm\Generator\Common\BaseRepository;
 
 class ExpedicaoRepository extends BaseRepository
 {

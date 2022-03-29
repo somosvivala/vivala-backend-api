@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use App\Repositories\FotoRepository;
 use App\DataTables\ExperienciaDataTable;
-use App\Repositories\ExperienciaRepository;
 use App\Http\Requests\CreateExperienciaRequest;
-use App\Http\Requests\UpdateExperienciaRequest;
 use App\Http\Requests\CreateFotoInternaExpRequest;
 use App\Http\Requests\CreateFotoListagemExpRequest;
+use App\Http\Requests\UpdateExperienciaRequest;
+use App\Repositories\ExperienciaRepository;
+use App\Repositories\FotoRepository;
+use Flash;
+use Response;
 
 class ExperienciaController extends AppBaseController
 {
@@ -29,7 +29,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Display a listing of the Experiencia.
      *
-     * @param ExperienciaDataTable $experienciaDataTable
+     * @param  ExperienciaDataTable  $experienciaDataTable
      * @return Response
      */
     public function index(ExperienciaDataTable $experienciaDataTable)
@@ -50,8 +50,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Store a newly created Experiencia in storage.
      *
-     * @param CreateExperienciaRequest $request
-     *
+     * @param  CreateExperienciaRequest  $request
      * @return Response
      */
     public function store(CreateExperienciaRequest $request)
@@ -68,8 +67,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Display the specified Experiencia.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -88,8 +86,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Show the form for editing the specified Experiencia.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -108,9 +105,8 @@ class ExperienciaController extends AppBaseController
     /**
      * Update the specified Experiencia in storage.
      *
-     * @param  int              $id
-     * @param UpdateExperienciaRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateExperienciaRequest  $request
      * @return Response
      */
     public function update($id, UpdateExperienciaRequest $request)
@@ -133,8 +129,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Remove the specified Experiencia from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -157,7 +152,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Metodo para retornar a view para settar a foto da listagem da Experiencia.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getFotoListagem($id)
     {
@@ -169,8 +164,8 @@ class ExperienciaController extends AppBaseController
     /**
      * Metodo que recebe o POST da foto da listagem de uma experiencia.
      *
-     * @param CreateFotoListagemExpRequest $request
-     * @param mixed $id
+     * @param  CreateFotoListagemExpRequest  $request
+     * @param  mixed  $id
      */
     public function postFotoListagem(CreateFotoListagemExpRequest $request, $id)
     {
@@ -206,7 +201,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Metodo que recebe o POST de ativar a exibição dessa experiencia em /ecoturismo.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function postAtivaListagem($id)
     {
@@ -227,7 +222,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Metodo que recebe o POST de desativar a exibição dessa experiencia em /volunturismo.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function postRemoveListagem($id)
     {
@@ -248,8 +243,8 @@ class ExperienciaController extends AppBaseController
     /**
      * Metodo que recebe o POST de criacao das Fotos do slider interno das experiencia.
      *
-     * @param CreateFotoInternaExpRequest $request
-     * @param mixed $id
+     * @param  CreateFotoInternaExpRequest  $request
+     * @param  mixed  $id
      */
     public function postCreateMediasInterna(CreateFotoInternaExpRequest $request, $id)
     {
@@ -277,7 +272,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Metodo para retornar a view para criar as descricoes de uma experiencia.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getCreateDescricoes($id)
     {
@@ -289,7 +284,7 @@ class ExperienciaController extends AppBaseController
     /**
      * Metodo para retornar a view para criar as fotos / videos da interna de uma experiencia.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getCreateMediasInterna($id)
     {
