@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\CotacaoHospedagem;
-use App\Traits\ArrumaRequestCotacoesTrait;
 use App\Http\Controllers\AppBaseController;
-use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\CotacaoHospedagemRepository;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateCotacaoHospedagemAPIRequest;
+use App\Models\CotacaoHospedagem;
+use App\Repositories\CotacaoHospedagemRepository;
+use App\Traits\ArrumaRequestCotacoesTrait;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class CotacaoHospedagemController.
@@ -29,7 +29,7 @@ class CotacaoHospedagemAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -70,7 +70,7 @@ class CotacaoHospedagemAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateCotacaoHospedagemAPIRequest $request
+     * @param  CreateCotacaoHospedagemAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

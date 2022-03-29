@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\FotoRepository;
 use Flash;
 use Illuminate\Http\Request;
-use App\Repositories\FotoRepository;
 
 class HomeController extends Controller
 {
@@ -19,6 +19,7 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -39,7 +40,8 @@ class HomeController extends Controller
 
     /**
      * Metodo para fazer o upload de uma nova foto de Volunturismo.
-     * @param Request $request
+     *
+     * @param  Request  $request
      */
     public function postFotoVolunturismo(Request $request)
     {
@@ -87,7 +89,8 @@ class HomeController extends Controller
 
     /**
      * Metodo para fazer o upload de uma nova foto de Ecoturismo.
-     * @param Request $request
+     *
+     * @param  Request  $request
      */
     public function postFotoEcoturismo(Request $request)
     {
@@ -135,7 +138,8 @@ class HomeController extends Controller
 
     /**
      * Metodo para fazer o upload de uma nova foto de Imersoes.
-     * @param Request $request
+     *
+     * @param  Request  $request
      */
     public function postFotoImersoes(Request $request)
     {
@@ -183,7 +187,8 @@ class HomeController extends Controller
 
     /**
      * Metodo para fazer o upload de uma nova foto de Instituto.
-     * @param Request $request
+     *
+     * @param  Request  $request
      */
     public function postFotoInstituto(Request $request)
     {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\AppBaseController;
 use App\Repositories\AgenteRepository;
 use App\Transformers\AgenteTransformer;
-use App\Http\Controllers\AppBaseController;
 
 class AgentesAPIController extends AppBaseController
 {
@@ -18,7 +18,7 @@ class AgentesAPIController extends AppBaseController
     /**
      * Construtor recebendo instancia do repositorio.
      *
-     * @param AgenteRepository $agenteRepo
+     * @param  AgenteRepository  $agenteRepo
      */
     public function __construct(AgenteRepository $agenteRepo)
     {

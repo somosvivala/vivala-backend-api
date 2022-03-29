@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use App\Repositories\ExperienciaRepository;
 use App\DataTables\InscricaoExperienciaDataTable;
 use App\DataTables\Scopes\InscricaoPorExperienciaId;
-use App\Repositories\InscricaoExperienciaRepository;
 use App\Http\Requests\CreateInscricaoExperienciaRequest;
 use App\Http\Requests\UpdateInscricaoExperienciaRequest;
+use App\Repositories\ExperienciaRepository;
+use App\Repositories\InscricaoExperienciaRepository;
+use Flash;
+use Response;
 
 class InscricaoExperienciaController extends AppBaseController
 {
@@ -26,7 +26,7 @@ class InscricaoExperienciaController extends AppBaseController
     /**
      * Display a listing of the InscricaoExperiencia.
      *
-     * @param InscricaoExperienciaDataTable $inscricaoExperienciaDataTable
+     * @param  InscricaoExperienciaDataTable  $inscricaoExperienciaDataTable
      * @return Response
      */
     public function index(InscricaoExperienciaDataTable $inscricaoExperienciaDataTable)
@@ -47,8 +47,7 @@ class InscricaoExperienciaController extends AppBaseController
     /**
      * Store a newly created InscricaoExperiencia in storage.
      *
-     * @param CreateInscricaoExperienciaRequest $request
-     *
+     * @param  CreateInscricaoExperienciaRequest  $request
      * @return Response
      */
     public function store(CreateInscricaoExperienciaRequest $request)
@@ -65,8 +64,7 @@ class InscricaoExperienciaController extends AppBaseController
     /**
      * Display the specified InscricaoExperiencia.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -85,8 +83,7 @@ class InscricaoExperienciaController extends AppBaseController
     /**
      * Show the form for editing the specified InscricaoExperiencia.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -105,9 +102,8 @@ class InscricaoExperienciaController extends AppBaseController
     /**
      * Update the specified InscricaoExperiencia in storage.
      *
-     * @param  int              $id
-     * @param UpdateInscricaoExperienciaRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateInscricaoExperienciaRequest  $request
      * @return Response
      */
     public function update($id, UpdateInscricaoExperienciaRequest $request)
@@ -130,8 +126,7 @@ class InscricaoExperienciaController extends AppBaseController
     /**
      * Remove the specified InscricaoExperiencia from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -154,8 +149,8 @@ class InscricaoExperienciaController extends AppBaseController
     /**
      * Metodo para retornar a datatable de inscricoes de Experiencias de 1 Experiencias.
      *
-     * @param InscricaoExperienciasDataTable $datatable
-     * @param mixed $experiencia_id
+     * @param  InscricaoExperienciasDataTable  $datatable
+     * @param  mixed  $experiencia_id
      */
     public function getInscricoes(InscricaoExperienciaDataTable $datatable, $experiencia_id)
     {

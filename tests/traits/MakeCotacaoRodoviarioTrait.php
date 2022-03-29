@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoRodoviario;
 use App\Repositories\CotacaoRodoviarioRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoRodoviarioTrait
 {
     /**
      * Create fake instance of CotacaoRodoviario and save it in database.
      *
-     * @param array $cotacaoRodoviarioFields
+     * @param  array  $cotacaoRodoviarioFields
      * @return CotacaoRodoviario
      */
     public function makeCotacaoRodoviario($cotacaoRodoviarioFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoRodoviarioTrait
     /**
      * Get fake instance of CotacaoRodoviario.
      *
-     * @param array $cotacaoRodoviarioFields
+     * @param  array  $cotacaoRodoviarioFields
      * @return CotacaoRodoviario
      */
     public function fakeCotacaoRodoviario($cotacaoRodoviarioFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoRodoviarioTrait
     /**
      * Get fake data of CotacaoRodoviario.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoRodoviarioData($cotacaoRodoviarioFields = [])

@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use Mail;
-use App\Models\CotacaoRodoviario;
 use App\Mail\PedidoCotacaoRodoviario;
+use App\Models\CotacaoRodoviario;
+use Mail;
 
 class CotacaoRodoviarioObserver
 {

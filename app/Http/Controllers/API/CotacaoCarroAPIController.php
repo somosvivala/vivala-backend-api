@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use App\Models\CotacaoCarro;
-use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\CotacaoCarroRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateCotacaoCarroAPIRequest;
+use App\Models\CotacaoCarro;
+use App\Repositories\CotacaoCarroRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class CotacaoCarroController.
@@ -25,7 +25,7 @@ class CotacaoCarroAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -66,7 +66,7 @@ class CotacaoCarroAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateCotacaoCarroAPIRequest $request
+     * @param  CreateCotacaoCarroAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

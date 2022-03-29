@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use Illuminate\Http\Request;
-use App\Repositories\BlocoDescricaoRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
 use App\Http\Requests\CreateBlocoDescricaoRequest;
 use App\Http\Requests\UpdateBlocoDescricaoRequest;
+use App\Repositories\BlocoDescricaoRepository;
+use Flash;
+use Illuminate\Http\Request;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 class BlocoDescricaoController extends AppBaseController
 {
@@ -23,7 +23,7 @@ class BlocoDescricaoController extends AppBaseController
     /**
      * Display a listing of the BlocoDescricao.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      */
     public function index(Request $request)
@@ -48,8 +48,7 @@ class BlocoDescricaoController extends AppBaseController
     /**
      * Store a newly created BlocoDescricao in storage.
      *
-     * @param CreateBlocoDescricaoRequest $request
-     *
+     * @param  CreateBlocoDescricaoRequest  $request
      * @return Response
      */
     public function store(CreateBlocoDescricaoRequest $request)
@@ -66,8 +65,7 @@ class BlocoDescricaoController extends AppBaseController
     /**
      * Display the specified BlocoDescricao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -86,8 +84,7 @@ class BlocoDescricaoController extends AppBaseController
     /**
      * Show the form for editing the specified BlocoDescricao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -106,9 +103,8 @@ class BlocoDescricaoController extends AppBaseController
     /**
      * Update the specified BlocoDescricao in storage.
      *
-     * @param  int              $id
-     * @param UpdateBlocoDescricaoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateBlocoDescricaoRequest  $request
      * @return Response
      */
     public function update($id, UpdateBlocoDescricaoRequest $request)
@@ -131,8 +127,7 @@ class BlocoDescricaoController extends AppBaseController
     /**
      * Remove the specified BlocoDescricao from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

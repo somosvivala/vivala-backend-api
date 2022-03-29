@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\InscricaoExpedicao;
 use App\Repositories\InscricaoExpedicaoRepository;
+use Faker\Factory as Faker;
 
 trait MakeInscricaoExpedicaoTrait
 {
     /**
      * Create fake instance of InscricaoExpedicao and save it in database.
      *
-     * @param array $inscricaoExpedicaoFields
+     * @param  array  $inscricaoExpedicaoFields
      * @return InscricaoExpedicao
      */
     public function makeInscricaoExpedicao($inscricaoExpedicaoFields = [])
@@ -24,7 +24,7 @@ trait MakeInscricaoExpedicaoTrait
     /**
      * Get fake instance of InscricaoExpedicao.
      *
-     * @param array $inscricaoExpedicaoFields
+     * @param  array  $inscricaoExpedicaoFields
      * @return InscricaoExpedicao
      */
     public function fakeInscricaoExpedicao($inscricaoExpedicaoFields = [])
@@ -35,7 +35,7 @@ trait MakeInscricaoExpedicaoTrait
     /**
      * Get fake data of InscricaoExpedicao.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeInscricaoExpedicaoData($inscricaoExpedicaoFields = [])

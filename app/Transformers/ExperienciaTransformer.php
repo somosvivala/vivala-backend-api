@@ -12,8 +12,8 @@ class ExperienciaTransformer extends TransformerAbstract
 {
     /**
      * Transform the \Experiencia entity.
-     * @param \Experiencia $model
      *
+     * @param  \Experiencia  $model
      * @return array
      */
     public function transform(Experiencia $model)
