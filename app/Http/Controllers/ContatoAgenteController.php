@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ContatoAgenteDataTable;
-use App\Repositories\ContatoAgenteRepository;
 use App\Http\Requests\CreateContatoAgenteRequest;
 use App\Http\Requests\UpdateContatoAgenteRequest;
+use App\Repositories\ContatoAgenteRepository;
+use Flash;
+use Response;
 
 class ContatoAgenteController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class ContatoAgenteController extends AppBaseController
     /**
      * Display a listing of the ContatoAgente.
      *
-     * @param ContatoAgenteDataTable $contatoAgenteDataTable
+     * @param  ContatoAgenteDataTable  $contatoAgenteDataTable
      * @return Response
      */
     public function index(ContatoAgenteDataTable $contatoAgenteDataTable)
@@ -43,8 +43,7 @@ class ContatoAgenteController extends AppBaseController
     /**
      * Store a newly created ContatoAgente in storage.
      *
-     * @param CreateContatoAgenteRequest $request
-     *
+     * @param  CreateContatoAgenteRequest  $request
      * @return Response
      */
     public function store(CreateContatoAgenteRequest $request)
@@ -61,8 +60,7 @@ class ContatoAgenteController extends AppBaseController
     /**
      * Display the specified ContatoAgente.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class ContatoAgenteController extends AppBaseController
     /**
      * Show the form for editing the specified ContatoAgente.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class ContatoAgenteController extends AppBaseController
     /**
      * Update the specified ContatoAgente in storage.
      *
-     * @param  int              $id
-     * @param UpdateContatoAgenteRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateContatoAgenteRequest  $request
      * @return Response
      */
     public function update($id, UpdateContatoAgenteRequest $request)
@@ -126,8 +122,7 @@ class ContatoAgenteController extends AppBaseController
     /**
      * Remove the specified ContatoAgente from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

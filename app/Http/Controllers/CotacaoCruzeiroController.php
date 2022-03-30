@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoCruzeiroDataTable;
-use App\Repositories\CotacaoCruzeiroRepository;
 use App\Http\Requests\CreateCotacaoCruzeiroRequest;
 use App\Http\Requests\UpdateCotacaoCruzeiroRequest;
+use App\Repositories\CotacaoCruzeiroRepository;
+use Flash;
+use Response;
 
 class CotacaoCruzeiroController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoCruzeiroController extends AppBaseController
     /**
      * Display a listing of the CotacaoCruzeiro.
      *
-     * @param CotacaoCruzeiroDataTable $cotacaoCruzeiroDataTable
+     * @param  CotacaoCruzeiroDataTable  $cotacaoCruzeiroDataTable
      * @return Response
      */
     public function index(CotacaoCruzeiroDataTable $cotacaoCruzeiroDataTable)
@@ -43,8 +43,7 @@ class CotacaoCruzeiroController extends AppBaseController
     /**
      * Store a newly created CotacaoCruzeiro in storage.
      *
-     * @param CreateCotacaoCruzeiroRequest $request
-     *
+     * @param  CreateCotacaoCruzeiroRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoCruzeiroRequest $request)
@@ -61,8 +60,7 @@ class CotacaoCruzeiroController extends AppBaseController
     /**
      * Display the specified CotacaoCruzeiro.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoCruzeiroController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoCruzeiro.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoCruzeiroController extends AppBaseController
     /**
      * Update the specified CotacaoCruzeiro in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoCruzeiroRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoCruzeiroRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoCruzeiroRequest $request)
@@ -126,8 +122,7 @@ class CotacaoCruzeiroController extends AppBaseController
     /**
      * Remove the specified CotacaoCruzeiro from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

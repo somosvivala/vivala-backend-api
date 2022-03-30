@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\VideoRepository;
 use Flash;
 use Illuminate\Http\Request;
-use App\Repositories\VideoRepository;
 
 class VideosServicosController extends Controller
 {
@@ -19,6 +19,7 @@ class VideosServicosController extends Controller
 
     /**
      * Show the application dashboard.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -39,7 +40,8 @@ class VideosServicosController extends Controller
 
     /**
      * Metodo para fazer o upload de um video de Volunturismo.
-     * @param Request $request
+     *
+     * @param  Request  $request
      */
     public function postVideoVolunturismo(Request $request)
     {
@@ -82,7 +84,8 @@ class VideosServicosController extends Controller
 
     /**
      * Metodo para fazer o upload de um video de Ecoturismo.
-     * @param Request $request
+     *
+     * @param  Request  $request
      */
     public function postVideoEcoturismo(Request $request)
     {
@@ -125,7 +128,8 @@ class VideosServicosController extends Controller
 
     /**
      * Metodo para fazer o upload de um video de Imersoes.
-     * @param Request $request
+     *
+     * @param  Request  $request
      */
     public function postVideoImersoes(Request $request)
     {

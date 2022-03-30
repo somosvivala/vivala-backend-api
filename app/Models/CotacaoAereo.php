@@ -191,7 +191,7 @@ class CotacaoAereo extends Model
     /**
      * Mutator para data_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataIdaAttribute($value)
     {
@@ -202,7 +202,7 @@ class CotacaoAereo extends Model
     /**
      * Mutator para data_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataVoltaAttribute($value)
     {
@@ -213,7 +213,7 @@ class CotacaoAereo extends Model
     /**
      * Mutator para periodo_voo_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPeriodoVooIdaAttribute($value)
     {
@@ -223,7 +223,7 @@ class CotacaoAereo extends Model
     /**
      * Mutator para periodo_voo_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPeriodoVooVoltaAttribute($value)
     {
@@ -233,7 +233,7 @@ class CotacaoAereo extends Model
     /**
      * Mutator para numero_paradas, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setNumeroParadasAttribute($value)
     {
@@ -243,7 +243,7 @@ class CotacaoAereo extends Model
     /**
      * Mutator para aereo_preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setAereoPrecoDesejadoAttribute($value)
     {

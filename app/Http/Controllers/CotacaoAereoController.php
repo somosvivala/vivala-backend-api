@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoAereoDataTable;
-use App\Repositories\CotacaoAereoRepository;
 use App\Http\Requests\CreateCotacaoAereoRequest;
 use App\Http\Requests\UpdateCotacaoAereoRequest;
+use App\Repositories\CotacaoAereoRepository;
+use Flash;
+use Response;
 
 class CotacaoAereoController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoAereoController extends AppBaseController
     /**
      * Display a listing of the CotacaoAereo.
      *
-     * @param CotacaoAereoDataTable $cotacaoAereoDataTable
+     * @param  CotacaoAereoDataTable  $cotacaoAereoDataTable
      * @return Response
      */
     public function index(CotacaoAereoDataTable $cotacaoAereoDataTable)
@@ -43,8 +43,7 @@ class CotacaoAereoController extends AppBaseController
     /**
      * Store a newly created CotacaoAereo in storage.
      *
-     * @param CreateCotacaoAereoRequest $request
-     *
+     * @param  CreateCotacaoAereoRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoAereoRequest $request)
@@ -61,8 +60,7 @@ class CotacaoAereoController extends AppBaseController
     /**
      * Display the specified CotacaoAereo.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoAereoController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoAereo.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoAereoController extends AppBaseController
     /**
      * Update the specified CotacaoAereo in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoAereoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoAereoRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoAereoRequest $request)
@@ -126,8 +122,7 @@ class CotacaoAereoController extends AppBaseController
     /**
      * Remove the specified CotacaoAereo from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

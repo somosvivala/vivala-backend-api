@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\InscricaoNewsletterDataTable;
-use App\Repositories\InscricaoNewsletterRepository;
 use App\Http\Requests\CreateInscricaoNewsletterRequest;
 use App\Http\Requests\UpdateInscricaoNewsletterRequest;
+use App\Repositories\InscricaoNewsletterRepository;
+use Flash;
+use Response;
 
 class InscricaoNewsletterController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class InscricaoNewsletterController extends AppBaseController
     /**
      * Display a listing of the InscricaoNewsletter.
      *
-     * @param InscricaoNewsletterDataTable $inscricaoNewsletterDataTable
+     * @param  InscricaoNewsletterDataTable  $inscricaoNewsletterDataTable
      * @return Response
      */
     public function index(InscricaoNewsletterDataTable $inscricaoNewsletterDataTable)
@@ -43,8 +43,7 @@ class InscricaoNewsletterController extends AppBaseController
     /**
      * Store a newly created InscricaoNewsletter in storage.
      *
-     * @param CreateInscricaoNewsletterRequest $request
-     *
+     * @param  CreateInscricaoNewsletterRequest  $request
      * @return Response
      */
     public function store(CreateInscricaoNewsletterRequest $request)
@@ -61,8 +60,7 @@ class InscricaoNewsletterController extends AppBaseController
     /**
      * Display the specified InscricaoNewsletter.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class InscricaoNewsletterController extends AppBaseController
     /**
      * Show the form for editing the specified InscricaoNewsletter.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class InscricaoNewsletterController extends AppBaseController
     /**
      * Update the specified InscricaoNewsletter in storage.
      *
-     * @param  int              $id
-     * @param UpdateInscricaoNewsletterRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateInscricaoNewsletterRequest  $request
      * @return Response
      */
     public function update($id, UpdateInscricaoNewsletterRequest $request)
@@ -126,8 +122,7 @@ class InscricaoNewsletterController extends AppBaseController
     /**
      * Remove the specified InscricaoNewsletter from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

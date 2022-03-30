@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use App\Models\ContatoGeral;
-use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\ContatoGeralRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateContatoGeralAPIRequest;
+use App\Models\ContatoGeral;
+use App\Repositories\ContatoGeralRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class ContatoGeralController.
@@ -25,7 +25,7 @@ class ContatoGeralAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -66,7 +66,7 @@ class ContatoGeralAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateContatoGeralAPIRequest $request
+     * @param  CreateContatoGeralAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

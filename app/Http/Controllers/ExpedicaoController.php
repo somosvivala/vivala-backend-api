@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use App\Repositories\FotoRepository;
 use App\DataTables\ExpedicaoDataTable;
-use App\Repositories\ExpedicaoRepository;
 use App\Http\Requests\CreateExpedicaoRequest;
-use App\Http\Requests\UpdateExpedicaoRequest;
 use App\Http\Requests\CreateFotoInternaExpRequest;
 use App\Http\Requests\CreateFotoListagemExpRequest;
+use App\Http\Requests\UpdateExpedicaoRequest;
+use App\Repositories\ExpedicaoRepository;
+use App\Repositories\FotoRepository;
+use Flash;
+use Response;
 
 class ExpedicaoController extends AppBaseController
 {
@@ -29,7 +29,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Display a listing of the Expedicao.
      *
-     * @param ExpedicaoDataTable $expedicaoDataTable
+     * @param  ExpedicaoDataTable  $expedicaoDataTable
      * @return Response
      */
     public function index(ExpedicaoDataTable $expedicaoDataTable)
@@ -50,8 +50,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Store a newly created Expedicao in storage.
      *
-     * @param CreateExpedicaoRequest $request
-     *
+     * @param  CreateExpedicaoRequest  $request
      * @return Response
      */
     public function store(CreateExpedicaoRequest $request)
@@ -68,8 +67,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Display the specified Expedicao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -88,8 +86,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Show the form for editing the specified Expedicao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -108,9 +105,8 @@ class ExpedicaoController extends AppBaseController
     /**
      * Update the specified Expedicao in storage.
      *
-     * @param  int              $id
-     * @param UpdateExpedicaoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateExpedicaoRequest  $request
      * @return Response
      */
     public function update($id, UpdateExpedicaoRequest $request)
@@ -133,8 +129,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Remove the specified Expedicao from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -157,7 +152,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Metodo para retornar a view para settar a foto da listagem da Expedicao.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getFotoListagem($id)
     {
@@ -169,8 +164,8 @@ class ExpedicaoController extends AppBaseController
     /**
      * Metodo que recebe o POST da foto da listagem de uma experiencia.
      *
-     * @param CreateFotoListagemExpRequest $request
-     * @param mixed $id
+     * @param  CreateFotoListagemExpRequest  $request
+     * @param  mixed  $id
      */
     public function postFotoListagem(CreateFotoListagemExpRequest $request, $id)
     {
@@ -206,7 +201,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Metodo que recebe o POST de ativar a exibição dessa expedicao em /volunturismo.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function postAtivaListagem($id)
     {
@@ -227,7 +222,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Metodo que recebe o POST de desativar a exibição dessa expedicao em /volunturismo.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function postRemoveListagem($id)
     {
@@ -248,8 +243,8 @@ class ExpedicaoController extends AppBaseController
     /**
      * Metodo que recebe o POST de criacao das Fotos do slider interno das expedicoes.
      *
-     * @param CreateFotoInternaExpRequest $request
-     * @param mixed $id
+     * @param  CreateFotoInternaExpRequest  $request
+     * @param  mixed  $id
      */
     public function postCreateMediasInterna(CreateFotoInternaExpRequest $request, $id)
     {
@@ -277,7 +272,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Metodo para retornar a view para criar as descricoes de uma expedicao.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getCreateDescricoes($id)
     {
@@ -289,7 +284,7 @@ class ExpedicaoController extends AppBaseController
     /**
      * Metodo para retornar a view para criar as fotos / videos da interna de uma expedicao.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getCreateMediasInterna($id)
     {
