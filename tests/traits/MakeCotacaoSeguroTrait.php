@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoSeguro;
 use App\Repositories\CotacaoSeguroRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoSeguroTrait
 {
     /**
      * Create fake instance of CotacaoSeguro and save it in database.
      *
-     * @param array $cotacaoSeguroFields
+     * @param  array  $cotacaoSeguroFields
      * @return CotacaoSeguro
      */
     public function makeCotacaoSeguro($cotacaoSeguroFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoSeguroTrait
     /**
      * Get fake instance of CotacaoSeguro.
      *
-     * @param array $cotacaoSeguroFields
+     * @param  array  $cotacaoSeguroFields
      * @return CotacaoSeguro
      */
     public function fakeCotacaoSeguro($cotacaoSeguroFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoSeguroTrait
     /**
      * Get fake data of CotacaoSeguro.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoSeguroData($cotacaoSeguroFields = [])

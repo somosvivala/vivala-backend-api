@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoPasseio;
 use App\Repositories\CotacaoPasseioRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoPasseioTrait
 {
     /**
      * Create fake instance of CotacaoPasseio and save it in database.
      *
-     * @param array $cotacaoPasseioFields
+     * @param  array  $cotacaoPasseioFields
      * @return CotacaoPasseio
      */
     public function makeCotacaoPasseio($cotacaoPasseioFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoPasseioTrait
     /**
      * Get fake instance of CotacaoPasseio.
      *
-     * @param array $cotacaoPasseioFields
+     * @param  array  $cotacaoPasseioFields
      * @return CotacaoPasseio
      */
     public function fakeCotacaoPasseio($cotacaoPasseioFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoPasseioTrait
     /**
      * Get fake data of CotacaoPasseio.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoPasseioData($cotacaoPasseioFields = [])

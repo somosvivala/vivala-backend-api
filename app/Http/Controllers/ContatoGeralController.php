@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ContatoGeralDataTable;
-use App\Repositories\ContatoGeralRepository;
 use App\Http\Requests\CreateContatoGeralRequest;
 use App\Http\Requests\UpdateContatoGeralRequest;
+use App\Repositories\ContatoGeralRepository;
+use Flash;
+use Response;
 
 class ContatoGeralController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class ContatoGeralController extends AppBaseController
     /**
      * Display a listing of the ContatoGeral.
      *
-     * @param ContatoGeralDataTable $contatoGeralDataTable
+     * @param  ContatoGeralDataTable  $contatoGeralDataTable
      * @return Response
      */
     public function index(ContatoGeralDataTable $contatoGeralDataTable)
@@ -43,8 +43,7 @@ class ContatoGeralController extends AppBaseController
     /**
      * Store a newly created ContatoGeral in storage.
      *
-     * @param CreateContatoGeralRequest $request
-     *
+     * @param  CreateContatoGeralRequest  $request
      * @return Response
      */
     public function store(CreateContatoGeralRequest $request)
@@ -61,8 +60,7 @@ class ContatoGeralController extends AppBaseController
     /**
      * Display the specified ContatoGeral.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class ContatoGeralController extends AppBaseController
     /**
      * Show the form for editing the specified ContatoGeral.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class ContatoGeralController extends AppBaseController
     /**
      * Update the specified ContatoGeral in storage.
      *
-     * @param  int              $id
-     * @param UpdateContatoGeralRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateContatoGeralRequest  $request
      * @return Response
      */
     public function update($id, UpdateContatoGeralRequest $request)
@@ -126,8 +122,7 @@ class ContatoGeralController extends AppBaseController
     /**
      * Remove the specified ContatoGeral from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

@@ -2,9 +2,9 @@
 
 namespace App\Mail;
 
+use App\Models\InscricaoExpedicao;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use App\Models\InscricaoExpedicao;
 use Illuminate\Queue\SerializesModels;
 
 class NovaInscricaoExpedicao extends Mailable

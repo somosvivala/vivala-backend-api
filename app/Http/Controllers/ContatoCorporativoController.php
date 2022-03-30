@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ContatoCorporativoDataTable;
-use App\Repositories\ContatoCorporativoRepository;
 use App\Http\Requests\CreateContatoCorporativoRequest;
 use App\Http\Requests\UpdateContatoCorporativoRequest;
+use App\Repositories\ContatoCorporativoRepository;
+use Flash;
+use Response;
 
 class ContatoCorporativoController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class ContatoCorporativoController extends AppBaseController
     /**
      * Display a listing of the ContatoCorporativo.
      *
-     * @param ContatoCorporativoDataTable $contatoCorporativoDataTable
+     * @param  ContatoCorporativoDataTable  $contatoCorporativoDataTable
      * @return Response
      */
     public function index(ContatoCorporativoDataTable $contatoCorporativoDataTable)
@@ -43,8 +43,7 @@ class ContatoCorporativoController extends AppBaseController
     /**
      * Store a newly created ContatoCorporativo in storage.
      *
-     * @param CreateContatoCorporativoRequest $request
-     *
+     * @param  CreateContatoCorporativoRequest  $request
      * @return Response
      */
     public function store(CreateContatoCorporativoRequest $request)
@@ -61,8 +60,7 @@ class ContatoCorporativoController extends AppBaseController
     /**
      * Display the specified ContatoCorporativo.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class ContatoCorporativoController extends AppBaseController
     /**
      * Show the form for editing the specified ContatoCorporativo.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class ContatoCorporativoController extends AppBaseController
     /**
      * Update the specified ContatoCorporativo in storage.
      *
-     * @param  int              $id
-     * @param UpdateContatoCorporativoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateContatoCorporativoRequest  $request
      * @return Response
      */
     public function update($id, UpdateContatoCorporativoRequest $request)
@@ -126,8 +122,7 @@ class ContatoCorporativoController extends AppBaseController
     /**
      * Remove the specified ContatoCorporativo from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

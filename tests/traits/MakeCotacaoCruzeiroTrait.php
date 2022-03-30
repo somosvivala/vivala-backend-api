@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoCruzeiro;
 use App\Repositories\CotacaoCruzeiroRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoCruzeiroTrait
 {
     /**
      * Create fake instance of CotacaoCruzeiro and save it in database.
      *
-     * @param array $cotacaoCruzeiroFields
+     * @param  array  $cotacaoCruzeiroFields
      * @return CotacaoCruzeiro
      */
     public function makeCotacaoCruzeiro($cotacaoCruzeiroFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoCruzeiroTrait
     /**
      * Get fake instance of CotacaoCruzeiro.
      *
-     * @param array $cotacaoCruzeiroFields
+     * @param  array  $cotacaoCruzeiroFields
      * @return CotacaoCruzeiro
      */
     public function fakeCotacaoCruzeiro($cotacaoCruzeiroFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoCruzeiroTrait
     /**
      * Get fake data of CotacaoCruzeiro.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoCruzeiroData($cotacaoCruzeiroFields = [])
