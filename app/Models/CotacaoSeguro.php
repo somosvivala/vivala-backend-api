@@ -135,7 +135,7 @@ class CotacaoSeguro extends Model
     /**
      * Mutator para data_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataIdaAttribute($value)
     {
@@ -146,7 +146,7 @@ class CotacaoSeguro extends Model
     /**
      * Mutator para data_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataVoltaAttribute($value)
     {
@@ -181,7 +181,7 @@ class CotacaoSeguro extends Model
     /**
      * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDatasNascimentoSeguroViagemAttribute($value)
     {

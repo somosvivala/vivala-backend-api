@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\ContatoGeral;
 use App\Repositories\ContatoGeralRepository;
+use Faker\Factory as Faker;
 
 trait MakeContatoGeralTrait
 {
     /**
      * Create fake instance of ContatoGeral and save it in database.
      *
-     * @param array $contatoGeralFields
+     * @param  array  $contatoGeralFields
      * @return ContatoGeral
      */
     public function makeContatoGeral($contatoGeralFields = [])
@@ -24,7 +24,7 @@ trait MakeContatoGeralTrait
     /**
      * Get fake instance of ContatoGeral.
      *
-     * @param array $contatoGeralFields
+     * @param  array  $contatoGeralFields
      * @return ContatoGeral
      */
     public function fakeContatoGeral($contatoGeralFields = [])
@@ -35,7 +35,7 @@ trait MakeContatoGeralTrait
     /**
      * Get fake data of ContatoGeral.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeContatoGeralData($contatoGeralFields = [])

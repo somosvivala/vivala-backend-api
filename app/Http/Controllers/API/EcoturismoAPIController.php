@@ -17,14 +17,14 @@ class EcoturismoAPIController extends AppBaseController
     /**
      * videosServico.
      *
-     * @var  \App\Models\VideosServicos
+     * @var \App\Models\VideosServicos
      */
     private $videosServico;
 
     /**
      * Construtor recebendo instancia do repositorio.
      *
-     * @param ExperienciaRepository $experienciaRepo
+     * @param  ExperienciaRepository  $experienciaRepo
      */
     public function __construct(ExperienciaRepository $experienciaRepo)
     {

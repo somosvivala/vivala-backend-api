@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
-use App\Repositories\ExpedicaoRepository;
 use App\DataTables\InscricaoExpedicaoDataTable;
 use App\DataTables\Scopes\InscricaoPorExpedicaoId;
-use App\Repositories\InscricaoExpedicaoRepository;
 use App\Http\Requests\CreateInscricaoExpedicaoRequest;
 use App\Http\Requests\UpdateInscricaoExpedicaoRequest;
+use App\Repositories\ExpedicaoRepository;
+use App\Repositories\InscricaoExpedicaoRepository;
+use Flash;
+use Response;
 
 class InscricaoExpedicaoController extends AppBaseController
 {
@@ -26,7 +26,7 @@ class InscricaoExpedicaoController extends AppBaseController
     /**
      * Display a listing of the InscricaoExpedicao.
      *
-     * @param InscricaoExpedicaoDataTable $inscricaoExpedicaoDataTable
+     * @param  InscricaoExpedicaoDataTable  $inscricaoExpedicaoDataTable
      * @return Response
      */
     public function index(InscricaoExpedicaoDataTable $inscricaoExpedicaoDataTable)
@@ -47,8 +47,7 @@ class InscricaoExpedicaoController extends AppBaseController
     /**
      * Store a newly created InscricaoExpedicao in storage.
      *
-     * @param CreateInscricaoExpedicaoRequest $request
-     *
+     * @param  CreateInscricaoExpedicaoRequest  $request
      * @return Response
      */
     public function store(CreateInscricaoExpedicaoRequest $request)
@@ -65,8 +64,7 @@ class InscricaoExpedicaoController extends AppBaseController
     /**
      * Display the specified InscricaoExpedicao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -85,8 +83,7 @@ class InscricaoExpedicaoController extends AppBaseController
     /**
      * Show the form for editing the specified InscricaoExpedicao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -105,9 +102,8 @@ class InscricaoExpedicaoController extends AppBaseController
     /**
      * Update the specified InscricaoExpedicao in storage.
      *
-     * @param  int              $id
-     * @param UpdateInscricaoExpedicaoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateInscricaoExpedicaoRequest  $request
      * @return Response
      */
     public function update($id, UpdateInscricaoExpedicaoRequest $request)
@@ -130,8 +126,7 @@ class InscricaoExpedicaoController extends AppBaseController
     /**
      * Remove the specified InscricaoExpedicao from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -154,8 +149,8 @@ class InscricaoExpedicaoController extends AppBaseController
     /**
      * Metodo para retornar a datatable de inscricoes de Expedicoes de 1 Expedicao.
      *
-     * @param InscricaoExpedicaoDataTable $datatable
-     * @param mixed $expedicao_id
+     * @param  InscricaoExpedicaoDataTable  $datatable
+     * @param  mixed  $expedicao_id
      */
     public function getInscricoes(InscricaoExpedicaoDataTable $datatable, $expedicao_id)
     {

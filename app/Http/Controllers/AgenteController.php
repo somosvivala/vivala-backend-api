@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\AgenteDataTable;
+use App\Http\Requests\CreateAgenteRequest;
+use App\Http\Requests\CreateFotoAgenteRequest;
+use App\Http\Requests\UpdateAgenteRequest;
+use App\Repositories\AgenteRepository;
+use App\Repositories\FotoRepository;
 use Flash;
 use Response;
-use App\DataTables\AgenteDataTable;
-use App\Repositories\FotoRepository;
-use App\Repositories\AgenteRepository;
-use App\Http\Requests\CreateAgenteRequest;
-use App\Http\Requests\UpdateAgenteRequest;
-use App\Http\Requests\CreateFotoAgenteRequest;
 
 class AgenteController extends AppBaseController
 {
@@ -28,7 +28,7 @@ class AgenteController extends AppBaseController
     /**
      * Display a listing of the Agente.
      *
-     * @param AgenteDataTable $agenteDataTable
+     * @param  AgenteDataTable  $agenteDataTable
      * @return Response
      */
     public function index(AgenteDataTable $agenteDataTable)
@@ -49,8 +49,7 @@ class AgenteController extends AppBaseController
     /**
      * Store a newly created Agente in storage.
      *
-     * @param CreateAgenteRequest $request
-     *
+     * @param  CreateAgenteRequest  $request
      * @return Response
      */
     public function store(CreateAgenteRequest $request)
@@ -65,8 +64,7 @@ class AgenteController extends AppBaseController
     /**
      * Display the specified Agente.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -85,8 +83,7 @@ class AgenteController extends AppBaseController
     /**
      * Show the form for editing the specified Agente.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -105,9 +102,8 @@ class AgenteController extends AppBaseController
     /**
      * Update the specified Agente in storage.
      *
-     * @param  int              $id
-     * @param UpdateAgenteRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateAgenteRequest  $request
      * @return Response
      */
     public function update($id, UpdateAgenteRequest $request)
@@ -130,8 +126,7 @@ class AgenteController extends AppBaseController
     /**
      * Remove the specified Agente from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -154,7 +149,7 @@ class AgenteController extends AppBaseController
     /**
      * Serve a view de upload de foto de agente.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getFotoAgente($id)
     {
@@ -166,8 +161,8 @@ class AgenteController extends AppBaseController
     /**
      * postFotoAgente - Recebe o POST da foto de Agente, deleta a ultima foto caso exista e faz o upload da nova.
      *
-     * @param CreateFotoAgenteRequest $request
-     * @param mixed $id
+     * @param  CreateFotoAgenteRequest  $request
+     * @param  mixed  $id
      */
     public function postFotoAgente(CreateFotoAgenteRequest $request, $id)
     {

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
+use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\API\CreateInscricaoExpedicaoAPIRequest;
 use App\Models\InscricaoExpedicao;
 use App\Repositories\ExpedicaoRepository;
-use App\Http\Controllers\AppBaseController;
-use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\InscricaoExpedicaoRepository;
+use Illuminate\Http\Request;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
-use App\Http\Requests\API\CreateInscricaoExpedicaoAPIRequest;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class InscricaoExpedicaoController.
@@ -28,7 +28,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -69,7 +69,7 @@ class InscricaoExpedicaoAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateInscricaoExpedicaoAPIRequest $request
+     * @param  CreateInscricaoExpedicaoAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

@@ -140,7 +140,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para data_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataIdaAttribute($value)
     {
@@ -151,7 +151,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para data_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataVoltaAttribute($value)
     {
@@ -162,7 +162,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para periodo_voo_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPeriodoVooIdaAttribute($value)
     {
@@ -172,7 +172,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para periodo_voo_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPeriodoVooVoltaAttribute($value)
     {
@@ -182,7 +182,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para tipo_quarto, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setTipoQuartoAttribute($value)
     {
@@ -192,7 +192,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para hospedagem_tipo, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setHospedagemTipoAttribute($value)
     {
@@ -202,7 +202,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para hospedagem_preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setHospedagemPrecoDesejadoAttribute($value)
     {
@@ -213,7 +213,7 @@ class CotacaoHospedagem extends Model
     /**
      * Mutator para hospedagem_servicos, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setHospedagemServicosAttribute($value)
     {
