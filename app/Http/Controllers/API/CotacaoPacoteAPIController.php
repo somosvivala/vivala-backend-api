@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\CotacaoPacote;
-use App\Traits\ArrumaRequestCotacoesTrait;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\CotacaoPacoteRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateCotacaoPacoteAPIRequest;
+use App\Models\CotacaoPacote;
+use App\Repositories\CotacaoPacoteRepository;
+use App\Traits\ArrumaRequestCotacoesTrait;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class CotacaoPacoteController.
@@ -28,7 +28,7 @@ class CotacaoPacoteAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -69,7 +69,7 @@ class CotacaoPacoteAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateCotacaoPacoteAPIRequest $request
+     * @param  CreateCotacaoPacoteAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

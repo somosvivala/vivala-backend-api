@@ -12,8 +12,8 @@ class ExpedicaoTransformer extends TransformerAbstract
 {
     /**
      * Transform the \Expedicao entity.
-     * @param \Expedicao $model
      *
+     * @param  \Expedicao  $model
      * @return array
      */
     public function transform(Expedicao $model)

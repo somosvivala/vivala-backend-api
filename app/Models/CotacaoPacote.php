@@ -324,7 +324,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para data_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataIdaAttribute($value)
     {
@@ -335,7 +335,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para data_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataVoltaAttribute($value)
     {
@@ -346,7 +346,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para periodo_voo_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPeriodoVooIdaAttribute($value)
     {
@@ -356,7 +356,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para periodo_voo_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPeriodoVooVoltaAttribute($value)
     {
@@ -366,7 +366,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para numero_paradas, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setNumeroParadasAttribute($value)
     {
@@ -376,7 +376,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para tipo_quarto, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setTipoQuartoAttribute($value)
     {
@@ -386,7 +386,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para hospedagem_tipo, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setHospedagemTipoAttribute($value)
     {
@@ -396,7 +396,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para aereo_preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setAereoPrecoDesejadoAttribute($value)
     {
@@ -407,7 +407,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para hospedagem_preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setHospedagemPrecoDesejadoAttribute($value)
     {
@@ -418,7 +418,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para transporte_interno_preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setTransporteInternoPrecoDesejadoAttribute($value)
     {
@@ -429,7 +429,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para passeios_preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPasseiosPrecoDesejadoAttribute($value)
     {
@@ -440,7 +440,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para hospedagem_servicos, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setHospedagemServicosAttribute($value)
     {
@@ -451,7 +451,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para transporte_interno, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setTransporteInternoAttribute($value)
     {
@@ -462,7 +462,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para tipos_transfer, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setTiposTransferAttribute($value)
     {
@@ -473,7 +473,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para categorias_carro, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setCategoriasCarroAttribute($value)
     {
@@ -484,7 +484,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para itens_carro, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setItensCarroAttribute($value)
     {
@@ -495,7 +495,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para passeios_interesses, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPasseiosInteressesAttribute($value)
     {
@@ -506,7 +506,7 @@ class CotacaoPacote extends Model
     /**
      * Mutator para datas_nascimento_seguro_viagem, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDatasNascimentoSeguroViagemAttribute($value)
     {

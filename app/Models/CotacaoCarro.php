@@ -161,7 +161,7 @@ class CotacaoCarro extends Model
     /**
      * Mutator para data_retirada, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataRetiradaAttribute($value)
     {
@@ -188,7 +188,7 @@ class CotacaoCarro extends Model
     /**
      * Mutator para data_devolucao, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataDevolucaoAttribute($value)
     {
@@ -199,7 +199,7 @@ class CotacaoCarro extends Model
     /**
      * Mutator para preco_desejado_carro, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPrecoDesejadoCarroAttribute($value)
     {
@@ -210,7 +210,7 @@ class CotacaoCarro extends Model
     /**
      * Mutator para categorias_carro, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setCategoriasCarroAttribute($value)
     {
@@ -221,7 +221,7 @@ class CotacaoCarro extends Model
     /**
      * Mutator para itens_carro, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setItensCarroAttribute($value)
     {

@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\InscricaoNewsletter;
 use App\Repositories\InscricaoNewsletterRepository;
+use Faker\Factory as Faker;
 
 trait MakeInscricaoNewsletterTrait
 {
     /**
      * Create fake instance of InscricaoNewsletter and save it in database.
      *
-     * @param array $inscricaoNewsletterFields
+     * @param  array  $inscricaoNewsletterFields
      * @return InscricaoNewsletter
      */
     public function makeInscricaoNewsletter($inscricaoNewsletterFields = [])
@@ -24,7 +24,7 @@ trait MakeInscricaoNewsletterTrait
     /**
      * Get fake instance of InscricaoNewsletter.
      *
-     * @param array $inscricaoNewsletterFields
+     * @param  array  $inscricaoNewsletterFields
      * @return InscricaoNewsletter
      */
     public function fakeInscricaoNewsletter($inscricaoNewsletterFields = [])
@@ -35,7 +35,7 @@ trait MakeInscricaoNewsletterTrait
     /**
      * Get fake data of InscricaoNewsletter.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeInscricaoNewsletterData($inscricaoNewsletterFields = [])

@@ -12,8 +12,8 @@ class AgenteTransformer extends TransformerAbstract
 {
     /**
      * Transform the \Agente entity.
-     * @param \Agente $model
      *
+     * @param  \Agente  $model
      * @return array
      */
     public function transform(Agente $model)

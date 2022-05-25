@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\ContatoCorporativo;
 use App\Repositories\ContatoCorporativoRepository;
+use Faker\Factory as Faker;
 
 trait MakeContatoCorporativoTrait
 {
     /**
      * Create fake instance of ContatoCorporativo and save it in database.
      *
-     * @param array $contatoCorporativoFields
+     * @param  array  $contatoCorporativoFields
      * @return ContatoCorporativo
      */
     public function makeContatoCorporativo($contatoCorporativoFields = [])
@@ -24,7 +24,7 @@ trait MakeContatoCorporativoTrait
     /**
      * Get fake instance of ContatoCorporativo.
      *
-     * @param array $contatoCorporativoFields
+     * @param  array  $contatoCorporativoFields
      * @return ContatoCorporativo
      */
     public function fakeContatoCorporativo($contatoCorporativoFields = [])
@@ -35,7 +35,7 @@ trait MakeContatoCorporativoTrait
     /**
      * Get fake data of ContatoCorporativo.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeContatoCorporativoData($contatoCorporativoFields = [])

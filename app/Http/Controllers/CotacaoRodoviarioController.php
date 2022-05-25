@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoRodoviarioDataTable;
-use App\Repositories\CotacaoRodoviarioRepository;
 use App\Http\Requests\CreateCotacaoRodoviarioRequest;
 use App\Http\Requests\UpdateCotacaoRodoviarioRequest;
+use App\Repositories\CotacaoRodoviarioRepository;
+use Flash;
+use Response;
 
 class CotacaoRodoviarioController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoRodoviarioController extends AppBaseController
     /**
      * Display a listing of the CotacaoRodoviario.
      *
-     * @param CotacaoRodoviarioDataTable $cotacaoRodoviarioDataTable
+     * @param  CotacaoRodoviarioDataTable  $cotacaoRodoviarioDataTable
      * @return Response
      */
     public function index(CotacaoRodoviarioDataTable $cotacaoRodoviarioDataTable)
@@ -43,8 +43,7 @@ class CotacaoRodoviarioController extends AppBaseController
     /**
      * Store a newly created CotacaoRodoviario in storage.
      *
-     * @param CreateCotacaoRodoviarioRequest $request
-     *
+     * @param  CreateCotacaoRodoviarioRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoRodoviarioRequest $request)
@@ -61,8 +60,7 @@ class CotacaoRodoviarioController extends AppBaseController
     /**
      * Display the specified CotacaoRodoviario.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoRodoviarioController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoRodoviario.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoRodoviarioController extends AppBaseController
     /**
      * Update the specified CotacaoRodoviario in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoRodoviarioRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoRodoviarioRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoRodoviarioRequest $request)
@@ -126,8 +122,7 @@ class CotacaoRodoviarioController extends AppBaseController
     /**
      * Remove the specified CotacaoRodoviario from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)

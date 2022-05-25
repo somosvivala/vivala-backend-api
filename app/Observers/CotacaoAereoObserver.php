@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use Mail;
-use App\Models\CotacaoAereo;
 use App\Mail\PedidoCotacaoAereo;
+use App\Models\CotacaoAereo;
+use Mail;
 
 class CotacaoAereoObserver
 {

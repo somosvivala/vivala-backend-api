@@ -7,6 +7,7 @@ use InfyOm\Generator\Common\BaseRepository;
 
 /**
  * Class ImersaoRepository.
+ *
  * @version April 20, 2018, 11:48 pm BRT
  *
  * @method Imersao findWithoutFail($id, $columns = ['*'])

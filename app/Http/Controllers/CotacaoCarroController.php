@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\CotacaoCarroDataTable;
-use App\Repositories\CotacaoCarroRepository;
 use App\Http\Requests\CreateCotacaoCarroRequest;
 use App\Http\Requests\UpdateCotacaoCarroRequest;
+use App\Repositories\CotacaoCarroRepository;
+use Flash;
+use Response;
 
 class CotacaoCarroController extends AppBaseController
 {
@@ -22,7 +22,7 @@ class CotacaoCarroController extends AppBaseController
     /**
      * Display a listing of the CotacaoCarro.
      *
-     * @param CotacaoCarroDataTable $cotacaoCarroDataTable
+     * @param  CotacaoCarroDataTable  $cotacaoCarroDataTable
      * @return Response
      */
     public function index(CotacaoCarroDataTable $cotacaoCarroDataTable)
@@ -43,8 +43,7 @@ class CotacaoCarroController extends AppBaseController
     /**
      * Store a newly created CotacaoCarro in storage.
      *
-     * @param CreateCotacaoCarroRequest $request
-     *
+     * @param  CreateCotacaoCarroRequest  $request
      * @return Response
      */
     public function store(CreateCotacaoCarroRequest $request)
@@ -61,8 +60,7 @@ class CotacaoCarroController extends AppBaseController
     /**
      * Display the specified CotacaoCarro.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -81,8 +79,7 @@ class CotacaoCarroController extends AppBaseController
     /**
      * Show the form for editing the specified CotacaoCarro.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -101,9 +98,8 @@ class CotacaoCarroController extends AppBaseController
     /**
      * Update the specified CotacaoCarro in storage.
      *
-     * @param  int              $id
-     * @param UpdateCotacaoCarroRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateCotacaoCarroRequest  $request
      * @return Response
      */
     public function update($id, UpdateCotacaoCarroRequest $request)
@@ -126,8 +122,7 @@ class CotacaoCarroController extends AppBaseController
     /**
      * Remove the specified CotacaoCarro from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
