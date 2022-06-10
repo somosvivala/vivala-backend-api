@@ -45,7 +45,7 @@ trait ExpedicaoExperienciaModelTrait
     /**
      * Scope para filtrar as Experiencias/Expedicoes futuras.
      *
-     * @param mixed $query
+     * @param  mixed  $query
      */
     public function scopeFuturas($query)
     {
@@ -55,7 +55,7 @@ trait ExpedicaoExperienciaModelTrait
     /**
      * Scope para filtrar as Experiencias/Expedicoes passadas.
      *
-     * @param mixed $query
+     * @param  mixed  $query
      */
     public function scopePassadas($query)
     {
@@ -114,7 +114,7 @@ trait ExpedicaoExperienciaModelTrait
     /**
      * tiraAcentos.
      *
-     * @param mixed $string
+     * @param  mixed  $string
      */
     public function tiraAcentos($string)
     {

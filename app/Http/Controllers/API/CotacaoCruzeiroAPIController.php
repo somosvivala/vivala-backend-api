@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\CotacaoCruzeiro;
 use App\Http\Controllers\AppBaseController;
-use App\Repositories\CotacaoCruzeiroRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateCotacaoCruzeiroAPIRequest;
+use App\Models\CotacaoCruzeiro;
+use App\Repositories\CotacaoCruzeiroRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class CotacaoCruzeiroController.
@@ -25,7 +25,7 @@ class CotacaoCruzeiroAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -66,7 +66,7 @@ class CotacaoCruzeiroAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateCotacaoCruzeiroAPIRequest $request
+     * @param  CreateCotacaoCruzeiroAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

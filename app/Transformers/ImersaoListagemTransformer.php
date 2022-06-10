@@ -12,8 +12,8 @@ class ImersaoListagemTransformer extends TransformerAbstract
 {
     /**
      * Transform the \Imersao entity.
-     * @param \Imersao $model
      *
+     * @param  \Imersao  $model
      * @return array
      */
     public function transform(Imersao $model)

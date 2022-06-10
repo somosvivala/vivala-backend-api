@@ -140,7 +140,7 @@ class CotacaoPasseio extends Model
     /**
      * Mutator para preco_desejado, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPrecoDesejadoAttribute($value)
     {
@@ -165,7 +165,7 @@ class CotacaoPasseio extends Model
     /**
      * Mutator para data_ida, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataIdaAttribute($value)
     {
@@ -176,7 +176,7 @@ class CotacaoPasseio extends Model
     /**
      * Mutator para data_volta, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setDataVoltaAttribute($value)
     {
@@ -211,7 +211,7 @@ class CotacaoPasseio extends Model
     /**
      * Mutator para passeios_interesses, modificando antes de inserir no BD.
      *
-     * @param mixed $value
+     * @param  mixed  $value
      */
     public function setPasseiosInteressesAttribute($value)
     {

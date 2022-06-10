@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Traits\ExpedicaoExperienciaModelTrait;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Traits\ExpedicaoExperienciaModelTrait;
 
 /**
  * @SWG\Definition(

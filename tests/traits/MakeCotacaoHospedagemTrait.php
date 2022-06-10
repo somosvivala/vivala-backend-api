@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoHospedagem;
 use App\Repositories\CotacaoHospedagemRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoHospedagemTrait
 {
     /**
      * Create fake instance of CotacaoHospedagem and save it in database.
      *
-     * @param array $cotacaoHospedagemFields
+     * @param  array  $cotacaoHospedagemFields
      * @return CotacaoHospedagem
      */
     public function makeCotacaoHospedagem($cotacaoHospedagemFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoHospedagemTrait
     /**
      * Get fake instance of CotacaoHospedagem.
      *
-     * @param array $cotacaoHospedagemFields
+     * @param  array  $cotacaoHospedagemFields
      * @return CotacaoHospedagem
      */
     public function fakeCotacaoHospedagem($cotacaoHospedagemFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoHospedagemTrait
     /**
      * Get fake data of CotacaoHospedagem.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoHospedagemData($cotacaoHospedagemFields = [])

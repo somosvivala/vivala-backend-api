@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\ContatoAgente;
 use App\Repositories\ContatoAgenteRepository;
+use Faker\Factory as Faker;
 
 trait MakeContatoAgenteTrait
 {
     /**
      * Create fake instance of ContatoAgente and save it in database.
      *
-     * @param array $contatoAgenteFields
+     * @param  array  $contatoAgenteFields
      * @return ContatoAgente
      */
     public function makeContatoAgente($contatoAgenteFields = [])
@@ -24,7 +24,7 @@ trait MakeContatoAgenteTrait
     /**
      * Get fake instance of ContatoAgente.
      *
-     * @param array $contatoAgenteFields
+     * @param  array  $contatoAgenteFields
      * @return ContatoAgente
      */
     public function fakeContatoAgente($contatoAgenteFields = [])
@@ -35,7 +35,7 @@ trait MakeContatoAgenteTrait
     /**
      * Get fake data of ContatoAgente.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeContatoAgenteData($contatoAgenteFields = [])

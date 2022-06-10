@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoCarro;
 use App\Repositories\CotacaoCarroRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoCarroTrait
 {
     /**
      * Create fake instance of CotacaoCarro and save it in database.
      *
-     * @param array $cotacaoCarroFields
+     * @param  array  $cotacaoCarroFields
      * @return CotacaoCarro
      */
     public function makeCotacaoCarro($cotacaoCarroFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoCarroTrait
     /**
      * Get fake instance of CotacaoCarro.
      *
-     * @param array $cotacaoCarroFields
+     * @param  array  $cotacaoCarroFields
      * @return CotacaoCarro
      */
     public function fakeCotacaoCarro($cotacaoCarroFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoCarroTrait
     /**
      * Get fake data of CotacaoCarro.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoCarroData($cotacaoCarroFields = [])

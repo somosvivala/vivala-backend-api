@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Flash;
-use Response;
 use App\DataTables\ImersaoDataTable;
-use App\Repositories\FotoRepository;
-use App\Repositories\ImersaoRepository;
+use App\Http\Requests\CreateFotoListagemExpRequest;
 use App\Http\Requests\CreateImersaoRequest;
 use App\Http\Requests\UpdateImersaoRequest;
-use App\Http\Requests\CreateFotoListagemExpRequest;
+use App\Repositories\FotoRepository;
+use App\Repositories\ImersaoRepository;
+use Flash;
+use Response;
 
 class ImersaoController extends AppBaseController
 {
@@ -22,8 +22,8 @@ class ImersaoController extends AppBaseController
     /**
      * Construtor recebendo infos necessarias.
      *
-     * @param FotoRepository $fotoRepo
-     * @param ImersaoRepository $imersaoRepo
+     * @param  FotoRepository  $fotoRepo
+     * @param  ImersaoRepository  $imersaoRepo
      */
     public function __construct(FotoRepository $fotoRepo, ImersaoRepository $imersaoRepo)
     {
@@ -34,7 +34,7 @@ class ImersaoController extends AppBaseController
     /**
      * Display a listing of the Imersao.
      *
-     * @param ImersaoDataTable $imersaoDataTable
+     * @param  ImersaoDataTable  $imersaoDataTable
      * @return Response
      */
     public function index(ImersaoDataTable $imersaoDataTable)
@@ -55,8 +55,7 @@ class ImersaoController extends AppBaseController
     /**
      * Store a newly created Imersao in storage.
      *
-     * @param CreateImersaoRequest $request
-     *
+     * @param  CreateImersaoRequest  $request
      * @return Response
      */
     public function store(CreateImersaoRequest $request)
@@ -73,8 +72,7 @@ class ImersaoController extends AppBaseController
     /**
      * Display the specified Imersao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function show($id)
@@ -93,8 +91,7 @@ class ImersaoController extends AppBaseController
     /**
      * Show the form for editing the specified Imersao.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function edit($id)
@@ -113,9 +110,8 @@ class ImersaoController extends AppBaseController
     /**
      * Update the specified Imersao in storage.
      *
-     * @param  int              $id
-     * @param UpdateImersaoRequest $request
-     *
+     * @param  int  $id
+     * @param  UpdateImersaoRequest  $request
      * @return Response
      */
     public function update($id, UpdateImersaoRequest $request)
@@ -138,8 +134,7 @@ class ImersaoController extends AppBaseController
     /**
      * Remove the specified Imersao from storage.
      *
-     * @param  int $id
-     *
+     * @param  int  $id
      * @return Response
      */
     public function destroy($id)
@@ -162,7 +157,7 @@ class ImersaoController extends AppBaseController
     /**
      * Metodo para retornar a view para settar a foto da listagem da Imersao.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function getFotoListagem($id)
     {
@@ -174,8 +169,8 @@ class ImersaoController extends AppBaseController
     /**
      * Metodo que recebe o POST da foto da listagem de uma imersao.
      *
-     * @param CreateFotoListagemExpRequest $request
-     * @param mixed $id
+     * @param  CreateFotoListagemExpRequest  $request
+     * @param  mixed  $id
      */
     public function postFotoListagem(CreateFotoListagemExpRequest $request, $id)
     {
@@ -211,7 +206,7 @@ class ImersaoController extends AppBaseController
     /**
      * Metodo que recebe o POST de ativar a exibição dessa imersao em /imersoes.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function postAtivaListagem($id)
     {
@@ -232,7 +227,7 @@ class ImersaoController extends AppBaseController
     /**
      * Metodo que recebe o POST de desativar a exibição dessa imersao em /imersoes.
      *
-     * @param mixed $id
+     * @param  mixed  $id
      */
     public function postRemoveListagem($id)
     {

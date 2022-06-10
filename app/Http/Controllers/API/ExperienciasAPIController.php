@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Experiencia;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Experiencia;
 use App\Repositories\ExperienciaRepository;
 
 class ExperienciasAPIController extends AppBaseController
@@ -18,7 +18,7 @@ class ExperienciasAPIController extends AppBaseController
     /**
      * Construtor recebendo instancia do repositorio.
      *
-     * @param ExperienciaRepository $experienciaRepo
+     * @param  ExperienciaRepository  $experienciaRepo
      */
     public function __construct(ExperienciaRepository $experienciaRepo)
     {

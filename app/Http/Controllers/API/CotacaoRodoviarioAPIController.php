@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Response;
-use Illuminate\Http\Request;
-use App\Models\CotacaoRodoviario;
 use App\Http\Controllers\AppBaseController;
-use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\CotacaoRodoviarioRepository;
-use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use App\Http\Requests\API\CreateCotacaoRodoviarioAPIRequest;
+use App\Models\CotacaoRodoviario;
+use App\Repositories\CotacaoRodoviarioRepository;
+use Illuminate\Http\Request;
+use InfyOm\Generator\Criteria\LimitOffsetCriteria;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
 /**
  * Class CotacaoRodoviarioController.
@@ -25,7 +25,7 @@ class CotacaoRodoviarioAPIController extends AppBaseController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return Response
      *
      * @SWG\Get(
@@ -66,7 +66,7 @@ class CotacaoRodoviarioAPIController extends AppBaseController
     }
 
     /**
-     * @param CreateCotacaoRodoviarioAPIRequest $request
+     * @param  CreateCotacaoRodoviarioAPIRequest  $request
      * @return Response
      *
      * @SWG\Post(

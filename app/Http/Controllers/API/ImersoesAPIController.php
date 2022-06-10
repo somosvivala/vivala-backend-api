@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Repositories\ImersaoRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Repositories\ImersaoRepository;
 
 class ImersoesAPIController extends AppBaseController
 {
@@ -17,14 +17,14 @@ class ImersoesAPIController extends AppBaseController
     /**
      * videosServico.
      *
-     * @var  \App\Models\VideosServicos
+     * @var \App\Models\VideosServicos
      */
     private $videosServico;
 
     /**
      * Construtor recebendo instancia do repositorio.
      *
-     * @param ImersaoRepository $imersaoRepo
+     * @param  ImersaoRepository  $imersaoRepo
      */
     public function __construct(ImersaoRepository $imersaoRepo)
     {

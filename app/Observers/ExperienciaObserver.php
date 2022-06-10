@@ -33,7 +33,7 @@ class ExperienciaObserver
 
         //Removendo as fotos dessa Experiencia
         if ($exp->fotos) {
-            $exp->fotos->each(function ($foto) use ($fotoRepository) {
+            $exp->fotos->each(function ($foto) {
                 $this->fotoRepository->delete($foto->id);
             });
         }

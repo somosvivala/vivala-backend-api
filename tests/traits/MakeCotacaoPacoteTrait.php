@@ -1,15 +1,15 @@
 <?php
 
-use Faker\Factory as Faker;
 use App\Models\CotacaoPacote;
 use App\Repositories\CotacaoPacoteRepository;
+use Faker\Factory as Faker;
 
 trait MakeCotacaoPacoteTrait
 {
     /**
      * Create fake instance of CotacaoPacote and save it in database.
      *
-     * @param array $cotacaoPacoteFields
+     * @param  array  $cotacaoPacoteFields
      * @return CotacaoPacote
      */
     public function makeCotacaoPacote($cotacaoPacoteFields = [])
@@ -24,7 +24,7 @@ trait MakeCotacaoPacoteTrait
     /**
      * Get fake instance of CotacaoPacote.
      *
-     * @param array $cotacaoPacoteFields
+     * @param  array  $cotacaoPacoteFields
      * @return CotacaoPacote
      */
     public function fakeCotacaoPacote($cotacaoPacoteFields = [])
@@ -35,7 +35,7 @@ trait MakeCotacaoPacoteTrait
     /**
      * Get fake data of CotacaoPacote.
      *
-     * @param array $postFields
+     * @param  array  $postFields
      * @return array
      */
     public function fakeCotacaoPacoteData($cotacaoPacoteFields = [])
